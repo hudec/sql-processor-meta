@@ -9,7 +9,6 @@ Artifacts: {Artifacts}
     WS* (properties+=Property WS*|pojos+=PojoDefinition WS*|tables+=TableDefinition WS*
     	|procedures+=ProcedureDefinition WS*|functions+=FunctionDefinition WS*
     	|statements+=MetaStatement WS*|mappings+=MappingRule WS*|features+=OptionalFeature WS*
-    	|pojoPackages+=PackageDeclaration WS*
     )*;
 
 DatabaseCatalogAssignement: dbCatalog=PropertyValue;
@@ -18,8 +17,8 @@ DatabaseTypeAssignement: dbType=IDENT;
 DatabaseMetaInfoAssignement: dbMetaInfo=PropertyValue;
 DriverMetaInfoAssignement: dbDriverInfo=PropertyValue;
 DriverMethodOutputAssignement: driverMethod=IDENT '->' callOutput=PropertyValue;
-SqlTypeAssignement: typeName=IDENT (LPAREN size=NUMBER RPAREN)? '->' type=PojoType;
-ColumnTypeAssignement: dbColumn=IDENT '->' type=PojoType;
+SqlTypeAssignement: typeName=IDENT (LPAREN size=NUMBER RPAREN)? '->' type=PojoDefinition;
+ColumnTypeAssignement: dbColumn=IDENT '->' type=PojoDefinition;
 ShowColumnTypeAssignement: dbColumn=IDENT '->' type=PropertyValue;
 TableAssignement: dbTable=IDENT '->' newName=IDENT;
 JoinTableAssignement: dbTable=IDENT ('->' dbTables+=IDENT)+;
@@ -29,8 +28,8 @@ ExportAssignement: dbColumn=IDENT '->' fkTable=IDENT ('->' fkColumn=IDENT)?;
 InheritanceAssignement: discriminator=IDENT '->' dbTable=IDENT ('->' dbColumns+=IDENT)+;
 ManyToManyAssignement: pkColumn=IDENT '->' pkTable=IDENT ('->' fkColumn=IDENT)?;
 DebugLevelAssignement: debug=IDENT (WS+ scope=PropertyValue)?;
-ProcedurePojoAssignement: dbProcedure=IDENT '->' pojo=PojoType;
-FunctionPojoAssignement: dbFunction=IDENT '->' pojo=PojoType;
+ProcedurePojoAssignement: dbProcedure=IDENT '->' pojo=PojoDefinition;
+FunctionPojoAssignement: dbFunction=IDENT '->' pojo=PojoDefinition;
 ImplementsAssignement: toImplement=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
 ExtendsAssignement: toExtends=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
 ImplementsAssignementGenerics: toImplement=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
@@ -153,7 +152,7 @@ DaogenProperty:
 	|name='implements-interfaces-generics' WS+ toImplementsGenerics=ImplementsAssignementGenerics 
 	|name='extends-class-generics' WS+ toExtendsGenerics=ExtendsAssignementGenerics
 	|name='make-it-final'
-	|name='function-result' WS+ dbFunction=IDENT WS+ resultType=PojoType
+	|name='function-result' WS+ dbFunction=IDENT WS+ resultType=PojoDefinition
 	|name='debug-level' WS+ debug=DebugLevelAssignement
 	|name='active-filter' WS+ activeFilter=PropertyValue
 	|name='package' WS+ pckg=PropertyValue
@@ -353,115 +352,8 @@ terminal REST: !(SEMICOLON);
 
 terminal STRING_VALUE : '\"' -> '\"' ;
 
-
 FeatureValue:
   (REST|IDENT_DOT|IDENT|NUMBER|WS|COLON|STRING|COMMA|MINUS|PLUS|LPAREN|RPAREN|LBRACE|RBRACE|QUESTI|NOT|BAND|BOR|HASH|AT|CARET|EQUALS|LESS_THAN|MORE_THAN|PERCENT|AND|OR|ESC_CHAR|ON_OFF|STATEMENT_TYPE|MAPPING_TYPE|OPTION_TYPE)+;
-
-//SimpleType:
-//	(native = ('_void'|'_char'|'_byte'|'_short'|'_int'|'_long'|'_float'|'_double'|'_boolean') |
-//	(COLON (COLON ref=[PojoEntity|IDENT]) | type=[jvmTypes::JvmType|QualifiedName]));
-
-PojoType:
-	(native = ('_void'|'_char'|'_byte'|'_short'|'_int'|'_long'|'_float'|'_double'|'_boolean') | 
-	(COLON (COLON ref=[PojoEntity|IDENT] | type=[jvmTypes::JvmType|QualifiedName]))
-	(LESS_THAN (COLON gref=[PojoEntity|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName]) MORE_THAN)?) (array ?= '[]')?;
-
-PackageDeclaration hidden(ML_COMMENT, SL_COMMENT, WS):
-	'package' name=(IDENT|IDENT_DOT) ('suffix' suffix=(IDENT|NUMBER))? LBRACE
-		elements+=AbstractPojoEntity*
-	RBRACE;
-
-Annotation:
-	type=[jvmTypes::JvmType|QualifiedName] (COLON COLON COLON features+=AnnotationProperty+)?
-;
-
-AnnotationProperty:
-	(COMMA)? name=IDENT (COLON (COLON ref=[PojoEntity|IDENT] | type=[jvmTypes::JvmType|QualifiedName]))? (number=NUMBER|value=STRING_VALUE|constant=IDENT)
-;
-
-Entity: PojoEntity | EnumEntity;
-
-AnnotatedEntity: (=> AT (=> AT (=> AT (=> AT conflictAnnotations+=Annotation | staticAnnotations+=Annotation) | constructorAnnotations+=Annotation) | annotations+=Annotation))* entity=Entity;
-
-AbstractPojoEntity hidden(ML_COMMENT, SL_COMMENT, WS):
-	PackageDeclaration | AnnotatedEntity | Import | Implements | Extends | ImplPackage | PojoDao;
-
-Import hidden(ML_COMMENT, SL_COMMENT, WS):
-	'import' importedNamespace = QualifiedNameWithWildcard;
-
-Implements hidden(ML_COMMENT, SL_COMMENT, WS):
-	'implements' implements = [jvmTypes::JvmType|QualifiedName] (generics ?= '<<>>')? ('onlyPojos' onlyPojos+=[PojoEntity|IDENT]*)? ('onlyDaos' onlyDaos+=[PojoDao|IDENT]*)? ('exceptPojos' exceptPojos+=[PojoEntity|IDENT]*)? ('exceptDaos' exceptDaos+=[PojoDao|IDENT]*)?;
-
-Extends hidden(ML_COMMENT, SL_COMMENT, WS):
-	'extends' extends = [jvmTypes::JvmType|QualifiedName] (generics ?= '<<>>')? ('onlyPojos' onlyPojos+=[PojoEntity|IDENT]*)? ('onlyDaos' onlyDaos+=[PojoDao|IDENT]*)? ('exceptPojos' exceptPojos+=[PojoEntity|IDENT]*)? ('exceptDaos' exceptDaos+=[PojoDao|IDENT]*)?;
-
-ImplPackage hidden(ML_COMMENT, SL_COMMENT, WS):
-	'implementation-package' name=(IDENT|IDENT_DOT);
-
-PojoEntityModifier1: ((final?='final') | (abstract?='abstract'));
-
-PojoEntityModifier2: (('extends' superType=[PojoEntity|IDENT]) | ('discriminator' discriminator=(IDENT|NUMBER)) | (operators='operators' (operatorsSuffix=IDENT)?)| ('serializable' sernum=NUMBER));
-
-PojoEntity hidden(ML_COMMENT, SL_COMMENT, WS):
-	(modifiers1+=PojoEntityModifier1)* 'pojo' name=IDENT (modifiers2+=PojoEntityModifier2)* 
-	LBRACE
-		features+=PojoAnnotatedProperty*
-	RBRACE;
-
-PojoAnnotatedProperty: (=> AT (=> AT (=> AT setterAnnotations+=Annotation | getterAnnotations+=Annotation) | attributeAnnotations+=Annotation))* feature=PojoProperty;
-
-PojoPropertyModifier: ((required?='required') | (discriminator?='discriminator') | (primaryKey?='primaryKey') | ('index' index=NUMBER) | (version?='optLock') | 
-	                   ('updateCol' updateColumn1=IDENT '->' updateColumn2=IDENT) | ('createCol' createColumn1=IDENT '->' createColumn2=IDENT) 
-);
-
-PojoProperty hidden(ML_COMMENT, SL_COMMENT, WS):
-	name=IDENT (native = ('_char'|'_byte'|'_short'|'_int'|'_long'|'_float'|'_double'|'_boolean') | 
-	(COLON (COLON (COLON (attrs+=[PojoProperty|IDENT])* | ref=[Entity|IDENT]) | type=[jvmTypes::JvmType|QualifiedName]))
-	(LESS_THAN (COLON gref=[PojoEntity|IDENT] | gtype=[jvmTypes::JvmType|QualifiedName]) MORE_THAN)?) (array ?= '[]')?
-	(modifiers+=PojoPropertyModifier)*
-;
-
-EnumEntityModifier1: ((final?='final'));
-
-EnumEntityModifier2: (('extends' superType=[PojoEntity|IDENT]) | ('serializable' sernum=NUMBER));
-
-EnumEntity hidden(ML_COMMENT, SL_COMMENT, WS):
-	(modifiers1+=EnumEntityModifier1)* 'enum' name=IDENT (modifiers2+=EnumEntityModifier2)* 
-	LBRACE
-		features+=EnumProperty*
-	RBRACE;
-
-EnumProperty hidden(ML_COMMENT, SL_COMMENT, WS):
-	name=IDENT (native = ('_char'|'_byte'|'_short'|'_int'|'_long'|'_float'|'_double'|'_boolean') | 
-	(COLON (COLON COLON value=(NUMBER|STRING_VALUE) | type=[jvmTypes::JvmType|QualifiedName])))
-;
-
-PojoDaoModifier: (('extends' superType=[PojoDao|IDENT]) | ('serializable' sernum=NUMBER));
-
-PojoDao hidden(ML_COMMENT, SL_COMMENT, WS):
-	(modifiers1+=PojoEntityModifier1)* 'dao' name=IDENT (COLON COLON ((pojoGenerics ?= COLON)?) pojo=[PojoEntity|IDENT])?
-	  (modifiers2+=PojoDaoModifier)* 
-	LBRACE
-		methods+=PojoMethod*
-		toInits+=ToInitMethod*
-	RBRACE;
-
-PojoMethodModifier: ((callFunction?='callFunction') | (callUpdate?='callUpdate') | (callQuery?='callQuery') | (callQueryFunction?='callQueryFunction') | (callSelectFunction?='callSelectFunction'));
-
-PojoMethod hidden(ML_COMMENT, SL_COMMENT, WS):
-		(modifiers1+=PojoMethodModifier)* name=IDENT (type=PojoType COLON COLON COLON (args+=PojoMethodArg)+)?
-;
-
-ToInitMethod hidden(ML_COMMENT, SL_COMMENT, WS):
-		name=IDENT COLON COLON COLON (args+=PojoMethodArg)+
-;
-
-PojoMethodArg hidden(ML_COMMENT, SL_COMMENT, WS):
-	name=IDENT type=PojoType
-;
-
-QualifiedNameWithWildcard:
-  QualifiedName '.*'?; 
 
 QualifiedName: (IDENT|IDENT_DOT);
 

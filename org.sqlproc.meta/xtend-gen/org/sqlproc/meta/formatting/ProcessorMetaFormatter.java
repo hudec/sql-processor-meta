@@ -65,8 +65,5 @@ public class ProcessorMetaFormatter extends AbstractDeclarativeFormatter {
     FormattingConfig.LinewrapLocator _setLinewrap_11 = c.setLinewrap(1, 1, 2);
     ParserRule _optionalFeatureRule = this._processorMetaGrammarAccess.getOptionalFeatureRule();
     _setLinewrap_11.after(_optionalFeatureRule);
-    FormattingConfig.LinewrapLocator _setLinewrap_12 = c.setLinewrap(1, 1, 2);
-    ParserRule _packageDeclarationRule = this._processorMetaGrammarAccess.getPackageDeclarationRule();
-    _setLinewrap_12.after(_packageDeclarationRule);
   }
 }

@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -36,15 +35,11 @@ import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
-import org.sqlproc.meta.processorMeta.AbstractPojoEntity;
 import org.sqlproc.meta.processorMeta.Artifacts;
 import org.sqlproc.meta.processorMeta.Column;
 import org.sqlproc.meta.processorMeta.Constant;
 import org.sqlproc.meta.processorMeta.DatabaseColumn;
 import org.sqlproc.meta.processorMeta.DatabaseTable;
-import org.sqlproc.meta.processorMeta.Entity;
-import org.sqlproc.meta.processorMeta.EnumEntity;
-import org.sqlproc.meta.processorMeta.EnumProperty;
 import org.sqlproc.meta.processorMeta.FunctionDefinition;
 import org.sqlproc.meta.processorMeta.Identifier;
 import org.sqlproc.meta.processorMeta.MappingColumn;
@@ -52,12 +47,7 @@ import org.sqlproc.meta.processorMeta.MappingRule;
 import org.sqlproc.meta.processorMeta.MetaSql;
 import org.sqlproc.meta.processorMeta.MetaStatement;
 import org.sqlproc.meta.processorMeta.OptionalFeature;
-import org.sqlproc.meta.processorMeta.PackageDeclaration;
-import org.sqlproc.meta.processorMeta.PojoAnnotatedProperty;
-import org.sqlproc.meta.processorMeta.PojoDao;
 import org.sqlproc.meta.processorMeta.PojoDefinition;
-import org.sqlproc.meta.processorMeta.PojoEntity;
-import org.sqlproc.meta.processorMeta.PojoProperty;
 import org.sqlproc.meta.processorMeta.ProcedureDefinition;
 import org.sqlproc.meta.processorMeta.ProcessorMetaPackage;
 import org.sqlproc.meta.processorMeta.Property;
@@ -576,55 +566,22 @@ public class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
     }
     final MetaStatement statement = EcoreUtil2.<MetaStatement>getContainerOfType(column, MetaStatement.class);
     final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(statement, Artifacts.class);
-    final String entityName = Utils.getTokenFromModifier(statement, Constants.COLUMN_USAGE_EXTENDED);
-    PojoEntity _xifexpression = null;
-    boolean _notEquals = (!Objects.equal(entityName, null));
-    if (_notEquals) {
-      IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJO_PACKAGES);
-      _xifexpression = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, entityName);
-    }
-    final PojoEntity entity = _xifexpression;
-    boolean _notEquals_1 = (!Objects.equal(entity, null));
-    if (_notEquals_1) {
-      ValidationResult _checkEntityProperty = this.checkEntityProperty(entity, columnName);
-      if (_checkEntityProperty != null) {
-        switch (_checkEntityProperty) {
-          case WARNING:
-            String _name = entity.getName();
-            String _plus = ((("Problem property : " + columnName) + "[") + _name);
-            String _plus_1 = (_plus + "]");
-            this.warning(_plus_1, 
-              ProcessorMetaPackage.Literals.COLUMN__COLUMNS);
-            break;
-          case ERROR:
-            String _name_1 = entity.getName();
-            String _plus_2 = ((("Cannot find property : " + columnName) + "[") + _name_1);
-            String _plus_3 = (_plus_2 + "]");
-            this.error(_plus_3, 
-              ProcessorMetaPackage.Literals.COLUMN__COLUMNS);
-            break;
-          default:
-            break;
-        }
-      }
-      return;
-    }
     final String pojoName = Utils.getTokenFromModifier(statement, Constants.COLUMN_USAGE);
-    PojoDefinition _xifexpression_1 = null;
-    boolean _notEquals_2 = (!Objects.equal(pojoName, null));
+    PojoDefinition _xifexpression = null;
+    boolean _notEquals = (!Objects.equal(pojoName, null));
+    if (_notEquals) {
+      IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS);
+      _xifexpression = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope, pojoName);
+    }
+    final PojoDefinition pojo = _xifexpression;
+    String _xifexpression_1 = null;
+    boolean _notEquals_1 = (!Objects.equal(pojo, null));
+    if (_notEquals_1) {
+      _xifexpression_1 = this.getClass(pojo);
+    }
+    final String columnUsageClass = _xifexpression_1;
+    boolean _notEquals_2 = (!Objects.equal(columnUsageClass, null));
     if (_notEquals_2) {
-      IScope _scope_1 = this.scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS);
-      _xifexpression_1 = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_1, pojoName);
-    }
-    final PojoDefinition pojo = _xifexpression_1;
-    String _xifexpression_2 = null;
-    boolean _notEquals_3 = (!Objects.equal(pojo, null));
-    if (_notEquals_3) {
-      _xifexpression_2 = this.getClass(pojo);
-    }
-    final String columnUsageClass = _xifexpression_2;
-    boolean _notEquals_4 = (!Objects.equal(columnUsageClass, null));
-    if (_notEquals_4) {
       ValidationResult _checkClassProperty = this.checkClassProperty(columnUsageClass, columnName);
       if (_checkClassProperty != null) {
         switch (_checkClassProperty) {
@@ -643,8 +600,8 @@ public class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
       return;
     }
     PojoResolver _pojoResolver = this.pojoResolverFactory.getPojoResolver();
-    boolean _notEquals_5 = (!Objects.equal(_pojoResolver, null));
-    if (_notEquals_5) {
+    boolean _notEquals_3 = (!Objects.equal(_pojoResolver, null));
+    if (_notEquals_3) {
       this.error(("Cannot check result class attribute : " + columnName), ProcessorMetaPackage.Literals.COLUMN__COLUMNS);
     }
   }
@@ -659,55 +616,22 @@ public class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
     final String identifierName = identifier.getName();
     final MetaStatement statement = EcoreUtil2.<MetaStatement>getContainerOfType(identifier, MetaStatement.class);
     final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(statement, Artifacts.class);
-    final String entityName = Utils.getTokenFromModifier(statement, Constants.IDENTIFIER_USAGE_EXTENDED);
-    PojoEntity _xifexpression = null;
-    boolean _notEquals = (!Objects.equal(entityName, null));
-    if (_notEquals) {
-      IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJO_PACKAGES);
-      _xifexpression = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, entityName);
-    }
-    final PojoEntity entity = _xifexpression;
-    boolean _notEquals_1 = (!Objects.equal(entity, null));
-    if (_notEquals_1) {
-      ValidationResult _checkEntityProperty = this.checkEntityProperty(entity, identifierName);
-      if (_checkEntityProperty != null) {
-        switch (_checkEntityProperty) {
-          case WARNING:
-            String _name = entity.getName();
-            String _plus = ((("Problem property : " + identifierName) + "[") + _name);
-            String _plus_1 = (_plus + "]");
-            this.warning(_plus_1, 
-              ProcessorMetaPackage.Literals.IDENTIFIER__NAME);
-            break;
-          case ERROR:
-            String _name_1 = entity.getName();
-            String _plus_2 = ((("Cannot find property : " + identifierName) + "[") + _name_1);
-            String _plus_3 = (_plus_2 + "]");
-            this.error(_plus_3, 
-              ProcessorMetaPackage.Literals.IDENTIFIER__NAME);
-            break;
-          default:
-            break;
-        }
-      }
-      return;
-    }
     final String pojoName = Utils.getTokenFromModifier(statement, Constants.IDENTIFIER_USAGE);
-    PojoDefinition _xifexpression_1 = null;
-    boolean _notEquals_2 = (!Objects.equal(pojoName, null));
+    PojoDefinition _xifexpression = null;
+    boolean _notEquals = (!Objects.equal(pojoName, null));
+    if (_notEquals) {
+      IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS);
+      _xifexpression = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope, pojoName);
+    }
+    final PojoDefinition pojo = _xifexpression;
+    String _xifexpression_1 = null;
+    boolean _notEquals_1 = (!Objects.equal(pojo, null));
+    if (_notEquals_1) {
+      _xifexpression_1 = this.getClass(pojo);
+    }
+    final String identifierUsageClass = _xifexpression_1;
+    boolean _notEquals_2 = (!Objects.equal(identifierUsageClass, null));
     if (_notEquals_2) {
-      IScope _scope_1 = this.scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS);
-      _xifexpression_1 = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_1, pojoName);
-    }
-    final PojoDefinition pojo = _xifexpression_1;
-    String _xifexpression_2 = null;
-    boolean _notEquals_3 = (!Objects.equal(pojo, null));
-    if (_notEquals_3) {
-      _xifexpression_2 = this.getClass(pojo);
-    }
-    final String identifierUsageClass = _xifexpression_2;
-    boolean _notEquals_4 = (!Objects.equal(identifierUsageClass, null));
-    if (_notEquals_4) {
       ValidationResult _checkClassProperty = this.checkClassProperty(identifierUsageClass, identifierName);
       if (_checkClassProperty != null) {
         switch (_checkClassProperty) {
@@ -726,8 +650,8 @@ public class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
       return;
     }
     PojoResolver _pojoResolver = this.pojoResolverFactory.getPojoResolver();
-    boolean _notEquals_5 = (!Objects.equal(_pojoResolver, null));
-    if (_notEquals_5) {
+    boolean _notEquals_3 = (!Objects.equal(_pojoResolver, null));
+    if (_notEquals_3) {
       this.error(("Cannot check input form attribute : " + identifierName), 
         ProcessorMetaPackage.Literals.IDENTIFIER__NAME);
     }
@@ -742,36 +666,40 @@ public class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
     }
     final MetaStatement statement = EcoreUtil2.<MetaStatement>getContainerOfType(constant, MetaStatement.class);
     final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(statement, Artifacts.class);
-    final String entityName = Utils.getTokenFromModifier(statement, Constants.CONSTANT_USAGE_EXTENDED);
-    PojoEntity _xifexpression = null;
-    boolean _notEquals = (!Objects.equal(entityName, null));
+    final String pojoName = Utils.getTokenFromModifier(statement, Constants.CONSTANT_USAGE);
+    PojoDefinition _xifexpression = null;
+    boolean _notEquals = (!Objects.equal(pojoName, null));
     if (_notEquals) {
-      IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJO_PACKAGES);
-      _xifexpression = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, entityName);
+      IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS);
+      _xifexpression = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope, pojoName);
     }
-    final PojoEntity entity = _xifexpression;
-    boolean _notEquals_1 = (!Objects.equal(entity, null));
+    final PojoDefinition pojo = _xifexpression;
+    String _xifexpression_1 = null;
+    boolean _notEquals_1 = (!Objects.equal(pojo, null));
     if (_notEquals_1) {
+      _xifexpression_1 = this.getClass(pojo);
+    }
+    final String constantUsageClass = _xifexpression_1;
+    boolean _notEquals_2 = (!Objects.equal(constantUsageClass, null));
+    if (_notEquals_2) {
       String _name = constant.getName();
-      ValidationResult _checkEntityProperty = this.checkEntityProperty(entity, _name);
-      if (_checkEntityProperty != null) {
-        switch (_checkEntityProperty) {
+      ValidationResult _checkClassProperty = this.checkClassProperty(constantUsageClass, _name);
+      if (_checkClassProperty != null) {
+        switch (_checkClassProperty) {
           case WARNING:
             String _name_1 = constant.getName();
             String _plus = ("Problem property : " + _name_1);
             String _plus_1 = (_plus + "[");
-            String _name_2 = entity.getName();
-            String _plus_2 = (_plus_1 + _name_2);
+            String _plus_2 = (_plus_1 + constantUsageClass);
             String _plus_3 = (_plus_2 + "]");
             this.warning(_plus_3, 
               ProcessorMetaPackage.Literals.CONSTANT__NAME);
             break;
           case ERROR:
-            String _name_3 = constant.getName();
-            String _plus_4 = ("Cannot find property : " + _name_3);
+            String _name_2 = constant.getName();
+            String _plus_4 = ("Cannot find property : " + _name_2);
             String _plus_5 = (_plus_4 + "[");
-            String _name_4 = entity.getName();
-            String _plus_6 = (_plus_5 + _name_4);
+            String _plus_6 = (_plus_5 + constantUsageClass);
             String _plus_7 = (_plus_6 + "]");
             this.error(_plus_7, 
               ProcessorMetaPackage.Literals.CONSTANT__NAME);
@@ -782,56 +710,12 @@ public class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
       }
       return;
     }
-    final String pojoName = Utils.getTokenFromModifier(statement, Constants.CONSTANT_USAGE);
-    PojoDefinition _xifexpression_1 = null;
-    boolean _notEquals_2 = (!Objects.equal(pojoName, null));
-    if (_notEquals_2) {
-      IScope _scope_1 = this.scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS);
-      _xifexpression_1 = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_1, pojoName);
-    }
-    final PojoDefinition pojo = _xifexpression_1;
-    String _xifexpression_2 = null;
-    boolean _notEquals_3 = (!Objects.equal(pojo, null));
-    if (_notEquals_3) {
-      _xifexpression_2 = this.getClass(pojo);
-    }
-    final String constantUsageClass = _xifexpression_2;
-    boolean _notEquals_4 = (!Objects.equal(constantUsageClass, null));
-    if (_notEquals_4) {
-      String _name_5 = constant.getName();
-      ValidationResult _checkClassProperty = this.checkClassProperty(constantUsageClass, _name_5);
-      if (_checkClassProperty != null) {
-        switch (_checkClassProperty) {
-          case WARNING:
-            String _name_6 = constant.getName();
-            String _plus_8 = ("Problem property : " + _name_6);
-            String _plus_9 = (_plus_8 + "[");
-            String _plus_10 = (_plus_9 + constantUsageClass);
-            String _plus_11 = (_plus_10 + "]");
-            this.warning(_plus_11, 
-              ProcessorMetaPackage.Literals.CONSTANT__NAME);
-            break;
-          case ERROR:
-            String _name_7 = constant.getName();
-            String _plus_12 = ("Cannot find property : " + _name_7);
-            String _plus_13 = (_plus_12 + "[");
-            String _plus_14 = (_plus_13 + constantUsageClass);
-            String _plus_15 = (_plus_14 + "]");
-            this.error(_plus_15, 
-              ProcessorMetaPackage.Literals.CONSTANT__NAME);
-            break;
-          default:
-            break;
-        }
-      }
-      return;
-    }
     PojoResolver _pojoResolver = this.pojoResolverFactory.getPojoResolver();
-    boolean _notEquals_5 = (!Objects.equal(_pojoResolver, null));
-    if (_notEquals_5) {
-      String _name_8 = constant.getName();
-      String _plus_16 = ("Cannot check constant form attribute : " + _name_8);
-      this.error(_plus_16, 
+    boolean _notEquals_3 = (!Objects.equal(_pojoResolver, null));
+    if (_notEquals_3) {
+      String _name_3 = constant.getName();
+      String _plus_8 = ("Cannot check constant form attribute : " + _name_3);
+      this.error(_plus_8, 
         ProcessorMetaPackage.Literals.CONSTANT__NAME);
     }
   }
@@ -850,55 +734,22 @@ public class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
     }
     final MetaStatement rule = EcoreUtil2.<MetaStatement>getContainerOfType(column, MetaStatement.class);
     final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(rule, Artifacts.class);
-    final String entityName = Utils.getTokenFromModifier(rule, Constants.MAPPING_USAGE_EXTENDED);
-    PojoEntity _xifexpression = null;
-    boolean _notEquals = (!Objects.equal(entityName, null));
-    if (_notEquals) {
-      IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJO_PACKAGES);
-      _xifexpression = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, entityName);
-    }
-    final PojoEntity entity = _xifexpression;
-    boolean _notEquals_1 = (!Objects.equal(entity, null));
-    if (_notEquals_1) {
-      ValidationResult _checkEntityProperty = this.checkEntityProperty(entity, columnName);
-      if (_checkEntityProperty != null) {
-        switch (_checkEntityProperty) {
-          case WARNING:
-            String _name = entity.getName();
-            String _plus = ((("Problem property : " + columnName) + "[") + _name);
-            String _plus_1 = (_plus + "]");
-            this.warning(_plus_1, 
-              ProcessorMetaPackage.Literals.MAPPING_COLUMN__ITEMS);
-            break;
-          case ERROR:
-            String _name_1 = entity.getName();
-            String _plus_2 = ((("Cannot find property : " + columnName) + "[") + _name_1);
-            String _plus_3 = (_plus_2 + "]");
-            this.error(_plus_3, 
-              ProcessorMetaPackage.Literals.MAPPING_COLUMN__ITEMS);
-            break;
-          default:
-            break;
-        }
-      }
-      return;
-    }
     final String pojoName = Utils.getTokenFromModifier(rule, Constants.MAPPING_USAGE);
-    PojoDefinition _xifexpression_1 = null;
-    boolean _notEquals_2 = (!Objects.equal(pojoName, null));
+    PojoDefinition _xifexpression = null;
+    boolean _notEquals = (!Objects.equal(pojoName, null));
+    if (_notEquals) {
+      IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS);
+      _xifexpression = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope, pojoName);
+    }
+    final PojoDefinition pojo = _xifexpression;
+    String _xifexpression_1 = null;
+    boolean _notEquals_1 = (!Objects.equal(pojo, null));
+    if (_notEquals_1) {
+      _xifexpression_1 = this.getClass(pojo);
+    }
+    final String mappingUsageClass = _xifexpression_1;
+    boolean _notEquals_2 = (!Objects.equal(mappingUsageClass, null));
     if (_notEquals_2) {
-      IScope _scope_1 = this.scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS);
-      _xifexpression_1 = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_1, pojoName);
-    }
-    final PojoDefinition pojo = _xifexpression_1;
-    String _xifexpression_2 = null;
-    boolean _notEquals_3 = (!Objects.equal(pojo, null));
-    if (_notEquals_3) {
-      _xifexpression_2 = this.getClass(pojo);
-    }
-    final String mappingUsageClass = _xifexpression_2;
-    boolean _notEquals_4 = (!Objects.equal(mappingUsageClass, null));
-    if (_notEquals_4) {
       ValidationResult _checkClassProperty = this.checkClassProperty(mappingUsageClass, columnName);
       if (_checkClassProperty != null) {
         switch (_checkClassProperty) {
@@ -917,8 +768,8 @@ public class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
       return;
     }
     PojoResolver _pojoResolver = this.pojoResolverFactory.getPojoResolver();
-    boolean _notEquals_5 = (!Objects.equal(_pojoResolver, null));
-    if (_notEquals_5) {
+    boolean _notEquals_3 = (!Objects.equal(_pojoResolver, null));
+    if (_notEquals_3) {
       this.error(("Cannot check result class attribute : " + columnName), 
         ProcessorMetaPackage.Literals.MAPPING_COLUMN__ITEMS);
     }
@@ -948,82 +799,49 @@ public class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         if ((ix > 0)) {
           final String key = modifier.substring(0, ix);
           String value = modifier.substring((ix + 1));
-          boolean _equals_1 = Constants.IDENTIFIER_USAGE_EXTENDED.equals(key);
+          boolean _equals_1 = Constants.IDENTIFIER_USAGE.equals(key);
           if (_equals_1) {
-            IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJO_PACKAGES);
-            final PojoEntity entity = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, value);
-            boolean _equals_2 = Objects.equal(entity, null);
+            IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS);
+            final PojoDefinition pojo = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope, value);
+            boolean _equals_2 = Objects.equal(pojo, null);
             if (_equals_2) {
-              this.error((((("Cannot find entity : " + value) + "[") + Constants.IDENTIFIER_USAGE_EXTENDED) + "]"), 
+              this.error((((("Cannot find pojo : " + value) + "[") + Constants.IDENTIFIER_USAGE) + "]"), 
                 ProcessorMetaPackage.Literals.META_STATEMENT__MODIFIERS, index);
             }
           } else {
-            boolean _equals_3 = Constants.IDENTIFIER_USAGE.equals(key);
+            boolean _equals_3 = Constants.COLUMN_USAGE.equals(key);
             if (_equals_3) {
               IScope _scope_1 = this.scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS);
-              final PojoDefinition pojo = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_1, value);
-              boolean _equals_4 = Objects.equal(pojo, null);
+              final PojoDefinition pojo_1 = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_1, value);
+              boolean _equals_4 = Objects.equal(pojo_1, null);
               if (_equals_4) {
-                this.error((((("Cannot find pojo : " + value) + "[") + Constants.IDENTIFIER_USAGE) + "]"), 
+                this.error((((("Cannot find pojo : " + value) + "[") + Constants.COLUMN_USAGE) + "]"), 
                   ProcessorMetaPackage.Literals.META_STATEMENT__MODIFIERS, index);
               }
             } else {
-              boolean _equals_5 = Constants.COLUMN_USAGE_EXTENDED.equals(key);
+              boolean _equals_5 = Constants.CONSTANT_USAGE.equals(key);
               if (_equals_5) {
-                IScope _scope_2 = this.scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJO_PACKAGES);
-                final PojoEntity entity_1 = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope_2, value);
-                boolean _equals_6 = Objects.equal(entity_1, null);
+                IScope _scope_2 = this.scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS);
+                final PojoDefinition pojo_2 = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_2, value);
+                boolean _equals_6 = Objects.equal(pojo_2, null);
                 if (_equals_6) {
-                  this.error((((("Cannot find entity : " + value) + "[") + Constants.COLUMN_USAGE_EXTENDED) + "]"), 
+                  this.error((((("Cannot find pojo : " + value) + "[") + Constants.CONSTANT_USAGE) + "]"), 
                     ProcessorMetaPackage.Literals.META_STATEMENT__MODIFIERS, index);
                 }
               } else {
-                boolean _equals_7 = Constants.COLUMN_USAGE.equals(key);
+                boolean _equals_7 = Constants.TABLE_USAGE.equals(key);
                 if (_equals_7) {
-                  IScope _scope_3 = this.scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS);
-                  final PojoDefinition pojo_1 = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_3, value);
-                  boolean _equals_8 = Objects.equal(pojo_1, null);
-                  if (_equals_8) {
-                    this.error((((("Cannot find pojo : " + value) + "[") + Constants.COLUMN_USAGE) + "]"), 
-                      ProcessorMetaPackage.Literals.META_STATEMENT__MODIFIERS, index);
+                  int ix1 = value.indexOf("=");
+                  if ((ix1 >= 0)) {
+                    String _substring = value.substring(0, ix1);
+                    value = _substring;
                   }
-                } else {
-                  boolean _equals_9 = Constants.CONSTANT_USAGE_EXTENDED.equals(key);
-                  if (_equals_9) {
-                    IScope _scope_4 = this.scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJO_PACKAGES);
-                    final PojoEntity entity_2 = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope_4, value);
-                    boolean _equals_10 = Objects.equal(entity_2, null);
-                    if (_equals_10) {
-                      this.error((((("Cannot find entity : " + value) + "[") + Constants.CONSTANT_USAGE_EXTENDED) + "]"), 
-                        ProcessorMetaPackage.Literals.META_STATEMENT__MODIFIERS, index);
-                    }
-                  } else {
-                    boolean _equals_11 = Constants.CONSTANT_USAGE.equals(key);
-                    if (_equals_11) {
-                      IScope _scope_5 = this.scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS);
-                      final PojoDefinition pojo_2 = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_5, value);
-                      boolean _equals_12 = Objects.equal(pojo_2, null);
-                      if (_equals_12) {
-                        this.error((((("Cannot find pojo : " + value) + "[") + Constants.CONSTANT_USAGE) + "]"), 
-                          ProcessorMetaPackage.Literals.META_STATEMENT__MODIFIERS, index);
-                      }
-                    } else {
-                      boolean _equals_13 = Constants.TABLE_USAGE.equals(key);
-                      if (_equals_13) {
-                        int ix1 = value.indexOf("=");
-                        if ((ix1 >= 0)) {
-                          String _substring = value.substring(0, ix1);
-                          value = _substring;
-                        }
-                        IScope _scope_6 = this.scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__TABLES);
-                        final TableDefinition table = Utils.findTable(this.qualifiedNameConverter, artifacts, _scope_6, value);
-                        boolean _equals_14 = Objects.equal(table, null);
-                        if (_equals_14) {
-                          this.error((((("Cannot find table : " + value) + "[") + Constants.TABLE_USAGE) + "]"), 
-                            ProcessorMetaPackage.Literals.META_STATEMENT__MODIFIERS, index);
-                        }
-                      }
-                    }
+                  IScope _scope_3 = this.scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__TABLES);
+                  final TableDefinition table = Utils.findTable(this.qualifiedNameConverter, artifacts, _scope_3, value);
+                  boolean _equals_8 = Objects.equal(table, null);
+                  if (_equals_8) {
+                    this.error((((("Cannot find table : " + value) + "[") + Constants.TABLE_USAGE) + "]"), 
+                      ProcessorMetaPackage.Literals.META_STATEMENT__MODIFIERS, index);
                   }
                 }
               }
@@ -1059,25 +877,14 @@ public class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         if ((ix > 0)) {
           final String key = modifier.substring(0, ix);
           final String value = modifier.substring((ix + 1));
-          boolean _equals_1 = Constants.MAPPING_USAGE_EXTENDED.equals(key);
+          boolean _equals_1 = Constants.MAPPING_USAGE.equals(key);
           if (_equals_1) {
-            IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJO_PACKAGES);
-            final PojoEntity entity = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, value);
-            boolean _equals_2 = Objects.equal(entity, null);
+            IScope _scope = this.scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS);
+            final PojoDefinition pojo = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope, value);
+            boolean _equals_2 = Objects.equal(pojo, null);
             if (_equals_2) {
-              this.error((((("Cannot find entity : " + value) + "[") + Constants.MAPPING_USAGE_EXTENDED) + "]"), 
+              this.error((((("Cannot find pojo : " + value) + "[") + Constants.MAPPING_USAGE) + "]"), 
                 ProcessorMetaPackage.Literals.MAPPING_RULE__MODIFIERS, index);
-            }
-          } else {
-            boolean _equals_3 = Constants.MAPPING_USAGE.equals(key);
-            if (_equals_3) {
-              IScope _scope_1 = this.scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS);
-              final PojoDefinition pojo = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_1, value);
-              boolean _equals_4 = Objects.equal(pojo, null);
-              if (_equals_4) {
-                this.error((((("Cannot find pojo : " + value) + "[") + Constants.MAPPING_USAGE) + "]"), 
-                  ProcessorMetaPackage.Literals.MAPPING_RULE__MODIFIERS, index);
-              }
             }
           }
           index = (index + 1);
@@ -1299,107 +1106,6 @@ public class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
       }
     }
     return ValidationResult.OK;
-  }
-  
-  public ValidationResult checkEntityProperty(final PojoEntity entity, final String property) {
-    boolean _or = false;
-    boolean _equals = Objects.equal(property, null);
-    if (_equals) {
-      _or = true;
-    } else {
-      boolean _isNumber = this.isNumber(property);
-      _or = _isNumber;
-    }
-    if (_or) {
-      return ValidationResult.OK;
-    }
-    String checkProperty = property;
-    int pos1 = checkProperty.indexOf("=");
-    if ((pos1 > 0)) {
-      int pos2 = checkProperty.indexOf(".", pos1);
-      if ((pos2 > pos1)) {
-        String _substring = checkProperty.substring(0, pos1);
-        String _substring_1 = checkProperty.substring(pos2);
-        String _plus = (_substring + _substring_1);
-        checkProperty = _plus;
-      }
-    }
-    String innerProperty = ((String) null);
-    int _indexOf = checkProperty.indexOf(".");
-    pos1 = _indexOf;
-    if ((pos1 > 0)) {
-      String _substring_2 = checkProperty.substring((pos1 + 1));
-      innerProperty = _substring_2;
-      String _substring_3 = checkProperty.substring(0, pos1);
-      checkProperty = _substring_3;
-    }
-    EList<PojoAnnotatedProperty> _features = entity.getFeatures();
-    for (final PojoAnnotatedProperty apojoProperty : _features) {
-      {
-        PojoProperty pojoProperty = apojoProperty.getFeature();
-        String _name = pojoProperty.getName();
-        boolean _equals_1 = _name.equals(checkProperty);
-        if (_equals_1) {
-          boolean _equals_2 = Objects.equal(innerProperty, null);
-          if (_equals_2) {
-            return ValidationResult.OK;
-          }
-          Entity _ref = pojoProperty.getRef();
-          boolean _notEquals = (!Objects.equal(_ref, null));
-          if (_notEquals) {
-            Entity _ref_1 = pojoProperty.getRef();
-            if ((_ref_1 instanceof PojoEntity)) {
-              Entity _ref_2 = pojoProperty.getRef();
-              return this.checkEntityProperty(((PojoEntity) _ref_2), innerProperty);
-            }
-            return ValidationResult.OK;
-          }
-          PojoEntity _gref = pojoProperty.getGref();
-          boolean _notEquals_1 = (!Objects.equal(_gref, null));
-          if (_notEquals_1) {
-            PojoEntity _gref_1 = pojoProperty.getGref();
-            return this.checkEntityProperty(_gref_1, innerProperty);
-          }
-          return ValidationResult.ERROR;
-        }
-      }
-    }
-    PojoEntity superType = Utils.getSuperType(entity);
-    boolean _notEquals = (!Objects.equal(superType, null));
-    if (_notEquals) {
-      ValidationResult result = this.checkEntityProperty(superType, property);
-      boolean _or_1 = false;
-      boolean _equals_1 = Objects.equal(result, ValidationResult.WARNING);
-      if (_equals_1) {
-        _or_1 = true;
-      } else {
-        boolean _equals_2 = Objects.equal(result, ValidationResult.OK);
-        _or_1 = _equals_2;
-      }
-      if (_or_1) {
-        return result;
-      }
-    }
-    boolean _isAbstract = Utils.isAbstract(entity);
-    if (_isAbstract) {
-      return ValidationResult.WARNING;
-    } else {
-      final Set<String> suppressedAbstracts = this.modelProperty.getNotAbstractTables(entity);
-      boolean _and = false;
-      boolean _notEquals_1 = (!Objects.equal(suppressedAbstracts, null));
-      if (!_notEquals_1) {
-        _and = false;
-      } else {
-        String _dbName = Utils.dbName(entity);
-        boolean _contains = suppressedAbstracts.contains(_dbName);
-        _and = _contains;
-      }
-      if (_and) {
-        return ValidationResult.WARNING;
-      } else {
-        return ValidationResult.ERROR;
-      }
-    }
   }
   
   @Check
@@ -1706,186 +1412,6 @@ public class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
     }
     if (_or) {
       this.error(("Cannot find table in DB : " + tableName), ProcessorMetaPackage.Literals.DATABASE_TABLE__NAME);
-    }
-  }
-  
-  @Check
-  public void checkUniquePojoEntity(final PojoEntity pojoEntity) {
-    EObject _rootContainer = EcoreUtil.getRootContainer(pojoEntity);
-    if ((!(_rootContainer instanceof Artifacts))) {
-      return;
-    }
-    EObject _rootContainer_1 = EcoreUtil.getRootContainer(pojoEntity);
-    final Artifacts artifacts = ((Artifacts) _rootContainer_1);
-    EList<PackageDeclaration> _pojoPackages = artifacts.getPojoPackages();
-    for (final PackageDeclaration pkg : _pojoPackages) {
-      boolean _notEquals = (!Objects.equal(pkg, null));
-      if (_notEquals) {
-        EList<AbstractPojoEntity> _elements = pkg.getElements();
-        for (final AbstractPojoEntity entity : _elements) {
-          boolean _and = false;
-          boolean _notEquals_1 = (!Objects.equal(entity, null));
-          if (!_notEquals_1) {
-            _and = false;
-          } else {
-            _and = (entity instanceof PojoEntity);
-          }
-          if (_and) {
-            final PojoEntity pentity = ((PojoEntity) entity);
-            boolean _tripleNotEquals = (pentity != pojoEntity);
-            if (_tripleNotEquals) {
-              String _name = pojoEntity.getName();
-              String _name_1 = pentity.getName();
-              boolean _equals = _name.equals(_name_1);
-              if (_equals) {
-                String _name_2 = pojoEntity.getName();
-                String _plus = ("Duplicate name : " + _name_2);
-                this.error(_plus, ProcessorMetaPackage.Literals.ENTITY__NAME);
-                return;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  
-  @Check
-  public void checkUniquePojoProperty(final PojoProperty pojoProperty) {
-    final PojoEntity entity = EcoreUtil2.<PojoEntity>getContainerOfType(pojoProperty, PojoEntity.class);
-    EList<PojoAnnotatedProperty> _features = entity.getFeatures();
-    for (final PojoAnnotatedProperty aproperty : _features) {
-      {
-        final PojoProperty property = aproperty.getFeature();
-        boolean _and = false;
-        boolean _notEquals = (!Objects.equal(property, null));
-        if (!_notEquals) {
-          _and = false;
-        } else {
-          boolean _tripleNotEquals = (property != pojoProperty);
-          _and = _tripleNotEquals;
-        }
-        if (_and) {
-          String _name = pojoProperty.getName();
-          String _name_1 = property.getName();
-          boolean _equals = _name.equals(_name_1);
-          if (_equals) {
-            String _name_2 = pojoProperty.getName();
-            String _plus = ("Duplicate name : " + _name_2);
-            this.error(_plus, ProcessorMetaPackage.Literals.POJO_PROPERTY__NAME);
-            return;
-          }
-        }
-      }
-    }
-  }
-  
-  @Check
-  public void checkUniqueEnumEntity(final EnumEntity enumEntity) {
-    EObject _rootContainer = EcoreUtil.getRootContainer(enumEntity);
-    if ((!(_rootContainer instanceof Artifacts))) {
-      return;
-    }
-    EObject _rootContainer_1 = EcoreUtil.getRootContainer(enumEntity);
-    final Artifacts artifacts = ((Artifacts) _rootContainer_1);
-    EList<PackageDeclaration> _pojoPackages = artifacts.getPojoPackages();
-    for (final PackageDeclaration pkg : _pojoPackages) {
-      boolean _notEquals = (!Objects.equal(pkg, null));
-      if (_notEquals) {
-        EList<AbstractPojoEntity> _elements = pkg.getElements();
-        for (final AbstractPojoEntity entity : _elements) {
-          boolean _and = false;
-          boolean _notEquals_1 = (!Objects.equal(entity, null));
-          if (!_notEquals_1) {
-            _and = false;
-          } else {
-            _and = (entity instanceof EnumEntity);
-          }
-          if (_and) {
-            final EnumEntity pentity = ((EnumEntity) entity);
-            boolean _notEquals_2 = (!Objects.equal(pentity, enumEntity));
-            if (_notEquals_2) {
-              String _name = enumEntity.getName();
-              String _name_1 = pentity.getName();
-              boolean _equals = _name.equals(_name_1);
-              if (_equals) {
-                String _name_2 = enumEntity.getName();
-                String _plus = ("Duplicate name : " + _name_2);
-                this.error(_plus, ProcessorMetaPackage.Literals.ENTITY__NAME);
-                return;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  
-  @Check
-  public void checkUniqueEnumProperty(final EnumProperty enumProperty) {
-    final EnumEntity entity = EcoreUtil2.<EnumEntity>getContainerOfType(enumProperty, EnumEntity.class);
-    EList<EnumProperty> _features = entity.getFeatures();
-    for (final EnumProperty property : _features) {
-      boolean _and = false;
-      boolean _notEquals = (!Objects.equal(property, null));
-      if (!_notEquals) {
-        _and = false;
-      } else {
-        boolean _tripleNotEquals = (property != enumProperty);
-        _and = _tripleNotEquals;
-      }
-      if (_and) {
-        String _name = enumProperty.getName();
-        String _name_1 = property.getName();
-        boolean _equals = _name.equals(_name_1);
-        if (_equals) {
-          String _name_2 = enumProperty.getName();
-          String _plus = ("Duplicate name : " + _name_2);
-          this.error(_plus, ProcessorMetaPackage.Literals.ENUM_PROPERTY__NAME);
-          return;
-        }
-      }
-    }
-  }
-  
-  @Check
-  public void checkUniquePojoDao(final PojoDao pojoDao) {
-    EObject _rootContainer = EcoreUtil.getRootContainer(pojoDao);
-    if ((!(_rootContainer instanceof Artifacts))) {
-      return;
-    }
-    EObject _rootContainer_1 = EcoreUtil.getRootContainer(pojoDao);
-    final Artifacts artifacts = ((Artifacts) _rootContainer_1);
-    EList<PackageDeclaration> _pojoPackages = artifacts.getPojoPackages();
-    for (final PackageDeclaration pkg : _pojoPackages) {
-      boolean _notEquals = (!Objects.equal(pkg, null));
-      if (_notEquals) {
-        EList<AbstractPojoEntity> _elements = pkg.getElements();
-        for (final AbstractPojoEntity dao : _elements) {
-          boolean _and = false;
-          boolean _notEquals_1 = (!Objects.equal(dao, null));
-          if (!_notEquals_1) {
-            _and = false;
-          } else {
-            _and = (dao instanceof PojoDao);
-          }
-          if (_and) {
-            final PojoDao pdao = ((PojoDao) dao);
-            boolean _notEquals_2 = (!Objects.equal(pdao, pojoDao));
-            if (_notEquals_2) {
-              String _name = pojoDao.getName();
-              String _name_1 = pdao.getName();
-              boolean _equals = _name.equals(_name_1);
-              if (_equals) {
-                String _name_2 = pojoDao.getName();
-                String _plus = ("Duplicate name : " + _name_2);
-                this.error(_plus, ProcessorMetaPackage.Literals.POJO_DAO__NAME);
-                return;
-              }
-            }
-          }
-        }
-      }
     }
   }
 }

@@ -23,7 +23,7 @@ import org.sqlproc.meta.processorMeta.ExtendsAssignement;
 import org.sqlproc.meta.processorMeta.ExtendsAssignementGenerics;
 import org.sqlproc.meta.processorMeta.ImplementsAssignement;
 import org.sqlproc.meta.processorMeta.ImplementsAssignementGenerics;
-import org.sqlproc.meta.processorMeta.PojoType;
+import org.sqlproc.meta.processorMeta.PojoDefinition;
 import org.sqlproc.meta.processorMeta.ProcessorMetaPackage;
 
 /**
@@ -170,7 +170,7 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
    * @generated
    * @ordered
    */
-  protected PojoType resultType;
+  protected PojoDefinition resultType;
 
   /**
    * The cached value of the '{@link #getDebug() <em>Debug</em>}' containment reference.
@@ -523,7 +523,7 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoType getResultType()
+  public PojoDefinition getResultType()
   {
     return resultType;
   }
@@ -533,9 +533,9 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetResultType(PojoType newResultType, NotificationChain msgs)
+  public NotificationChain basicSetResultType(PojoDefinition newResultType, NotificationChain msgs)
   {
-    PojoType oldResultType = resultType;
+    PojoDefinition oldResultType = resultType;
     resultType = newResultType;
     if (eNotificationRequired())
     {
@@ -550,7 +550,7 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setResultType(PojoType newResultType)
+  public void setResultType(PojoDefinition newResultType)
   {
     if (newResultType != resultType)
     {
@@ -761,7 +761,7 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
         setDbFunction((String)newValue);
         return;
       case ProcessorMetaPackage.DAOGEN_PROPERTY__RESULT_TYPE:
-        setResultType((PojoType)newValue);
+        setResultType((PojoDefinition)newValue);
         return;
       case ProcessorMetaPackage.DAOGEN_PROPERTY__DEBUG:
         setDebug((DebugLevelAssignement)newValue);
@@ -811,7 +811,7 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
         setDbFunction(DB_FUNCTION_EDEFAULT);
         return;
       case ProcessorMetaPackage.DAOGEN_PROPERTY__RESULT_TYPE:
-        setResultType((PojoType)null);
+        setResultType((PojoDefinition)null);
         return;
       case ProcessorMetaPackage.DAOGEN_PROPERTY__DEBUG:
         setDebug((DebugLevelAssignement)null);

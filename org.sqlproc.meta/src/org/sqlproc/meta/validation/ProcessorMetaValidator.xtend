@@ -14,14 +14,11 @@ import java.util.List
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.scoping.IScopeProvider
-import org.sqlproc.meta.processorMeta.AbstractPojoEntity
 import org.sqlproc.meta.processorMeta.Artifacts
 import org.sqlproc.meta.processorMeta.Column
 import org.sqlproc.meta.processorMeta.Constant
 import org.sqlproc.meta.processorMeta.DatabaseColumn
 import org.sqlproc.meta.processorMeta.DatabaseTable
-import org.sqlproc.meta.processorMeta.EnumEntity
-import org.sqlproc.meta.processorMeta.EnumProperty
 import org.sqlproc.meta.processorMeta.FunctionDefinition
 import org.sqlproc.meta.processorMeta.Identifier
 import org.sqlproc.meta.processorMeta.MappingColumn
@@ -29,12 +26,7 @@ import org.sqlproc.meta.processorMeta.MappingRule
 import org.sqlproc.meta.processorMeta.MetaSql
 import org.sqlproc.meta.processorMeta.MetaStatement
 import org.sqlproc.meta.processorMeta.OptionalFeature
-import org.sqlproc.meta.processorMeta.PackageDeclaration
-import org.sqlproc.meta.processorMeta.PojoAnnotatedProperty
-import org.sqlproc.meta.processorMeta.PojoDao
 import org.sqlproc.meta.processorMeta.PojoDefinition
-import org.sqlproc.meta.processorMeta.PojoEntity
-import org.sqlproc.meta.processorMeta.PojoProperty
 import org.sqlproc.meta.processorMeta.ProcedureDefinition
 import org.sqlproc.meta.processorMeta.ProcessorMetaPackage
 import org.sqlproc.meta.processorMeta.Property
@@ -269,21 +261,6 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
             return
         val statement = column.getContainerOfType(typeof(MetaStatement))
         val artifacts = statement.getContainerOfType(typeof(Artifacts))
-        
-        val entityName = Utils.getTokenFromModifier(statement, COLUMN_USAGE_EXTENDED)
-        val entity = if (entityName != null) Utils.findEntity(qualifiedNameConverter, artifacts,
-                scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJO_PACKAGES), entityName)
-        if (entity != null) {
-            switch (checkEntityProperty(entity, columnName)) {
-            case ValidationResult.WARNING:
-                warning("Problem property : " + columnName + "[" + entity.getName() + "]",
-                        ProcessorMetaPackage.Literals.COLUMN__COLUMNS)
-            case ValidationResult.ERROR:
-                error("Cannot find property : " + columnName + "[" + entity.getName() + "]",
-                        ProcessorMetaPackage.Literals.COLUMN__COLUMNS)
-            }
-            return
-        }
 
         val pojoName = Utils.getTokenFromModifier(statement, COLUMN_USAGE)
         val pojo = if (pojoName != null) Utils.findPojo(qualifiedNameConverter, artifacts,
@@ -314,21 +291,6 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         val statement = identifier.getContainerOfType(typeof(MetaStatement))
         val artifacts = statement.getContainerOfType(typeof(Artifacts))
 
-        val entityName = Utils.getTokenFromModifier(statement, IDENTIFIER_USAGE_EXTENDED)
-        val entity = if (entityName != null) Utils.findEntity(qualifiedNameConverter, artifacts,
-                scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJO_PACKAGES), entityName)
-        if (entity != null) {
-            switch (checkEntityProperty(entity, identifierName)) {
-            case ValidationResult.WARNING:
-                warning("Problem property : " + identifierName + "[" + entity.getName() + "]",
-                        ProcessorMetaPackage.Literals.IDENTIFIER__NAME)
-            case ValidationResult.ERROR:
-                error("Cannot find property : " + identifierName + "[" + entity.getName() + "]",
-                        ProcessorMetaPackage.Literals.IDENTIFIER__NAME)
-            }
-            return
-        }
-
         val pojoName = Utils.getTokenFromModifier(statement, IDENTIFIER_USAGE)
         val pojo = if (pojoName != null) Utils.findPojo(qualifiedNameConverter, artifacts,
                 scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS), pojoName)
@@ -357,21 +319,6 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
             return
         val statement = constant.getContainerOfType(typeof(MetaStatement))
         val artifacts = statement.getContainerOfType(typeof(Artifacts))
-
-        val entityName = Utils.getTokenFromModifier(statement, CONSTANT_USAGE_EXTENDED)
-        val entity = if (entityName != null) Utils.findEntity(qualifiedNameConverter, artifacts,
-                scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJO_PACKAGES), entityName)
-        if (entity != null) {
-            switch (checkEntityProperty(entity, constant.getName())) {
-            case ValidationResult.WARNING:
-                warning("Problem property : " + constant.getName() + "[" + entity.getName() + "]",
-                        ProcessorMetaPackage.Literals.CONSTANT__NAME)
-            case ValidationResult.ERROR:
-                error("Cannot find property : " + constant.getName() + "[" + entity.getName() + "]",
-                        ProcessorMetaPackage.Literals.CONSTANT__NAME)
-            }
-            return
-        }
 
         val pojoName = Utils.getTokenFromModifier(statement, CONSTANT_USAGE)
         val pojo = if (pojoName != null) Utils.findPojo(qualifiedNameConverter, artifacts,
@@ -404,21 +351,6 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
             return
         val rule = column.getContainerOfType(typeof(MetaStatement))
         val artifacts = rule.getContainerOfType(typeof(Artifacts))
-
-        val entityName = Utils.getTokenFromModifier(rule, MAPPING_USAGE_EXTENDED)
-        val entity = if (entityName != null) Utils.findEntity(qualifiedNameConverter, artifacts,
-                scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJO_PACKAGES), entityName)
-        if (entity != null) {
-            switch (checkEntityProperty(entity, columnName)) {
-            case ValidationResult.WARNING:
-                warning("Problem property : " + columnName + "[" + entity.getName() + "]",
-                        ProcessorMetaPackage.Literals.MAPPING_COLUMN__ITEMS)
-            case ValidationResult.ERROR:
-                error("Cannot find property : " + columnName + "[" + entity.getName() + "]",
-                        ProcessorMetaPackage.Literals.MAPPING_COLUMN__ITEMS)
-            }
-            return
-        }
 
         val pojoName = Utils.getTokenFromModifier(rule, MAPPING_USAGE)
         val pojo = if (pojoName != null) Utils.findPojo(qualifiedNameConverter, artifacts,
@@ -456,25 +388,11 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
             if (ix > 0) {
 	            val key = modifier.substring(0, ix)
 	            var value = modifier.substring(ix + 1)
-	            if (IDENTIFIER_USAGE_EXTENDED.equals(key)) {
-	                val entity = Utils.findEntity(qualifiedNameConverter, artifacts,
-	                        scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJO_PACKAGES), value)
-	                if (entity == null) {
-	                    error("Cannot find entity : " + value + "[" + IDENTIFIER_USAGE_EXTENDED + "]",
-	                            ProcessorMetaPackage.Literals.META_STATEMENT__MODIFIERS, index)
-	                }
-	            } else if (IDENTIFIER_USAGE.equals(key)) {
+	            if (IDENTIFIER_USAGE.equals(key)) {
 	                val pojo = Utils.findPojo(qualifiedNameConverter, artifacts,
 	                        scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS), value)
 	                if (pojo == null) {
 	                    error("Cannot find pojo : " + value + "[" + IDENTIFIER_USAGE + "]",
-	                            ProcessorMetaPackage.Literals.META_STATEMENT__MODIFIERS, index)
-	                }
-	            } else if (COLUMN_USAGE_EXTENDED.equals(key)) {
-	                val entity = Utils.findEntity(qualifiedNameConverter, artifacts,
-	                        scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJO_PACKAGES), value)
-	                if (entity == null) {
-	                    error("Cannot find entity : " + value + "[" + COLUMN_USAGE_EXTENDED + "]",
 	                            ProcessorMetaPackage.Literals.META_STATEMENT__MODIFIERS, index)
 	                }
 	            } else if (COLUMN_USAGE.equals(key)) {
@@ -482,13 +400,6 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
 	                        scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS), value)
 	                if (pojo == null) {
 	                    error("Cannot find pojo : " + value + "[" + COLUMN_USAGE + "]",
-	                            ProcessorMetaPackage.Literals.META_STATEMENT__MODIFIERS, index)
-	                }
-	            } else if (CONSTANT_USAGE_EXTENDED.equals(key)) {
-	                val entity = Utils.findEntity(qualifiedNameConverter, artifacts,
-	                        scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJO_PACKAGES), value)
-	                if (entity == null) {
-	                    error("Cannot find entity : " + value + "[" + CONSTANT_USAGE_EXTENDED + "]",
 	                            ProcessorMetaPackage.Literals.META_STATEMENT__MODIFIERS, index)
 	                }
 	            } else if (CONSTANT_USAGE.equals(key)) {
@@ -526,14 +437,7 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
             if (ix > 0) {
 	            val key = modifier.substring(0, ix)
 	            val value = modifier.substring(ix + 1)
-	            if (MAPPING_USAGE_EXTENDED.equals(key)) {
-	                val entity = Utils.findEntity(qualifiedNameConverter, artifacts,
-	                        scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJO_PACKAGES), value)
-	                if (entity == null) {
-	                    error("Cannot find entity : " + value + "[" + MAPPING_USAGE_EXTENDED + "]",
-	                            ProcessorMetaPackage.Literals.MAPPING_RULE__MODIFIERS, index)
-	                }
-	            } else if (MAPPING_USAGE.equals(key)) {
+	            if (MAPPING_USAGE.equals(key)) {
 	                val pojo = Utils.findPojo(qualifiedNameConverter, artifacts,
 	                        scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS), value)
 	                if (pojo == null) {
@@ -639,59 +543,6 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
             }
         }
         return ValidationResult.OK
-    }
-
-    def ValidationResult checkEntityProperty(PojoEntity entity, String property) {
-        if (property == null || isNumber(property))
-            return ValidationResult.OK
-        var checkProperty = property
-        var pos1 = checkProperty.indexOf('=')
-        if (pos1 > 0) {
-            var pos2 = checkProperty.indexOf('.', pos1)
-            if (pos2 > pos1)
-                checkProperty = checkProperty.substring(0, pos1) + checkProperty.substring(pos2)
-        }
-        var innerProperty = null as String
-        pos1 = checkProperty.indexOf('.')
-        if (pos1 > 0) {
-            innerProperty = checkProperty.substring(pos1 + 1)
-            checkProperty = checkProperty.substring(0, pos1)
-        }
-
-        for (PojoAnnotatedProperty apojoProperty : entity.getFeatures()) {
-            var pojoProperty = apojoProperty.getFeature()
-            if (pojoProperty.getName().equals(checkProperty)) {
-                if (innerProperty == null)
-                    return ValidationResult.OK
-                if (pojoProperty.getRef() != null) {
-                    if (pojoProperty.getRef() instanceof PojoEntity) {
-                        return checkEntityProperty(pojoProperty.getRef() as PojoEntity, innerProperty)
-                    }
-                    return ValidationResult.OK
-                }
-                if (pojoProperty.getGref() != null)
-                    return checkEntityProperty(pojoProperty.getGref(), innerProperty)
-                return ValidationResult.ERROR
-            }
-        }
-        var superType = Utils.getSuperType(entity)
-        if (superType != null) {
-            var result = checkEntityProperty(superType, property)
-            if (result == ValidationResult.WARNING || result == ValidationResult.OK)
-                return result
-        }
-        if (Utils.isAbstract(entity)) {
-            return ValidationResult.WARNING
-        }
-        else {
-            val suppressedAbstracts = modelProperty.getNotAbstractTables(entity)
-            if (suppressedAbstracts != null && suppressedAbstracts.contains(Utils.dbName(entity))) {
-                return ValidationResult.WARNING
-            }
-            else {
-                return ValidationResult.ERROR
-            }
-        }
     }
 
     @Check
@@ -813,96 +664,4 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         }
     }
     
-    @Check
-    def checkUniquePojoEntity(PojoEntity pojoEntity) {
-        if (!(pojoEntity.rootContainer instanceof Artifacts))
-            return
-        val artifacts = pojoEntity.rootContainer as Artifacts
-        for (PackageDeclaration pkg : artifacts.getPojoPackages()) {
-            if (pkg != null) {
-	            for (AbstractPojoEntity entity : pkg.getElements()) {
-	                if (entity != null && (entity instanceof PojoEntity)) {
-		                val pentity = entity as PojoEntity
-		                if (pentity !== pojoEntity) {
-			                if (pojoEntity.getName().equals(pentity.getName())) {
-			                    error("Duplicate name : " + pojoEntity.getName(), ProcessorMetaPackage.Literals.ENTITY__NAME)
-			                    return
-			                }
-		                }
-					}
-	            }
-            }
-        }
-    }
-
-    @Check
-    def checkUniquePojoProperty(PojoProperty pojoProperty) {
-        val entity = pojoProperty.getContainerOfType(typeof(PojoEntity))
-        for (PojoAnnotatedProperty aproperty : entity.getFeatures()) {
-            val property = aproperty.getFeature()
-            if (property != null && property !== pojoProperty) {
-	            if (pojoProperty.getName().equals(property.getName())) {
-	                error("Duplicate name : " + pojoProperty.getName(), ProcessorMetaPackage.Literals.POJO_PROPERTY__NAME)
-	                return
-	            }
-            }
-        }
-    }
-
-    @Check
-    def checkUniqueEnumEntity(EnumEntity enumEntity) {
-        if (!(enumEntity.rootContainer instanceof Artifacts))
-            return
-        val artifacts = enumEntity.rootContainer as Artifacts
-        for (PackageDeclaration pkg : artifacts.getPojoPackages()) {
-            if (pkg != null) {
-	            for (AbstractPojoEntity entity : pkg.getElements()) {
-	                if (entity != null && (entity instanceof EnumEntity)) {
-		                val pentity = entity as EnumEntity
-		                if (pentity != enumEntity) {
-			                if (enumEntity.getName().equals(pentity.getName())) {
-			                    error("Duplicate name : " + enumEntity.getName(), ProcessorMetaPackage.Literals.ENTITY__NAME)
-			                    return
-			                }
-						}
-					}
-	            }
-            }
-        }
-    }
-
-    @Check
-    def checkUniqueEnumProperty(EnumProperty enumProperty) {
-        val entity = enumProperty.getContainerOfType(typeof(EnumEntity))
-        for (EnumProperty property : entity.getFeatures()) {
-            if (property != null && property !== enumProperty) {
-	            if (enumProperty.getName().equals(property.getName())) {
-	                error("Duplicate name : " + enumProperty.getName(), ProcessorMetaPackage.Literals.ENUM_PROPERTY__NAME)
-	                return
-	            }
-            }
-        }
-    }
-
-    @Check
-    def checkUniquePojoDao(PojoDao pojoDao) {
-        if (!(pojoDao.rootContainer instanceof Artifacts))
-            return
-        val artifacts = pojoDao.rootContainer as Artifacts
-        for (PackageDeclaration pkg : artifacts.getPojoPackages()) {
-            if (pkg != null) {
-	            for (AbstractPojoEntity dao : pkg.getElements()) {
-	                if (dao != null && (dao instanceof PojoDao)) {
-		                val pdao = dao as PojoDao
-		                if (pdao != pojoDao) {
-			                if (pojoDao.getName().equals(pdao.getName())) {
-			                    error("Duplicate name : " + pojoDao.getName(), ProcessorMetaPackage.Literals.POJO_DAO__NAME)
-			                    return
-			                }
-		                }
-	                }
-	            }
-            }
-        }
-    }
 }

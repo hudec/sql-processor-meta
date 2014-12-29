@@ -26,7 +26,7 @@ import org.sqlproc.meta.processorMeta.JoinTableAssignement;
 import org.sqlproc.meta.processorMeta.ManyToManyAssignement;
 import org.sqlproc.meta.processorMeta.MetaTypeAssignement;
 import org.sqlproc.meta.processorMeta.MetagenProperty;
-import org.sqlproc.meta.processorMeta.PojoType;
+import org.sqlproc.meta.processorMeta.PojoDefinition;
 import org.sqlproc.meta.processorMeta.PojogenProperty;
 import org.sqlproc.meta.processorMeta.Property;
 import org.sqlproc.meta.util.Utils;
@@ -212,8 +212,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public String debugLevel;
         public String debugScope;
         public Set<String> preserveForeignKeys;
-        public Map<String, PojoType> pojosForProcedures;
-        public Map<String, PojoType> pojosForFunctions;
+        public Map<String, PojoDefinition> pojosForProcedures;
+        public Map<String, PojoDefinition> pojosForFunctions;
         public String activeFilter;
         public String pckg;
         public Map<String, String> enumForCheckConstraints;
@@ -251,7 +251,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public Map<String, ImplementsExtends> daoToImplements;
         public ImplementsExtends daoToExtends;
         public boolean daoMakeItFinal;
-        public Map<String, PojoType> daoFunctionsResult;
+        public Map<String, PojoDefinition> daoFunctionsResult;
         public String daoDebugLevel;
         public String daoDebugScope;
         public String daoActiveFilter;
@@ -472,8 +472,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.debugLevel = null;
         modelValues.debugScope = null;
         modelValues.preserveForeignKeys = new HashSet<String>();
-        modelValues.pojosForProcedures = new HashMap<String, PojoType>();
-        modelValues.pojosForFunctions = new HashMap<String, PojoType>();
+        modelValues.pojosForProcedures = new HashMap<String, PojoDefinition>();
+        modelValues.pojosForFunctions = new HashMap<String, PojoDefinition>();
         modelValues.activeFilter = null;
         modelValues.pckg = null;
         modelValues.enumForCheckConstraints = new HashMap<String, String>();
@@ -515,7 +515,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.daoToImplements = new HashMap<String, ImplementsExtends>();
         modelValues.daoToExtends = null;
         modelValues.daoMakeItFinal = false;
-        modelValues.daoFunctionsResult = new HashMap<String, PojoType>();
+        modelValues.daoFunctionsResult = new HashMap<String, PojoDefinition>();
         modelValues.daoDebugLevel = null;
         modelValues.daoDebugScope = null;
         modelValues.daoActiveFilter = null;
@@ -1329,15 +1329,15 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     }
 
     @Override
-    public Map<String, PojoType> getPojosForProcedures(EObject model) {
+    public Map<String, PojoDefinition> getPojosForProcedures(EObject model) {
         ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.pojosForProcedures : Collections.<String, PojoType> emptyMap();
+        return (modelValues != null) ? modelValues.pojosForProcedures : Collections.<String, PojoDefinition> emptyMap();
     }
 
     @Override
-    public Map<String, PojoType> getPojosForFunctions(EObject model) {
+    public Map<String, PojoDefinition> getPojosForFunctions(EObject model) {
         ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.pojosForFunctions : Collections.<String, PojoType> emptyMap();
+        return (modelValues != null) ? modelValues.pojosForFunctions : Collections.<String, PojoDefinition> emptyMap();
     }
 
     @Override
@@ -1547,9 +1547,9 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     }
 
     @Override
-    public Map<String, PojoType> getDaoFunctionsResult(EObject model) {
+    public Map<String, PojoDefinition> getDaoFunctionsResult(EObject model) {
         ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.daoFunctionsResult : Collections.<String, PojoType> emptyMap();
+        return (modelValues != null) ? modelValues.daoFunctionsResult : Collections.<String, PojoDefinition> emptyMap();
     }
 
     @Override

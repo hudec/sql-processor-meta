@@ -19,24 +19,16 @@ import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.serializer.ISerializer;
 import org.eclipse.xtext.ui.editor.templates.XtextTemplateContext;
 import org.eclipse.xtext.ui.editor.templates.XtextTemplateContextType;
-import org.sqlproc.meta.generator.TableDaoGenerator;
 import org.sqlproc.meta.generator.TableMetaGenerator;
 import org.sqlproc.meta.generator.TablePojoGenerator;
-import org.sqlproc.meta.processorMeta.AbstractPojoEntity;
-import org.sqlproc.meta.processorMeta.AnnotatedEntity;
 import org.sqlproc.meta.processorMeta.Artifacts;
-import org.sqlproc.meta.processorMeta.EnumEntity;
 import org.sqlproc.meta.processorMeta.MetaStatement;
-import org.sqlproc.meta.processorMeta.PackageDeclaration;
-import org.sqlproc.meta.processorMeta.PojoDao;
-import org.sqlproc.meta.processorMeta.PojoEntity;
 import org.sqlproc.meta.processorMeta.ProcessorMetaPackage;
 import org.sqlproc.meta.processorMeta.TableDefinition;
 import org.sqlproc.meta.property.ModelProperty;
 import org.sqlproc.meta.resolver.DbResolver;
 import org.sqlproc.meta.resolver.DbResolver.DbType;
 import org.sqlproc.meta.resolver.PojoResolver;
-import org.sqlproc.meta.util.Annotations;
 import org.sqlproc.meta.util.Utils;
 
 import com.google.inject.Inject;
@@ -80,9 +72,7 @@ public class ProcessorMetaTemplateContextType extends XtextTemplateContextType {
         super.addResolver(new TablesDefinitionsResolver());
         super.addResolver(new ProceduresDefinitionsResolver());
         super.addResolver(new FunctionsDefinitionsResolver());
-        super.addResolver(new PojoGeneratorResolver());
         super.addResolver(new MetaGeneratorResolver());
-        super.addResolver(new DaoGeneratorResolver());
     }
 
     protected Artifacts getArtifacts(XtextTemplateContext xtextTemplateContext) {
@@ -100,14 +90,6 @@ public class ProcessorMetaTemplateContextType extends XtextTemplateContextType {
         EObject object = xtextTemplateContext.getContentAssistContext().getCurrentModel();
         MetaStatement statement = EcoreUtil2.getContainerOfType(object, MetaStatement.class);
         return statement;
-    }
-
-    protected PackageDeclaration getPackage(XtextTemplateContext xtextTemplateContext) {
-        if (xtextTemplateContext == null)
-            return null;
-        EObject object = xtextTemplateContext.getContentAssistContext().getCurrentModel();
-        PackageDeclaration packagex = EcoreUtil2.getContainerOfType(object, PackageDeclaration.class);
-        return packagex;
     }
 
     protected TableDefinition getTableDefinition(MetaStatement statement) {
@@ -673,68 +655,6 @@ public class ProcessorMetaTemplateContextType extends XtextTemplateContextType {
         }
     }
 
-    public class PojoGeneratorResolver extends SimpleTemplateVariableResolver {
-
-        public static final String NAME = "pojoGenerator";
-
-        public PojoGeneratorResolver() {
-            super(NAME, "PojoGenerator");
-        }
-
-        @Override
-        protected String resolve(TemplateContext context) {
-            Artifacts artifacts = getArtifacts((XtextTemplateContext) context);
-            PackageDeclaration packagex = getPackage((XtextTemplateContext) context);
-            if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
-
-                Map<String, String> finalEntities = new HashMap<String, String>();
-                Annotations annotations = new Annotations();
-                String suffix = packagex.getSuffix();
-                for (AbstractPojoEntity ape : packagex.getElements()) {
-                    if (ape instanceof AnnotatedEntity) {
-                        AnnotatedEntity apojo = (AnnotatedEntity) ape;
-                        if (apojo.getEntity() != null && apojo.getEntity() instanceof PojoEntity) {
-                            PojoEntity pojo = (PojoEntity) apojo.getEntity();
-                            Annotations.grabAnnotations(apojo, pojo, annotations);
-                            if (Utils.isFinal(pojo)) {
-                                // if (suffix != null && pojo.getName().endsWith(suffix))
-                                // finalEntities.add(pojo.getName()
-                                // .substring(0, pojo.getName().length() - suffix.length()));
-                                // else
-                                ISerializer serializer = ((XtextResource) pojo.eResource()).getSerializer();
-                                finalEntities.put(pojo.getName(), serializer.serialize(pojo));
-                            }
-                        } else if (apojo.getEntity() != null && apojo.getEntity() instanceof EnumEntity) {
-                            EnumEntity pojo = (EnumEntity) apojo.getEntity();
-                            if (Utils.isFinal(pojo)) {
-                                // if (suffix != null && pojo.getName().endsWith(suffix))
-                                // finalEntities.add(pojo.getName()
-                                // .substring(0, pojo.getName().length() - suffix.length()));
-                                // else
-                                ISerializer serializer = ((XtextResource) pojo.eResource()).getSerializer();
-                                finalEntities.put(pojo.getName(), serializer.serialize(pojo));
-                            }
-                        }
-                    }
-                }
-
-                // List<String> tables = dbResolver.getTables(artifacts);
-                List<String> dbSequences = dbResolver.getSequences(artifacts);
-                DbType dbType = Utils.getDbType(dbResolver, artifacts);
-                TablePojoGenerator generator = new TablePojoGenerator(modelProperty, artifacts, suffix, finalEntities,
-                        annotations, dbSequences, dbType);
-                if (TablePojoGenerator.addDefinitions(scopeProvider, dbResolver, generator, artifacts))
-                    return generator.getPojoDefinitions(modelProperty, artifacts);
-            }
-            return super.resolve(context);
-        }
-
-        @Override
-        protected boolean isUnambiguous(TemplateContext context) {
-            return true;
-        }
-    }
-
     public class MetaGeneratorResolver extends SimpleTemplateVariableResolver {
 
         public static final String NAME = "metaGenerator";
@@ -763,54 +683,6 @@ public class ProcessorMetaTemplateContextType extends XtextTemplateContextType {
                         finalMetas, dbSequences, dbType);
                 if (TablePojoGenerator.addDefinitions(scopeProvider, dbResolver, generator, artifacts))
                     return generator.getMetaDefinitions(modelProperty, artifacts);
-            }
-            return super.resolve(context);
-        }
-
-        @Override
-        protected boolean isUnambiguous(TemplateContext context) {
-            return true;
-        }
-    }
-
-    public class DaoGeneratorResolver extends SimpleTemplateVariableResolver {
-
-        public static final String NAME = "daoGenerator";
-
-        public DaoGeneratorResolver() {
-            super(NAME, "DaoGenerator");
-        }
-
-        @Override
-        protected String resolve(TemplateContext context) {
-            Artifacts artifacts = getArtifacts((XtextTemplateContext) context);
-            PackageDeclaration packagex = getPackage((XtextTemplateContext) context);
-            if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
-
-                Map<String, String> finalDaos = new HashMap<String, String>();
-                String suffix = packagex.getSuffix();
-                for (AbstractPojoEntity ape : packagex.getElements()) {
-                    if (ape instanceof PojoDao) {
-                        PojoDao dao = (PojoDao) ape;
-                        if (Utils.isFinal(dao)) {
-                            // if (suffix != null && dao.getName().endsWith(suffix))
-                            // finalDaos.add(dao.getName()
-                            // .substring(0, dao.getName().length() - suffix.length()));
-                            // else
-                            ISerializer serializer = ((XtextResource) dao.eResource()).getSerializer();
-                            finalDaos.put(dao.getName(), serializer.serialize(dao));
-                        }
-                    }
-                }
-
-                // List<String> tables = dbResolver.getTables(artifacts);
-                List<String> dbSequences = dbResolver.getSequences(artifacts);
-                DbType dbType = Utils.getDbType(dbResolver, artifacts);
-                TableDaoGenerator generator = new TableDaoGenerator(modelProperty, artifacts, suffix, scopeProvider,
-                        finalDaos, dbSequences, dbType);
-                if (TablePojoGenerator.addDefinitions(scopeProvider, dbResolver, generator, artifacts)) {
-                    return generator.getDaoDefinitions(modelProperty, artifacts);
-                }
             }
             return super.resolve(context);
         }

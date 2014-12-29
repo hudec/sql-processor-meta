@@ -16,7 +16,6 @@ import java.sql.Clob;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.Date;
@@ -44,15 +43,11 @@ import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
-import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
-import org.sqlproc.meta.processorMeta.AbstractPojoEntity;
-import org.sqlproc.meta.processorMeta.AnnotatedEntity;
 import org.sqlproc.meta.processorMeta.Artifacts;
 import org.sqlproc.meta.processorMeta.Column;
 import org.sqlproc.meta.processorMeta.DatabaseProperty;
 import org.sqlproc.meta.processorMeta.DriverMethodOutputAssignement;
-import org.sqlproc.meta.processorMeta.Entity;
 import org.sqlproc.meta.processorMeta.ExportAssignement;
 import org.sqlproc.meta.processorMeta.ExtendedColumn;
 import org.sqlproc.meta.processorMeta.ExtendedColumnName;
@@ -65,11 +60,7 @@ import org.sqlproc.meta.processorMeta.MappingColumnName;
 import org.sqlproc.meta.processorMeta.MappingRule;
 import org.sqlproc.meta.processorMeta.MetaStatement;
 import org.sqlproc.meta.processorMeta.MetagenProperty;
-import org.sqlproc.meta.processorMeta.PackageDeclaration;
-import org.sqlproc.meta.processorMeta.PojoAnnotatedProperty;
 import org.sqlproc.meta.processorMeta.PojoDefinition;
-import org.sqlproc.meta.processorMeta.PojoEntity;
-import org.sqlproc.meta.processorMeta.PojoProperty;
 import org.sqlproc.meta.processorMeta.PojogenProperty;
 import org.sqlproc.meta.processorMeta.ProcessorMetaPackage;
 import org.sqlproc.meta.processorMeta.ShowColumnTypeAssignement;
@@ -220,38 +211,17 @@ public class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposal
     }
     final MetaStatement metaStatement = EcoreUtil2.<MetaStatement>getContainerOfType(model, MetaStatement.class);
     final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(model, Artifacts.class);
-    final String entityName = Utils.getTokenFromModifier(metaStatement, usageInFilterExt);
-    PojoEntity _xifexpression = null;
-    boolean _notEquals = (!Objects.equal(entityName, null));
+    final String pojoName = Utils.getTokenFromModifier(metaStatement, usageInFilter);
+    PojoDefinition _xifexpression = null;
+    boolean _notEquals = (!Objects.equal(pojoName, null));
     if (_notEquals) {
       IScopeProvider _scopeProvider = this.getScopeProvider();
-      IScope _scope = _scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJO_PACKAGES);
-      _xifexpression = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, entityName);
+      IScope _scope = _scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS);
+      _xifexpression = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope, pojoName);
     }
-    final PojoEntity pojoEntity = _xifexpression;
-    String _xifexpression_1 = null;
-    boolean _equals = Objects.equal(pojoEntity, null);
+    final PojoDefinition pojoDefinition = _xifexpression;
+    boolean _equals = Objects.equal(pojoDefinition, null);
     if (_equals) {
-      _xifexpression_1 = Utils.getTokenFromModifier(metaStatement, usageInFilter);
-    }
-    final String pojoName = _xifexpression_1;
-    PojoDefinition _xifexpression_2 = null;
-    boolean _notEquals_1 = (!Objects.equal(pojoName, null));
-    if (_notEquals_1) {
-      IScopeProvider _scopeProvider_1 = this.getScopeProvider();
-      IScope _scope_1 = _scopeProvider_1.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS);
-      _xifexpression_2 = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_1, pojoName);
-    }
-    final PojoDefinition pojoDefinition = _xifexpression_2;
-    boolean _and = false;
-    boolean _equals_1 = Objects.equal(pojoDefinition, null);
-    if (!_equals_1) {
-      _and = false;
-    } else {
-      boolean _equals_2 = Objects.equal(pojoEntity, null);
-      _and = _equals_2;
-    }
-    if (_and) {
       IValueConverterService _valueConverter = this.getValueConverter();
       final String proposal = _valueConverter.toString(("Error: I can\'t load pojo for " + model), "IDENT");
       ICompletionProposal _createCompletionProposal = this.createCompletionProposal(proposal, context);
@@ -259,24 +229,24 @@ public class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposal
       return true;
     }
     final int pos = _prefix.lastIndexOf(".");
-    String _xifexpression_3 = null;
+    String _xifexpression_1 = null;
     if ((pos > 0)) {
-      _xifexpression_3 = _prefix.substring(0, (pos + 1));
+      _xifexpression_1 = _prefix.substring(0, (pos + 1));
     } else {
-      _xifexpression_3 = "";
+      _xifexpression_1 = "";
     }
-    final String prefix = _xifexpression_3;
-    boolean _notEquals_2 = (!Objects.equal(pojoDefinition, null));
-    if (_notEquals_2) {
+    final String prefix = _xifexpression_1;
+    boolean _notEquals_1 = (!Objects.equal(pojoDefinition, null));
+    if (_notEquals_1) {
       String _class = this.getClass(pojoDefinition);
       final String clazz = this.getClassName(_class, prefix);
-      boolean _equals_3 = Objects.equal(clazz, null);
-      if (_equals_3) {
+      boolean _equals_1 = Objects.equal(clazz, null);
+      if (_equals_1) {
         return false;
       }
       final PropertyDescriptor[] descriptors = this.pojoResolver.getPropertyDescriptors(clazz);
-      boolean _equals_4 = Objects.equal(descriptors, null);
-      if (_equals_4) {
+      boolean _equals_2 = Objects.equal(descriptors, null);
+      if (_equals_2) {
         return false;
       }
       final Function1<PropertyDescriptor, Boolean> _function = new Function1<PropertyDescriptor, Boolean>() {
@@ -303,31 +273,8 @@ public class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposal
       };
       IterableExtensions.<PropertyDescriptor>forEach(_filter, _function_1);
       return true;
-    } else {
-      final PojoEntity entity = this.getPojoEntity(pojoEntity, prefix);
-      final List<PojoProperty> properties = this.getProperties(entity, null);
-      boolean _isEmpty = properties.isEmpty();
-      if (_isEmpty) {
-        return false;
-      }
-      final Procedure1<PojoProperty> _function_2 = new Procedure1<PojoProperty>() {
-        public void apply(final PojoProperty pojoProperty) {
-          IValueConverterService _valueConverter = ProcessorMetaProposalProvider.this.getValueConverter();
-          String _name = pojoProperty.getName();
-          String proposal = _valueConverter.toString(_name, "IDENT");
-          String _xifexpression = null;
-          if (cutPrefix) {
-            _xifexpression = proposal;
-          } else {
-            _xifexpression = (prefix + proposal);
-          }
-          ICompletionProposal _createCompletionProposal = ProcessorMetaProposalProvider.this.createCompletionProposal(_xifexpression, context);
-          acceptor.accept(_createCompletionProposal);
-        }
-      };
-      IterableExtensions.<PojoProperty>forEach(properties, _function_2);
-      return true;
     }
+    return false;
   }
   
   public void completeMappingColumnName_Name(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
@@ -340,38 +287,17 @@ public class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposal
     final MappingColumn mappingColumn = EcoreUtil2.<MappingColumn>getContainerOfType(model, MappingColumn.class);
     final MappingRule mappingRule = EcoreUtil2.<MappingRule>getContainerOfType(model, MappingRule.class);
     final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(model, Artifacts.class);
-    final String entityName = Utils.getTokenFromModifier(mappingRule, Constants.MAPPING_USAGE_EXTENDED);
-    PojoEntity _xifexpression = null;
-    boolean _notEquals = (!Objects.equal(entityName, null));
+    final String pojoName = Utils.getTokenFromModifier(mappingRule, Constants.MAPPING_USAGE);
+    PojoDefinition _xifexpression = null;
+    boolean _notEquals = (!Objects.equal(pojoName, null));
     if (_notEquals) {
       IScopeProvider _scopeProvider = this.getScopeProvider();
-      IScope _scope = _scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJO_PACKAGES);
-      _xifexpression = Utils.findEntity(this.qualifiedNameConverter, artifacts, _scope, entityName);
+      IScope _scope = _scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS);
+      _xifexpression = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope, pojoName);
     }
-    final PojoEntity pojoEntity = _xifexpression;
-    String _xifexpression_1 = null;
-    boolean _equals = Objects.equal(pojoEntity, null);
+    final PojoDefinition pojoDefinition = _xifexpression;
+    boolean _equals = Objects.equal(pojoDefinition, null);
     if (_equals) {
-      _xifexpression_1 = Utils.getTokenFromModifier(mappingRule, Constants.MAPPING_USAGE);
-    }
-    final String pojoName = _xifexpression_1;
-    PojoDefinition _xifexpression_2 = null;
-    boolean _notEquals_1 = (!Objects.equal(pojoName, null));
-    if (_notEquals_1) {
-      IScopeProvider _scopeProvider_1 = this.getScopeProvider();
-      IScope _scope_1 = _scopeProvider_1.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS);
-      _xifexpression_2 = Utils.findPojo(this.qualifiedNameConverter, artifacts, _scope_1, pojoName);
-    }
-    final PojoDefinition pojoDefinition = _xifexpression_2;
-    boolean _and = false;
-    boolean _equals_1 = Objects.equal(pojoDefinition, null);
-    if (!_equals_1) {
-      _and = false;
-    } else {
-      boolean _equals_2 = Objects.equal(pojoEntity, null);
-      _and = _equals_2;
-    }
-    if (_and) {
       IValueConverterService _valueConverter = this.getValueConverter();
       final String proposal = _valueConverter.toString(("Error: I can\'t load pojo for " + model), "IDENT");
       ICompletionProposal _createCompletionProposal = this.createCompletionProposal(proposal, context);
@@ -379,14 +305,14 @@ public class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposal
     }
     final StringBuilder partialName = new StringBuilder("");
     boolean cutPrefix = false;
-    boolean _and_1 = false;
+    boolean _and = false;
     if (!(model instanceof MappingColumn)) {
-      _and_1 = false;
+      _and = false;
     } else {
-      boolean _notEquals_2 = (!Objects.equal(mappingColumn, null));
-      _and_1 = _notEquals_2;
+      boolean _notEquals_1 = (!Objects.equal(mappingColumn, null));
+      _and = _notEquals_1;
     }
-    if (_and_1) {
+    if (_and) {
       cutPrefix = true;
       EList<ExtendedMappingItem> _items = mappingColumn.getItems();
       final Function1<ExtendedMappingItem, Boolean> _function = new Function1<ExtendedMappingItem, Boolean>() {
@@ -417,25 +343,25 @@ public class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposal
     StringBuilder _append = this.append(partialName, _prefix);
     String prefix = _append.toString();
     final int pos = prefix.lastIndexOf(".");
-    String _xifexpression_3 = null;
+    String _xifexpression_1 = null;
     if ((pos > 0)) {
-      _xifexpression_3 = prefix.substring(0, (pos + 1));
+      _xifexpression_1 = prefix.substring(0, (pos + 1));
     } else {
-      _xifexpression_3 = "";
+      _xifexpression_1 = "";
     }
-    final String _prefix_1 = _xifexpression_3;
+    final String _prefix_1 = _xifexpression_1;
     final boolean _cutPrefix = cutPrefix;
-    boolean _notEquals_3 = (!Objects.equal(pojoDefinition, null));
-    if (_notEquals_3) {
+    boolean _notEquals_2 = (!Objects.equal(pojoDefinition, null));
+    if (_notEquals_2) {
       String _class = this.getClass(pojoDefinition);
       final String clazz = this.getClassName(_class, prefix);
-      boolean _equals_3 = Objects.equal(clazz, null);
-      if (_equals_3) {
+      boolean _equals_1 = Objects.equal(clazz, null);
+      if (_equals_1) {
         return;
       }
       final PropertyDescriptor[] descriptors = this.pojoResolver.getPropertyDescriptors(clazz);
-      boolean _equals_4 = Objects.equal(descriptors, null);
-      if (_equals_4) {
+      boolean _equals_2 = Objects.equal(descriptors, null);
+      if (_equals_2) {
         super.completeMappingColumnName_Name(model, assignment, context, acceptor);
       } else {
         final Function1<PropertyDescriptor, Boolean> _function_1 = new Function1<PropertyDescriptor, Boolean>() {
@@ -462,29 +388,6 @@ public class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposal
         };
         IterableExtensions.<PropertyDescriptor>forEach(_filter, _function_2);
       }
-    } else {
-      final PojoEntity entity = this.getPojoEntity(pojoEntity, prefix);
-      final List<PojoProperty> properties = this.getProperties(entity, null);
-      boolean _isEmpty = properties.isEmpty();
-      if (_isEmpty) {
-        return;
-      }
-      final Procedure1<PojoProperty> _function_3 = new Procedure1<PojoProperty>() {
-        public void apply(final PojoProperty property) {
-          IValueConverterService _valueConverter = ProcessorMetaProposalProvider.this.getValueConverter();
-          String _name = property.getName();
-          final String proposal = _valueConverter.toString(_name, "IDENT");
-          String _xifexpression = null;
-          if (_cutPrefix) {
-            _xifexpression = proposal;
-          } else {
-            _xifexpression = (_prefix_1 + proposal);
-          }
-          ICompletionProposal _createCompletionProposal = ProcessorMetaProposalProvider.this.createCompletionProposal(_xifexpression, context);
-          acceptor.accept(_createCompletionProposal);
-        }
-      };
-      IterableExtensions.<PojoProperty>forEach(properties, _function_3);
     }
   }
   
@@ -518,149 +421,6 @@ public class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposal
       _xifexpression = _classx_1.getQualifiedName();
     } else {
       _xifexpression = pojo.getClass_();
-    }
-    return _xifexpression;
-  }
-  
-  protected PojoEntity _getPojoEntity(final Entity baseEntity, final String property) {
-    return null;
-  }
-  
-  protected PojoEntity _getPojoEntity(final PojoEntity baseEntity, final String property) {
-    PojoEntity _xblockexpression = null;
-    {
-      boolean _or = false;
-      boolean _equals = Objects.equal(baseEntity, null);
-      if (_equals) {
-        _or = true;
-      } else {
-        boolean _equals_1 = Objects.equal(property, null);
-        _or = _equals_1;
-      }
-      if (_or) {
-        return baseEntity;
-      }
-      int _indexOf = property.indexOf(".");
-      boolean _equals_2 = (_indexOf == (-1));
-      if (_equals_2) {
-        return baseEntity;
-      }
-      String checkProperty = property;
-      int pos1 = checkProperty.indexOf("=");
-      if ((pos1 > 0)) {
-        int pos2 = checkProperty.indexOf(".", pos1);
-        if ((pos2 > pos1)) {
-          String _substring = checkProperty.substring(0, pos1);
-          String _substring_1 = checkProperty.substring(pos2);
-          String _plus = (_substring + _substring_1);
-          checkProperty = _plus;
-        }
-      }
-      String innerProperty = ((String) null);
-      int _indexOf_1 = checkProperty.indexOf(".");
-      pos1 = _indexOf_1;
-      if ((pos1 > 0)) {
-        String _substring_2 = checkProperty.substring((pos1 + 1));
-        innerProperty = _substring_2;
-        String _substring_3 = checkProperty.substring(0, pos1);
-        checkProperty = _substring_3;
-      }
-      final String _checkProperty = checkProperty;
-      List<PojoProperty> _attributes = Utils.attributes(baseEntity);
-      final Function1<PojoProperty, Boolean> _function = new Function1<PojoProperty, Boolean>() {
-        public Boolean apply(final PojoProperty it) {
-          String _name = it.getName();
-          return Boolean.valueOf(Objects.equal(_name, _checkProperty));
-        }
-      };
-      PojoProperty innerPojoProperty = IterableExtensions.<PojoProperty>findFirst(_attributes, _function);
-      boolean _or_1 = false;
-      boolean _equals_3 = Objects.equal(innerPojoProperty, null);
-      if (_equals_3) {
-        _or_1 = true;
-      } else {
-        boolean _and = false;
-        Entity _ref = innerPojoProperty.getRef();
-        boolean _equals_4 = Objects.equal(_ref, null);
-        if (!_equals_4) {
-          _and = false;
-        } else {
-          PojoEntity _gref = innerPojoProperty.getGref();
-          boolean _equals_5 = Objects.equal(_gref, null);
-          _and = _equals_5;
-        }
-        _or_1 = _and;
-      }
-      if (_or_1) {
-        return null;
-      }
-      Entity _elvis = null;
-      Entity _ref_1 = innerPojoProperty.getRef();
-      if (_ref_1 != null) {
-        _elvis = _ref_1;
-      } else {
-        PojoEntity _gref_1 = innerPojoProperty.getGref();
-        _elvis = ((Entity) _gref_1);
-      }
-      Entity innerEntity = _elvis;
-      _xblockexpression = this.getPojoEntity(innerEntity, innerProperty);
-    }
-    return _xblockexpression;
-  }
-  
-  public List<PojoProperty> getProperties(final PojoEntity pojoEntity, final List<PojoProperty> inproperties) {
-    List<PojoProperty> _elvis = null;
-    if (inproperties != null) {
-      _elvis = inproperties;
-    } else {
-      ArrayList<PojoProperty> _newArrayList = CollectionLiterals.<PojoProperty>newArrayList();
-      _elvis = _newArrayList;
-    }
-    final List<PojoProperty> properties = _elvis;
-    boolean _equals = Objects.equal(pojoEntity, null);
-    if (_equals) {
-      return properties;
-    }
-    EList<PojoAnnotatedProperty> _features = pojoEntity.getFeatures();
-    final Function1<PojoAnnotatedProperty, PojoProperty> _function = new Function1<PojoAnnotatedProperty, PojoProperty>() {
-      public PojoProperty apply(final PojoAnnotatedProperty it) {
-        return it.getFeature();
-      }
-    };
-    List<PojoProperty> _map = ListExtensions.<PojoAnnotatedProperty, PojoProperty>map(_features, _function);
-    final Procedure1<PojoProperty> _function_1 = new Procedure1<PojoProperty>() {
-      public void apply(final PojoProperty it) {
-        boolean _or = false;
-        boolean _or_1 = false;
-        String _native = it.getNative();
-        boolean _notEquals = (!Objects.equal(_native, null));
-        if (_notEquals) {
-          _or_1 = true;
-        } else {
-          Entity _ref = it.getRef();
-          boolean _notEquals_1 = (!Objects.equal(_ref, null));
-          _or_1 = _notEquals_1;
-        }
-        if (_or_1) {
-          _or = true;
-        } else {
-          JvmType _type = it.getType();
-          boolean _notEquals_2 = (!Objects.equal(_type, null));
-          _or = _notEquals_2;
-        }
-        if (_or) {
-          properties.add(it);
-        }
-      }
-    };
-    IterableExtensions.<PojoProperty>forEach(_map, _function_1);
-    final PojoEntity superType = Utils.getSuperType(pojoEntity);
-    List<PojoProperty> _xifexpression = null;
-    boolean _equals_1 = Objects.equal(superType, null);
-    if (_equals_1) {
-      _xifexpression = properties;
-    } else {
-      _xifexpression = this.getProperties(superType, properties);
     }
     return _xifexpression;
   }
@@ -1910,41 +1670,6 @@ public class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposal
     this.acceptTables(model, context, acceptor, "");
   }
   
-  public Set<PojoEntity> listEntities(final ResourceSet resourceSet, final IScope scope) {
-    final Comparator<PojoEntity> _function = new Comparator<PojoEntity>() {
-      public int compare(final PojoEntity o1, final PojoEntity o2) {
-        String _name = o1.getName();
-        String _name_1 = o2.getName();
-        return _name.compareTo(_name_1);
-      }
-    };
-    final TreeSet<PojoEntity> result = CollectionLiterals.<PojoEntity>newTreeSet(_function);
-    Iterable<IEObjectDescription> _allElements = scope.getAllElements();
-    final Procedure1<IEObjectDescription> _function_1 = new Procedure1<IEObjectDescription>() {
-      public void apply(final IEObjectDescription description) {
-        URI _eObjectURI = description.getEObjectURI();
-        EObject _eObject = resourceSet.getEObject(_eObjectURI, true);
-        final PackageDeclaration packageDeclaration = ((PackageDeclaration) _eObject);
-        EList<AbstractPojoEntity> _elements = packageDeclaration.getElements();
-        final Procedure1<AbstractPojoEntity> _function = new Procedure1<AbstractPojoEntity>() {
-          public void apply(final AbstractPojoEntity aEntity) {
-            if ((aEntity instanceof AnnotatedEntity)) {
-              AnnotatedEntity ae = ((AnnotatedEntity) aEntity);
-              Entity _entity = ae.getEntity();
-              if ((_entity instanceof PojoEntity)) {
-                Entity _entity_1 = ae.getEntity();
-                result.add(((PojoEntity) _entity_1));
-              }
-            }
-          }
-        };
-        IterableExtensions.<AbstractPojoEntity>forEach(_elements, _function);
-      }
-    };
-    IterableExtensions.<IEObjectDescription>forEach(_allElements, _function_1);
-    return result;
-  }
-  
   public Set<PojoDefinition> listPojos(final ResourceSet resourceSet, final IScope scope) {
     final Comparator<PojoDefinition> _function = new Comparator<PojoDefinition>() {
       public int compare(final PojoDefinition o1, final PojoDefinition o2) {
@@ -1995,28 +1720,9 @@ public class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposal
     Resource _eResource = artifacts.eResource();
     ResourceSet _resourceSet = _eResource.getResourceSet();
     IScopeProvider _scopeProvider = this.getScopeProvider();
-    IScope _scope = _scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJO_PACKAGES);
-    final Set<PojoEntity> entities = this.listEntities(_resourceSet, _scope);
-    final Procedure1<PojoEntity> _function = new Procedure1<PojoEntity>() {
-      public void apply(final PojoEntity entity) {
-        IValueConverterService _valueConverter = ProcessorMetaProposalProvider.this.getValueConverter();
-        String _name = entity.getName();
-        final String proposal = _valueConverter.toString(_name, "IDENT");
-        ICompletionProposal _createCompletionProposal = ProcessorMetaProposalProvider.this.createCompletionProposal(((Constants.CONSTANT_USAGE_EXTENDED + "=") + proposal), context);
-        acceptor.accept(_createCompletionProposal);
-        ICompletionProposal _createCompletionProposal_1 = ProcessorMetaProposalProvider.this.createCompletionProposal(((Constants.IDENTIFIER_USAGE_EXTENDED + "=") + proposal), context);
-        acceptor.accept(_createCompletionProposal_1);
-        ICompletionProposal _createCompletionProposal_2 = ProcessorMetaProposalProvider.this.createCompletionProposal(((Constants.COLUMN_USAGE_EXTENDED + "=") + proposal), context);
-        acceptor.accept(_createCompletionProposal_2);
-      }
-    };
-    IterableExtensions.<PojoEntity>forEach(entities, _function);
-    Resource _eResource_1 = artifacts.eResource();
-    ResourceSet _resourceSet_1 = _eResource_1.getResourceSet();
-    IScopeProvider _scopeProvider_1 = this.getScopeProvider();
-    IScope _scope_1 = _scopeProvider_1.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS);
-    final Set<PojoDefinition> pojos = this.listPojos(_resourceSet_1, _scope_1);
-    final Procedure1<PojoDefinition> _function_1 = new Procedure1<PojoDefinition>() {
+    IScope _scope = _scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS);
+    final Set<PojoDefinition> pojos = this.listPojos(_resourceSet, _scope);
+    final Procedure1<PojoDefinition> _function = new Procedure1<PojoDefinition>() {
       public void apply(final PojoDefinition pojo) {
         IValueConverterService _valueConverter = ProcessorMetaProposalProvider.this.getValueConverter();
         String _name = pojo.getName();
@@ -2029,13 +1735,13 @@ public class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposal
         acceptor.accept(_createCompletionProposal_2);
       }
     };
-    IterableExtensions.<PojoDefinition>forEach(pojos, _function_1);
-    Resource _eResource_2 = artifacts.eResource();
-    ResourceSet _resourceSet_2 = _eResource_2.getResourceSet();
-    IScopeProvider _scopeProvider_2 = this.getScopeProvider();
-    IScope _scope_2 = _scopeProvider_2.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__TABLES);
-    final Set<TableDefinition> tables = this.listTables(_resourceSet_2, _scope_2);
-    final Procedure1<TableDefinition> _function_2 = new Procedure1<TableDefinition>() {
+    IterableExtensions.<PojoDefinition>forEach(pojos, _function);
+    Resource _eResource_1 = artifacts.eResource();
+    ResourceSet _resourceSet_1 = _eResource_1.getResourceSet();
+    IScopeProvider _scopeProvider_1 = this.getScopeProvider();
+    IScope _scope_1 = _scopeProvider_1.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__TABLES);
+    final Set<TableDefinition> tables = this.listTables(_resourceSet_1, _scope_1);
+    final Procedure1<TableDefinition> _function_1 = new Procedure1<TableDefinition>() {
       public void apply(final TableDefinition table) {
         IValueConverterService _valueConverter = ProcessorMetaProposalProvider.this.getValueConverter();
         String _name = table.getName();
@@ -2044,7 +1750,7 @@ public class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposal
         acceptor.accept(_createCompletionProposal);
       }
     };
-    IterableExtensions.<TableDefinition>forEach(tables, _function_2);
+    IterableExtensions.<TableDefinition>forEach(tables, _function_1);
   }
   
   public void complete_MappingRuleModifier(final EObject model, final RuleCall ruleCall, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
@@ -2053,24 +1759,9 @@ public class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposal
     Resource _eResource = artifacts.eResource();
     ResourceSet _resourceSet = _eResource.getResourceSet();
     IScopeProvider _scopeProvider = this.getScopeProvider();
-    IScope _scope = _scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJO_PACKAGES);
-    final Set<PojoEntity> entities = this.listEntities(_resourceSet, _scope);
-    final Procedure1<PojoEntity> _function = new Procedure1<PojoEntity>() {
-      public void apply(final PojoEntity entity) {
-        IValueConverterService _valueConverter = ProcessorMetaProposalProvider.this.getValueConverter();
-        String _name = entity.getName();
-        final String proposal = _valueConverter.toString(_name, "IDENT");
-        ICompletionProposal _createCompletionProposal = ProcessorMetaProposalProvider.this.createCompletionProposal(((Constants.MAPPING_USAGE_EXTENDED + "=") + proposal), context);
-        acceptor.accept(_createCompletionProposal);
-      }
-    };
-    IterableExtensions.<PojoEntity>forEach(entities, _function);
-    Resource _eResource_1 = artifacts.eResource();
-    ResourceSet _resourceSet_1 = _eResource_1.getResourceSet();
-    IScopeProvider _scopeProvider_1 = this.getScopeProvider();
-    IScope _scope_1 = _scopeProvider_1.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS);
-    final Set<PojoDefinition> pojos = this.listPojos(_resourceSet_1, _scope_1);
-    final Procedure1<PojoDefinition> _function_1 = new Procedure1<PojoDefinition>() {
+    IScope _scope = _scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS);
+    final Set<PojoDefinition> pojos = this.listPojos(_resourceSet, _scope);
+    final Procedure1<PojoDefinition> _function = new Procedure1<PojoDefinition>() {
       public void apply(final PojoDefinition pojo) {
         IValueConverterService _valueConverter = ProcessorMetaProposalProvider.this.getValueConverter();
         String _name = pojo.getName();
@@ -2079,7 +1770,7 @@ public class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposal
         acceptor.accept(_createCompletionProposal);
       }
     };
-    IterableExtensions.<PojoDefinition>forEach(pojos, _function_1);
+    IterableExtensions.<PojoDefinition>forEach(pojos, _function);
   }
   
   public void complete_Modifier(final EObject model, final RuleCall ruleCall, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
@@ -2353,16 +2044,5 @@ public class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposal
       return;
     }
     this.acceptFunctions(model, context, acceptor);
-  }
-  
-  public PojoEntity getPojoEntity(final Entity baseEntity, final String property) {
-    if (baseEntity instanceof PojoEntity) {
-      return _getPojoEntity((PojoEntity)baseEntity, property);
-    } else if (baseEntity != null) {
-      return _getPojoEntity(baseEntity, property);
-    } else {
-      throw new IllegalArgumentException("Unhandled parameter types: " +
-        Arrays.<Object>asList(baseEntity, property).toString());
-    }
   }
 }

@@ -1,8 +1,5 @@
 package org.sqlproc.meta.generator;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.io.Writer;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.sql.Types;
@@ -20,10 +17,9 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.apache.log4j.Logger;
-import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.scoping.IScopeProvider;
 import org.sqlproc.meta.processorMeta.Artifacts;
-import org.sqlproc.meta.processorMeta.PojoType;
+import org.sqlproc.meta.processorMeta.PojoDefinition;
 import org.sqlproc.meta.processorMeta.ProcessorMetaPackage;
 import org.sqlproc.meta.property.EnumAttribute;
 import org.sqlproc.meta.property.ImplementsExtends;
@@ -39,7 +35,6 @@ import org.sqlproc.meta.resolver.DbIndex.DbIndexDetail;
 import org.sqlproc.meta.resolver.DbResolver;
 import org.sqlproc.meta.resolver.DbResolver.DbType;
 import org.sqlproc.meta.resolver.DbTable;
-import org.sqlproc.meta.util.Annotations;
 import org.sqlproc.meta.util.Debug;
 import org.sqlproc.meta.util.Utils;
 
@@ -76,7 +71,7 @@ public class TablePojoGenerator {
 
     protected String suffix;
     protected Map<String, String> finalEntities;
-    protected Annotations annotations;
+    // protected Annotations annotations;
     protected Set<String> imports = new HashSet<String>();
     protected Map<String, PojoAttrType> sqlTypes = new HashMap<String, PojoAttrType>();
     protected Map<String, Map<String, PojoAttrType>> tableTypes = new HashMap<String, Map<String, PojoAttrType>>();
@@ -113,8 +108,8 @@ public class TablePojoGenerator {
     protected Map<String, Set<String>> notVersionColumns = new HashMap<String, Set<String>>();
     protected String generateOperators = null;
     protected Set<String> preserveForeignKeys = new HashSet<String>();
-    protected Map<String, PojoType> pojosForProcedures = new HashMap<String, PojoType>();
-    protected Map<String, PojoType> pojosForFunctions = new HashMap<String, PojoType>();
+    protected Map<String, PojoDefinition> pojosForProcedures = new HashMap<String, PojoDefinition>();
+    protected Map<String, PojoDefinition> pojosForFunctions = new HashMap<String, PojoDefinition>();
     protected Filter activeFilter = null;
     protected Map<String, String> enumForCheckConstraints = new HashMap<String, String>();
 
@@ -137,15 +132,15 @@ public class TablePojoGenerator {
     }
 
     public TablePojoGenerator(ModelProperty modelProperty, Artifacts artifacts, String suffix,
-            Map<String, String> finalEntities, Annotations annotations, List<String> dbSequences, DbType dbType) {
+            Map<String, String> finalEntities, /* Annotations annotations, */List<String> dbSequences, DbType dbType) {
 
         debug = new Debug(modelProperty.getDebugLevel(artifacts), modelProperty.getDebugScope(artifacts), LOGGER);
 
         this.suffix = (suffix != null) ? suffix : "";
         this.finalEntities = finalEntities;
-        this.annotations = annotations;
-        if (annotations != null)
-            this.imports = annotations.getImports();
+        // this.annotations = annotations;
+        // if (annotations != null)
+        // this.imports = annotations.getImports();
 
         Map<String, PojoAttrType> sqlTypes = modelProperty.getSqlTypes(artifacts);
         if (sqlTypes != null) {
@@ -266,11 +261,11 @@ public class TablePojoGenerator {
         if (preserveForeignKeys != null) {
             this.preserveForeignKeys.addAll(preserveForeignKeys);
         }
-        Map<String, PojoType> pojosForProcedures = modelProperty.getPojosForProcedures(artifacts);
+        Map<String, PojoDefinition> pojosForProcedures = modelProperty.getPojosForProcedures(artifacts);
         if (pojosForProcedures != null) {
             this.pojosForProcedures.putAll(pojosForProcedures);
         }
-        Map<String, PojoType> pojosForFunctions = modelProperty.getPojosForFunctions(artifacts);
+        Map<String, PojoDefinition> pojosForFunctions = modelProperty.getPojosForFunctions(artifacts);
         if (pojosForProcedures != null) {
             this.pojosForFunctions.putAll(pojosForFunctions);
         }
@@ -311,7 +306,7 @@ public class TablePojoGenerator {
 
         if (debug.debug) {
             System.out.println("finalEntities " + this.finalEntities);
-            System.out.println("annotations " + this.annotations);
+            // System.out.println("annotations " + this.annotations);
             System.out.println("sqlTypes " + this.sqlTypes);
             System.out.println("tableTypes " + this.tableTypes);
             System.out.println("columnTypes " + this.columnTypes);
@@ -869,565 +864,6 @@ public class TablePojoGenerator {
         }
     }
 
-    public String getPojoDefinitions(ModelProperty modelProperty, Artifacts artifacts) {
-        String result = getPojoDefinitions();
-        return replaceAll(modelProperty, result, artifacts);
-    }
-
-    public String getPojoDefinitions() {
-        try {
-            if (debug.debug) {
-                System.out.println("pojos " + this.pojos);
-                System.out.println("pojoExtends " + this.pojoExtends);
-                System.out.println("pojoInheritanceDiscriminator " + this.pojoInheritanceDiscriminator);
-                System.out.println("pojoInheritanceSimple " + this.pojoInheritanceSimple);
-                System.out.println("pojoDiscriminators " + this.pojoDiscriminators);
-                System.out.println("indexes " + this.indexes);
-                System.out.println("procedures " + this.procedures);
-                System.out.println("functions " + this.functions);
-                System.out.println("enums " + this.enums);
-            }
-
-            StringBuilder buffer = new StringBuilder();
-            boolean isSerializable = false;
-            Set<String> serializables = new HashSet<String>();
-            boolean oneMoreLine = false;
-            if (!toImplements.isEmpty()) {
-                for (ImplementsExtends ie : toImplements.values()) {
-                    JvmType type = ie.getToImplement();
-                    if (type.getIdentifier().endsWith("Serializable")) {
-                        if (!ie.getDbTables().isEmpty()) {
-                            for (String dbTable : ie.getDbTables()) {
-                                serializables.add(dbTable);
-                            }
-                            continue;
-                        }
-                        if (!ie.getDbNotTables().isEmpty()) {
-                            for (String pojo : pojos.keySet()) {
-                                serializables.add(pojo);
-                            }
-                            for (String pojo : enums.keySet()) {
-                                serializables.add(pojo);
-                            }
-                            for (String pojo : procedures.keySet()) {
-                                serializables.add(pojo);
-                            }
-                            for (String pojo : functions.keySet()) {
-                                serializables.add(pojo);
-                            }
-                            for (String dbTable : ie.getDbNotTables()) {
-                                serializables.remove(dbTable);
-                            }
-                            continue;
-                        }
-                        isSerializable = true;
-                        continue;
-                    }
-                    buffer.append(NLINDENT).append("implements ").append(type.getIdentifier());
-                    if (ie.isGenerics())
-                        buffer.append(" <<>>");
-                    if (!ie.getDbTables().isEmpty()) {
-                        buffer.append(" onlyPojos");
-                        for (String dbTable : ie.getDbTables()) {
-                            String pojoName = tableNames.get(dbTable);
-                            if (pojoName == null)
-                                pojoName = dbTable;
-                            String realPojoName = tableToCamelCase(pojoName);
-                            buffer.append(" ").append(realPojoName);
-                        }
-                    }
-                    if (!ie.getDbNotTables().isEmpty()) {
-                        buffer.append(" exceptPojos");
-                        for (String dbTable : ie.getDbNotTables()) {
-                            String pojoName = tableNames.get(dbTable);
-                            if (pojoName == null)
-                                pojoName = dbTable;
-                            String realPojoName = tableToCamelCase(pojoName);
-                            buffer.append(" ").append(realPojoName);
-                        }
-                    }
-                }
-                oneMoreLine = true;
-            }
-            if (toExtends != null) {
-                JvmType type = toExtends.getToImplement();
-                buffer.append(NLINDENT).append("extends ").append(type.getIdentifier());
-                if (toExtends.isGenerics())
-                    buffer.append(" <<>>");
-                if (!toExtends.getDbTables().isEmpty()) {
-                    buffer.append(" onlyPojos");
-                    for (String dbTable : toExtends.getDbTables()) {
-                        String pojoName = tableNames.get(dbTable);
-                        if (pojoName == null)
-                            pojoName = dbTable;
-                        String realPojoName = tableToCamelCase(pojoName);
-                        buffer.append(" ").append(realPojoName);
-                    }
-                }
-                if (!toExtends.getDbNotTables().isEmpty()) {
-                    buffer.append(" exceptPojos");
-                    for (String dbTable : toExtends.getDbNotTables()) {
-                        String pojoName = tableNames.get(dbTable);
-                        if (pojoName == null)
-                            pojoName = dbTable;
-                        String realPojoName = tableToCamelCase(pojoName);
-                        buffer.append(" ").append(realPojoName);
-                    }
-                }
-                oneMoreLine = true;
-            }
-            if (implementationPackage != null) {
-                buffer.append(NLINDENT).append("implementation-package ").append(implementationPackage);
-                oneMoreLine = true;
-            }
-            if (oneMoreLine) {
-                buffer.append("\n");
-            }
-            if (imports != null) {
-                for (String qualifiedName : imports) {
-                    buffer.append(INDENT).append("import ").append(qualifiedName).append("\n");
-                }
-            }
-            for (Entry<String, List<EnumAttribute>> pentry : enums.entrySet()) {
-                String pojo = pentry.getKey();
-                // System.out.println("QQQQQ " + pojo);
-                if (!onlyTables.isEmpty() && !onlyTables.contains(pojo))
-                    continue;
-                if (ignoreTables.contains(pojo))
-                    continue;
-                if (!Filter.isTable(activeFilter, pojo))
-                    continue;
-                String pojoName = tableNames.get(pojo);
-                if (pojoName == null)
-                    pojoName = pojo;
-                if (finalEntities.containsKey(tableToCamelCase(pojoName))) {
-                    buffer.append(getFinalContent(finalEntities.get(tableToCamelCase(pojoName))));
-                    continue;
-                }
-                printComment(buffer, comments.get(pojo), INDENT);
-                buffer.append(NLINDENT);
-                if (makeItFinal)
-                    buffer.append("final ");
-                buffer.append("enum ");
-                if (enumForCheckConstraints.containsKey(pojoName))
-                    buffer.append(enumForCheckConstraints.get(pojoName));
-                else
-                    buffer.append(tableToCamelCase(pojoName));
-                if (pojoExtends.containsKey(pojo))
-                    buffer.append(" extends ").append(tableToCamelCase(pojoExtends.get(pojo)));
-                if (pojoDiscriminators.containsKey(pojo))
-                    buffer.append(" discriminator ").append(pojoDiscriminators.get(pojo));
-                if (isSerializable || serializables.contains(pojo))
-                    buffer.append(" serializable 1 ");
-                buffer.append(" {");
-                for (EnumAttribute attribute : pentry.getValue()) {
-                    // System.out.println("  RRR " + attribute.getName());
-                    String name = (columnNames.containsKey(pojo)) ? columnNames.get(pojo).get(attribute.getName())
-                            : null;
-                    if (name == null)
-                        name = attribute.getName();
-                    if (attribute.getIntValue() == null && attribute.getStrValue() == null)
-                        name = columnToCamelCase(name);
-                    buffer.append(NLINDENT).append(INDENT).append(name).append(' ');
-
-                    if (attribute.getIntValue() == null && attribute.getStrValue() == null) {
-                        buffer.append(": ").append(attribute.getClassName());
-                    } else if (attribute.getIntValue() != null) {
-                        buffer.append("::: ").append(attribute.getIntValue());
-                    } else if (attribute.getStrValue() != null) {
-                        buffer.append("::: \"").append(attribute.getStrValue()).append("\"");
-                    }
-                }
-                if (pojoExtends.containsKey(pojo)) {
-                    getParentAttrs(pojoExtends.get(pojo), null, null);
-                }
-                buffer.append(NLINDENT).append("}\n");
-            }
-            for (String pojo : pojos.keySet()) {
-                // System.out.println("QQQQQ " + pojo);
-                if (!onlyTables.isEmpty() && !onlyTables.contains(pojo))
-                    continue;
-                if (ignoreTables.contains(pojo))
-                    continue;
-                if (!Filter.isTable(activeFilter, pojo))
-                    continue;
-                String pojoName = tableNames.get(pojo);
-                if (pojoName == null)
-                    pojoName = pojo;
-                if (finalEntities.containsKey(tableToCamelCase(pojoName))) {
-                    buffer.append(getFinalContent(finalEntities.get(tableToCamelCase(pojoName))));
-                    continue;
-                }
-                String realPojoName = tableToCamelCase(pojoName);
-                printComment(buffer, comments.get(pojo), INDENT);
-                if (annotations != null) {
-                    buffer.append(annotations.getEntityAnnotationsDefinitions(realPojoName, true));
-                    buffer.append(annotations.getConstructorAnnotationsDefinitions(realPojoName, true));
-                    buffer.append(annotations.getStaticAnnotationsDefinitions(realPojoName, true));
-                    buffer.append(annotations.getConflictAnnotationsDefinitions(realPojoName, true));
-                }
-                buffer.append(NLINDENT);
-                if (makeItFinal)
-                    buffer.append("final ");
-                if (pojoInheritanceDiscriminator.containsKey(pojo) || pojoInheritanceSimple.containsKey(pojo)) {
-                    if (!notAbstractTables.contains(pojo))
-                        buffer.append("abstract ");
-                }
-                buffer.append("pojo ");
-                buffer.append(realPojoName);
-                if (pojoExtends.containsKey(pojo))
-                    buffer.append(" extends ").append(tableToCamelCase(pojoExtends.get(pojo)));
-                if (pojoDiscriminators.containsKey(pojo))
-                    buffer.append(" discriminator ").append(pojoDiscriminators.get(pojo));
-                if (isSerializable || serializables.contains(pojo))
-                    buffer.append(" serializable 1");
-                if (generateOperators != null) {
-                    buffer.append(" operators");
-                    if (!"operators".equals(generateOperators))
-                        buffer.append(" ").append(generateOperators);
-                }
-                buffer.append(" {");
-                Set<String> pkeys = new HashSet<String>();
-                Set<String> toStr = new HashSet<String>();
-                Set<String> isDef = new HashSet<String>();
-                Set<String> toInit = new HashSet<String>();
-                Map<String, PojoAttribute> addedAttributes = new LinkedHashMap<String, PojoAttribute>();
-                for (Map.Entry<String, PojoAttribute> pentry : pojos.get(pojo).entrySet()) {
-                    // System.out.println("  RRR " + pentry.getKey());
-                    if (ignoreColumns.containsKey(pojo) && ignoreColumns.get(pojo).contains(pentry.getKey()))
-                        continue;
-                    PojoAttribute attribute = pentry.getValue();
-                    String name = (columnNames.containsKey(pojo)) ? columnNames.get(pojo).get(pentry.getKey()) : null;
-                    if (name == null)
-                        name = attribute.getName();
-                    else
-                        name = columnToCamelCase(name);
-                    printComment(buffer, attribute.getComment(), INDENT, INDENT);
-                    if (annotations != null) {
-                        buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, name, true));
-                        buffer.append(annotations.getGetterAnnotationsDefinitions(realPojoName, name, true));
-                        buffer.append(annotations.getSetterAnnotationsDefinitions(realPojoName, name, true));
-                    }
-                    if (doGenerateValidationAnnotations) {
-                        if ((requiredColumns.containsKey(pojo) && requiredColumns.get(pojo).contains(pentry.getKey()))
-                                || (attribute.isRequired() && !attribute.isPrimaryKey())) {
-                            if (!notRequiredColumns.containsKey(pojo)
-                                    || !notRequiredColumns.get(pojo).contains(pentry.getKey()))
-                                if (annotations == null
-                                        || !annotations.hasAttributeAnnotationsDefinitions(realPojoName, name,
-                                                ANNOTATION_NOT_NULL)) {
-                                    buffer.append(NLINDENT).append(INDENT).append("@NotNull");
-                                }
-                        }
-                        if (attribute.getDependencyClassName() == null && !attribute.isPrimitive()) {
-                            if (attribute.getClassName().equals("java.lang.String") && attribute.getSize() > 0) {
-                                if (annotations == null
-                                        || !annotations.hasAttributeAnnotationsDefinitions(realPojoName, name,
-                                                ANNOTATION_SIZE)) {
-                                    buffer.append(NLINDENT).append(INDENT).append("@Size ::: max ")
-                                            .append(attribute.getSize());
-                                }
-                            }
-                        }
-                    }
-                    buffer.append(NLINDENT).append(INDENT).append(name).append(' ');
-                    if (attribute.getDependencyClassName() != null) {
-                        buffer.append(":: ").append(attribute.getDependencyClassName());
-                        if (attribute.isDependencyClassNameIsEnum())
-                            toStr.add(name);
-                        if (preserveForeignKeys.contains(pojo) || preserveForeignKeys.contains("_ALL_")) {
-                            if (attribute.getPkTable() != null) {
-                                addedAttributes.put(name, pentry.getValue());
-                                buffer.append(" updateCol ").append(columnToCamelCase(attribute.getPkColumn()))
-                                        .append("->").append(columnToCamelCase(attribute.getDbName()));
-                            }
-                        }
-                    } else if (attribute.isPrimitive()) {
-                        buffer.append('_').append(attribute.getClassName());
-                        toStr.add(name);
-                    } else {
-                        buffer.append(": ").append(attribute.getClassName());
-                        if (!attribute.getClassName().startsWith(COLLECTION_LIST))
-                            toStr.add(name);
-                    }
-                    if (attribute.isDef())
-                        isDef.add(name);
-                    if (attribute.toInit())
-                        toInit.add(name);
-                    if (inheritanceColumns.containsKey(pojo) && pentry.getKey().equals(inheritanceColumns.get(pojo))) {
-                        buffer.append(" discriminator");
-                    }
-                    if (attribute.isVersion()) {
-                        buffer.append(" optLock");
-                    }
-                    if (!attribute.isVersion()
-                            && ((requiredColumns.containsKey(pojo) && requiredColumns.get(pojo).contains(
-                                    pentry.getKey())) || (attribute.isRequired() && !attribute.isPrimaryKey()))) {
-                        if (!notRequiredColumns.containsKey(pojo)
-                                || !notRequiredColumns.get(pojo).contains(pentry.getKey()))
-                            buffer.append(" required");
-                    }
-                    if (attribute.isPrimaryKey()) {
-                        buffer.append(" primaryKey");
-                        pkeys.add(name);
-                    }
-                    if (!generateMethods.contains(METHOD_INDEX) && attribute.getIndex() != null) {
-                        buffer.append(" index ").append(attribute.getIndex());
-                    }
-                }
-                if (pojoExtends.containsKey(pojo)) {
-                    getParentAttrs(pojoExtends.get(pojo), isDef, toInit);
-                }
-                for (Map.Entry<String, PojoAttribute> pentry : addedAttributes.entrySet()) {
-                    PojoAttribute attribute = pentry.getValue();
-                    buffer.append(NLINDENT).append(INDENT).append(columnToCamelCase(attribute.getDbName())).append(' ');
-                    buffer.append(": ").append(attribute.getClassName());
-                    buffer.append(" createCol ").append(pentry.getKey()).append("->")
-                            .append(columnToCamelCase(attribute.getPkColumn()));
-                    toStr.add(columnToCamelCase(attribute.getDbName()));
-                }
-                if (generateMethods.contains(METHOD_EQUALS) && !pkeys.isEmpty()) {
-                    if (annotations != null) {
-                        buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, METHOD_EQUALS, true));
-                    }
-                    buffer.append(NLINDENT).append(INDENT).append(METHOD_EQUALS).append(" :::");
-                    for (String name : pkeys) {
-                        buffer.append(" ").append(name);
-                    }
-                }
-                if (generateMethods.contains(METHOD_HASH_CODE) && !pkeys.isEmpty()) {
-                    if (annotations != null) {
-                        buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, METHOD_HASH_CODE,
-                                true));
-                    }
-                    buffer.append(NLINDENT).append(INDENT).append(METHOD_HASH_CODE).append(" :::");
-                    for (String name : pkeys) {
-                        buffer.append(" ").append(name);
-                    }
-                }
-                if (generateMethods.contains(METHOD_TO_INIT)) {
-                    if (annotations != null) {
-                        buffer.append(annotations
-                                .getAttributeAnnotationsDefinitions(realPojoName, METHOD_TO_INIT, true));
-                    }
-                    buffer.append(NLINDENT).append(INDENT).append(METHOD_TO_INIT).append(" :::");
-                    for (String name : toInit) {
-                        buffer.append(" ").append(name);
-                    }
-                } else if (generateMethods.contains(ENUM_TO_INIT) && !toInit.isEmpty()) {
-                    if (annotations != null) {
-                        buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, ENUM_TO_INIT, true));
-                    }
-                    buffer.append(NLINDENT).append(INDENT).append(ENUM_TO_INIT).append(" :::");
-                    for (String name : toInit) {
-                        buffer.append(" ").append(name);
-                    }
-                }
-                if (generateMethods.contains(METHOD_IS_DEF)) {
-                    if (annotations != null) {
-                        buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, METHOD_IS_DEF, true));
-                    }
-                    buffer.append(NLINDENT).append(INDENT).append(METHOD_IS_DEF).append(" :::");
-                    for (String name : isDef) {
-                        buffer.append(" ").append(name);
-                    }
-                } else if (generateMethods.contains(ENUM_IS_DEF) && !isDef.isEmpty()) {
-                    if (annotations != null) {
-                        buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, ENUM_IS_DEF, true));
-                    }
-                    buffer.append(NLINDENT).append(INDENT).append(ENUM_IS_DEF).append(" :::");
-                    for (String name : isDef) {
-                        buffer.append(" ").append(name);
-                    }
-                }
-                if (generateMethods.contains(METHOD_TO_STRING) && !toStr.isEmpty()) {
-                    if (annotations != null) {
-                        buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, METHOD_TO_STRING,
-                                true));
-                    }
-                    buffer.append(NLINDENT).append(INDENT).append(METHOD_TO_STRING).append(" :::");
-                    for (String name : toStr) {
-                        buffer.append(" ").append(name);
-                    }
-                }
-                if (generateMethods.contains(METHOD_INDEX) && indexes.containsKey(pojo)) {
-                    List<Map<PojoAttribute, Boolean>> mainList = indexes.get(pojo);
-                    for (int i = 0, l = mainList.size(); i < l; i++) {
-                        if (annotations != null) {
-                            buffer.append(annotations.getAttributeAnnotationsDefinitions(realPojoName, METHOD_INDEX,
-                                    true));
-                        }
-                        buffer.append(NLINDENT).append(INDENT).append(METHOD_INDEX).append(i + 1).append(" :::");
-                        for (PojoAttribute attr : mainList.get(i).keySet()) {
-                            String name = (columnNames.containsKey(pojo)) ? columnNames.get(pojo).get(attr.getName())
-                                    : null;
-                            if (name == null)
-                                name = attr.getName();
-                            else
-                                name = columnToCamelCase(name);
-                            buffer.append(" ").append(name);
-                        }
-                    }
-                }
-                buffer.append(NLINDENT).append("}\n");
-            }
-            for (String pojo : procedures.keySet()) {
-                // System.out.println("QQQQQ " + pojo);
-                if (ignoreTables.contains(pojo))
-                    continue;
-                if (pojosForProcedures.containsKey(pojo))
-                    continue;
-                if (!Filter.isTable(activeFilter, pojo))
-                    continue;
-                boolean isFunction = functions.containsKey(pojo);
-                String pojoName = tableNames.get(pojo);
-                if (pojoName == null)
-                    pojoName = pojo;
-                if (finalEntities.containsKey(tableToCamelCase(pojoName))) {
-                    buffer.append(getFinalContent(finalEntities.get(tableToCamelCase(pojoName))));
-                    continue;
-                }
-                printComment(buffer, comments.get(pojo), INDENT);
-                buffer.append(NLINDENT);
-                if (makeItFinal)
-                    buffer.append("final ");
-                buffer.append("pojo ");
-                buffer.append(tableToCamelCase(pojoName));
-                if (pojoExtends.containsKey(pojo))
-                    buffer.append(" extends ").append(tableToCamelCase(pojoExtends.get(pojo)));
-                if (isSerializable || serializables.contains(pojo))
-                    buffer.append(" serializable 1 ");
-                buffer.append(" { // ");
-                if (isFunction)
-                    buffer.append("function");
-                else
-                    buffer.append("procedure");
-                Set<String> toStr = new HashSet<String>();
-                for (Map.Entry<String, PojoAttribute> pentry : procedures.get(pojo).entrySet()) {
-                    // System.out.println("  RRR " + pentry.getKey());
-                    if (FAKE_FUN_PROC_COLUMN_NAME.equals(pentry.getKey()))
-                        continue;
-                    if (ignoreColumns.containsKey(pojo) && ignoreColumns.get(pojo).contains(pentry.getKey()))
-                        continue;
-                    PojoAttribute attribute = pentry.getValue();
-                    String name = (columnNames.containsKey(pojo)) ? columnNames.get(pojo).get(pentry.getKey()) : null;
-                    if (name == null)
-                        name = attribute.getName();
-                    else
-                        name = columnToCamelCase(name);
-                    buffer.append(NLINDENT).append(INDENT).append(name).append(' ');
-                    if (attribute.getDependencyClassName() != null) {
-                        buffer.append(":: ").append(attribute.getDependencyClassName());
-                        toStr.add(name);
-                    } else if (attribute.isPrimitive()) {
-                        buffer.append('_').append(attribute.getClassName());
-                        toStr.add(name);
-                    } else {
-                        buffer.append(": ").append(attribute.getClassName());
-                        if (!attribute.getClassName().startsWith(COLLECTION_LIST))
-                            toStr.add(name);
-                    }
-                    if (!attribute.isVersion()
-                            && ((requiredColumns.containsKey(pojo) && requiredColumns.get(pojo).contains(
-                                    pentry.getKey())) || (attribute.isRequired() && !attribute.isPrimaryKey()))) {
-                        if (!notRequiredColumns.containsKey(pojo)
-                                || !notRequiredColumns.get(pojo).contains(pentry.getKey()))
-                            buffer.append(" required");
-                    }
-                }
-                if (pojoExtends.containsKey(pojo)) {
-                    getParentAttrs(pojoExtends.get(pojo), null, null);
-                }
-                if (generateMethods.contains(METHOD_TO_STRING) && !toStr.isEmpty()) {
-                    buffer.append(NLINDENT).append(INDENT).append(METHOD_TO_STRING).append(" :::");
-                    for (String name : toStr) {
-                        buffer.append(" ").append(name);
-                    }
-                }
-                buffer.append(NLINDENT).append("}\n");
-            }
-            for (String pojo : functions.keySet()) {
-                // System.out.println("QQQQQ " + pojo);
-                if (ignoreTables.contains(pojo))
-                    continue;
-                if (procedures.containsKey(pojo))
-                    continue;
-                if (pojosForFunctions.containsKey(pojo))
-                    continue;
-                if (!Filter.isTable(activeFilter, pojo))
-                    continue;
-                String pojoName = tableNames.get(pojo);
-                if (pojoName == null)
-                    pojoName = pojo;
-                if (finalEntities.containsKey(tableToCamelCase(pojoName))) {
-                    buffer.append(getFinalContent(finalEntities.get(tableToCamelCase(pojoName))));
-                    continue;
-                }
-                printComment(buffer, comments.get(pojo), INDENT);
-                buffer.append(NLINDENT);
-                if (makeItFinal)
-                    buffer.append("final ");
-                buffer.append("pojo ");
-                buffer.append(tableToCamelCase(pojoName));
-                if (pojoExtends.containsKey(pojo))
-                    buffer.append(" extends ").append(tableToCamelCase(pojoExtends.get(pojo)));
-                if (isSerializable || serializables.contains(pojo))
-                    buffer.append(" serializable 1 ");
-                buffer.append(" { // function");
-                Set<String> toStr = new HashSet<String>();
-                for (Map.Entry<String, PojoAttribute> pentry : functions.get(pojo).entrySet()) {
-                    // System.out.println("  RRR " + pentry.getKey());
-                    if (FAKE_FUN_PROC_COLUMN_NAME.equals(pentry.getKey()))
-                        continue;
-                    if (ignoreColumns.containsKey(pojo) && ignoreColumns.get(pojo).contains(pentry.getKey()))
-                        continue;
-                    PojoAttribute attribute = pentry.getValue();
-                    String name = (columnNames.containsKey(pojo)) ? columnNames.get(pojo).get(pentry.getKey()) : null;
-                    if (name == null)
-                        name = attribute.getName();
-                    else
-                        name = columnToCamelCase(name);
-                    buffer.append(NLINDENT).append(INDENT).append(name).append(' ');
-                    if (attribute.getDependencyClassName() != null) {
-                        buffer.append(":: ").append(attribute.getDependencyClassName());
-                        toStr.add(name);
-                    } else if (attribute.isPrimitive()) {
-                        buffer.append('_').append(attribute.getClassName());
-                        toStr.add(name);
-                    } else {
-                        buffer.append(": ").append(attribute.getClassName());
-                        if (!attribute.getClassName().startsWith(COLLECTION_LIST))
-                            toStr.add(name);
-                    }
-                    if (!attribute.isVersion()
-                            && ((requiredColumns.containsKey(pojo) && requiredColumns.get(pojo).contains(
-                                    pentry.getKey())) || (attribute.isRequired() && !attribute.isPrimaryKey()))) {
-                        if (!notRequiredColumns.containsKey(pojo)
-                                || !notRequiredColumns.get(pojo).contains(pentry.getKey()))
-                            buffer.append(" required");
-                    }
-                }
-                if (pojoExtends.containsKey(pojo)) {
-                    getParentAttrs(pojoExtends.get(pojo), null, null);
-                }
-                if (generateMethods.contains(METHOD_TO_STRING) && !toStr.isEmpty()) {
-                    buffer.append(NLINDENT).append(INDENT).append(METHOD_TO_STRING).append(" :::");
-                    for (String name : toStr) {
-                        buffer.append(" ").append(name);
-                    }
-                }
-                buffer.append(NLINDENT).append("}\n");
-            }
-            return buffer.toString();
-        } catch (RuntimeException ex) {
-            Writer writer = new StringWriter();
-            PrintWriter printWriter = new PrintWriter(writer);
-            ex.printStackTrace(printWriter);
-            String s = writer.toString();
-            return s;
-        }
-    }
-
     protected void getParentAttrs(String pojo, Set<String> isDef, Set<String> toInit) {
         for (Map.Entry<String, PojoAttribute> pentry : pojos.get(pojo).entrySet()) {
             if (ignoreColumns.containsKey(pojo) && ignoreColumns.get(pojo).contains(pentry.getKey()))
@@ -1508,12 +944,12 @@ public class TablePojoGenerator {
         if (sqlType.getNativeType() != null) {
             attribute.setPrimitive(true);
             attribute.setClassName(sqlType.getNativeType().substring(1) + (sqlType.isArray() ? " []" : ""));
-        } else if (sqlType.getRef() != null) {
-            attribute.setPrimitive(false);
-            attribute.setDependencyClassName(sqlType.getRef().getName());
-            if (attribute.getDependencyClassName() == null) {
-                attribute.setDependencyClassName(sqlType.getText());
-            }
+            // } else if (sqlType.getRef() != null) {
+            // attribute.setPrimitive(false);
+            // attribute.setDependencyClassName(sqlType.getRef().getName());
+            // if (attribute.getDependencyClassName() == null) {
+            // attribute.setDependencyClassName(sqlType.getText());
+            // }
         } else {
             attribute.setPrimitive(false);
             attribute.setClassName(sqlType.getType().getIdentifier());
@@ -1547,10 +983,11 @@ public class TablePojoGenerator {
         PojoAttribute attribute = new PojoAttribute(dbColumn.getName());
         attribute.setName(columnToCamelCase(dbColumn.getName()));
         attribute.setRequired(!dbColumn.isNullable());
-        if (sqlType.getRef() != null) {
-            attribute.setPrimitive(false);
-            attribute.setDependencyClassName(sqlType.getRef().getName());
-        } else if (sqlType.getNativeType() != null) {
+        // if (sqlType.getRef() != null) {
+        // attribute.setPrimitive(false);
+        // attribute.setDependencyClassName(sqlType.getRef().getName());
+        // } else
+        if (sqlType.getNativeType() != null) {
             attribute.setPrimitive(true);
             attribute.setClassName(sqlType.getNativeType().substring(1) + (sqlType.isArray() ? " []" : ""));
         } else {

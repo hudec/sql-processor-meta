@@ -122,23 +122,6 @@ public class ProcessorTemplateProposalProvider extends DefaultTemplateProposalPr
             tp = createProposal(template, templateContext, context, getImage(template), getRelevance(template));
             acceptor.accept(tp);
         }
-
-        if (templateContext.getContextType().getId().equals(helper.getId(ga.getAbstractPojoEntityRule()))) {
-
-            Template template = new Template("pojogen", "Pojo generator", "pojogenTemplateID", "${pojoGenerator}",
-                    false);// auto-insertable?
-            TemplateProposal tp = createProposal(template, templateContext, context, getImage(template),
-                    getRelevance(template));
-            acceptor.accept(tp);
-        }
-
-        if (templateContext.getContextType().getId().equals(helper.getId(ga.getAbstractPojoEntityRule()))) {
-
-            Template template = new Template("daogen", "DAO generator", "daogenTemplateID", "${daoGenerator}", false);// auto-insertable?
-            TemplateProposal tp = createProposal(template, templateContext, context, getImage(template),
-                    getRelevance(template));
-            acceptor.accept(tp);
-        }
     }
 
     static final String HSQLDB = "resolve-pojo-on;\n" + "database-is-online;\n"

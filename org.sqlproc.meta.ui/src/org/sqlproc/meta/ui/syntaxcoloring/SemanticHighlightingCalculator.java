@@ -15,9 +15,6 @@ import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculato
 import org.sqlproc.meta.processorMeta.Constant;
 import org.sqlproc.meta.processorMeta.DatabaseColumn;
 import org.sqlproc.meta.processorMeta.DatabaseTable;
-import org.sqlproc.meta.processorMeta.Entity;
-import org.sqlproc.meta.processorMeta.EnumEntity;
-import org.sqlproc.meta.processorMeta.EnumProperty;
 import org.sqlproc.meta.processorMeta.ExtendedColumn;
 import org.sqlproc.meta.processorMeta.ExtendedMappingItem;
 import org.sqlproc.meta.processorMeta.FunctionDefinition;
@@ -26,13 +23,7 @@ import org.sqlproc.meta.processorMeta.MappingItem;
 import org.sqlproc.meta.processorMeta.MappingRule;
 import org.sqlproc.meta.processorMeta.MetaStatement;
 import org.sqlproc.meta.processorMeta.OptionalFeature;
-import org.sqlproc.meta.processorMeta.PackageDeclaration;
-import org.sqlproc.meta.processorMeta.PojoDao;
 import org.sqlproc.meta.processorMeta.PojoDefinition;
-import org.sqlproc.meta.processorMeta.PojoEntity;
-import org.sqlproc.meta.processorMeta.PojoMethod;
-import org.sqlproc.meta.processorMeta.PojoMethodArg;
-import org.sqlproc.meta.processorMeta.PojoProperty;
 import org.sqlproc.meta.processorMeta.ProcedureDefinition;
 import org.sqlproc.meta.processorMeta.TableDefinition;
 import org.sqlproc.meta.resolver.PojoResolver;
@@ -138,63 +129,6 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
                 ICompositeNode node = NodeModelUtils.getNode(current);
                 FunctionDefinition function = (FunctionDefinition) current;
                 provideHighlightingForTable(null, function.getName(), node, acceptor);
-            } else if (current instanceof PackageDeclaration) {
-                ICompositeNode node = NodeModelUtils.getNode(current);
-                PackageDeclaration pkg = (PackageDeclaration) current;
-                provideHighlightingForPojoPackage(pkg.getName(), node, acceptor);
-            } else if (current instanceof PojoEntity) {
-                ICompositeNode node = NodeModelUtils.getNode(current);
-                PojoEntity pojo = (PojoEntity) current;
-                provideHighlightingForPojoEntity(pojo.getName(), node, acceptor);
-            } else if (current instanceof PojoProperty) {
-                ICompositeNode node = NodeModelUtils.getNode(current);
-                PojoProperty property = (PojoProperty) current;
-                provideHighlightingForPojoProperty(property.getName(), node, acceptor);
-                Entity ref = property.getRef();
-                if (ref != null) {
-                    if (ref instanceof PojoEntity)
-                        provideHighlightingForPojoEntity(ref.getName(), node, acceptor);
-                    else if (ref instanceof EnumEntity)
-                        provideHighlightingForEnumEntity(ref.getName(), node, acceptor);
-                }
-                PojoEntity gref = property.getGref();
-                if (gref != null)
-                    provideHighlightingForPojoEntity(gref.getName(), node, acceptor);
-            } else if (current instanceof EnumProperty) {
-                ICompositeNode node = NodeModelUtils.getNode(current);
-                EnumProperty property = (EnumProperty) current;
-                provideHighlightingForEnumProperty(property.getName(), node, acceptor);
-            } else if (current instanceof PojoDao) {
-                ICompositeNode node = NodeModelUtils.getNode(current);
-                PojoDao dao = (PojoDao) current;
-                provideHighlightingForPojoDao(dao.getName(), node, acceptor);
-                PojoEntity ref = dao.getPojo();
-                if (ref != null)
-                    provideHighlightingForPojoEntity(ref.getName(), node, acceptor);
-            } else if (current instanceof PojoMethod) {
-                ICompositeNode node = NodeModelUtils.getNode(current);
-                PojoMethod method = (PojoMethod) current;
-                provideHighlightingForPojoProperty(method.getName(), node, acceptor);
-                if (method.getType() != null) {
-                    PojoEntity ref = method.getType().getRef();
-                    if (ref != null)
-                        provideHighlightingForPojoEntity(ref.getName(), node, acceptor);
-                    PojoEntity gref = method.getType().getGref();
-                    if (gref != null)
-                        provideHighlightingForPojoEntity(gref.getName(), node, acceptor);
-                }
-                if (method.getArgs() != null && !method.getArgs().isEmpty()) {
-                    for (PojoMethodArg arg : method.getArgs()) {
-                        if (arg.getType() != null) {
-                            PojoEntity ref = arg.getType().getRef();
-                            if (ref != null)
-                                provideHighlightingForPojoEntity(ref.getName(), node, acceptor);
-                            PojoEntity gref = arg.getType().getGref();
-                            if (gref != null)
-                                provideHighlightingForPojoEntity(gref.getName(), node, acceptor);
-                        }
-                    }
-                }
             }
         }
     }

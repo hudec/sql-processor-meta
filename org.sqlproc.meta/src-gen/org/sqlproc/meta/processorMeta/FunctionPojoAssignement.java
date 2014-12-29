@@ -58,12 +58,12 @@ public interface FunctionPojoAssignement extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Pojo</em>' containment reference.
-   * @see #setPojo(PojoType)
+   * @see #setPojo(PojoDefinition)
    * @see org.sqlproc.meta.processorMeta.ProcessorMetaPackage#getFunctionPojoAssignement_Pojo()
    * @model containment="true"
    * @generated
    */
-  PojoType getPojo();
+  PojoDefinition getPojo();
 
   /**
    * Sets the value of the '{@link org.sqlproc.meta.processorMeta.FunctionPojoAssignement#getPojo <em>Pojo</em>}' containment reference.
@@ -73,6 +73,6 @@ public interface FunctionPojoAssignement extends EObject
    * @see #getPojo()
    * @generated
    */
-  void setPojo(PojoType value);
+  void setPojo(PojoDefinition value);
 
 } // FunctionPojoAssignement

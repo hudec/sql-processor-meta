@@ -18,12 +18,10 @@ import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor
-import org.sqlproc.meta.processorMeta.AnnotatedEntity
 import org.sqlproc.meta.processorMeta.Artifacts
 import org.sqlproc.meta.processorMeta.Column
 import org.sqlproc.meta.processorMeta.DatabaseProperty
 import org.sqlproc.meta.processorMeta.DriverMethodOutputAssignement
-import org.sqlproc.meta.processorMeta.Entity
 import org.sqlproc.meta.processorMeta.ExportAssignement
 import org.sqlproc.meta.processorMeta.ImportAssignement
 import org.sqlproc.meta.processorMeta.InheritanceAssignement
@@ -32,10 +30,7 @@ import org.sqlproc.meta.processorMeta.MappingColumn
 import org.sqlproc.meta.processorMeta.MappingRule
 import org.sqlproc.meta.processorMeta.MetaStatement
 import org.sqlproc.meta.processorMeta.MetagenProperty
-import org.sqlproc.meta.processorMeta.PackageDeclaration
 import org.sqlproc.meta.processorMeta.PojoDefinition
-import org.sqlproc.meta.processorMeta.PojoEntity
-import org.sqlproc.meta.processorMeta.PojoProperty
 import org.sqlproc.meta.processorMeta.PojogenProperty
 import org.sqlproc.meta.processorMeta.ProcessorMetaPackage
 import org.sqlproc.meta.processorMeta.ShowColumnTypeAssignement
@@ -138,16 +133,11 @@ class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposalProvide
         val metaStatement = model.getContainerOfType(typeof(MetaStatement))
         val artifacts = model.getContainerOfType(typeof(Artifacts))
 
-        val entityName = Utils.getTokenFromModifier(metaStatement, usageInFilterExt)
-        val pojoEntity = if (entityName != null) Utils.findEntity(qualifiedNameConverter, artifacts,
-                getScopeProvider().getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJO_PACKAGES),
-                entityName)
-
-        val pojoName = if (pojoEntity == null) Utils.getTokenFromModifier(metaStatement, usageInFilter)
+        val pojoName = Utils.getTokenFromModifier(metaStatement, usageInFilter)
         val pojoDefinition = if (pojoName != null) Utils.findPojo(qualifiedNameConverter, artifacts,
                 getScopeProvider().getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS), pojoName)
 
-        if (pojoDefinition == null && pojoEntity == null) {
+        if (pojoDefinition == null) {
             val proposal = getValueConverter().toString("Error: I can't load pojo for " + model, "IDENT")
             acceptor.accept(createCompletionProposal(proposal, context))
             return true
@@ -168,17 +158,6 @@ class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposalProvide
 				acceptor.accept(createCompletionProposal(if (cutPrefix) proposal else prefix + proposal, context))
             ]
             return true
-        } else {
-            val entity = getPojoEntity(pojoEntity, prefix)
-            val properties = getProperties(entity, null)
-            if (properties.isEmpty()) {
-                return false
-            }
-            properties.forEach[pojoProperty |
-                var proposal = getValueConverter().toString(pojoProperty.getName(), "IDENT")
-                acceptor.accept(createCompletionProposal(if (cutPrefix) proposal else prefix + proposal, context))
-            ]
-            return true
         }
     }
 
@@ -193,16 +172,11 @@ class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposalProvide
         val mappingRule = model.getContainerOfType(typeof(MappingRule))
         val artifacts = model.getContainerOfType(typeof(Artifacts))
 
-        val entityName = Utils.getTokenFromModifier(mappingRule, MAPPING_USAGE_EXTENDED)
-        val pojoEntity = if (entityName != null) Utils.findEntity(qualifiedNameConverter, artifacts,
-                getScopeProvider().getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJO_PACKAGES),
-                entityName)
-                
-        val pojoName = if (pojoEntity == null) Utils.getTokenFromModifier(mappingRule, MAPPING_USAGE)
+        val pojoName = Utils.getTokenFromModifier(mappingRule, MAPPING_USAGE)
         val pojoDefinition = if (pojoName != null) Utils.findPojo(qualifiedNameConverter, artifacts,
                 getScopeProvider().getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS), pojoName)
 
-        if (pojoDefinition == null && pojoEntity == null) {
+        if (pojoDefinition == null) {
             val proposal = getValueConverter().toString("Error: I can't load pojo for " + model, "IDENT")
             acceptor.accept(createCompletionProposal(proposal, context))
         }
@@ -234,16 +208,6 @@ class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposalProvide
 					acceptor.accept(createCompletionProposal(if (_cutPrefix) proposal else _prefix + proposal, context))
             	]
             }
-        } else {
-            val entity = getPojoEntity(pojoEntity, prefix)
-            val properties = getProperties(entity, null)
-            if (properties.isEmpty()) {
-                return
-            }
-            properties.forEach[property |
-                val proposal = getValueConverter().toString(property.name, "IDENT")
-                acceptor.accept(createCompletionProposal(if (_cutPrefix) proposal else  _prefix + proposal, context))
-            ]
         }
     }
     
@@ -266,52 +230,6 @@ class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposalProvide
 		return if (pojo.getClassx() != null) pojo.getClassx().getQualifiedName() else pojo.getClass_()
     }
 
-    def dispatch PojoEntity getPojoEntity(Entity baseEntity, String property) {
-    	null
-	}
-	
-    def dispatch PojoEntity getPojoEntity(PojoEntity baseEntity, String property) {
-        if (baseEntity == null || property == null)
-            return baseEntity
-        if (property.indexOf('.') == -1)
-            return baseEntity
-            
-        var checkProperty = property
-        var pos1 = checkProperty.indexOf('=')
-        if (pos1 > 0) {
-            var pos2 = checkProperty.indexOf('.', pos1)
-            if (pos2 > pos1)
-                checkProperty = checkProperty.substring(0, pos1) + checkProperty.substring(pos2)
-        }
-        
-        var innerProperty = null as String
-        pos1 = checkProperty.indexOf('.')
-        if (pos1 > 0) {
-            innerProperty = checkProperty.substring(pos1 + 1)
-            checkProperty = checkProperty.substring(0, pos1)
-        }
-        val _checkProperty = checkProperty
-        var innerPojoProperty = Utils.attributes(baseEntity).findFirst[name == _checkProperty]
-        if (innerPojoProperty == null || (innerPojoProperty.getRef() == null && innerPojoProperty.getGref() == null))
-            return null
-        var innerEntity = innerPojoProperty.ref ?: innerPojoProperty.gref as Entity
-		getPojoEntity(innerEntity, innerProperty)
-    }
-
-    def List<PojoProperty> getProperties(PojoEntity pojoEntity, List<PojoProperty> inproperties) {
-        val properties = inproperties ?: <PojoProperty>newArrayList
-        if (pojoEntity == null)
-            return properties
-
-		pojoEntity.features.map[feature].forEach[
-            if (native!= null || ref != null || type != null)
-                properties.add(it)
-        ]
-
-        val superType = Utils.getSuperType(pojoEntity)
-		return if (superType == null ) properties else superType.getProperties(properties)
-    }
-    
     def isPrimitive(Class<?> clazz) {
         if (clazz == null)
             return true
@@ -938,21 +856,6 @@ class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposalProvide
 		acceptTables(model, context, acceptor, "")
     }
     
-    def Set<PojoEntity> listEntities(ResourceSet resourceSet, IScope scope) {
-        val result = <PojoEntity>newTreeSet[o1, o2 | o1.name.compareTo(o2.name)]
-        scope.getAllElements().forEach[description |
-            val packageDeclaration = resourceSet.getEObject(description.getEObjectURI(), true) as PackageDeclaration
-            packageDeclaration.getElements().forEach[aEntity |
-                if (aEntity instanceof AnnotatedEntity) {
-                    var ae = aEntity as AnnotatedEntity
-                    if (ae.getEntity() instanceof PojoEntity)
-                        result.add(ae.getEntity() as PojoEntity)
-                }
-            ]
-        ]
-        return result
-    }
-
     def Set<PojoDefinition> listPojos(ResourceSet resourceSet, IScope scope) {
         val result = <PojoDefinition>newTreeSet[o1, o2 | o1.name.compareTo(o2.name)]
         scope.getAllElements().forEach[description |
@@ -975,14 +878,6 @@ class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposalProvide
             ICompletionProposalAcceptor acceptor) {
         val metaStatement = model.getContainerOfType(typeof(MetaStatement))
         val artifacts = metaStatement.getContainerOfType(typeof(Artifacts))
-        val entities = listEntities(artifacts.eResource().getResourceSet(),
-                getScopeProvider().getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJO_PACKAGES))
-        entities.forEach[entity |
-            val proposal = getValueConverter().toString(entity.getName(), "IDENT")
-            acceptor.accept(createCompletionProposal(CONSTANT_USAGE_EXTENDED + "=" + proposal, context))
-            acceptor.accept(createCompletionProposal(IDENTIFIER_USAGE_EXTENDED + "=" + proposal, context))
-            acceptor.accept(createCompletionProposal(COLUMN_USAGE_EXTENDED + "=" + proposal, context))
-        ]
         val pojos = listPojos(artifacts.eResource().getResourceSet(),
                 getScopeProvider().getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS))
         pojos.forEach[pojo |
@@ -1003,12 +898,6 @@ class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposalProvide
             ICompletionProposalAcceptor acceptor) {
         val mappingRule = model.getContainerOfType(typeof(MappingRule))
         val artifacts = mappingRule.getContainerOfType(typeof(Artifacts))
-        val entities = listEntities(artifacts.eResource().getResourceSet(),
-                getScopeProvider().getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJO_PACKAGES))
-        entities.forEach[entity |
-            val proposal = getValueConverter().toString(entity.getName(), "IDENT")
-            acceptor.accept(createCompletionProposal(MAPPING_USAGE_EXTENDED + "=" + proposal, context))
-        ]
         val pojos = listPojos(artifacts.eResource().getResourceSet(),
                 getScopeProvider().getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS))
         pojos.forEach[pojo |

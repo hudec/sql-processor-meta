@@ -17,7 +17,6 @@ import org.sqlproc.meta.services.ProcessorMetaGrammarAccess;
 public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected ProcessorMetaGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_AnnotationProperty_COMMATerminalRuleCall_0_q;
 	protected AbstractElementAlias match_Artifacts_WSTerminalRuleCall_1_a;
 	protected AbstractElementAlias match_Artifacts_WSTerminalRuleCall_2_0_1_a;
 	protected AbstractElementAlias match_Artifacts_WSTerminalRuleCall_2_1_1_a;
@@ -27,7 +26,6 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	protected AbstractElementAlias match_Artifacts_WSTerminalRuleCall_2_5_1_a;
 	protected AbstractElementAlias match_Artifacts_WSTerminalRuleCall_2_6_1_a;
 	protected AbstractElementAlias match_Artifacts_WSTerminalRuleCall_2_7_1_a;
-	protected AbstractElementAlias match_Artifacts_WSTerminalRuleCall_2_8_1_a;
 	protected AbstractElementAlias match_DaogenProperty_WSTerminalRuleCall_0_1_0_p;
 	protected AbstractElementAlias match_DaogenProperty_WSTerminalRuleCall_10_1_p;
 	protected AbstractElementAlias match_DaogenProperty_WSTerminalRuleCall_11_1_p;
@@ -63,10 +61,6 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	protected AbstractElementAlias match_ExtendsAssignement_WSTerminalRuleCall_1_2_0_p;
 	protected AbstractElementAlias match_ExtendsAssignement_WSTerminalRuleCall_2_0_p;
 	protected AbstractElementAlias match_ExtendsAssignement_WSTerminalRuleCall_2_2_0_p;
-	protected AbstractElementAlias match_Extends_ExceptDaosKeyword_6_0_q;
-	protected AbstractElementAlias match_Extends_ExceptPojosKeyword_5_0_q;
-	protected AbstractElementAlias match_Extends_OnlyDaosKeyword_4_0_q;
-	protected AbstractElementAlias match_Extends_OnlyPojosKeyword_3_0_q;
 	protected AbstractElementAlias match_IfSqlCond_WSTerminalRuleCall_0_a;
 	protected AbstractElementAlias match_IfSqlCond_WSTerminalRuleCall_2_a;
 	protected AbstractElementAlias match_IfSqlCond_WSTerminalRuleCall_3_1_a;
@@ -79,10 +73,6 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	protected AbstractElementAlias match_ImplementsAssignement_WSTerminalRuleCall_1_2_0_p;
 	protected AbstractElementAlias match_ImplementsAssignement_WSTerminalRuleCall_2_0_p;
 	protected AbstractElementAlias match_ImplementsAssignement_WSTerminalRuleCall_2_2_0_p;
-	protected AbstractElementAlias match_Implements_ExceptDaosKeyword_6_0_q;
-	protected AbstractElementAlias match_Implements_ExceptPojosKeyword_5_0_q;
-	protected AbstractElementAlias match_Implements_OnlyDaosKeyword_4_0_q;
-	protected AbstractElementAlias match_Implements_OnlyPojosKeyword_3_0_q;
 	protected AbstractElementAlias match_Mapping_WSTerminalRuleCall_0_a;
 	protected AbstractElementAlias match_Mapping_WSTerminalRuleCall_2_0_p;
 	protected AbstractElementAlias match_Mapping_WSTerminalRuleCall_3_a;
@@ -195,7 +185,6 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (ProcessorMetaGrammarAccess) access;
-		match_AnnotationProperty_COMMATerminalRuleCall_0_q = new TokenAlias(false, true, grammarAccess.getAnnotationPropertyAccess().getCOMMATerminalRuleCall_0());
 		match_Artifacts_WSTerminalRuleCall_1_a = new TokenAlias(true, true, grammarAccess.getArtifactsAccess().getWSTerminalRuleCall_1());
 		match_Artifacts_WSTerminalRuleCall_2_0_1_a = new TokenAlias(true, true, grammarAccess.getArtifactsAccess().getWSTerminalRuleCall_2_0_1());
 		match_Artifacts_WSTerminalRuleCall_2_1_1_a = new TokenAlias(true, true, grammarAccess.getArtifactsAccess().getWSTerminalRuleCall_2_1_1());
@@ -205,7 +194,6 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 		match_Artifacts_WSTerminalRuleCall_2_5_1_a = new TokenAlias(true, true, grammarAccess.getArtifactsAccess().getWSTerminalRuleCall_2_5_1());
 		match_Artifacts_WSTerminalRuleCall_2_6_1_a = new TokenAlias(true, true, grammarAccess.getArtifactsAccess().getWSTerminalRuleCall_2_6_1());
 		match_Artifacts_WSTerminalRuleCall_2_7_1_a = new TokenAlias(true, true, grammarAccess.getArtifactsAccess().getWSTerminalRuleCall_2_7_1());
-		match_Artifacts_WSTerminalRuleCall_2_8_1_a = new TokenAlias(true, true, grammarAccess.getArtifactsAccess().getWSTerminalRuleCall_2_8_1());
 		match_DaogenProperty_WSTerminalRuleCall_0_1_0_p = new TokenAlias(true, false, grammarAccess.getDaogenPropertyAccess().getWSTerminalRuleCall_0_1_0());
 		match_DaogenProperty_WSTerminalRuleCall_10_1_p = new TokenAlias(true, false, grammarAccess.getDaogenPropertyAccess().getWSTerminalRuleCall_10_1());
 		match_DaogenProperty_WSTerminalRuleCall_11_1_p = new TokenAlias(true, false, grammarAccess.getDaogenPropertyAccess().getWSTerminalRuleCall_11_1());
@@ -241,10 +229,6 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 		match_ExtendsAssignement_WSTerminalRuleCall_1_2_0_p = new TokenAlias(true, false, grammarAccess.getExtendsAssignementAccess().getWSTerminalRuleCall_1_2_0());
 		match_ExtendsAssignement_WSTerminalRuleCall_2_0_p = new TokenAlias(true, false, grammarAccess.getExtendsAssignementAccess().getWSTerminalRuleCall_2_0());
 		match_ExtendsAssignement_WSTerminalRuleCall_2_2_0_p = new TokenAlias(true, false, grammarAccess.getExtendsAssignementAccess().getWSTerminalRuleCall_2_2_0());
-		match_Extends_ExceptDaosKeyword_6_0_q = new TokenAlias(false, true, grammarAccess.getExtendsAccess().getExceptDaosKeyword_6_0());
-		match_Extends_ExceptPojosKeyword_5_0_q = new TokenAlias(false, true, grammarAccess.getExtendsAccess().getExceptPojosKeyword_5_0());
-		match_Extends_OnlyDaosKeyword_4_0_q = new TokenAlias(false, true, grammarAccess.getExtendsAccess().getOnlyDaosKeyword_4_0());
-		match_Extends_OnlyPojosKeyword_3_0_q = new TokenAlias(false, true, grammarAccess.getExtendsAccess().getOnlyPojosKeyword_3_0());
 		match_IfSqlCond_WSTerminalRuleCall_0_a = new TokenAlias(true, true, grammarAccess.getIfSqlCondAccess().getWSTerminalRuleCall_0());
 		match_IfSqlCond_WSTerminalRuleCall_2_a = new TokenAlias(true, true, grammarAccess.getIfSqlCondAccess().getWSTerminalRuleCall_2());
 		match_IfSqlCond_WSTerminalRuleCall_3_1_a = new TokenAlias(true, true, grammarAccess.getIfSqlCondAccess().getWSTerminalRuleCall_3_1());
@@ -257,10 +241,6 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 		match_ImplementsAssignement_WSTerminalRuleCall_1_2_0_p = new TokenAlias(true, false, grammarAccess.getImplementsAssignementAccess().getWSTerminalRuleCall_1_2_0());
 		match_ImplementsAssignement_WSTerminalRuleCall_2_0_p = new TokenAlias(true, false, grammarAccess.getImplementsAssignementAccess().getWSTerminalRuleCall_2_0());
 		match_ImplementsAssignement_WSTerminalRuleCall_2_2_0_p = new TokenAlias(true, false, grammarAccess.getImplementsAssignementAccess().getWSTerminalRuleCall_2_2_0());
-		match_Implements_ExceptDaosKeyword_6_0_q = new TokenAlias(false, true, grammarAccess.getImplementsAccess().getExceptDaosKeyword_6_0());
-		match_Implements_ExceptPojosKeyword_5_0_q = new TokenAlias(false, true, grammarAccess.getImplementsAccess().getExceptPojosKeyword_5_0());
-		match_Implements_OnlyDaosKeyword_4_0_q = new TokenAlias(false, true, grammarAccess.getImplementsAccess().getOnlyDaosKeyword_4_0());
-		match_Implements_OnlyPojosKeyword_3_0_q = new TokenAlias(false, true, grammarAccess.getImplementsAccess().getOnlyPojosKeyword_3_0());
 		match_Mapping_WSTerminalRuleCall_0_a = new TokenAlias(true, true, grammarAccess.getMappingAccess().getWSTerminalRuleCall_0());
 		match_Mapping_WSTerminalRuleCall_2_0_p = new TokenAlias(true, false, grammarAccess.getMappingAccess().getWSTerminalRuleCall_2_0());
 		match_Mapping_WSTerminalRuleCall_3_a = new TokenAlias(true, true, grammarAccess.getMappingAccess().getWSTerminalRuleCall_3());
@@ -385,14 +365,10 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 			return getEQUALSToken(semanticObject, ruleCall, node);
 		else if(ruleCall.getRule() == grammarAccess.getLBRACERule())
 			return getLBRACEToken(semanticObject, ruleCall, node);
-		else if(ruleCall.getRule() == grammarAccess.getLESS_THANRule())
-			return getLESS_THANToken(semanticObject, ruleCall, node);
 		else if(ruleCall.getRule() == grammarAccess.getLPARENRule())
 			return getLPARENToken(semanticObject, ruleCall, node);
 		else if(ruleCall.getRule() == grammarAccess.getMINUSRule())
 			return getMINUSToken(semanticObject, ruleCall, node);
-		else if(ruleCall.getRule() == grammarAccess.getMORE_THANRule())
-			return getMORE_THANToken(semanticObject, ruleCall, node);
 		else if(ruleCall.getRule() == grammarAccess.getNOTRule())
 			return getNOTToken(semanticObject, ruleCall, node);
 		else if(ruleCall.getRule() == grammarAccess.getNUMBERRule())
@@ -469,15 +445,6 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	}
 	
 	/**
-	 * terminal LESS_THAN:'<' ;
-	 */
-	protected String getLESS_THANToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "<";
-	}
-	
-	/**
 	 * terminal LPAREN:   '(' ;
 	 */
 	protected String getLPARENToken(EObject semanticObject, RuleCall ruleCall, INode node) {
@@ -493,15 +460,6 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 		if (node != null)
 			return getTokenText(node);
 		return "-";
-	}
-	
-	/**
-	 * terminal MORE_THAN:'>' ;
-	 */
-	protected String getMORE_THANToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return ">";
 	}
 	
 	/**
@@ -591,9 +549,7 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if(match_AnnotationProperty_COMMATerminalRuleCall_0_q.equals(syntax))
-				emit_AnnotationProperty_COMMATerminalRuleCall_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Artifacts_WSTerminalRuleCall_1_a.equals(syntax))
+			if(match_Artifacts_WSTerminalRuleCall_1_a.equals(syntax))
 				emit_Artifacts_WSTerminalRuleCall_1_a(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_Artifacts_WSTerminalRuleCall_2_0_1_a.equals(syntax))
 				emit_Artifacts_WSTerminalRuleCall_2_0_1_a(semanticObject, getLastNavigableState(), syntaxNodes);
@@ -611,8 +567,6 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 				emit_Artifacts_WSTerminalRuleCall_2_6_1_a(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_Artifacts_WSTerminalRuleCall_2_7_1_a.equals(syntax))
 				emit_Artifacts_WSTerminalRuleCall_2_7_1_a(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Artifacts_WSTerminalRuleCall_2_8_1_a.equals(syntax))
-				emit_Artifacts_WSTerminalRuleCall_2_8_1_a(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_DaogenProperty_WSTerminalRuleCall_0_1_0_p.equals(syntax))
 				emit_DaogenProperty_WSTerminalRuleCall_0_1_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_DaogenProperty_WSTerminalRuleCall_10_1_p.equals(syntax))
@@ -683,14 +637,6 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 				emit_ExtendsAssignement_WSTerminalRuleCall_2_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_ExtendsAssignement_WSTerminalRuleCall_2_2_0_p.equals(syntax))
 				emit_ExtendsAssignement_WSTerminalRuleCall_2_2_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Extends_ExceptDaosKeyword_6_0_q.equals(syntax))
-				emit_Extends_ExceptDaosKeyword_6_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Extends_ExceptPojosKeyword_5_0_q.equals(syntax))
-				emit_Extends_ExceptPojosKeyword_5_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Extends_OnlyDaosKeyword_4_0_q.equals(syntax))
-				emit_Extends_OnlyDaosKeyword_4_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Extends_OnlyPojosKeyword_3_0_q.equals(syntax))
-				emit_Extends_OnlyPojosKeyword_3_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_IfSqlCond_WSTerminalRuleCall_0_a.equals(syntax))
 				emit_IfSqlCond_WSTerminalRuleCall_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_IfSqlCond_WSTerminalRuleCall_2_a.equals(syntax))
@@ -715,14 +661,6 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 				emit_ImplementsAssignement_WSTerminalRuleCall_2_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_ImplementsAssignement_WSTerminalRuleCall_2_2_0_p.equals(syntax))
 				emit_ImplementsAssignement_WSTerminalRuleCall_2_2_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Implements_ExceptDaosKeyword_6_0_q.equals(syntax))
-				emit_Implements_ExceptDaosKeyword_6_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Implements_ExceptPojosKeyword_5_0_q.equals(syntax))
-				emit_Implements_ExceptPojosKeyword_5_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Implements_OnlyDaosKeyword_4_0_q.equals(syntax))
-				emit_Implements_OnlyDaosKeyword_4_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Implements_OnlyPojosKeyword_3_0_q.equals(syntax))
-				emit_Implements_OnlyPojosKeyword_3_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_Mapping_WSTerminalRuleCall_0_a.equals(syntax))
 				emit_Mapping_WSTerminalRuleCall_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_Mapping_WSTerminalRuleCall_2_0_p.equals(syntax))
@@ -945,14 +883,6 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 
 	/**
 	 * Syntax:
-	 *     COMMA?
-	 */
-	protected void emit_AnnotationProperty_COMMATerminalRuleCall_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Syntax:
 	 *     WS*
 	 */
 	protected void emit_Artifacts_WSTerminalRuleCall_1_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -1020,14 +950,6 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	 *     WS*
 	 */
 	protected void emit_Artifacts_WSTerminalRuleCall_2_7_1_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Syntax:
-	 *     WS*
-	 */
-	protected void emit_Artifacts_WSTerminalRuleCall_2_8_1_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -1313,38 +1235,6 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	
 	/**
 	 * Syntax:
-	 *     'exceptDaos'?
-	 */
-	protected void emit_Extends_ExceptDaosKeyword_6_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Syntax:
-	 *     'exceptPojos'?
-	 */
-	protected void emit_Extends_ExceptPojosKeyword_5_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Syntax:
-	 *     'onlyDaos'?
-	 */
-	protected void emit_Extends_OnlyDaosKeyword_4_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Syntax:
-	 *     'onlyPojos'?
-	 */
-	protected void emit_Extends_OnlyPojosKeyword_3_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Syntax:
 	 *     WS*
 	 */
 	protected void emit_IfSqlCond_WSTerminalRuleCall_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -1436,38 +1326,6 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	 *     WS+
 	 */
 	protected void emit_ImplementsAssignement_WSTerminalRuleCall_2_2_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Syntax:
-	 *     'exceptDaos'?
-	 */
-	protected void emit_Implements_ExceptDaosKeyword_6_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Syntax:
-	 *     'exceptPojos'?
-	 */
-	protected void emit_Implements_ExceptPojosKeyword_5_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Syntax:
-	 *     'onlyDaos'?
-	 */
-	protected void emit_Implements_OnlyDaosKeyword_4_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Syntax:
-	 *     'onlyPojos'?
-	 */
-	protected void emit_Implements_OnlyPojosKeyword_3_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

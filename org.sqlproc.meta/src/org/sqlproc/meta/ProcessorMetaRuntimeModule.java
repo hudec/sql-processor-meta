@@ -4,8 +4,6 @@
 package org.sqlproc.meta;
 
 import org.eclipse.xtext.resource.IResourceFactory;
-import org.sqlproc.meta.generator.IGenerator2;
-import org.sqlproc.meta.generator.ProcessorMetaGenerator2;
 import org.sqlproc.meta.property.ModelProperty;
 import org.sqlproc.meta.property.ModelPropertyBean;
 import org.sqlproc.meta.resolver.DbResolver;
@@ -38,9 +36,5 @@ public class ProcessorMetaRuntimeModule extends org.sqlproc.meta.AbstractProcess
     @Override
     public Class<? extends IResourceFactory> bindIResourceFactory() {
         return ProcessorResourceFactory.class;
-    }
-
-    public Class<? extends IGenerator2> bindIGenerator2() {
-        return ProcessorMetaGenerator2.class;
     }
 }

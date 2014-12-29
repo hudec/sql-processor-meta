@@ -21,7 +21,6 @@ import org.sqlproc.meta.processorMeta.FunctionDefinition;
 import org.sqlproc.meta.processorMeta.MappingRule;
 import org.sqlproc.meta.processorMeta.MetaStatement;
 import org.sqlproc.meta.processorMeta.OptionalFeature;
-import org.sqlproc.meta.processorMeta.PackageDeclaration;
 import org.sqlproc.meta.processorMeta.PojoDefinition;
 import org.sqlproc.meta.processorMeta.ProcedureDefinition;
 import org.sqlproc.meta.processorMeta.ProcessorMetaPackage;
@@ -43,7 +42,6 @@ import org.sqlproc.meta.processorMeta.TableDefinition;
  *   <li>{@link org.sqlproc.meta.processorMeta.impl.ArtifactsImpl#getStatements <em>Statements</em>}</li>
  *   <li>{@link org.sqlproc.meta.processorMeta.impl.ArtifactsImpl#getMappings <em>Mappings</em>}</li>
  *   <li>{@link org.sqlproc.meta.processorMeta.impl.ArtifactsImpl#getFeatures <em>Features</em>}</li>
- *   <li>{@link org.sqlproc.meta.processorMeta.impl.ArtifactsImpl#getPojoPackages <em>Pojo Packages</em>}</li>
  * </ul>
  * </p>
  *
@@ -130,16 +128,6 @@ public class ArtifactsImpl extends MinimalEObjectImpl.Container implements Artif
    * @ordered
    */
   protected EList<OptionalFeature> features;
-
-  /**
-   * The cached value of the '{@link #getPojoPackages() <em>Pojo Packages</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getPojoPackages()
-   * @generated
-   * @ordered
-   */
-  protected EList<PackageDeclaration> pojoPackages;
 
   /**
    * <!-- begin-user-doc -->
@@ -279,20 +267,6 @@ public class ArtifactsImpl extends MinimalEObjectImpl.Container implements Artif
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<PackageDeclaration> getPojoPackages()
-  {
-    if (pojoPackages == null)
-    {
-      pojoPackages = new EObjectContainmentEList<PackageDeclaration>(PackageDeclaration.class, this, ProcessorMetaPackage.ARTIFACTS__POJO_PACKAGES);
-    }
-    return pojoPackages;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -314,8 +288,6 @@ public class ArtifactsImpl extends MinimalEObjectImpl.Container implements Artif
         return ((InternalEList<?>)getMappings()).basicRemove(otherEnd, msgs);
       case ProcessorMetaPackage.ARTIFACTS__FEATURES:
         return ((InternalEList<?>)getFeatures()).basicRemove(otherEnd, msgs);
-      case ProcessorMetaPackage.ARTIFACTS__POJO_PACKAGES:
-        return ((InternalEList<?>)getPojoPackages()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -346,8 +318,6 @@ public class ArtifactsImpl extends MinimalEObjectImpl.Container implements Artif
         return getMappings();
       case ProcessorMetaPackage.ARTIFACTS__FEATURES:
         return getFeatures();
-      case ProcessorMetaPackage.ARTIFACTS__POJO_PACKAGES:
-        return getPojoPackages();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -395,10 +365,6 @@ public class ArtifactsImpl extends MinimalEObjectImpl.Container implements Artif
         getFeatures().clear();
         getFeatures().addAll((Collection<? extends OptionalFeature>)newValue);
         return;
-      case ProcessorMetaPackage.ARTIFACTS__POJO_PACKAGES:
-        getPojoPackages().clear();
-        getPojoPackages().addAll((Collection<? extends PackageDeclaration>)newValue);
-        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -437,9 +403,6 @@ public class ArtifactsImpl extends MinimalEObjectImpl.Container implements Artif
       case ProcessorMetaPackage.ARTIFACTS__FEATURES:
         getFeatures().clear();
         return;
-      case ProcessorMetaPackage.ARTIFACTS__POJO_PACKAGES:
-        getPojoPackages().clear();
-        return;
     }
     super.eUnset(featureID);
   }
@@ -470,8 +433,6 @@ public class ArtifactsImpl extends MinimalEObjectImpl.Container implements Artif
         return mappings != null && !mappings.isEmpty();
       case ProcessorMetaPackage.ARTIFACTS__FEATURES:
         return features != null && !features.isEmpty();
-      case ProcessorMetaPackage.ARTIFACTS__POJO_PACKAGES:
-        return pojoPackages != null && !pojoPackages.isEmpty();
     }
     return super.eIsSet(featureID);
   }

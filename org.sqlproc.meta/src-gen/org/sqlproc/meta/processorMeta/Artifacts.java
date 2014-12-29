@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.sqlproc.meta.processorMeta.Artifacts#getStatements <em>Statements</em>}</li>
  *   <li>{@link org.sqlproc.meta.processorMeta.Artifacts#getMappings <em>Mappings</em>}</li>
  *   <li>{@link org.sqlproc.meta.processorMeta.Artifacts#getFeatures <em>Features</em>}</li>
- *   <li>{@link org.sqlproc.meta.processorMeta.Artifacts#getPojoPackages <em>Pojo Packages</em>}</li>
  * </ul>
  * </p>
  *
@@ -159,21 +158,5 @@ public interface Artifacts extends EObject
    * @generated
    */
   EList<OptionalFeature> getFeatures();
-
-  /**
-   * Returns the value of the '<em><b>Pojo Packages</b></em>' containment reference list.
-   * The list contents are of type {@link org.sqlproc.meta.processorMeta.PackageDeclaration}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Pojo Packages</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Pojo Packages</em>' containment reference list.
-   * @see org.sqlproc.meta.processorMeta.ProcessorMetaPackage#getArtifacts_PojoPackages()
-   * @model containment="true"
-   * @generated
-   */
-  EList<PackageDeclaration> getPojoPackages();
 
 } // Artifacts

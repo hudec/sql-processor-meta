@@ -58,12 +58,12 @@ public interface ColumnTypeAssignement extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Type</em>' containment reference.
-   * @see #setType(PojoType)
+   * @see #setType(PojoDefinition)
    * @see org.sqlproc.meta.processorMeta.ProcessorMetaPackage#getColumnTypeAssignement_Type()
    * @model containment="true"
    * @generated
    */
-  PojoType getType();
+  PojoDefinition getType();
 
   /**
    * Sets the value of the '{@link org.sqlproc.meta.processorMeta.ColumnTypeAssignement#getType <em>Type</em>}' containment reference.
@@ -73,6 +73,6 @@ public interface ColumnTypeAssignement extends EObject
    * @see #getType()
    * @generated
    */
-  void setType(PojoType value);
+  void setType(PojoDefinition value);
 
 } // ColumnTypeAssignement

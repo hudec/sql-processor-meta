@@ -242,12 +242,12 @@ public interface DaogenProperty extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Result Type</em>' containment reference.
-   * @see #setResultType(PojoType)
+   * @see #setResultType(PojoDefinition)
    * @see org.sqlproc.meta.processorMeta.ProcessorMetaPackage#getDaogenProperty_ResultType()
    * @model containment="true"
    * @generated
    */
-  PojoType getResultType();
+  PojoDefinition getResultType();
 
   /**
    * Sets the value of the '{@link org.sqlproc.meta.processorMeta.DaogenProperty#getResultType <em>Result Type</em>}' containment reference.
@@ -257,7 +257,7 @@ public interface DaogenProperty extends EObject
    * @see #getResultType()
    * @generated
    */
-  void setResultType(PojoType value);
+  void setResultType(PojoDefinition value);
 
   /**
    * Returns the value of the '<em><b>Debug</b></em>' containment reference.

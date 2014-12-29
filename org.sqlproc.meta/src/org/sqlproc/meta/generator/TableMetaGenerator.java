@@ -18,7 +18,7 @@ import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.IScopeProvider;
 import org.sqlproc.meta.processorMeta.Artifacts;
-import org.sqlproc.meta.processorMeta.PojoType;
+import org.sqlproc.meta.processorMeta.PojoDefinition;
 import org.sqlproc.meta.processorMeta.ProcessorMetaPackage;
 import org.sqlproc.meta.processorMeta.TableDefinition;
 import org.sqlproc.meta.property.ModelProperty;
@@ -75,7 +75,7 @@ public class TableMetaGenerator extends TablePojoGenerator {
 
     public TableMetaGenerator(ModelProperty modelProperty, Artifacts artifacts, IScopeProvider scopeProvider,
             Map<String, String> finalMetas, List<String> dbSequences, DbType dbType) {
-        super(modelProperty, artifacts, null, Collections.<String, String> emptyMap(), null, dbSequences, dbType);
+        super(modelProperty, artifacts, null, Collections.<String, String> emptyMap(), /* null, */dbSequences, dbType);
         this.scopeProvider = scopeProvider;
         this.artifacts = artifacts;
         this.finalMetas = finalMetas;
@@ -990,14 +990,16 @@ public class TableMetaGenerator extends TablePojoGenerator {
         String pojoName = tableNames.get(pojo);
         String dispName = pojoName;
         if (dispName == null) {
-            PojoType ptype = pojosForProcedures.get(pojo);
+            PojoDefinition ptype = pojosForProcedures.get(pojo);
             if (ptype != null)
-                dispName = (ptype.getRef() != null) ? ptype.getRef().getName() : ptype.getType().getSimpleName();
+                // dispName = (ptype.getRef() != null) ? ptype.getRef().getName() : ptype.getType().getSimpleName();
+                dispName = (ptype.getClassx() != null) ? ptype.getClassx().getSimpleName() : ptype.getClass_();
         }
         if (dispName == null) {
-            PojoType ptype = pojosForFunctions.get(pojo);
+            PojoDefinition ptype = pojosForFunctions.get(pojo);
             if (ptype != null)
-                dispName = (ptype.getRef() != null) ? ptype.getRef().getName() : ptype.getType().getSimpleName();
+                // dispName = (ptype.getRef() != null) ? ptype.getRef().getName() : ptype.getType().getSimpleName();
+                dispName = (ptype.getClassx() != null) ? ptype.getClassx().getSimpleName() : ptype.getClass_();
         }
         if (pojoName == null)
             pojoName = pojo;

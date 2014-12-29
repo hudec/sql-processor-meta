@@ -37,6 +37,5 @@ class ProcessorMetaFormatter extends AbstractDeclarativeFormatter {
         c.setLinewrap(1, 1, 2).after(metaStatementRule);
         c.setLinewrap(1, 1, 2).after(mappingRuleRule);
         c.setLinewrap(1, 1, 2).after(optionalFeatureRule);
-        c.setLinewrap(1, 1, 2).after(packageDeclarationRule);
 	}
 }

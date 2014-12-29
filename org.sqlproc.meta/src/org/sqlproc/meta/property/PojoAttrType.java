@@ -3,8 +3,7 @@ package org.sqlproc.meta.property;
 import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
-import org.sqlproc.meta.processorMeta.PojoEntity;
-import org.sqlproc.meta.processorMeta.PojoType;
+import org.sqlproc.meta.processorMeta.PojoDefinition;
 
 public class PojoAttrType {
     String name;
@@ -13,17 +12,16 @@ public class PojoAttrType {
     JvmType type;
     JvmType gtype;
     boolean array;
-    PojoEntity ref;
-    PojoEntity gref;
     String text;
 
-    public PojoAttrType(String typeName, String size, PojoType pojoType) {
-        this.nativeType = pojoType.getNative();
-        this.type = pojoType.getType();
-        this.ref = pojoType.getRef();
-        this.array = pojoType.isArray();
-        this.gtype = pojoType.getGtype();
-        this.gref = pojoType.getGref();
+    public PojoAttrType(String typeName, String size, PojoDefinition pojoType) {
+        // TODO
+        // this.nativeType = pojoType.getNative();
+        this.type = pojoType.getClassx();
+        // TODO
+        // this.array = pojoType.isArray();
+        // TODO
+        // this.gtype = pojoType.getGtype();
         if (size != null) {
             try {
                 this.size = Integer.parseInt(size);
@@ -91,14 +89,6 @@ public class PojoAttrType {
         this.array = array;
     }
 
-    public PojoEntity getRef() {
-        return ref;
-    }
-
-    public void setRef(PojoEntity ref) {
-        this.ref = ref;
-    }
-
     public String getText() {
         return text;
     }
@@ -113,14 +103,6 @@ public class PojoAttrType {
 
     public void setGtype(JvmType gtype) {
         this.gtype = gtype;
-    }
-
-    public PojoEntity getGref() {
-        return gref;
-    }
-
-    public void setGref(PojoEntity gref) {
-        this.gref = gref;
     }
 
     @Override
