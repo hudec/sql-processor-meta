@@ -900,7 +900,8 @@ public class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
     }
     int _length = param.length();
     int i = (_length - 1);
-    while ((i >= 0)) {
+    boolean _while = (i >= 0);
+    while (_while) {
       {
         char _charAt = param.charAt(i);
         boolean _isDigit = Character.isDigit(_charAt);
@@ -910,6 +911,7 @@ public class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         }
         i = (i - 1);
       }
+      _while = (i >= 0);
     }
     return true;
   }
