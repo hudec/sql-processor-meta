@@ -1,8 +1,10 @@
 package org.sqlproc.meta.util;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -142,6 +144,19 @@ public class Utils {
         return null;
     }
 
+    public static Map<String, PojoDefinition> findPojos(IQualifiedNameConverter qualifiedNameConverter,
+            Artifacts artifacts, IScope scope) {
+        Map<String, PojoDefinition> pojos = new HashMap<String, PojoDefinition>();
+        Iterable<IEObjectDescription> iterable = scope.getAllElements();
+        for (Iterator<IEObjectDescription> iter = iterable.iterator(); iter.hasNext();) {
+            IEObjectDescription description = iter.next();
+            EObject obj = artifacts.eResource().getResourceSet().getEObject(description.getEObjectURI(), true);
+            if (obj instanceof PojoDefinition)
+                pojos.put(((PojoDefinition) obj).getName(), (PojoDefinition) obj);
+        }
+        return pojos;
+    }
+
     public static TableDefinition findTable(IQualifiedNameConverter qualifiedNameConverter, Artifacts artifacts,
             IScope scope, String name) {
         Iterable<IEObjectDescription> iterable = scope.getAllElements();
@@ -157,43 +172,43 @@ public class Utils {
         return null;
     }
 
-    public static List<String> findTables(IQualifiedNameConverter qualifiedNameConverter, Artifacts artifacts,
+    public static List<TableDefinition> findTables(IQualifiedNameConverter qualifiedNameConverter, Artifacts artifacts,
             IScope scope) {
-        List<String> names = new ArrayList<String>();
+        List<TableDefinition> tables = new ArrayList<TableDefinition>();
         Iterable<IEObjectDescription> iterable = scope.getAllElements();
         for (Iterator<IEObjectDescription> iter = iterable.iterator(); iter.hasNext();) {
             IEObjectDescription description = iter.next();
             EObject obj = artifacts.eResource().getResourceSet().getEObject(description.getEObjectURI(), true);
             if (obj instanceof TableDefinition)
-                names.add(((TableDefinition) obj).getTable());
+                tables.add((TableDefinition) obj);
         }
-        return names;
+        return tables;
     }
 
-    public static List<String> findFunctions(IQualifiedNameConverter qualifiedNameConverter, Artifacts artifacts,
-            IScope scope) {
-        List<String> names = new ArrayList<String>();
+    public static List<FunctionDefinition> findFunctions(IQualifiedNameConverter qualifiedNameConverter,
+            Artifacts artifacts, IScope scope) {
+        List<FunctionDefinition> functions = new ArrayList<FunctionDefinition>();
         Iterable<IEObjectDescription> iterable = scope.getAllElements();
         for (Iterator<IEObjectDescription> iter = iterable.iterator(); iter.hasNext();) {
             IEObjectDescription description = iter.next();
             EObject obj = artifacts.eResource().getResourceSet().getEObject(description.getEObjectURI(), true);
             if (obj instanceof FunctionDefinition)
-                names.add(((FunctionDefinition) obj).getTable());
+                functions.add((FunctionDefinition) obj);
         }
-        return names;
+        return functions;
     }
 
-    public static List<String> findProcedures(IQualifiedNameConverter qualifiedNameConverter, Artifacts artifacts,
-            IScope scope) {
-        List<String> names = new ArrayList<String>();
+    public static List<ProcedureDefinition> findProcedures(IQualifiedNameConverter qualifiedNameConverter,
+            Artifacts artifacts, IScope scope) {
+        List<ProcedureDefinition> procedures = new ArrayList<ProcedureDefinition>();
         Iterable<IEObjectDescription> iterable = scope.getAllElements();
         for (Iterator<IEObjectDescription> iter = iterable.iterator(); iter.hasNext();) {
             IEObjectDescription description = iter.next();
             EObject obj = artifacts.eResource().getResourceSet().getEObject(description.getEObjectURI(), true);
             if (obj instanceof ProcedureDefinition)
-                names.add(((ProcedureDefinition) obj).getTable());
+                procedures.add((ProcedureDefinition) obj);
         }
-        return names;
+        return procedures;
     }
 
     public static String constName(String name) {

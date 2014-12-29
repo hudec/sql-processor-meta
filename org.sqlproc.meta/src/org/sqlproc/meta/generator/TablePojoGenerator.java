@@ -19,8 +19,11 @@ import java.util.TreeSet;
 import org.apache.log4j.Logger;
 import org.eclipse.xtext.scoping.IScopeProvider;
 import org.sqlproc.meta.processorMeta.Artifacts;
+import org.sqlproc.meta.processorMeta.FunctionDefinition;
 import org.sqlproc.meta.processorMeta.PojoDefinition;
+import org.sqlproc.meta.processorMeta.ProcedureDefinition;
 import org.sqlproc.meta.processorMeta.ProcessorMetaPackage;
+import org.sqlproc.meta.processorMeta.TableDefinition;
 import org.sqlproc.meta.property.EnumAttribute;
 import org.sqlproc.meta.property.ImplementsExtends;
 import org.sqlproc.meta.property.ModelProperty;
@@ -116,6 +119,7 @@ public class TablePojoGenerator {
     protected Map<String, Map<String, PojoAttribute>> pojos = new TreeMap<String, Map<String, PojoAttribute>>();
     protected Map<String, Map<String, PojoAttribute>> procedures = new TreeMap<String, Map<String, PojoAttribute>>();
     protected Map<String, Map<String, PojoAttribute>> functions = new TreeMap<String, Map<String, PojoAttribute>>();
+    protected Map<String, PojoDefinition> javaPojos = new HashMap<String, PojoDefinition>();
     protected Map<String, String> pojoExtends = new HashMap<String, String>();
     protected Map<String, Set<String>> pojoInheritanceDiscriminator = new HashMap<String, Set<String>>();
     protected Map<String, Set<String>> pojoInheritanceSimple = new HashMap<String, Set<String>>();
@@ -351,7 +355,7 @@ public class TablePojoGenerator {
 
     public void addTableDefinition(String table, List<DbColumn> dbColumns, List<String> dbPrimaryKeys,
             List<DbExport> dbExports, List<DbImport> dbImports, List<DbIndex> dbIndexes,
-            List<DbCheckConstraint> dbCheckConstraints, String comment) {
+            List<DbCheckConstraint> dbCheckConstraints, String comment, PojoDefinition pojoDefinition) {
         if (debug.debug) {
             System.out.println("addTableDefinition: " + table + " dbColumns " + dbColumns);
             System.out.println("addTableDefinition: " + table + " dbPrimaryKeys " + dbPrimaryKeys);
@@ -359,6 +363,7 @@ public class TablePojoGenerator {
             System.out.println("addTableDefinition: " + table + " dbImports " + dbImports);
             System.out.println("addTableDefinition: " + table + " dbIndexes " + dbIndexes);
             System.out.println("addTableDefinition: " + table + " dbCheckConstraints " + dbCheckConstraints);
+            System.out.println("addTableDefinition: " + table + " pojoDefinition " + pojoDefinition);
         }
         if (table == null || dbColumns == null)
             return;
@@ -393,6 +398,8 @@ public class TablePojoGenerator {
             }
         }
         pojos.put(table, attributes);
+        if (pojoDefinition != null)
+            javaPojos.put(table, pojoDefinition);
         if (comment != null)
             comments.put(table, comment);
         for (DbImport dbImport : dbImports) {
@@ -710,10 +717,11 @@ public class TablePojoGenerator {
     public static final String FUN_PROC_COLUMN_NAME = "RESULT";
 
     public void addProcedureDefinition(String procedure, DbTable dbProcedure, List<DbColumn> dbProcColumns,
-            boolean isFunction, String comment) {
+            boolean isFunction, String comment, PojoDefinition pojoDefinition) {
         if (debug.debug) {
             System.out.println("addProcedureDefinition: " + procedure + " dbProcedure " + dbProcedure);
             System.out.println("addProcedureDefinition: " + procedure + " dbProcColumns " + dbProcColumns);
+            System.out.println("addProcedureDefinition: " + procedure + " pojoDefinition " + pojoDefinition);
         }
         if (procedure == null || dbProcColumns == null)
             return;
@@ -760,16 +768,20 @@ public class TablePojoGenerator {
             }
         }
         procedures.put(procedure, attributes);
+        if (pojoDefinition != null)
+            javaPojos.put(procedure, pojoDefinition);
         if (comment != null)
             comments.put(procedure, comment);
         if ((dbType == DbType.POSTGRESQL || dbType == DbType.INFORMIX) && isFunction)
             functions.put(procedure, attributes);
     }
 
-    public void addFunctionDefinition(String function, DbTable dbFunction, List<DbColumn> dbFunColumns, String comment) {
+    public void addFunctionDefinition(String function, DbTable dbFunction, List<DbColumn> dbFunColumns, String comment,
+            PojoDefinition pojoDefinition) {
         if (debug.debug) {
             System.out.println("addFunctionDefinition: " + function + " dbFunction " + dbFunction);
             System.out.println("addFunctionDefinition: " + function + " dbFunColumns " + dbFunColumns);
+            System.out.println("addFunctionDefinition: " + function + " pojoDefinition " + pojoDefinition);
         }
         if (function == null || dbFunColumns == null)
             return;
@@ -803,8 +815,17 @@ public class TablePojoGenerator {
             attribute.setFunProcColumnType((short) 5);
         }
         functions.put(function, attributes);
+        if (pojoDefinition != null)
+            javaPojos.put(function, pojoDefinition);
         if (comment != null)
             comments.put(function, comment);
+    }
+
+    public void addPojoDefinition(PojoDefinition pojo) {
+        if (debug.debug) {
+            System.out.println("addPojoDefinition: " + pojo.getName() + " class " + pojo.getClass_() + " JvmType "
+                    + pojo.getClassx());
+        }
     }
 
     protected String collectionName(String fkTable, String fkColumn) {
@@ -1288,16 +1309,19 @@ public class TablePojoGenerator {
     public static boolean addDefinitions(IScopeProvider scopeProvider, DbResolver dbResolver,
             TablePojoGenerator generator, Artifacts artifacts) {
         try {
-            List<String> tables = Utils.findTables(null, artifacts,
+            List<TableDefinition> tables = Utils.findTables(null, artifacts,
                     scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__TABLES));
-            List<String> procedures = Utils.findProcedures(null, artifacts,
+            List<ProcedureDefinition> procedures = Utils.findProcedures(null, artifacts,
                     scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__PROCEDURES));
-            List<String> functions = Utils.findFunctions(null, artifacts,
+            List<FunctionDefinition> functions = Utils.findFunctions(null, artifacts,
                     scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__FUNCTIONS));
+            Map<String, PojoDefinition> pojoDefinitions = Utils.findPojos(null, artifacts,
+                    scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__POJOS));
             if (tables == null && procedures == null && functions == null)
                 return false;
             if (tables != null) {
-                for (String table : tables) {
+                for (TableDefinition table1 : tables) {
+                    String table = table1.getTable();
                     if (table.toUpperCase().startsWith("BIN$"))
                         continue;
                     if (!dbResolver.checkTable(artifacts, table))
@@ -1313,14 +1337,15 @@ public class TablePojoGenerator {
                     String comment = (ltables != null && !ltables.isEmpty()) ? ltables.get(0).getComment() : null;
                     List<DbCheckConstraint> dbCheckConstraints = dbResolver.getDbCheckConstraints(artifacts, table);
                     generator.addTableDefinition(table, dbColumns, dbPrimaryKeys, dbExports, dbImports, dbIndexes,
-                            dbCheckConstraints, comment);
+                            dbCheckConstraints, comment, pojoDefinitions.get(table1.getName()));
                 }
                 // converter.resolveReferencesOnConvention();
                 generator.resolveReferencesOnKeys();
                 generator.joinTables();
             }
             if (procedures != null) {
-                for (String procedure : procedures) {
+                for (ProcedureDefinition procedure1 : procedures) {
+                    String procedure = procedure1.getTable();
                     if (procedure.toUpperCase().startsWith("BIN$"))
                         continue;
                     List<DbTable> dbProcedures = dbResolver.getDbProcedures(artifacts, procedure);
@@ -1330,11 +1355,12 @@ public class TablePojoGenerator {
                     List<DbTable> ltables = dbResolver.getDbProcedures(artifacts, procedure);
                     String comment = (ltables != null && !ltables.isEmpty()) ? ltables.get(0).getComment() : null;
                     generator.addProcedureDefinition(procedure, dbProcedures.get(0), dbProcColumns,
-                            functions.contains(procedure), comment);
+                            functions.contains(procedure), comment, pojoDefinitions.get(procedure1.getName()));
                 }
             }
             if (functions != null) {
-                for (String function : functions) {
+                for (FunctionDefinition function1 : functions) {
+                    String function = function1.getTable();
                     if (function.toUpperCase().startsWith("BIN$"))
                         continue;
                     List<DbTable> dbFunctions = dbResolver.getDbFunctions(artifacts, function);
@@ -1343,7 +1369,8 @@ public class TablePojoGenerator {
                     List<DbColumn> dbFunColumns = dbResolver.getDbFunColumns(artifacts, function);
                     List<DbTable> ltables = dbResolver.getDbFunctions(artifacts, function);
                     String comment = (ltables != null && !ltables.isEmpty()) ? ltables.get(0).getComment() : null;
-                    generator.addFunctionDefinition(function, dbFunctions.get(0), dbFunColumns, comment);
+                    generator.addFunctionDefinition(function, dbFunctions.get(0), dbFunColumns, comment,
+                            pojoDefinitions.get(function1.getName()));
                 }
             }
             return true;

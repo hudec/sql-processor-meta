@@ -22,7 +22,9 @@ import org.eclipse.xtext.ui.editor.templates.XtextTemplateContextType;
 import org.sqlproc.meta.generator.TableMetaGenerator;
 import org.sqlproc.meta.generator.TablePojoGenerator;
 import org.sqlproc.meta.processorMeta.Artifacts;
+import org.sqlproc.meta.processorMeta.FunctionDefinition;
 import org.sqlproc.meta.processorMeta.MetaStatement;
+import org.sqlproc.meta.processorMeta.ProcedureDefinition;
 import org.sqlproc.meta.processorMeta.ProcessorMetaPackage;
 import org.sqlproc.meta.processorMeta.TableDefinition;
 import org.sqlproc.meta.property.ModelProperty;
@@ -272,10 +274,14 @@ public class ProcessorMetaTemplateContextType extends XtextTemplateContextType {
         return builder.toString();
     }
 
-    protected String getTablesDefinitions(List<String> tables, List<String> tablesPresented) {
+    protected String getTablesDefinitions(List<String> tables, List<TableDefinition> tablesPresented) {
         if (tables == null)
             return null;
-        Set<String> set = (tablesPresented != null) ? new HashSet<String>(tablesPresented) : new HashSet<String>();
+        Set<String> set = new HashSet<String>();
+        if (tablesPresented != null) {
+            for (TableDefinition table : tablesPresented)
+                set.add(table.getTable());
+        }
         TreeMap<String, String> map = new TreeMap<String, String>();
         for (String table : tables) {
             if (table.toUpperCase().startsWith("BIN$"))
@@ -292,11 +298,14 @@ public class ProcessorMetaTemplateContextType extends XtextTemplateContextType {
         return builder.toString();
     }
 
-    protected String getProceduresDefinitions(List<String> procedures, List<String> proceduresPresented) {
+    protected String getProceduresDefinitions(List<String> procedures, List<ProcedureDefinition> proceduresPresented) {
         if (procedures == null)
             return null;
-        Set<String> set = (proceduresPresented != null) ? new HashSet<String>(proceduresPresented)
-                : new HashSet<String>();
+        Set<String> set = new HashSet<String>();
+        if (proceduresPresented != null) {
+            for (ProcedureDefinition procedure : proceduresPresented)
+                set.add(procedure.getTable());
+        }
         TreeMap<String, String> map = new TreeMap<String, String>();
         for (String procedure : procedures) {
             if (procedure.toUpperCase().startsWith("BIN$"))
@@ -314,11 +323,14 @@ public class ProcessorMetaTemplateContextType extends XtextTemplateContextType {
         return builder.toString();
     }
 
-    protected String getFunctionsDefinitions(List<String> functions, List<String> functionsPresented) {
+    protected String getFunctionsDefinitions(List<String> functions, List<FunctionDefinition> functionsPresented) {
         if (functions == null)
             return null;
-        Set<String> set = (functionsPresented != null) ? new HashSet<String>(functionsPresented)
-                : new HashSet<String>();
+        Set<String> set = new HashSet<String>();
+        if (functionsPresented != null) {
+            for (FunctionDefinition function : functionsPresented)
+                set.add(function.getTable());
+        }
         TreeMap<String, String> map = new TreeMap<String, String>();
         for (String function : functions) {
             if (function.toUpperCase().startsWith("BIN$"))
@@ -589,7 +601,7 @@ public class ProcessorMetaTemplateContextType extends XtextTemplateContextType {
         protected String resolve(TemplateContext context) {
             Artifacts artifacts = getArtifacts((XtextTemplateContext) context);
             if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
-                List<String> tablesPresented = Utils.findTables(null, artifacts,
+                List<TableDefinition> tablesPresented = Utils.findTables(null, artifacts,
                         scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__TABLES));
                 List<String> tables = dbResolver.getTables(artifacts);
                 return getTablesDefinitions(tables, tablesPresented);
@@ -615,7 +627,7 @@ public class ProcessorMetaTemplateContextType extends XtextTemplateContextType {
         protected String resolve(TemplateContext context) {
             Artifacts artifacts = getArtifacts((XtextTemplateContext) context);
             if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
-                List<String> proceduresPresented = Utils.findProcedures(null, artifacts,
+                List<ProcedureDefinition> proceduresPresented = Utils.findProcedures(null, artifacts,
                         scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__PROCEDURES));
                 List<String> procedures = dbResolver.getProcedures(artifacts);
                 return getProceduresDefinitions(procedures, proceduresPresented);
@@ -641,7 +653,7 @@ public class ProcessorMetaTemplateContextType extends XtextTemplateContextType {
         protected String resolve(TemplateContext context) {
             Artifacts artifacts = getArtifacts((XtextTemplateContext) context);
             if (artifacts != null && dbResolver.isResolveDb(artifacts)) {
-                List<String> functionsPresented = Utils.findFunctions(null, artifacts,
+                List<FunctionDefinition> functionsPresented = Utils.findFunctions(null, artifacts,
                         scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__FUNCTIONS));
                 List<String> functions = dbResolver.getFunctions(artifacts);
                 return getFunctionsDefinitions(functions, functionsPresented);

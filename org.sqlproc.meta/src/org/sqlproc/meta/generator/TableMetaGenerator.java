@@ -1003,7 +1003,8 @@ public class TableMetaGenerator extends TablePojoGenerator {
         }
         if (pojoName == null)
             pojoName = pojo;
-        buffer.append(",inx=").append((dispName != null) ? dispName : tableToCamelCase(pojoName));
+        buffer.append(",").append(Constants.IDENTIFIER_USAGE_EXTENDED).append("=")
+                .append((dispName != null) ? dispName : tableToCamelCase(pojoName));
         buffer.append(")=");
         buffer.append("\n  ");
         PojoAttribute resultSetAttribute = resultSetAttribute(pojoName, isFunction);
@@ -1076,7 +1077,8 @@ public class TableMetaGenerator extends TablePojoGenerator {
                 String outPojoName = tableNames.get(outPojo);
                 if (outPojoName == null)
                     outPojoName = outPojo;
-                buffer.append(",outx=").append(tableToCamelCase(outPojoName));
+                buffer.append(",").append(Constants.COLUMN_USAGE_EXTENDED).append("=")
+                        .append(tableToCamelCase(outPojoName));
                 buffer.append(")=\n ");
                 for (Map.Entry<String, PojoAttribute> pentry : pojos.get(outPojo).entrySet()) {
                     // System.out.println("  RRR " + pentry.getKey());
@@ -1108,7 +1110,8 @@ public class TableMetaGenerator extends TablePojoGenerator {
                 String outPojoName = tableNames.get(outPojo);
                 if (outPojoName == null)
                     outPojoName = outPojo;
-                buffer.append(",outx=").append(tableToCamelCase(outPojoName));
+                buffer.append(",").append(Constants.COLUMN_USAGE_EXTENDED).append("=")
+                        .append(tableToCamelCase(outPojoName));
                 buffer.append(")=\n ");
                 for (Map.Entry<String, PojoAttribute> pentry : pojos.get(outPojo).entrySet()) {
                     // System.out.println("  RRR " + pentry.getKey());
@@ -1167,7 +1170,7 @@ public class TableMetaGenerator extends TablePojoGenerator {
         String pojoName = tableNames.get(pojo);
         if (pojoName == null)
             pojoName = pojo;
-        buffer.append(",inx=").append(tableToCamelCase(pojoName));
+        buffer.append(",").append(Constants.IDENTIFIER_USAGE_EXTENDED).append("=").append(tableToCamelCase(pojoName));
         buffer.append(")=");
         buffer.append("\n  ");
         buffer.append("select ").append(pojo).append("(");
@@ -1195,7 +1198,7 @@ public class TableMetaGenerator extends TablePojoGenerator {
         buffer.append("\n").append("FUN_").append(pojo.toUpperCase()).append("(OUT");
         if (metaMakeItFinal)
             buffer.append(",final=");
-        buffer.append(",outx=").append(tableToCamelCase(pojoName));
+        buffer.append(",").append(Constants.COLUMN_USAGE_EXTENDED).append("=").append(tableToCamelCase(pojoName));
         buffer.append(")=\n ");
         buffer.append("  1$result\n;");
         buffer.append("\n");
@@ -1597,9 +1600,8 @@ public class TableMetaGenerator extends TablePojoGenerator {
                 buffer.append(optionalFeature).append(",");
             }
         }
-        buffer.append(Constants.IDENTIFIER_USAGE_EXTENDED).append("=").append(tableToCamelCase(header.table.tableName));
-        buffer.append(",").append(Constants.COLUMN_USAGE_EXTENDED).append("=")
-                .append(tableToCamelCase(header.table.tableName));
+        buffer.append(Constants.IDENTIFIER_USAGE).append("=").append(getPojoName(header.table.tableName));
+        buffer.append(",").append(Constants.COLUMN_USAGE).append("=").append(getPojoName(header.table.tableName));
         buffer.append(",").append(Constants.TABLE_USAGE).append("=");
         buffer.append(header.table.getTableName());
 
@@ -1637,6 +1639,13 @@ public class TableMetaGenerator extends TablePojoGenerator {
             buffer.append(",").append(addFilter);
         buffer.append(")=");
         return header;
+    }
+
+    String getPojoName(String table) {
+        PojoDefinition pojoDef = javaPojos.get(table);
+        if (pojoDef != null)
+            return pojoDef.getName();
+        return "???";
     }
 
     String findPKeyName(String pojo) {
