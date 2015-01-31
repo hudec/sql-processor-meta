@@ -19,6 +19,7 @@ import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.serializer.ISerializer;
 import org.eclipse.xtext.ui.editor.templates.XtextTemplateContext;
 import org.eclipse.xtext.ui.editor.templates.XtextTemplateContextType;
+import org.eclipse.xtext.util.Strings;
 import org.sqlproc.meta.generator.TableMetaGenerator;
 import org.sqlproc.meta.generator.TablePojoGenerator;
 import org.sqlproc.meta.processorMeta.Artifacts;
@@ -269,7 +270,8 @@ public class ProcessorMetaTemplateContextType extends XtextTemplateContextType {
 
         StringBuilder builder = new StringBuilder();
         for (Entry<String, String> pojo : map.entrySet()) {
-            builder.append("pojo ").append(pojo.getKey()).append(' ').append(pojo.getValue()).append(";\n");
+            builder.append("pojo ").append(Strings.toFirstUpper(pojo.getKey())).append(' ').append(pojo.getValue())
+                    .append(";\n");
         }
         return builder.toString();
     }

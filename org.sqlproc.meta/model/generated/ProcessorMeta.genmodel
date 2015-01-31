@@ -6,7 +6,7 @@
     complianceLevel="5.0" copyrightFields="false" editPluginID="org.sqlproc.meta.edit"
     editorPluginID="org.sqlproc.meta.editor" runtimeVersion="2.10" usedGenPackages="platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types">
   <genPackages prefix="ProcessorMeta" basePackage="org.sqlproc.meta" disposableProviderFactory="true"
-      fileExtensions="mql" ecorePackage="ProcessorMeta.ecore#/">
+      fileExtensions="meta" ecorePackage="ProcessorMeta.ecore#/">
     <genClasses ecoreClass="ProcessorMeta.ecore#//Artifacts">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//Artifacts/properties"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//Artifacts/pojos"/>

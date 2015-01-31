@@ -108,7 +108,7 @@ public class Main {
         System.out
                 .println("  java -jar sqlep.jar -control controlDirectivesFile -sql metaSqlsFile [-ddl ddlsFile] [-source sourceDir] [-target targetDir] [-nomerge]");
         System.out.println("For example:");
-        System.out.println("  java -jar sqlep.jar -control definitions.mql -sql statements.mql");
+        System.out.println("  java -jar sqlep.jar -control definitions.meta -sql statements.meta");
         System.out.println();
         System.out.println("Arguments:");
         System.out.println("  -target dirname - a target directory (eg. src-gen)");
