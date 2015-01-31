@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.sqlproc.meta.processorMeta.DaogenProperty#getName <em>Name</em>}</li>
  *   <li>{@link org.sqlproc.meta.processorMeta.DaogenProperty#getDbTables <em>Db Tables</em>}</li>
- *   <li>{@link org.sqlproc.meta.processorMeta.DaogenProperty#getImplPackage <em>Impl Package</em>}</li>
  *   <li>{@link org.sqlproc.meta.processorMeta.DaogenProperty#getToImplements <em>To Implements</em>}</li>
  *   <li>{@link org.sqlproc.meta.processorMeta.DaogenProperty#getToExtends <em>To Extends</em>}</li>
  *   <li>{@link org.sqlproc.meta.processorMeta.DaogenProperty#getToImplementsGenerics <em>To Implements Generics</em>}</li>
@@ -76,32 +75,6 @@ public interface DaogenProperty extends EObject
    * @generated
    */
   EList<String> getDbTables();
-
-  /**
-   * Returns the value of the '<em><b>Impl Package</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Impl Package</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Impl Package</em>' attribute.
-   * @see #setImplPackage(String)
-   * @see org.sqlproc.meta.processorMeta.ProcessorMetaPackage#getDaogenProperty_ImplPackage()
-   * @model
-   * @generated
-   */
-  String getImplPackage();
-
-  /**
-   * Sets the value of the '{@link org.sqlproc.meta.processorMeta.DaogenProperty#getImplPackage <em>Impl Package</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Impl Package</em>' attribute.
-   * @see #getImplPackage()
-   * @generated
-   */
-  void setImplPackage(String value);
 
   /**
    * Returns the value of the '<em><b>To Implements</b></em>' containment reference.
@@ -242,12 +215,12 @@ public interface DaogenProperty extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Result Type</em>' containment reference.
-   * @see #setResultType(PojoDefinition)
+   * @see #setResultType(PojoType)
    * @see org.sqlproc.meta.processorMeta.ProcessorMetaPackage#getDaogenProperty_ResultType()
    * @model containment="true"
    * @generated
    */
-  PojoDefinition getResultType();
+  PojoType getResultType();
 
   /**
    * Sets the value of the '{@link org.sqlproc.meta.processorMeta.DaogenProperty#getResultType <em>Result Type</em>}' containment reference.
@@ -257,7 +230,7 @@ public interface DaogenProperty extends EObject
    * @see #getResultType()
    * @generated
    */
-  void setResultType(PojoDefinition value);
+  void setResultType(PojoType value);
 
   /**
    * Returns the value of the '<em><b>Debug</b></em>' containment reference.

@@ -572,6 +572,15 @@ public interface ProcessorMetaFactory extends EFactory
   OptionalFeature createOptionalFeature();
 
   /**
+   * Returns a new object of class '<em>Pojo Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pojo Type</em>'.
+   * @generated
+   */
+  PojoType createPojoType();
+
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

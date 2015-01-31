@@ -17,8 +17,8 @@ DatabaseTypeAssignement: dbType=IDENT;
 DatabaseMetaInfoAssignement: dbMetaInfo=PropertyValue;
 DriverMetaInfoAssignement: dbDriverInfo=PropertyValue;
 DriverMethodOutputAssignement: driverMethod=IDENT '->' callOutput=PropertyValue;
-SqlTypeAssignement: typeName=IDENT (LPAREN size=NUMBER RPAREN)? '->' type=PojoDefinition;
-ColumnTypeAssignement: dbColumn=IDENT '->' type=PojoDefinition;
+SqlTypeAssignement: typeName=IDENT (LPAREN size=NUMBER RPAREN)? '->' type=PojoType;
+ColumnTypeAssignement: dbColumn=IDENT '->' type=PojoType;
 ShowColumnTypeAssignement: dbColumn=IDENT '->' type=PropertyValue;
 TableAssignement: dbTable=IDENT '->' newName=IDENT;
 JoinTableAssignement: dbTable=IDENT ('->' dbTables+=IDENT)+;
@@ -28,12 +28,12 @@ ExportAssignement: dbColumn=IDENT '->' fkTable=IDENT ('->' fkColumn=IDENT)?;
 InheritanceAssignement: discriminator=IDENT '->' dbTable=IDENT ('->' dbColumns+=IDENT)+;
 ManyToManyAssignement: pkColumn=IDENT '->' pkTable=IDENT ('->' fkColumn=IDENT)?;
 DebugLevelAssignement: debug=IDENT (WS+ scope=PropertyValue)?;
-ProcedurePojoAssignement: dbProcedure=IDENT '->' pojo=PojoDefinition;
-FunctionPojoAssignement: dbFunction=IDENT '->' pojo=PojoDefinition;
-ImplementsAssignement: toImplement=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
-ExtendsAssignement: toExtends=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
-ImplementsAssignementGenerics: toImplement=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
-ExtendsAssignementGenerics: toExtends=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
+ProcedurePojoAssignement: dbProcedure=IDENT '->' pojo=PojoType;
+FunctionPojoAssignement: dbFunction=IDENT '->' pojo=PojoType;
+ImplementsAssignement: COLON toImplement=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
+ExtendsAssignement: COLON toExtends=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
+ImplementsAssignementGenerics: COLON toImplement=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
+ExtendsAssignementGenerics: COLON toExtends=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
 
 Property:
 	(name='resolve-pojo-on'
@@ -44,7 +44,12 @@ Property:
 	|name='daogen-' daogen=DaogenProperty
 	|name='replace-all-regex' WS+ replaceId=IDENT WS+ regex=PropertyValue
 	|name='replace-all-replacement' WS+ replaceId=IDENT WS+ replacement=PropertyValue
+	|name='compress-meta-directives'
 	) SEMICOLON;
+
+//PropertyCondition:
+//	LBRACE WS* name=IDENT WS+ EQUALS WS+ value=(IDENT | NUMBER) WS* RBRACE
+//;
 
 DatabaseProperty:
 	(name='is-online'
@@ -106,7 +111,6 @@ PojogenProperty:
 	|name='generate-wrappers'
 	|name='generate-validation-annotations'
 	|name='preserve-foreign-keys' (WS+ dbTables+=IDENT)*
-	|name='implementation-package' WS+ implPackage=IDENT
 	|name='make-it-final'
 	|name='version-column' WS+ version=IDENT (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?
 	|name='debug-level' WS+ debug=DebugLevelAssignement
@@ -146,13 +150,12 @@ MetagenProperty:
 DaogenProperty:
 	(name='ignore-tables' (WS+ dbTables+=IDENT)+
 	|name='only-tables' (WS+ dbTables+=IDENT)*
-	|name='implementation-package' WS+ implPackage=IDENT
 	|name='implements-interfaces' WS+ toImplements=ImplementsAssignement
 	|name='extends-class' WS+ toExtends=ExtendsAssignement
 	|name='implements-interfaces-generics' WS+ toImplementsGenerics=ImplementsAssignementGenerics 
 	|name='extends-class-generics' WS+ toExtendsGenerics=ExtendsAssignementGenerics
 	|name='make-it-final'
-	|name='function-result' WS+ dbFunction=IDENT WS+ resultType=PojoDefinition
+	|name='function-result' WS+ dbFunction=IDENT WS+ resultType=PojoType
 	|name='debug-level' WS+ debug=DebugLevelAssignement
 	|name='active-filter' WS+ activeFilter=PropertyValue
 	|name='package' WS+ pckg=PropertyValue
@@ -352,8 +355,13 @@ terminal REST: !(SEMICOLON);
 
 terminal STRING_VALUE : '\"' -> '\"' ;
 
+
 FeatureValue:
   (REST|IDENT_DOT|IDENT|NUMBER|WS|COLON|STRING|COMMA|MINUS|PLUS|LPAREN|RPAREN|LBRACE|RBRACE|QUESTI|NOT|BAND|BOR|HASH|AT|CARET|EQUALS|LESS_THAN|MORE_THAN|PERCENT|AND|OR|ESC_CHAR|ON_OFF|STATEMENT_TYPE|MAPPING_TYPE|OPTION_TYPE)+;
+
+PojoType:
+	(COLON type=[jvmTypes::JvmType|QualifiedName] | ref=[PojoDefinition|IDENT])
+	(LESS_THAN (COLON gtype=[jvmTypes::JvmType|QualifiedName] | gref=[PojoDefinition|IDENT]) MORE_THAN)? (array ?= '[]')?;
 
 QualifiedName: (IDENT|IDENT_DOT);
 

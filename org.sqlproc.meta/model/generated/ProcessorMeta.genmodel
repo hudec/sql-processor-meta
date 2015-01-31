@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.sqlproc.meta/src-gen" editDirectory="//home/hudec/git/sql-processor-meta/org.sqlproc.meta.edit/src"
-    editorDirectory="//home/hudec/git/sql-processor-meta/org.sqlproc.meta.editor/src"
-    modelPluginID="org.sqlproc.meta" forceOverwrite="true" modelName="ProcessorMeta"
-    updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.sqlproc.meta/src-gen" editDirectory="/org.sqlproc.meta.edit/src"
+    editorDirectory="/org.sqlproc.meta.editor/src" modelPluginID="org.sqlproc.meta"
+    forceOverwrite="true" modelName="ProcessorMeta" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="5.0" copyrightFields="false" editPluginID="org.sqlproc.meta.edit"
-    editorPluginID="org.sqlproc.meta.edit" runtimeVersion="2.10" usedGenPackages="platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types">
+    editorPluginID="org.sqlproc.meta.editor" runtimeVersion="2.10" usedGenPackages="platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types">
   <genPackages prefix="ProcessorMeta" basePackage="org.sqlproc.meta" disposableProviderFactory="true"
       fileExtensions="mql" ecorePackage="ProcessorMeta.ecore#/">
     <genClasses ecoreClass="ProcessorMeta.ecore#//Artifacts">
@@ -166,7 +165,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//PojogenProperty/toExtends"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//PojogenProperty/toImplementsGenerics"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//PojogenProperty/toExtendsGenerics"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//PojogenProperty/implPackage"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//PojogenProperty/version"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//PojogenProperty/dbNotTables"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//PojogenProperty/debug"/>
@@ -202,7 +200,6 @@
     <genClasses ecoreClass="ProcessorMeta.ecore#//DaogenProperty">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//DaogenProperty/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//DaogenProperty/dbTables"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//DaogenProperty/implPackage"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//DaogenProperty/toImplements"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//DaogenProperty/toExtends"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//DaogenProperty/toImplementsGenerics"/>
@@ -357,6 +354,13 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//OptionalFeature/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//OptionalFeature/modifiers"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//OptionalFeature/option"/>
+    </genClasses>
+    <genClasses ecoreClass="ProcessorMeta.ecore#//PojoType">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//PojoType/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//PojoType/ref"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//PojoType/gtype"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//PojoType/gref"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//PojoType/array"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

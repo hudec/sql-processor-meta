@@ -18,7 +18,7 @@ import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.IScopeProvider;
 import org.sqlproc.meta.processorMeta.Artifacts;
-import org.sqlproc.meta.processorMeta.PojoDefinition;
+import org.sqlproc.meta.processorMeta.PojoType;
 import org.sqlproc.meta.processorMeta.ProcessorMetaPackage;
 import org.sqlproc.meta.processorMeta.TableDefinition;
 import org.sqlproc.meta.property.ModelProperty;
@@ -988,10 +988,20 @@ public class TableMetaGenerator extends TablePojoGenerator {
         if (metaMakeItFinal)
             buffer.append(",final=");
         String pojoName = tableNames.get(pojo);
-        String dispName = getProcedureDispName(pojo, pojoName);
+        String dispName = pojoName;
+        if (dispName == null) {
+            PojoType ptype = pojosForProcedures.get(pojo);
+            if (ptype != null)
+                dispName = (ptype.getRef() != null) ? ptype.getRef().getName() : ptype.getType().getSimpleName();
+        }
+        if (dispName == null) {
+            PojoType ptype = pojosForFunctions.get(pojo);
+            if (ptype != null)
+                dispName = (ptype.getRef() != null) ? ptype.getRef().getName() : ptype.getType().getSimpleName();
+        }
         if (pojoName == null)
             pojoName = pojo;
-        buffer.append(",").append(Constants.IDENTIFIER_USAGE).append("=").append(dispName);
+        buffer.append(",inx=").append((dispName != null) ? dispName : tableToCamelCase(pojoName));
         buffer.append(")=");
         buffer.append("\n  ");
         PojoAttribute resultSetAttribute = resultSetAttribute(pojoName, isFunction);
@@ -1062,10 +1072,9 @@ public class TableMetaGenerator extends TablePojoGenerator {
                 if (metaMakeItFinal)
                     buffer.append(",final=");
                 String outPojoName = tableNames.get(outPojo);
-                String outDispName = getProcedureDispName(outPojo, outPojoName);
                 if (outPojoName == null)
                     outPojoName = outPojo;
-                buffer.append(",").append(Constants.COLUMN_USAGE).append("=").append(outDispName);
+                buffer.append(",outx=").append(tableToCamelCase(outPojoName));
                 buffer.append(")=\n ");
                 for (Map.Entry<String, PojoAttribute> pentry : pojos.get(outPojo).entrySet()) {
                     // System.out.println("  RRR " + pentry.getKey());
@@ -1095,10 +1104,9 @@ public class TableMetaGenerator extends TablePojoGenerator {
                 if (metaMakeItFinal)
                     buffer.append(",final=");
                 String outPojoName = tableNames.get(outPojo);
-                String outDispName = getProcedureDispName(outPojo, outPojoName);
                 if (outPojoName == null)
                     outPojoName = outPojo;
-                buffer.append(",").append(Constants.COLUMN_USAGE).append("=").append(outDispName);
+                buffer.append(",outx=").append(tableToCamelCase(outPojoName));
                 buffer.append(")=\n ");
                 for (Map.Entry<String, PojoAttribute> pentry : pojos.get(outPojo).entrySet()) {
                     // System.out.println("  RRR " + pentry.getKey());
@@ -1125,34 +1133,6 @@ public class TableMetaGenerator extends TablePojoGenerator {
             buffer.append("// ").append(warning);
         }
         return buffer;
-    }
-
-    String getProcedureDispName(String pojo, String pojoName) {
-        String dispName = (pojoName != null) ? tableToCamelCase(pojoName) : null;
-        if (dispName == null) {
-            PojoDefinition ptype = pojosForProcedures.get(pojo);
-            if (ptype != null)
-                // dispName = (ptype.getRef() != null) ? ptype.getRef().getName() : ptype.getType().getSimpleName();
-                // dispName = (ptype.getClassx() != null) ? ptype.getClassx().getSimpleName() : ptype.getClass_();
-                dispName = ptype.getName();
-        }
-        if (dispName == null) {
-            PojoDefinition ptype = pojosForFunctions.get(pojo);
-            if (ptype != null)
-                // dispName = (ptype.getRef() != null) ? ptype.getRef().getName() : ptype.getType().getSimpleName();
-                // dispName = (ptype.getClassx() != null) ? ptype.getClassx().getSimpleName() : ptype.getClass_();
-                dispName = ptype.getName();
-        }
-        if (dispName == null) {
-            PojoDefinition ptype = javaPojos.get(pojo);
-            if (ptype != null)
-                // dispName = (ptype.getRef() != null) ? ptype.getRef().getName() : ptype.getType().getSimpleName();
-                // dispName = (ptype.getClassx() != null) ? ptype.getClassx().getSimpleName() : ptype.getClass_();
-                dispName = ptype.getName();
-        }
-        if (dispName == null)
-            dispName = tableToCamelCase(pojo);
-        return dispName;
     }
 
     // SIMPLE_FUNCTION_QRY(QRY,DB2)=
@@ -1183,10 +1163,9 @@ public class TableMetaGenerator extends TablePojoGenerator {
         if (metaMakeItFinal)
             buffer.append(",final=");
         String pojoName = tableNames.get(pojo);
-        String dispName = getProcedureDispName(pojo, pojoName);
         if (pojoName == null)
             pojoName = pojo;
-        buffer.append(",").append(Constants.IDENTIFIER_USAGE).append("=").append(dispName);
+        buffer.append(",inx=").append(tableToCamelCase(pojoName));
         buffer.append(")=");
         buffer.append("\n  ");
         buffer.append("select ").append(pojo).append("(");
@@ -1214,7 +1193,7 @@ public class TableMetaGenerator extends TablePojoGenerator {
         buffer.append("\n").append("FUN_").append(pojo.toUpperCase()).append("(OUT");
         if (metaMakeItFinal)
             buffer.append(",final=");
-        buffer.append(",").append(Constants.COLUMN_USAGE).append("=").append(dispName);
+        buffer.append(",outx=").append(tableToCamelCase(pojoName));
         buffer.append(")=\n ");
         buffer.append("  1$result\n;");
         buffer.append("\n");
@@ -1616,8 +1595,9 @@ public class TableMetaGenerator extends TablePojoGenerator {
                 buffer.append(optionalFeature).append(",");
             }
         }
-        buffer.append(Constants.IDENTIFIER_USAGE).append("=").append(getPojoName(header.table.tableName));
-        buffer.append(",").append(Constants.COLUMN_USAGE).append("=").append(getPojoName(header.table.tableName));
+        buffer.append(Constants.IDENTIFIER_USAGE_EXTENDED).append("=").append(tableToCamelCase(header.table.tableName));
+        buffer.append(",").append(Constants.COLUMN_USAGE_EXTENDED).append("=")
+                .append(tableToCamelCase(header.table.tableName));
         buffer.append(",").append(Constants.TABLE_USAGE).append("=");
         buffer.append(header.table.getTableName());
 
@@ -1655,13 +1635,6 @@ public class TableMetaGenerator extends TablePojoGenerator {
             buffer.append(",").append(addFilter);
         buffer.append(")=");
         return header;
-    }
-
-    String getPojoName(String table) {
-        PojoDefinition pojoDef = javaPojos.get(table);
-        if (pojoDef != null)
-            return pojoDef.getName();
-        return "???";
     }
 
     String findPKeyName(String pojo) {

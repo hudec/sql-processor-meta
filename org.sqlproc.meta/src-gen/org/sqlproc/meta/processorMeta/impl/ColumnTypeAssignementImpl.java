@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.sqlproc.meta.processorMeta.ColumnTypeAssignement;
-import org.sqlproc.meta.processorMeta.PojoDefinition;
+import org.sqlproc.meta.processorMeta.PojoType;
 import org.sqlproc.meta.processorMeta.ProcessorMetaPackage;
 
 /**
@@ -59,7 +59,7 @@ public class ColumnTypeAssignementImpl extends MinimalEObjectImpl.Container impl
    * @generated
    * @ordered
    */
-  protected PojoDefinition type;
+  protected PojoType type;
 
   /**
    * <!-- begin-user-doc -->
@@ -110,7 +110,7 @@ public class ColumnTypeAssignementImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoDefinition getType()
+  public PojoType getType()
   {
     return type;
   }
@@ -120,9 +120,9 @@ public class ColumnTypeAssignementImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetType(PojoDefinition newType, NotificationChain msgs)
+  public NotificationChain basicSetType(PojoType newType, NotificationChain msgs)
   {
-    PojoDefinition oldType = type;
+    PojoType oldType = type;
     type = newType;
     if (eNotificationRequired())
     {
@@ -137,7 +137,7 @@ public class ColumnTypeAssignementImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setType(PojoDefinition newType)
+  public void setType(PojoType newType)
   {
     if (newType != type)
     {
@@ -201,7 +201,7 @@ public class ColumnTypeAssignementImpl extends MinimalEObjectImpl.Container impl
         setDbColumn((String)newValue);
         return;
       case ProcessorMetaPackage.COLUMN_TYPE_ASSIGNEMENT__TYPE:
-        setType((PojoDefinition)newValue);
+        setType((PojoType)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -221,7 +221,7 @@ public class ColumnTypeAssignementImpl extends MinimalEObjectImpl.Container impl
         setDbColumn(DB_COLUMN_EDEFAULT);
         return;
       case ProcessorMetaPackage.COLUMN_TYPE_ASSIGNEMENT__TYPE:
-        setType((PojoDefinition)null);
+        setType((PojoType)null);
         return;
     }
     super.eUnset(featureID);

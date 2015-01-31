@@ -380,6 +380,11 @@ public class ProcessorMetaAdapterFactory extends AdapterFactoryImpl
         return createOptionalFeatureAdapter();
       }
       @Override
+      public Adapter casePojoType(PojoType object)
+      {
+        return createPojoTypeAdapter();
+      }
+      @Override
       public Adapter defaultCase(EObject object)
       {
         return createEObjectAdapter();
@@ -1312,6 +1317,21 @@ public class ProcessorMetaAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createOptionalFeatureAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.meta.processorMeta.PojoType <em>Pojo Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.meta.processorMeta.PojoType
+   * @generated
+   */
+  public Adapter createPojoTypeAdapter()
   {
     return null;
   }

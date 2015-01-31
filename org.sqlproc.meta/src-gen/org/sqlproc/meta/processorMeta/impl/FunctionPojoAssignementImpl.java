@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.sqlproc.meta.processorMeta.FunctionPojoAssignement;
-import org.sqlproc.meta.processorMeta.PojoDefinition;
+import org.sqlproc.meta.processorMeta.PojoType;
 import org.sqlproc.meta.processorMeta.ProcessorMetaPackage;
 
 /**
@@ -59,7 +59,7 @@ public class FunctionPojoAssignementImpl extends MinimalEObjectImpl.Container im
    * @generated
    * @ordered
    */
-  protected PojoDefinition pojo;
+  protected PojoType pojo;
 
   /**
    * <!-- begin-user-doc -->
@@ -110,7 +110,7 @@ public class FunctionPojoAssignementImpl extends MinimalEObjectImpl.Container im
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoDefinition getPojo()
+  public PojoType getPojo()
   {
     return pojo;
   }
@@ -120,9 +120,9 @@ public class FunctionPojoAssignementImpl extends MinimalEObjectImpl.Container im
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetPojo(PojoDefinition newPojo, NotificationChain msgs)
+  public NotificationChain basicSetPojo(PojoType newPojo, NotificationChain msgs)
   {
-    PojoDefinition oldPojo = pojo;
+    PojoType oldPojo = pojo;
     pojo = newPojo;
     if (eNotificationRequired())
     {
@@ -137,7 +137,7 @@ public class FunctionPojoAssignementImpl extends MinimalEObjectImpl.Container im
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setPojo(PojoDefinition newPojo)
+  public void setPojo(PojoType newPojo)
   {
     if (newPojo != pojo)
     {
@@ -201,7 +201,7 @@ public class FunctionPojoAssignementImpl extends MinimalEObjectImpl.Container im
         setDbFunction((String)newValue);
         return;
       case ProcessorMetaPackage.FUNCTION_POJO_ASSIGNEMENT__POJO:
-        setPojo((PojoDefinition)newValue);
+        setPojo((PojoType)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -221,7 +221,7 @@ public class FunctionPojoAssignementImpl extends MinimalEObjectImpl.Container im
         setDbFunction(DB_FUNCTION_EDEFAULT);
         return;
       case ProcessorMetaPackage.FUNCTION_POJO_ASSIGNEMENT__POJO:
-        setPojo((PojoDefinition)null);
+        setPojo((PojoType)null);
         return;
     }
     super.eUnset(featureID);

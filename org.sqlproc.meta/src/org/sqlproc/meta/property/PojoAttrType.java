@@ -1,27 +1,31 @@
 package org.sqlproc.meta.property;
 
+import org.eclipse.xtext.common.types.JvmPrimitiveType;
 import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.sqlproc.meta.processorMeta.PojoDefinition;
+import org.sqlproc.meta.processorMeta.PojoType;
 
 public class PojoAttrType {
     String name;
     int size;
-    String nativeType;
+    boolean nativeType;
     JvmType type;
     JvmType gtype;
     boolean array;
+    PojoDefinition ref;
+    PojoDefinition gref;
     String text;
 
-    public PojoAttrType(String typeName, String size, PojoDefinition pojoType) {
-        // TODO
-        // this.nativeType = pojoType.getNative();
-        this.type = pojoType.getClassx();
-        // TODO
-        // this.array = pojoType.isArray();
-        // TODO
-        // this.gtype = pojoType.getGtype();
+    public PojoAttrType(String typeName, String size, PojoType pojoType) {
+        this.type = pojoType.getType();
+        // JvmPrimitiveTypeImplCustom
+        this.nativeType = (type != null && type instanceof JvmPrimitiveType) ? true : false;
+        this.ref = pojoType.getRef();
+        this.array = pojoType.isArray();
+        this.gtype = pojoType.getGtype();
+        this.gref = pojoType.getGref();
         if (size != null) {
             try {
                 this.size = Integer.parseInt(size);
@@ -65,12 +69,8 @@ public class PojoAttrType {
         this.size = size;
     }
 
-    public String getNativeType() {
+    public boolean isNativeType() {
         return nativeType;
-    }
-
-    public void setNativeType(String nativeType) {
-        this.nativeType = nativeType;
     }
 
     public JvmType getType() {
@@ -89,6 +89,14 @@ public class PojoAttrType {
         this.array = array;
     }
 
+    public PojoDefinition getRef() {
+        return ref;
+    }
+
+    public void setRef(PojoDefinition ref) {
+        this.ref = ref;
+    }
+
     public String getText() {
         return text;
     }
@@ -103,6 +111,14 @@ public class PojoAttrType {
 
     public void setGtype(JvmType gtype) {
         this.gtype = gtype;
+    }
+
+    public PojoDefinition getGref() {
+        return gref;
+    }
+
+    public void setGref(PojoDefinition gref) {
+        this.gref = gref;
     }
 
     @Override

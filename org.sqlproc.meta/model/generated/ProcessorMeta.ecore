@@ -42,12 +42,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="SqlTypeAssignement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//PojoDefinition"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//PojoType"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ColumnTypeAssignement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbColumn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//PojoDefinition"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//PojoType"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ShowColumnTypeAssignement">
@@ -94,12 +94,12 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProcedurePojoAssignement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbProcedure" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="pojo" eType="#//PojoDefinition"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pojo" eType="#//PojoType"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FunctionPojoAssignement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbFunction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="pojo" eType="#//PojoDefinition"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pojo" eType="#//PojoType"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ImplementsAssignement">
@@ -210,7 +210,6 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="toExtendsGenerics" eType="#//ExtendsAssignementGenerics"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="implPackage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbNotTables" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -258,7 +257,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbTables" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="implPackage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="toImplements" eType="#//ImplementsAssignement"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="toExtends" eType="#//ExtendsAssignement"
@@ -268,7 +266,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="toExtendsGenerics" eType="#//ExtendsAssignementGenerics"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbFunction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="resultType" eType="#//PojoDefinition"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resultType" eType="#//PojoType"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="debug" eType="#//DebugLevelAssignement"
         containment="true"/>
@@ -467,5 +465,12 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="modifiers" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="option" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PojoType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ref" eType="#//PojoDefinition"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="gtype" eType="ecore:EClass platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="gref" eType="#//PojoDefinition"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="array" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
 </ecore:EPackage>

@@ -26,7 +26,7 @@ import org.sqlproc.meta.processorMeta.JoinTableAssignement;
 import org.sqlproc.meta.processorMeta.ManyToManyAssignement;
 import org.sqlproc.meta.processorMeta.MetaTypeAssignement;
 import org.sqlproc.meta.processorMeta.MetagenProperty;
-import org.sqlproc.meta.processorMeta.PojoDefinition;
+import org.sqlproc.meta.processorMeta.PojoType;
 import org.sqlproc.meta.processorMeta.PojogenProperty;
 import org.sqlproc.meta.processorMeta.Property;
 import org.sqlproc.meta.util.Utils;
@@ -42,6 +42,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public static final String RESOLVE_POJO_OFF = "resolve-pojo-off";
     public static final String REPLACE_ALL_REGEX = "replace-all-regex";
     public static final String REPLACE_ALL_REPLACEMENT = "replace-all-replacement";
+    public static final String COMPRESS_META_DIRECTIVES = "compress-meta-directives";
     public static final String DATABASE = "database";
     public static final String DATABASE_IS_ONLINE = "is-online";
     public static final String DATABASE_IS_OFFLINE = "is-offline";
@@ -93,7 +94,6 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public static final String POJOGEN_GENERATE_WRAPPERS = "generate-wrappers";
     public static final String POJOGEN_GENERATE_VALIDATION_ANNOTATIONS = "generate-validation-annotations";
     public static final String POJOGEN_NOT_ABSTRACT_TABLES_TABLES = "not-abstract-tables";
-    public static final String POJOGEN_IMPLEMENTATION_PACKAGE = "implementation-package";
     public static final String POJOGEN_MAKE_IT_FINAL = "make-it-final";
     public static final String POJOGEN_VERSION_COLUMN = "version-column";
     public static final String POJOGEN_DEBUG_LEVEL = "debug-level";
@@ -128,7 +128,6 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     public static final String DAOGEN = "daogen";
     public static final String DAOGEN_IGNORE_TABLES = "ignore-tables";
     public static final String DAOGEN_ONLY_TABLES = "only-tables";
-    public static final String DAOGEN_IMPLEMENTATION_PACKAGE = "implementation-package";
     public static final String DAOGEN_IMPLEMENTS_INTERFACES = "implements-interfaces";
     public static final String DAOGEN_EXTENDS_CLASS = "extends-class";
     public static final String DAOGEN_IMPLEMENTS_INTERFACES_GENERICS = "implements-interfaces-generics";
@@ -156,6 +155,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public boolean doResolveDb;
         public Map<String, String> replaceAllRegex;
         public Map<String, String> replaceAllReplacement;
+        public boolean doCompressMetaDirectives;
         public String dbDriver;
         public String dbUrl;
         public String dbUsername;
@@ -204,7 +204,6 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public Map<String, List<String>> joinTables;
         public boolean doGenerateWrappers;
         public boolean doGenerateValidationAnnotations;
-        public String implementationPackage;
         public boolean makeItFinal;
         public String versionColumn;
         public Map<String, Set<String>> versionColumns;
@@ -212,8 +211,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public String debugLevel;
         public String debugScope;
         public Set<String> preserveForeignKeys;
-        public Map<String, PojoDefinition> pojosForProcedures;
-        public Map<String, PojoDefinition> pojosForFunctions;
+        public Map<String, PojoType> pojosForProcedures;
+        public Map<String, PojoType> pojosForFunctions;
         public String activeFilter;
         public String pckg;
         public Map<String, String> enumForCheckConstraints;
@@ -247,11 +246,10 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 
         public Set<String> daoIgnoreTables;
         public Set<String> daoOnlyTables;
-        public String daoImplementationPackage;
         public Map<String, ImplementsExtends> daoToImplements;
         public ImplementsExtends daoToExtends;
         public boolean daoMakeItFinal;
-        public Map<String, PojoDefinition> daoFunctionsResult;
+        public Map<String, PojoType> daoFunctionsResult;
         public String daoDebugLevel;
         public String daoDebugScope;
         public String daoActiveFilter;
@@ -410,6 +408,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     private static void initModel(ModelValues modelValues) {
         modelValues.replaceAllRegex = new HashMap<String, String>();
         modelValues.replaceAllReplacement = new HashMap<String, String>();
+        modelValues.doCompressMetaDirectives = false;
     }
 
     private static void initDatabaseModel(ModelValues modelValues) {
@@ -464,7 +463,6 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.joinTables = new HashMap<String, List<String>>();
         modelValues.doGenerateWrappers = false;
         modelValues.doGenerateValidationAnnotations = false;
-        modelValues.implementationPackage = null;
         modelValues.makeItFinal = false;
         modelValues.versionColumn = null;
         modelValues.versionColumns = new HashMap<String, Set<String>>();
@@ -472,8 +470,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         modelValues.debugLevel = null;
         modelValues.debugScope = null;
         modelValues.preserveForeignKeys = new HashSet<String>();
-        modelValues.pojosForProcedures = new HashMap<String, PojoDefinition>();
-        modelValues.pojosForFunctions = new HashMap<String, PojoDefinition>();
+        modelValues.pojosForProcedures = new HashMap<String, PojoType>();
+        modelValues.pojosForFunctions = new HashMap<String, PojoType>();
         modelValues.activeFilter = null;
         modelValues.pckg = null;
         modelValues.enumForCheckConstraints = new HashMap<String, String>();
@@ -511,11 +509,10 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     private static void initDaogenModel(ModelValues modelValues) {
         modelValues.daoIgnoreTables = new HashSet<String>();
         modelValues.daoOnlyTables = new HashSet<String>();
-        modelValues.daoImplementationPackage = null;
         modelValues.daoToImplements = new HashMap<String, ImplementsExtends>();
         modelValues.daoToExtends = null;
         modelValues.daoMakeItFinal = false;
-        modelValues.daoFunctionsResult = new HashMap<String, PojoDefinition>();
+        modelValues.daoFunctionsResult = new HashMap<String, PojoType>();
         modelValues.daoDebugLevel = null;
         modelValues.daoDebugScope = null;
         modelValues.daoActiveFilter = null;
@@ -535,6 +532,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         } else if (REPLACE_ALL_REPLACEMENT.equals(property.getName())) {
             if (property.getReplacement() != null && property.getReplaceId() != null)
                 modelValues.replaceAllReplacement.put(property.getReplaceId(), property.getReplacement());
+        } else if (COMPRESS_META_DIRECTIVES.equals(property.getName())) {
+            modelValues.doCompressMetaDirectives = true;
         }
     }
 
@@ -858,8 +857,6 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             modelValues.doGenerateWrappers = true;
         } else if (POJOGEN_GENERATE_VALIDATION_ANNOTATIONS.equals(property.getName())) {
             modelValues.doGenerateValidationAnnotations = true;
-        } else if (POJOGEN_IMPLEMENTATION_PACKAGE.equals(property.getName())) {
-            modelValues.implementationPackage = property.getImplPackage();
         } else if (POJOGEN_MAKE_IT_FINAL.equals(property.getName())) {
             modelValues.makeItFinal = true;
         } else if (POJOGEN_VERSION_COLUMN.equals(property.getName())) {
@@ -1029,8 +1026,6 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             for (int i = 0, m = property.getDbTables().size(); i < m; i++) {
                 modelValues.daoOnlyTables.add(property.getDbTables().get(i));
             }
-        } else if (DAOGEN_IMPLEMENTATION_PACKAGE.equals(property.getName())) {
-            modelValues.daoImplementationPackage = property.getImplPackage();
         } else if (DAOGEN_IMPLEMENTS_INTERFACES.equals(property.getName())) {
             ImplementsExtends ie = new ImplementsExtends(property.getToImplements().getToImplement(), false, property
                     .getToImplements().getDbTables(), property.getToImplements().getDbNotTables());
@@ -1086,6 +1081,12 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             }
         }
         return result;
+    }
+
+    @Override
+    public boolean isCompressMetaDirectives(EObject model) {
+        ModelValues modelValues = getModelValues(model);
+        return (modelValues != null) ? modelValues.doCompressMetaDirectives : false;
     }
 
     @Override
@@ -1275,12 +1276,6 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     }
 
     @Override
-    public String getImplementationPackage(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.implementationPackage : null;
-    }
-
-    @Override
     public boolean isMakeItFinal(EObject model) {
         ModelValues modelValues = getModelValues(model);
         return (modelValues != null) ? modelValues.makeItFinal : false;
@@ -1329,15 +1324,15 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     }
 
     @Override
-    public Map<String, PojoDefinition> getPojosForProcedures(EObject model) {
+    public Map<String, PojoType> getPojosForProcedures(EObject model) {
         ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.pojosForProcedures : Collections.<String, PojoDefinition> emptyMap();
+        return (modelValues != null) ? modelValues.pojosForProcedures : Collections.<String, PojoType> emptyMap();
     }
 
     @Override
-    public Map<String, PojoDefinition> getPojosForFunctions(EObject model) {
+    public Map<String, PojoType> getPojosForFunctions(EObject model) {
         ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.pojosForFunctions : Collections.<String, PojoDefinition> emptyMap();
+        return (modelValues != null) ? modelValues.pojosForFunctions : Collections.<String, PojoType> emptyMap();
     }
 
     @Override
@@ -1523,12 +1518,6 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     }
 
     @Override
-    public String getDaoImplementationPackage(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.daoImplementationPackage : null;
-    }
-
-    @Override
     public Map<String, ImplementsExtends> getDaoToImplements(EObject model) {
         ModelValues modelValues = getModelValues(model);
         return (modelValues != null) ? modelValues.daoToImplements : Collections.<String, ImplementsExtends> emptyMap();
@@ -1547,9 +1536,9 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     }
 
     @Override
-    public Map<String, PojoDefinition> getDaoFunctionsResult(EObject model) {
+    public Map<String, PojoType> getDaoFunctionsResult(EObject model) {
         ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.daoFunctionsResult : Collections.<String, PojoDefinition> emptyMap();
+        return (modelValues != null) ? modelValues.daoFunctionsResult : Collections.<String, PojoType> emptyMap();
     }
 
     @Override

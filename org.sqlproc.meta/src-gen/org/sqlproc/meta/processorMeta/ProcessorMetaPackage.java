@@ -1506,22 +1506,13 @@ public interface ProcessorMetaPackage extends EPackage
   int POJOGEN_PROPERTY__TO_EXTENDS_GENERICS = 22;
 
   /**
-   * The feature id for the '<em><b>Impl Package</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POJOGEN_PROPERTY__IMPL_PACKAGE = 23;
-
-  /**
    * The feature id for the '<em><b>Version</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY__VERSION = 24;
+  int POJOGEN_PROPERTY__VERSION = 23;
 
   /**
    * The feature id for the '<em><b>Db Not Tables</b></em>' attribute list.
@@ -1530,7 +1521,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY__DB_NOT_TABLES = 25;
+  int POJOGEN_PROPERTY__DB_NOT_TABLES = 24;
 
   /**
    * The feature id for the '<em><b>Debug</b></em>' containment reference.
@@ -1539,7 +1530,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY__DEBUG = 26;
+  int POJOGEN_PROPERTY__DEBUG = 25;
 
   /**
    * The feature id for the '<em><b>Proc Pojos</b></em>' containment reference list.
@@ -1548,7 +1539,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY__PROC_POJOS = 27;
+  int POJOGEN_PROPERTY__PROC_POJOS = 26;
 
   /**
    * The feature id for the '<em><b>Fun Pojos</b></em>' containment reference list.
@@ -1557,7 +1548,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY__FUN_POJOS = 28;
+  int POJOGEN_PROPERTY__FUN_POJOS = 27;
 
   /**
    * The feature id for the '<em><b>Active Filter</b></em>' attribute.
@@ -1566,7 +1557,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY__ACTIVE_FILTER = 29;
+  int POJOGEN_PROPERTY__ACTIVE_FILTER = 28;
 
   /**
    * The feature id for the '<em><b>Pckg</b></em>' attribute.
@@ -1575,7 +1566,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY__PCKG = 30;
+  int POJOGEN_PROPERTY__PCKG = 29;
 
   /**
    * The feature id for the '<em><b>Enum Name</b></em>' attribute.
@@ -1584,7 +1575,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY__ENUM_NAME = 31;
+  int POJOGEN_PROPERTY__ENUM_NAME = 30;
 
   /**
    * The feature id for the '<em><b>Db Check Constraints</b></em>' attribute list.
@@ -1593,7 +1584,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY__DB_CHECK_CONSTRAINTS = 32;
+  int POJOGEN_PROPERTY__DB_CHECK_CONSTRAINTS = 31;
 
   /**
    * The number of structural features of the '<em>Pojogen Property</em>' class.
@@ -1602,7 +1593,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POJOGEN_PROPERTY_FEATURE_COUNT = 33;
+  int POJOGEN_PROPERTY_FEATURE_COUNT = 32;
 
   /**
    * The meta object id for the '{@link org.sqlproc.meta.processorMeta.impl.MetaTypeAssignementImpl <em>Meta Type Assignement</em>}' class.
@@ -1833,22 +1824,13 @@ public interface ProcessorMetaPackage extends EPackage
   int DAOGEN_PROPERTY__DB_TABLES = 1;
 
   /**
-   * The feature id for the '<em><b>Impl Package</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DAOGEN_PROPERTY__IMPL_PACKAGE = 2;
-
-  /**
    * The feature id for the '<em><b>To Implements</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DAOGEN_PROPERTY__TO_IMPLEMENTS = 3;
+  int DAOGEN_PROPERTY__TO_IMPLEMENTS = 2;
 
   /**
    * The feature id for the '<em><b>To Extends</b></em>' containment reference.
@@ -1857,7 +1839,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DAOGEN_PROPERTY__TO_EXTENDS = 4;
+  int DAOGEN_PROPERTY__TO_EXTENDS = 3;
 
   /**
    * The feature id for the '<em><b>To Implements Generics</b></em>' containment reference.
@@ -1866,7 +1848,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DAOGEN_PROPERTY__TO_IMPLEMENTS_GENERICS = 5;
+  int DAOGEN_PROPERTY__TO_IMPLEMENTS_GENERICS = 4;
 
   /**
    * The feature id for the '<em><b>To Extends Generics</b></em>' containment reference.
@@ -1875,7 +1857,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DAOGEN_PROPERTY__TO_EXTENDS_GENERICS = 6;
+  int DAOGEN_PROPERTY__TO_EXTENDS_GENERICS = 5;
 
   /**
    * The feature id for the '<em><b>Db Function</b></em>' attribute.
@@ -1884,7 +1866,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DAOGEN_PROPERTY__DB_FUNCTION = 7;
+  int DAOGEN_PROPERTY__DB_FUNCTION = 6;
 
   /**
    * The feature id for the '<em><b>Result Type</b></em>' containment reference.
@@ -1893,7 +1875,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DAOGEN_PROPERTY__RESULT_TYPE = 8;
+  int DAOGEN_PROPERTY__RESULT_TYPE = 7;
 
   /**
    * The feature id for the '<em><b>Debug</b></em>' containment reference.
@@ -1902,7 +1884,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DAOGEN_PROPERTY__DEBUG = 9;
+  int DAOGEN_PROPERTY__DEBUG = 8;
 
   /**
    * The feature id for the '<em><b>Active Filter</b></em>' attribute.
@@ -1911,7 +1893,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DAOGEN_PROPERTY__ACTIVE_FILTER = 10;
+  int DAOGEN_PROPERTY__ACTIVE_FILTER = 9;
 
   /**
    * The feature id for the '<em><b>Pckg</b></em>' attribute.
@@ -1920,7 +1902,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DAOGEN_PROPERTY__PCKG = 11;
+  int DAOGEN_PROPERTY__PCKG = 10;
 
   /**
    * The number of structural features of the '<em>Daogen Property</em>' class.
@@ -1929,7 +1911,7 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DAOGEN_PROPERTY_FEATURE_COUNT = 12;
+  int DAOGEN_PROPERTY_FEATURE_COUNT = 11;
 
   /**
    * The meta object id for the '{@link org.sqlproc.meta.processorMeta.impl.PojoDefinitionImpl <em>Pojo Definition</em>}' class.
@@ -3266,6 +3248,70 @@ public interface ProcessorMetaPackage extends EPackage
    * @ordered
    */
   int OPTIONAL_FEATURE_FEATURE_COUNT = 4;
+
+  /**
+   * The meta object id for the '{@link org.sqlproc.meta.processorMeta.impl.PojoTypeImpl <em>Pojo Type</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.sqlproc.meta.processorMeta.impl.PojoTypeImpl
+   * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getPojoType()
+   * @generated
+   */
+  int POJO_TYPE = 61;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_TYPE__TYPE = 0;
+
+  /**
+   * The feature id for the '<em><b>Ref</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_TYPE__REF = 1;
+
+  /**
+   * The feature id for the '<em><b>Gtype</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_TYPE__GTYPE = 2;
+
+  /**
+   * The feature id for the '<em><b>Gref</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_TYPE__GREF = 3;
+
+  /**
+   * The feature id for the '<em><b>Array</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_TYPE__ARRAY = 4;
+
+  /**
+   * The number of structural features of the '<em>Pojo Type</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POJO_TYPE_FEATURE_COUNT = 5;
 
 
   /**
@@ -4694,17 +4740,6 @@ public interface ProcessorMetaPackage extends EPackage
   EReference getPojogenProperty_ToExtendsGenerics();
 
   /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.meta.processorMeta.PojogenProperty#getImplPackage <em>Impl Package</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Impl Package</em>'.
-   * @see org.sqlproc.meta.processorMeta.PojogenProperty#getImplPackage()
-   * @see #getPojogenProperty()
-   * @generated
-   */
-  EAttribute getPojogenProperty_ImplPackage();
-
-  /**
    * Returns the meta object for the attribute '{@link org.sqlproc.meta.processorMeta.PojogenProperty#getVersion <em>Version</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -5052,17 +5087,6 @@ public interface ProcessorMetaPackage extends EPackage
    * @generated
    */
   EAttribute getDaogenProperty_DbTables();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.sqlproc.meta.processorMeta.DaogenProperty#getImplPackage <em>Impl Package</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Impl Package</em>'.
-   * @see org.sqlproc.meta.processorMeta.DaogenProperty#getImplPackage()
-   * @see #getDaogenProperty()
-   * @generated
-   */
-  EAttribute getDaogenProperty_ImplPackage();
 
   /**
    * Returns the meta object for the containment reference '{@link org.sqlproc.meta.processorMeta.DaogenProperty#getToImplements <em>To Implements</em>}'.
@@ -6387,6 +6411,71 @@ public interface ProcessorMetaPackage extends EPackage
   EAttribute getOptionalFeature_Option();
 
   /**
+   * Returns the meta object for class '{@link org.sqlproc.meta.processorMeta.PojoType <em>Pojo Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Pojo Type</em>'.
+   * @see org.sqlproc.meta.processorMeta.PojoType
+   * @generated
+   */
+  EClass getPojoType();
+
+  /**
+   * Returns the meta object for the reference '{@link org.sqlproc.meta.processorMeta.PojoType#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Type</em>'.
+   * @see org.sqlproc.meta.processorMeta.PojoType#getType()
+   * @see #getPojoType()
+   * @generated
+   */
+  EReference getPojoType_Type();
+
+  /**
+   * Returns the meta object for the reference '{@link org.sqlproc.meta.processorMeta.PojoType#getRef <em>Ref</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Ref</em>'.
+   * @see org.sqlproc.meta.processorMeta.PojoType#getRef()
+   * @see #getPojoType()
+   * @generated
+   */
+  EReference getPojoType_Ref();
+
+  /**
+   * Returns the meta object for the reference '{@link org.sqlproc.meta.processorMeta.PojoType#getGtype <em>Gtype</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Gtype</em>'.
+   * @see org.sqlproc.meta.processorMeta.PojoType#getGtype()
+   * @see #getPojoType()
+   * @generated
+   */
+  EReference getPojoType_Gtype();
+
+  /**
+   * Returns the meta object for the reference '{@link org.sqlproc.meta.processorMeta.PojoType#getGref <em>Gref</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Gref</em>'.
+   * @see org.sqlproc.meta.processorMeta.PojoType#getGref()
+   * @see #getPojoType()
+   * @generated
+   */
+  EReference getPojoType_Gref();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.sqlproc.meta.processorMeta.PojoType#isArray <em>Array</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Array</em>'.
+   * @see org.sqlproc.meta.processorMeta.PojoType#isArray()
+   * @see #getPojoType()
+   * @generated
+   */
+  EAttribute getPojoType_Array();
+
+  /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -7520,14 +7609,6 @@ public interface ProcessorMetaPackage extends EPackage
     EReference POJOGEN_PROPERTY__TO_EXTENDS_GENERICS = eINSTANCE.getPojogenProperty_ToExtendsGenerics();
 
     /**
-     * The meta object literal for the '<em><b>Impl Package</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POJOGEN_PROPERTY__IMPL_PACKAGE = eINSTANCE.getPojogenProperty_ImplPackage();
-
-    /**
      * The meta object literal for the '<em><b>Version</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -7788,14 +7869,6 @@ public interface ProcessorMetaPackage extends EPackage
      * @generated
      */
     EAttribute DAOGEN_PROPERTY__DB_TABLES = eINSTANCE.getDaogenProperty_DbTables();
-
-    /**
-     * The meta object literal for the '<em><b>Impl Package</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DAOGEN_PROPERTY__IMPL_PACKAGE = eINSTANCE.getDaogenProperty_ImplPackage();
 
     /**
      * The meta object literal for the '<em><b>To Implements</b></em>' containment reference feature.
@@ -8842,6 +8915,56 @@ public interface ProcessorMetaPackage extends EPackage
      * @generated
      */
     EAttribute OPTIONAL_FEATURE__OPTION = eINSTANCE.getOptionalFeature_Option();
+
+    /**
+     * The meta object literal for the '{@link org.sqlproc.meta.processorMeta.impl.PojoTypeImpl <em>Pojo Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.sqlproc.meta.processorMeta.impl.PojoTypeImpl
+     * @see org.sqlproc.meta.processorMeta.impl.ProcessorMetaPackageImpl#getPojoType()
+     * @generated
+     */
+    EClass POJO_TYPE = eINSTANCE.getPojoType();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference POJO_TYPE__TYPE = eINSTANCE.getPojoType_Type();
+
+    /**
+     * The meta object literal for the '<em><b>Ref</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference POJO_TYPE__REF = eINSTANCE.getPojoType_Ref();
+
+    /**
+     * The meta object literal for the '<em><b>Gtype</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference POJO_TYPE__GTYPE = eINSTANCE.getPojoType_Gtype();
+
+    /**
+     * The meta object literal for the '<em><b>Gref</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference POJO_TYPE__GREF = eINSTANCE.getPojoType_Gref();
+
+    /**
+     * The meta object literal for the '<em><b>Array</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute POJO_TYPE__ARRAY = eINSTANCE.getPojoType_Array();
 
   }
 

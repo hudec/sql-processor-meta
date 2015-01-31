@@ -23,7 +23,7 @@ import org.sqlproc.meta.processorMeta.ExtendsAssignement;
 import org.sqlproc.meta.processorMeta.ExtendsAssignementGenerics;
 import org.sqlproc.meta.processorMeta.ImplementsAssignement;
 import org.sqlproc.meta.processorMeta.ImplementsAssignementGenerics;
-import org.sqlproc.meta.processorMeta.PojoDefinition;
+import org.sqlproc.meta.processorMeta.PojoType;
 import org.sqlproc.meta.processorMeta.ProcessorMetaPackage;
 
 /**
@@ -35,7 +35,6 @@ import org.sqlproc.meta.processorMeta.ProcessorMetaPackage;
  * <ul>
  *   <li>{@link org.sqlproc.meta.processorMeta.impl.DaogenPropertyImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sqlproc.meta.processorMeta.impl.DaogenPropertyImpl#getDbTables <em>Db Tables</em>}</li>
- *   <li>{@link org.sqlproc.meta.processorMeta.impl.DaogenPropertyImpl#getImplPackage <em>Impl Package</em>}</li>
  *   <li>{@link org.sqlproc.meta.processorMeta.impl.DaogenPropertyImpl#getToImplements <em>To Implements</em>}</li>
  *   <li>{@link org.sqlproc.meta.processorMeta.impl.DaogenPropertyImpl#getToExtends <em>To Extends</em>}</li>
  *   <li>{@link org.sqlproc.meta.processorMeta.impl.DaogenPropertyImpl#getToImplementsGenerics <em>To Implements Generics</em>}</li>
@@ -81,26 +80,6 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
    * @ordered
    */
   protected EList<String> dbTables;
-
-  /**
-   * The default value of the '{@link #getImplPackage() <em>Impl Package</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getImplPackage()
-   * @generated
-   * @ordered
-   */
-  protected static final String IMPL_PACKAGE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getImplPackage() <em>Impl Package</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getImplPackage()
-   * @generated
-   * @ordered
-   */
-  protected String implPackage = IMPL_PACKAGE_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getToImplements() <em>To Implements</em>}' containment reference.
@@ -170,7 +149,7 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
    * @generated
    * @ordered
    */
-  protected PojoDefinition resultType;
+  protected PojoType resultType;
 
   /**
    * The cached value of the '{@link #getDebug() <em>Debug</em>}' containment reference.
@@ -278,29 +257,6 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
       dbTables = new EDataTypeEList<String>(String.class, this, ProcessorMetaPackage.DAOGEN_PROPERTY__DB_TABLES);
     }
     return dbTables;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String getImplPackage()
-  {
-    return implPackage;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setImplPackage(String newImplPackage)
-  {
-    String oldImplPackage = implPackage;
-    implPackage = newImplPackage;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.DAOGEN_PROPERTY__IMPL_PACKAGE, oldImplPackage, implPackage));
   }
 
   /**
@@ -523,7 +479,7 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public PojoDefinition getResultType()
+  public PojoType getResultType()
   {
     return resultType;
   }
@@ -533,9 +489,9 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetResultType(PojoDefinition newResultType, NotificationChain msgs)
+  public NotificationChain basicSetResultType(PojoType newResultType, NotificationChain msgs)
   {
-    PojoDefinition oldResultType = resultType;
+    PojoType oldResultType = resultType;
     resultType = newResultType;
     if (eNotificationRequired())
     {
@@ -550,7 +506,7 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setResultType(PojoDefinition newResultType)
+  public void setResultType(PojoType newResultType)
   {
     if (newResultType != resultType)
     {
@@ -700,8 +656,6 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
         return getName();
       case ProcessorMetaPackage.DAOGEN_PROPERTY__DB_TABLES:
         return getDbTables();
-      case ProcessorMetaPackage.DAOGEN_PROPERTY__IMPL_PACKAGE:
-        return getImplPackage();
       case ProcessorMetaPackage.DAOGEN_PROPERTY__TO_IMPLEMENTS:
         return getToImplements();
       case ProcessorMetaPackage.DAOGEN_PROPERTY__TO_EXTENDS:
@@ -742,9 +696,6 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
         getDbTables().clear();
         getDbTables().addAll((Collection<? extends String>)newValue);
         return;
-      case ProcessorMetaPackage.DAOGEN_PROPERTY__IMPL_PACKAGE:
-        setImplPackage((String)newValue);
-        return;
       case ProcessorMetaPackage.DAOGEN_PROPERTY__TO_IMPLEMENTS:
         setToImplements((ImplementsAssignement)newValue);
         return;
@@ -761,7 +712,7 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
         setDbFunction((String)newValue);
         return;
       case ProcessorMetaPackage.DAOGEN_PROPERTY__RESULT_TYPE:
-        setResultType((PojoDefinition)newValue);
+        setResultType((PojoType)newValue);
         return;
       case ProcessorMetaPackage.DAOGEN_PROPERTY__DEBUG:
         setDebug((DebugLevelAssignement)newValue);
@@ -792,9 +743,6 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
       case ProcessorMetaPackage.DAOGEN_PROPERTY__DB_TABLES:
         getDbTables().clear();
         return;
-      case ProcessorMetaPackage.DAOGEN_PROPERTY__IMPL_PACKAGE:
-        setImplPackage(IMPL_PACKAGE_EDEFAULT);
-        return;
       case ProcessorMetaPackage.DAOGEN_PROPERTY__TO_IMPLEMENTS:
         setToImplements((ImplementsAssignement)null);
         return;
@@ -811,7 +759,7 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
         setDbFunction(DB_FUNCTION_EDEFAULT);
         return;
       case ProcessorMetaPackage.DAOGEN_PROPERTY__RESULT_TYPE:
-        setResultType((PojoDefinition)null);
+        setResultType((PojoType)null);
         return;
       case ProcessorMetaPackage.DAOGEN_PROPERTY__DEBUG:
         setDebug((DebugLevelAssignement)null);
@@ -840,8 +788,6 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case ProcessorMetaPackage.DAOGEN_PROPERTY__DB_TABLES:
         return dbTables != null && !dbTables.isEmpty();
-      case ProcessorMetaPackage.DAOGEN_PROPERTY__IMPL_PACKAGE:
-        return IMPL_PACKAGE_EDEFAULT == null ? implPackage != null : !IMPL_PACKAGE_EDEFAULT.equals(implPackage);
       case ProcessorMetaPackage.DAOGEN_PROPERTY__TO_IMPLEMENTS:
         return toImplements != null;
       case ProcessorMetaPackage.DAOGEN_PROPERTY__TO_EXTENDS:
@@ -879,8 +825,6 @@ public class DaogenPropertyImpl extends MinimalEObjectImpl.Container implements 
     result.append(name);
     result.append(", dbTables: ");
     result.append(dbTables);
-    result.append(", implPackage: ");
-    result.append(implPackage);
     result.append(", dbFunction: ");
     result.append(dbFunction);
     result.append(", activeFilter: ");
