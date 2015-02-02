@@ -179,30 +179,30 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ValueType");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Assignment cValueAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
-		private final RuleCall cValueSTRINGTerminalRuleCall_0_0 = (RuleCall)cValueAssignment_0.eContents().get(0);
+		private final RuleCall cValueSTRING_VALUETerminalRuleCall_0_0 = (RuleCall)cValueAssignment_0.eContents().get(0);
 		private final Assignment cNumberAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
-		private final RuleCall cNumberINTTerminalRuleCall_1_0 = (RuleCall)cNumberAssignment_1.eContents().get(0);
+		private final RuleCall cNumberNUMBERTerminalRuleCall_1_0 = (RuleCall)cNumberAssignment_1.eContents().get(0);
 		private final Assignment cIdAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
 		private final RuleCall cIdQualifiedNameParserRuleCall_2_0 = (RuleCall)cIdAssignment_2.eContents().get(0);
 		
 		//ValueType:
-		//	value=STRING | number=INT | id=QualifiedName;
+		//	value=STRING_VALUE | number=NUMBER | id=QualifiedName;
 		public ParserRule getRule() { return rule; }
 
-		//value=STRING | number=INT | id=QualifiedName
+		//value=STRING_VALUE | number=NUMBER | id=QualifiedName
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//value=STRING
+		//value=STRING_VALUE
 		public Assignment getValueAssignment_0() { return cValueAssignment_0; }
 
-		//STRING
-		public RuleCall getValueSTRINGTerminalRuleCall_0_0() { return cValueSTRINGTerminalRuleCall_0_0; }
+		//STRING_VALUE
+		public RuleCall getValueSTRING_VALUETerminalRuleCall_0_0() { return cValueSTRING_VALUETerminalRuleCall_0_0; }
 
-		//number=INT
+		//number=NUMBER
 		public Assignment getNumberAssignment_1() { return cNumberAssignment_1; }
 
-		//INT
-		public RuleCall getNumberINTTerminalRuleCall_1_0() { return cNumberINTTerminalRuleCall_1_0; }
+		//NUMBER
+		public RuleCall getNumberNUMBERTerminalRuleCall_1_0() { return cNumberNUMBERTerminalRuleCall_1_0; }
 
 		//id=QualifiedName
 		public Assignment getIdAssignment_2() { return cIdAssignment_2; }
@@ -331,17 +331,17 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final RuleCall cLPARENTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
 		private final Assignment cSizeAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cSizeINTTerminalRuleCall_1_1_0 = (RuleCall)cSizeAssignment_1_1.eContents().get(0);
+		private final RuleCall cSizeNUMBERTerminalRuleCall_1_1_0 = (RuleCall)cSizeAssignment_1_1.eContents().get(0);
 		private final RuleCall cRPARENTerminalRuleCall_1_2 = (RuleCall)cGroup_1.eContents().get(2);
 		private final Keyword cHyphenMinusGreaterThanSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cTypeAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cTypePojoTypeParserRuleCall_3_0 = (RuleCall)cTypeAssignment_3.eContents().get(0);
 		
 		//SqlTypeAssignement:
-		//	typeName=IDENT (LPAREN size=INT RPAREN)? "->" type=PojoType;
+		//	typeName=IDENT (LPAREN size=NUMBER RPAREN)? "->" type=PojoType;
 		public ParserRule getRule() { return rule; }
 
-		//typeName=IDENT (LPAREN size=INT RPAREN)? "->" type=PojoType
+		//typeName=IDENT (LPAREN size=NUMBER RPAREN)? "->" type=PojoType
 		public Group getGroup() { return cGroup; }
 
 		//typeName=IDENT
@@ -350,17 +350,17 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//IDENT
 		public RuleCall getTypeNameIDENTTerminalRuleCall_0_0() { return cTypeNameIDENTTerminalRuleCall_0_0; }
 
-		//(LPAREN size=INT RPAREN)?
+		//(LPAREN size=NUMBER RPAREN)?
 		public Group getGroup_1() { return cGroup_1; }
 
 		//LPAREN
 		public RuleCall getLPARENTerminalRuleCall_1_0() { return cLPARENTerminalRuleCall_1_0; }
 
-		//size=INT
+		//size=NUMBER
 		public Assignment getSizeAssignment_1_1() { return cSizeAssignment_1_1; }
 
-		//INT
-		public RuleCall getSizeINTTerminalRuleCall_1_1_0() { return cSizeINTTerminalRuleCall_1_1_0; }
+		//NUMBER
+		public RuleCall getSizeNUMBERTerminalRuleCall_1_1_0() { return cSizeNUMBERTerminalRuleCall_1_1_0; }
 
 		//RPAREN
 		public RuleCall getRPARENTerminalRuleCall_1_2() { return cRPARENTerminalRuleCall_1_2; }
@@ -4659,7 +4659,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cColAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cColColumnParserRuleCall_1_1_0 = (RuleCall)cColAssignment_1_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
-		private final RuleCall cSTRING1TerminalRuleCall_2_0 = (RuleCall)cGroup_2.eContents().get(0);
+		private final RuleCall cSTRINGTerminalRuleCall_2_0 = (RuleCall)cGroup_2.eContents().get(0);
 		private final Assignment cCnstAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
 		private final RuleCall cCnstConstantParserRuleCall_2_1_0 = (RuleCall)cCnstAssignment_2_1.eContents().get(0);
 		private final Group cGroup_3 = (Group)cAlternatives.eContents().get(3);
@@ -4667,8 +4667,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cIdentAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
 		private final RuleCall cIdentIdentifierParserRuleCall_3_1_0 = (RuleCall)cIdentAssignment_3_1.eContents().get(0);
 		private final Group cGroup_4 = (Group)cAlternatives.eContents().get(4);
-		private final RuleCall cSTRING1TerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
-		private final RuleCall cSTRING1TerminalRuleCall_4_1 = (RuleCall)cGroup_4.eContents().get(1);
+		private final RuleCall cSTRINGTerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
+		private final RuleCall cSTRINGTerminalRuleCall_4_1 = (RuleCall)cGroup_4.eContents().get(1);
 		private final Assignment cCnstOperAssignment_4_2 = (Assignment)cGroup_4.eContents().get(2);
 		private final RuleCall cCnstOperConstantOperatorParserRuleCall_4_2_0 = (RuleCall)cCnstOperAssignment_4_2.eContents().get(0);
 		private final Group cGroup_5 = (Group)cAlternatives.eContents().get(5);
@@ -4692,14 +4692,14 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cDbcolDatabaseColumnParserRuleCall_7_1_1_0 = (RuleCall)cDbcolAssignment_7_1_1.eContents().get(0);
 		
 		//SqlFragment:
-		//	value=SqlValue | AT col=Column | STRING1 cnst=Constant | COLON ident=Identifier | STRING1 STRING1
+		//	value=SqlValue | AT col=Column | STRING cnst=Constant | COLON ident=Identifier | STRING STRING
 		//	cnstOper=ConstantOperator | COLON COLON identOper=IdentifierOperator | LBRACE meta=MetaSql RBRACE | PERCENT (PERCENT
 		//	dbtab=DatabaseTable | dbcol=DatabaseColumn);
 		public ParserRule getRule() { return rule; }
 
-		//value=SqlValue | AT col=Column | STRING1 cnst=Constant | COLON ident=Identifier | STRING1 STRING1
-		//cnstOper=ConstantOperator | COLON COLON identOper=IdentifierOperator | LBRACE meta=MetaSql RBRACE | PERCENT (PERCENT
-		//dbtab=DatabaseTable | dbcol=DatabaseColumn)
+		//value=SqlValue | AT col=Column | STRING cnst=Constant | COLON ident=Identifier | STRING STRING cnstOper=ConstantOperator
+		//| COLON COLON identOper=IdentifierOperator | LBRACE meta=MetaSql RBRACE | PERCENT (PERCENT dbtab=DatabaseTable |
+		//dbcol=DatabaseColumn)
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//value=SqlValue
@@ -4720,11 +4720,11 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//Column
 		public RuleCall getColColumnParserRuleCall_1_1_0() { return cColColumnParserRuleCall_1_1_0; }
 
-		//STRING1 cnst=Constant
+		//STRING cnst=Constant
 		public Group getGroup_2() { return cGroup_2; }
 
-		//STRING1
-		public RuleCall getSTRING1TerminalRuleCall_2_0() { return cSTRING1TerminalRuleCall_2_0; }
+		//STRING
+		public RuleCall getSTRINGTerminalRuleCall_2_0() { return cSTRINGTerminalRuleCall_2_0; }
 
 		//cnst=Constant
 		public Assignment getCnstAssignment_2_1() { return cCnstAssignment_2_1; }
@@ -4744,14 +4744,14 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//Identifier
 		public RuleCall getIdentIdentifierParserRuleCall_3_1_0() { return cIdentIdentifierParserRuleCall_3_1_0; }
 
-		//STRING1 STRING1 cnstOper=ConstantOperator
+		//STRING STRING cnstOper=ConstantOperator
 		public Group getGroup_4() { return cGroup_4; }
 
-		//STRING1
-		public RuleCall getSTRING1TerminalRuleCall_4_0() { return cSTRING1TerminalRuleCall_4_0; }
+		//STRING
+		public RuleCall getSTRINGTerminalRuleCall_4_0() { return cSTRINGTerminalRuleCall_4_0; }
 
-		//STRING1
-		public RuleCall getSTRING1TerminalRuleCall_4_1() { return cSTRING1TerminalRuleCall_4_1; }
+		//STRING
+		public RuleCall getSTRINGTerminalRuleCall_4_1() { return cSTRINGTerminalRuleCall_4_1; }
 
 		//cnstOper=ConstantOperator
 		public Assignment getCnstOperAssignment_4_2() { return cCnstOperAssignment_4_2; }
@@ -4824,7 +4824,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRESTTerminalRuleCall_0_0 = (RuleCall)cAlternatives_0.eContents().get(0);
 		private final RuleCall cIDENT_DOTTerminalRuleCall_0_1 = (RuleCall)cAlternatives_0.eContents().get(1);
 		private final RuleCall cIDENTTerminalRuleCall_0_2 = (RuleCall)cAlternatives_0.eContents().get(2);
-		private final RuleCall cINTTerminalRuleCall_0_3 = (RuleCall)cAlternatives_0.eContents().get(3);
+		private final RuleCall cNUMBERTerminalRuleCall_0_3 = (RuleCall)cAlternatives_0.eContents().get(3);
 		private final RuleCall cWSTerminalRuleCall_0_4 = (RuleCall)cAlternatives_0.eContents().get(4);
 		private final RuleCall cCOMMATerminalRuleCall_0_5 = (RuleCall)cAlternatives_0.eContents().get(5);
 		private final RuleCall cMINUSTerminalRuleCall_0_6 = (RuleCall)cAlternatives_0.eContents().get(6);
@@ -4854,7 +4854,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRESTTerminalRuleCall_1_0_0 = (RuleCall)cAlternatives_1_0.eContents().get(0);
 		private final RuleCall cIDENT_DOTTerminalRuleCall_1_0_1 = (RuleCall)cAlternatives_1_0.eContents().get(1);
 		private final RuleCall cIDENTTerminalRuleCall_1_0_2 = (RuleCall)cAlternatives_1_0.eContents().get(2);
-		private final RuleCall cINTTerminalRuleCall_1_0_3 = (RuleCall)cAlternatives_1_0.eContents().get(3);
+		private final RuleCall cNUMBERTerminalRuleCall_1_0_3 = (RuleCall)cAlternatives_1_0.eContents().get(3);
 		private final RuleCall cWSTerminalRuleCall_1_0_4 = (RuleCall)cAlternatives_1_0.eContents().get(4);
 		private final RuleCall cCOMMATerminalRuleCall_1_0_5 = (RuleCall)cAlternatives_1_0.eContents().get(5);
 		private final RuleCall cMINUSTerminalRuleCall_1_0_6 = (RuleCall)cAlternatives_1_0.eContents().get(6);
@@ -4882,22 +4882,22 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		
 		////~(COLON | STRING | AT | LBRACE | SEMICOLON)
 		//SqlValue:
-		//	(REST | IDENT_DOT | IDENT | INT | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI | NOT | BAND | BOR |
-		//	HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
-		//	OPTION_TYPE) => (REST | IDENT_DOT | IDENT | INT | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI | NOT
-		//	| BAND | BOR | HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE |
-		//	MAPPING_TYPE | OPTION_TYPE)*;
+		//	(REST | IDENT_DOT | IDENT | NUMBER | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI | NOT | BAND | BOR
+		//	| HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
+		//	OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI |
+		//	NOT | BAND | BOR | HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE
+		//	| MAPPING_TYPE | OPTION_TYPE)*;
 		public ParserRule getRule() { return rule; }
 
-		//(REST | IDENT_DOT | IDENT | INT | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI | NOT | BAND | BOR |
+		//(REST | IDENT_DOT | IDENT | NUMBER | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI | NOT | BAND | BOR |
 		//HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
-		//OPTION_TYPE) => (REST | IDENT_DOT | IDENT | INT | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI | NOT |
-		//BAND | BOR | HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE |
-		//MAPPING_TYPE | OPTION_TYPE)*
+		//OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI |
+		//NOT | BAND | BOR | HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE
+		//| MAPPING_TYPE | OPTION_TYPE)*
 		public Group getGroup() { return cGroup; }
 
-		//REST | IDENT_DOT | IDENT | INT | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI | NOT | BAND | BOR | HASH
-		//| CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
+		//REST | IDENT_DOT | IDENT | NUMBER | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI | NOT | BAND | BOR |
+		//HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
 		//OPTION_TYPE
 		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 
@@ -4910,8 +4910,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//IDENT
 		public RuleCall getIDENTTerminalRuleCall_0_2() { return cIDENTTerminalRuleCall_0_2; }
 
-		//INT
-		public RuleCall getINTTerminalRuleCall_0_3() { return cINTTerminalRuleCall_0_3; }
+		//NUMBER
+		public RuleCall getNUMBERTerminalRuleCall_0_3() { return cNUMBERTerminalRuleCall_0_3; }
 
 		//WS
 		public RuleCall getWSTerminalRuleCall_0_4() { return cWSTerminalRuleCall_0_4; }
@@ -4985,13 +4985,13 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//OPTION_TYPE
 		public RuleCall getOPTION_TYPETerminalRuleCall_0_27() { return cOPTION_TYPETerminalRuleCall_0_27; }
 
-		//=> (REST | IDENT_DOT | IDENT | INT | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI | NOT | BAND | BOR |
-		//HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
+		//=> (REST | IDENT_DOT | IDENT | NUMBER | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI | NOT | BAND | BOR
+		//| HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
 		//OPTION_TYPE)*
 		public Group getGroup_1() { return cGroup_1; }
 
-		//REST | IDENT_DOT | IDENT | INT | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI | NOT | BAND | BOR | HASH
-		//| CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
+		//REST | IDENT_DOT | IDENT | NUMBER | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI | NOT | BAND | BOR |
+		//HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
 		//OPTION_TYPE
 		public Alternatives getAlternatives_1_0() { return cAlternatives_1_0; }
 
@@ -5004,8 +5004,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//IDENT
 		public RuleCall getIDENTTerminalRuleCall_1_0_2() { return cIDENTTerminalRuleCall_1_0_2; }
 
-		//INT
-		public RuleCall getINTTerminalRuleCall_1_0_3() { return cINTTerminalRuleCall_1_0_3; }
+		//NUMBER
+		public RuleCall getNUMBERTerminalRuleCall_1_0_3() { return cNUMBERTerminalRuleCall_1_0_3; }
 
 		//WS
 		public RuleCall getWSTerminalRuleCall_1_0_4() { return cWSTerminalRuleCall_1_0_4; }
@@ -5132,18 +5132,18 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_5 = (Group)cAlternatives.eContents().get(5);
 		private final Assignment cTypeAssignment_5_0 = (Assignment)cGroup_5.eContents().get(0);
 		private final RuleCall cTypeHASHTerminalRuleCall_5_0_0 = (RuleCall)cTypeAssignment_5_0.eContents().get(0);
-		private final RuleCall cINTTerminalRuleCall_5_1 = (RuleCall)cGroup_5.eContents().get(1);
+		private final RuleCall cNUMBERTerminalRuleCall_5_1 = (RuleCall)cGroup_5.eContents().get(1);
 		private final Assignment cOrdAssignment_5_2 = (Assignment)cGroup_5.eContents().get(2);
 		private final RuleCall cOrdOrdSqlParserRuleCall_5_2_0 = (RuleCall)cOrdAssignment_5_2.eContents().get(0);
 		
 		//MetaSql:
 		//	WS ifs+=IfSql (BOR ifs+=IfSql)* | type=QUESTI cond=IfSqlCond BOR ifs+=IfSql (BOR ifs+=IfSql)* | type=BAND ifs+=IfSql
-		//	(BOR ifs+=IfSql)* | type=BOR ifs+=IfSql (BOR ifs+=IfSql)* | type=EQUALS WS* ftype=IDENT ifs+=IfSql | type=HASH INT
+		//	(BOR ifs+=IfSql)* | type=BOR ifs+=IfSql (BOR ifs+=IfSql)* | type=EQUALS WS* ftype=IDENT ifs+=IfSql | type=HASH NUMBER
 		//	ord=OrdSql;
 		public ParserRule getRule() { return rule; }
 
 		//WS ifs+=IfSql (BOR ifs+=IfSql)* | type=QUESTI cond=IfSqlCond BOR ifs+=IfSql (BOR ifs+=IfSql)* | type=BAND ifs+=IfSql
-		//(BOR ifs+=IfSql)* | type=BOR ifs+=IfSql (BOR ifs+=IfSql)* | type=EQUALS WS* ftype=IDENT ifs+=IfSql | type=HASH INT
+		//(BOR ifs+=IfSql)* | type=BOR ifs+=IfSql (BOR ifs+=IfSql)* | type=EQUALS WS* ftype=IDENT ifs+=IfSql | type=HASH NUMBER
 		//ord=OrdSql
 		public Alternatives getAlternatives() { return cAlternatives; }
 
@@ -5285,7 +5285,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//IfSql
 		public RuleCall getIfsIfSqlParserRuleCall_4_3_0() { return cIfsIfSqlParserRuleCall_4_3_0; }
 
-		//type=HASH INT ord=OrdSql
+		//type=HASH NUMBER ord=OrdSql
 		public Group getGroup_5() { return cGroup_5; }
 
 		//type=HASH
@@ -5294,8 +5294,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//HASH
 		public RuleCall getTypeHASHTerminalRuleCall_5_0_0() { return cTypeHASHTerminalRuleCall_5_0_0; }
 
-		//INT
-		public RuleCall getINTTerminalRuleCall_5_1() { return cINTTerminalRuleCall_5_1; }
+		//NUMBER
+		public RuleCall getNUMBERTerminalRuleCall_5_1() { return cNUMBERTerminalRuleCall_5_1; }
 
 		//ord=OrdSql
 		public Assignment getOrdAssignment_5_2() { return cOrdAssignment_5_2; }
@@ -5330,7 +5330,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cColAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cColColumnParserRuleCall_1_1_0 = (RuleCall)cColAssignment_1_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
-		private final RuleCall cSTRING1TerminalRuleCall_2_0 = (RuleCall)cGroup_2.eContents().get(0);
+		private final RuleCall cSTRINGTerminalRuleCall_2_0 = (RuleCall)cGroup_2.eContents().get(0);
 		private final Assignment cCnstAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
 		private final RuleCall cCnstConstantParserRuleCall_2_1_0 = (RuleCall)cCnstAssignment_2_1.eContents().get(0);
 		private final Group cGroup_3 = (Group)cAlternatives.eContents().get(3);
@@ -5338,8 +5338,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cIdentAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
 		private final RuleCall cIdentIdentifierParserRuleCall_3_1_0 = (RuleCall)cIdentAssignment_3_1.eContents().get(0);
 		private final Group cGroup_4 = (Group)cAlternatives.eContents().get(4);
-		private final RuleCall cSTRING1TerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
-		private final RuleCall cSTRING1TerminalRuleCall_4_1 = (RuleCall)cGroup_4.eContents().get(1);
+		private final RuleCall cSTRINGTerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
+		private final RuleCall cSTRINGTerminalRuleCall_4_1 = (RuleCall)cGroup_4.eContents().get(1);
 		private final Assignment cCnstOperAssignment_4_2 = (Assignment)cGroup_4.eContents().get(2);
 		private final RuleCall cCnstOperConstantOperatorParserRuleCall_4_2_0 = (RuleCall)cCnstOperAssignment_4_2.eContents().get(0);
 		private final Group cGroup_5 = (Group)cAlternatives.eContents().get(5);
@@ -5363,12 +5363,12 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRBRACETerminalRuleCall_7_2 = (RuleCall)cGroup_7.eContents().get(2);
 		
 		//IfSqlFragment:
-		//	value=IfSqlValue | AT col=Column | STRING1 cnst=Constant | COLON ident=Identifier | STRING1 STRING1
+		//	value=IfSqlValue | AT col=Column | STRING cnst=Constant | COLON ident=Identifier | STRING STRING
 		//	cnstOper=ConstantOperator | COLON COLON identOper=IdentifierOperator | PERCENT (PERCENT dbtab=DatabaseTable |
 		//	dbcol=DatabaseColumn) | LBRACE meta=IfMetaSql RBRACE;
 		public ParserRule getRule() { return rule; }
 
-		//value=IfSqlValue | AT col=Column | STRING1 cnst=Constant | COLON ident=Identifier | STRING1 STRING1
+		//value=IfSqlValue | AT col=Column | STRING cnst=Constant | COLON ident=Identifier | STRING STRING
 		//cnstOper=ConstantOperator | COLON COLON identOper=IdentifierOperator | PERCENT (PERCENT dbtab=DatabaseTable |
 		//dbcol=DatabaseColumn) | LBRACE meta=IfMetaSql RBRACE
 		public Alternatives getAlternatives() { return cAlternatives; }
@@ -5391,11 +5391,11 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//Column
 		public RuleCall getColColumnParserRuleCall_1_1_0() { return cColColumnParserRuleCall_1_1_0; }
 
-		//STRING1 cnst=Constant
+		//STRING cnst=Constant
 		public Group getGroup_2() { return cGroup_2; }
 
-		//STRING1
-		public RuleCall getSTRING1TerminalRuleCall_2_0() { return cSTRING1TerminalRuleCall_2_0; }
+		//STRING
+		public RuleCall getSTRINGTerminalRuleCall_2_0() { return cSTRINGTerminalRuleCall_2_0; }
 
 		//cnst=Constant
 		public Assignment getCnstAssignment_2_1() { return cCnstAssignment_2_1; }
@@ -5415,14 +5415,14 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//Identifier
 		public RuleCall getIdentIdentifierParserRuleCall_3_1_0() { return cIdentIdentifierParserRuleCall_3_1_0; }
 
-		//STRING1 STRING1 cnstOper=ConstantOperator
+		//STRING STRING cnstOper=ConstantOperator
 		public Group getGroup_4() { return cGroup_4; }
 
-		//STRING1
-		public RuleCall getSTRING1TerminalRuleCall_4_0() { return cSTRING1TerminalRuleCall_4_0; }
+		//STRING
+		public RuleCall getSTRINGTerminalRuleCall_4_0() { return cSTRINGTerminalRuleCall_4_0; }
 
-		//STRING1
-		public RuleCall getSTRING1TerminalRuleCall_4_1() { return cSTRING1TerminalRuleCall_4_1; }
+		//STRING
+		public RuleCall getSTRINGTerminalRuleCall_4_1() { return cSTRINGTerminalRuleCall_4_1; }
 
 		//cnstOper=ConstantOperator
 		public Assignment getCnstOperAssignment_4_2() { return cCnstOperAssignment_4_2; }
@@ -5495,7 +5495,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRESTTerminalRuleCall_0_0 = (RuleCall)cAlternatives_0.eContents().get(0);
 		private final RuleCall cIDENT_DOTTerminalRuleCall_0_1 = (RuleCall)cAlternatives_0.eContents().get(1);
 		private final RuleCall cIDENTTerminalRuleCall_0_2 = (RuleCall)cAlternatives_0.eContents().get(2);
-		private final RuleCall cINTTerminalRuleCall_0_3 = (RuleCall)cAlternatives_0.eContents().get(3);
+		private final RuleCall cNUMBERTerminalRuleCall_0_3 = (RuleCall)cAlternatives_0.eContents().get(3);
 		private final RuleCall cWSTerminalRuleCall_0_4 = (RuleCall)cAlternatives_0.eContents().get(4);
 		private final RuleCall cSEMICOLONTerminalRuleCall_0_5 = (RuleCall)cAlternatives_0.eContents().get(5);
 		private final RuleCall cCOMMATerminalRuleCall_0_6 = (RuleCall)cAlternatives_0.eContents().get(6);
@@ -5524,7 +5524,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRESTTerminalRuleCall_1_0_0 = (RuleCall)cAlternatives_1_0.eContents().get(0);
 		private final RuleCall cIDENT_DOTTerminalRuleCall_1_0_1 = (RuleCall)cAlternatives_1_0.eContents().get(1);
 		private final RuleCall cIDENTTerminalRuleCall_1_0_2 = (RuleCall)cAlternatives_1_0.eContents().get(2);
-		private final RuleCall cINTTerminalRuleCall_1_0_3 = (RuleCall)cAlternatives_1_0.eContents().get(3);
+		private final RuleCall cNUMBERTerminalRuleCall_1_0_3 = (RuleCall)cAlternatives_1_0.eContents().get(3);
 		private final RuleCall cWSTerminalRuleCall_1_0_4 = (RuleCall)cAlternatives_1_0.eContents().get(4);
 		private final RuleCall cSEMICOLONTerminalRuleCall_1_0_5 = (RuleCall)cAlternatives_1_0.eContents().get(5);
 		private final RuleCall cCOMMATerminalRuleCall_1_0_6 = (RuleCall)cAlternatives_1_0.eContents().get(6);
@@ -5551,22 +5551,22 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		
 		////~(COLON | STRING | AT | LBRACE | BOR | RBRACE)
 		//IfSqlValue:
-		//	(REST | IDENT_DOT | IDENT | INT | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI | NOT | BAND | HASH
-		//	| CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
-		//	OPTION_TYPE) => (REST | IDENT_DOT | IDENT | INT | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI |
-		//	NOT | BAND | HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE |
+		//	(REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI | NOT | BAND |
+		//	HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
+		//	OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI
+		//	| NOT | BAND | HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE |
 		//	MAPPING_TYPE | OPTION_TYPE)*;
 		public ParserRule getRule() { return rule; }
 
-		//(REST | IDENT_DOT | IDENT | INT | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI | NOT | BAND | HASH |
-		//CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
-		//OPTION_TYPE) => (REST | IDENT_DOT | IDENT | INT | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI |
+		//(REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI | NOT | BAND |
+		//HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
+		//OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI |
 		//NOT | BAND | HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE |
 		//MAPPING_TYPE | OPTION_TYPE)*
 		public Group getGroup() { return cGroup; }
 
-		//REST | IDENT_DOT | IDENT | INT | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI | NOT | BAND | HASH |
-		//CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
+		//REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI | NOT | BAND | HASH
+		//| CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
 		//OPTION_TYPE
 		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 
@@ -5579,8 +5579,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//IDENT
 		public RuleCall getIDENTTerminalRuleCall_0_2() { return cIDENTTerminalRuleCall_0_2; }
 
-		//INT
-		public RuleCall getINTTerminalRuleCall_0_3() { return cINTTerminalRuleCall_0_3; }
+		//NUMBER
+		public RuleCall getNUMBERTerminalRuleCall_0_3() { return cNUMBERTerminalRuleCall_0_3; }
 
 		//WS
 		public RuleCall getWSTerminalRuleCall_0_4() { return cWSTerminalRuleCall_0_4; }
@@ -5651,13 +5651,13 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//OPTION_TYPE
 		public RuleCall getOPTION_TYPETerminalRuleCall_0_26() { return cOPTION_TYPETerminalRuleCall_0_26; }
 
-		//=> (REST | IDENT_DOT | IDENT | INT | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI | NOT | BAND |
+		//=> (REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI | NOT | BAND |
 		//HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
 		//OPTION_TYPE)*
 		public Group getGroup_1() { return cGroup_1; }
 
-		//REST | IDENT_DOT | IDENT | INT | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI | NOT | BAND | HASH |
-		//CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
+		//REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI | NOT | BAND | HASH
+		//| CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
 		//OPTION_TYPE
 		public Alternatives getAlternatives_1_0() { return cAlternatives_1_0; }
 
@@ -5670,8 +5670,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//IDENT
 		public RuleCall getIDENTTerminalRuleCall_1_0_2() { return cIDENTTerminalRuleCall_1_0_2; }
 
-		//INT
-		public RuleCall getINTTerminalRuleCall_1_0_3() { return cINTTerminalRuleCall_1_0_3; }
+		//NUMBER
+		public RuleCall getNUMBERTerminalRuleCall_1_0_3() { return cNUMBERTerminalRuleCall_1_0_3; }
 
 		//WS
 		public RuleCall getWSTerminalRuleCall_1_0_4() { return cWSTerminalRuleCall_1_0_4; }
@@ -5979,7 +5979,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
 		private final Assignment cNotAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
 		private final RuleCall cNotNOTTerminalRuleCall_0_0_0 = (RuleCall)cNotAssignment_0_0.eContents().get(0);
-		private final RuleCall cSTRING1TerminalRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
+		private final RuleCall cSTRINGTerminalRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
 		private final Assignment cCnstAssignment_0_2 = (Assignment)cGroup_0.eContents().get(2);
 		private final RuleCall cCnstConstantParserRuleCall_0_2_0 = (RuleCall)cCnstAssignment_0_2.eContents().get(0);
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
@@ -5997,13 +5997,13 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRPARENTerminalRuleCall_2_3 = (RuleCall)cGroup_2.eContents().get(3);
 		
 		//IfSqlBool:
-		//	not?=NOT? STRING1 cnst=Constant | not?=NOT? COLON ident=Identifier | not?=NOT? LPAREN cond=IfSqlCond RPAREN;
+		//	not?=NOT? STRING cnst=Constant | not?=NOT? COLON ident=Identifier | not?=NOT? LPAREN cond=IfSqlCond RPAREN;
 		public ParserRule getRule() { return rule; }
 
-		//not?=NOT? STRING1 cnst=Constant | not?=NOT? COLON ident=Identifier | not?=NOT? LPAREN cond=IfSqlCond RPAREN
+		//not?=NOT? STRING cnst=Constant | not?=NOT? COLON ident=Identifier | not?=NOT? LPAREN cond=IfSqlCond RPAREN
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//not?=NOT? STRING1 cnst=Constant
+		//not?=NOT? STRING cnst=Constant
 		public Group getGroup_0() { return cGroup_0; }
 
 		//not?=NOT?
@@ -6012,8 +6012,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//NOT
 		public RuleCall getNotNOTTerminalRuleCall_0_0_0() { return cNotNOTTerminalRuleCall_0_0_0; }
 
-		//STRING1
-		public RuleCall getSTRING1TerminalRuleCall_0_1() { return cSTRING1TerminalRuleCall_0_1; }
+		//STRING
+		public RuleCall getSTRINGTerminalRuleCall_0_1() { return cSTRINGTerminalRuleCall_0_1; }
 
 		//cnst=Constant
 		public Assignment getCnstAssignment_0_2() { return cCnstAssignment_0_2; }
@@ -6083,7 +6083,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cValueAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
 		private final RuleCall cValueOrdSqlValueParserRuleCall_0_0 = (RuleCall)cValueAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final RuleCall cSTRING1TerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final RuleCall cSTRINGTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
 		private final Assignment cCnstAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cCnstConstantParserRuleCall_1_1_0 = (RuleCall)cCnstAssignment_1_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
@@ -6096,10 +6096,10 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cDbcolDatabaseColumnParserRuleCall_3_1_0 = (RuleCall)cDbcolAssignment_3_1.eContents().get(0);
 		
 		//OrdSql2:
-		//	value=OrdSqlValue | STRING1 cnst=Constant | COLON ident=Identifier | PERCENT dbcol=DatabaseColumn;
+		//	value=OrdSqlValue | STRING cnst=Constant | COLON ident=Identifier | PERCENT dbcol=DatabaseColumn;
 		public ParserRule getRule() { return rule; }
 
-		//value=OrdSqlValue | STRING1 cnst=Constant | COLON ident=Identifier | PERCENT dbcol=DatabaseColumn
+		//value=OrdSqlValue | STRING cnst=Constant | COLON ident=Identifier | PERCENT dbcol=DatabaseColumn
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//value=OrdSqlValue
@@ -6108,11 +6108,11 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//OrdSqlValue
 		public RuleCall getValueOrdSqlValueParserRuleCall_0_0() { return cValueOrdSqlValueParserRuleCall_0_0; }
 
-		//STRING1 cnst=Constant
+		//STRING cnst=Constant
 		public Group getGroup_1() { return cGroup_1; }
 
-		//STRING1
-		public RuleCall getSTRING1TerminalRuleCall_1_0() { return cSTRING1TerminalRuleCall_1_0; }
+		//STRING
+		public RuleCall getSTRINGTerminalRuleCall_1_0() { return cSTRINGTerminalRuleCall_1_0; }
 
 		//cnst=Constant
 		public Assignment getCnstAssignment_1_1() { return cCnstAssignment_1_1; }
@@ -6152,7 +6152,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRESTTerminalRuleCall_0_0 = (RuleCall)cAlternatives_0.eContents().get(0);
 		private final RuleCall cIDENT_DOTTerminalRuleCall_0_1 = (RuleCall)cAlternatives_0.eContents().get(1);
 		private final RuleCall cIDENTTerminalRuleCall_0_2 = (RuleCall)cAlternatives_0.eContents().get(2);
-		private final RuleCall cINTTerminalRuleCall_0_3 = (RuleCall)cAlternatives_0.eContents().get(3);
+		private final RuleCall cNUMBERTerminalRuleCall_0_3 = (RuleCall)cAlternatives_0.eContents().get(3);
 		private final RuleCall cWSTerminalRuleCall_0_4 = (RuleCall)cAlternatives_0.eContents().get(4);
 		private final RuleCall cSEMICOLONTerminalRuleCall_0_5 = (RuleCall)cAlternatives_0.eContents().get(5);
 		private final RuleCall cCOMMATerminalRuleCall_0_6 = (RuleCall)cAlternatives_0.eContents().get(6);
@@ -6184,7 +6184,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRESTTerminalRuleCall_1_0_0 = (RuleCall)cAlternatives_1_0.eContents().get(0);
 		private final RuleCall cIDENT_DOTTerminalRuleCall_1_0_1 = (RuleCall)cAlternatives_1_0.eContents().get(1);
 		private final RuleCall cIDENTTerminalRuleCall_1_0_2 = (RuleCall)cAlternatives_1_0.eContents().get(2);
-		private final RuleCall cINTTerminalRuleCall_1_0_3 = (RuleCall)cAlternatives_1_0.eContents().get(3);
+		private final RuleCall cNUMBERTerminalRuleCall_1_0_3 = (RuleCall)cAlternatives_1_0.eContents().get(3);
 		private final RuleCall cWSTerminalRuleCall_1_0_4 = (RuleCall)cAlternatives_1_0.eContents().get(4);
 		private final RuleCall cSEMICOLONTerminalRuleCall_1_0_5 = (RuleCall)cAlternatives_1_0.eContents().get(5);
 		private final RuleCall cCOMMATerminalRuleCall_1_0_6 = (RuleCall)cAlternatives_1_0.eContents().get(6);
@@ -6214,22 +6214,22 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		
 		////~(COLON | STRING | PERCENT | RBRACE)
 		//OrdSqlValue:
-		//	(REST | IDENT_DOT | IDENT | INT | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | QUESTI | NOT |
+		//	(REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | QUESTI | NOT |
 		//	BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE
-		//	| MAPPING_TYPE | OPTION_TYPE) => (REST | IDENT_DOT | IDENT | INT | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN |
+		//	| MAPPING_TYPE | OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN |
 		//	RPAREN | LBRACE | QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR |
 		//	ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE)*;
 		public ParserRule getRule() { return rule; }
 
-		//(REST | IDENT_DOT | IDENT | INT | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | QUESTI | NOT | BAND
-		//| BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE |
-		//MAPPING_TYPE | OPTION_TYPE) => (REST | IDENT_DOT | IDENT | INT | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN |
+		//(REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | QUESTI | NOT |
+		//BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE |
+		//MAPPING_TYPE | OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN |
 		//RPAREN | LBRACE | QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR |
 		//ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE)*
 		public Group getGroup() { return cGroup; }
 
-		//REST | IDENT_DOT | IDENT | INT | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | QUESTI | NOT | BAND
-		//| BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE |
+		//REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | QUESTI | NOT |
+		//BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE |
 		//MAPPING_TYPE | OPTION_TYPE
 		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 
@@ -6242,8 +6242,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//IDENT
 		public RuleCall getIDENTTerminalRuleCall_0_2() { return cIDENTTerminalRuleCall_0_2; }
 
-		//INT
-		public RuleCall getINTTerminalRuleCall_0_3() { return cINTTerminalRuleCall_0_3; }
+		//NUMBER
+		public RuleCall getNUMBERTerminalRuleCall_0_3() { return cNUMBERTerminalRuleCall_0_3; }
 
 		//WS
 		public RuleCall getWSTerminalRuleCall_0_4() { return cWSTerminalRuleCall_0_4; }
@@ -6323,13 +6323,13 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//OPTION_TYPE
 		public RuleCall getOPTION_TYPETerminalRuleCall_0_29() { return cOPTION_TYPETerminalRuleCall_0_29; }
 
-		//=> (REST | IDENT_DOT | IDENT | INT | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | QUESTI | NOT |
-		//BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE |
-		//MAPPING_TYPE | OPTION_TYPE)*
+		//=> (REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | QUESTI | NOT
+		//| BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE
+		//| MAPPING_TYPE | OPTION_TYPE)*
 		public Group getGroup_1() { return cGroup_1; }
 
-		//REST | IDENT_DOT | IDENT | INT | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | QUESTI | NOT | BAND
-		//| BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE |
+		//REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | QUESTI | NOT |
+		//BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE |
 		//MAPPING_TYPE | OPTION_TYPE
 		public Alternatives getAlternatives_1_0() { return cAlternatives_1_0; }
 
@@ -6342,8 +6342,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//IDENT
 		public RuleCall getIDENTTerminalRuleCall_1_0_2() { return cIDENTTerminalRuleCall_1_0_2; }
 
-		//INT
-		public RuleCall getINTTerminalRuleCall_1_0_3() { return cINTTerminalRuleCall_1_0_3; }
+		//NUMBER
+		public RuleCall getNUMBERTerminalRuleCall_1_0_3() { return cNUMBERTerminalRuleCall_1_0_3; }
 
 		//WS
 		public RuleCall getWSTerminalRuleCall_1_0_4() { return cWSTerminalRuleCall_1_0_4; }
@@ -6513,24 +6513,24 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
 		private final Alternatives cNameAlternatives_0 = (Alternatives)cNameAssignment.eContents().get(0);
 		private final RuleCall cNameIDENTTerminalRuleCall_0_0 = (RuleCall)cNameAlternatives_0.eContents().get(0);
-		private final RuleCall cNameINTTerminalRuleCall_0_1 = (RuleCall)cNameAlternatives_0.eContents().get(1);
+		private final RuleCall cNameNUMBERTerminalRuleCall_0_1 = (RuleCall)cNameAlternatives_0.eContents().get(1);
 		private final RuleCall cNameIDENT_DOTTerminalRuleCall_0_2 = (RuleCall)cNameAlternatives_0.eContents().get(2);
 		
 		//ExtendedColumnName:
-		//	name=(IDENT | INT | IDENT_DOT);
+		//	name=(IDENT | NUMBER | IDENT_DOT);
 		public ParserRule getRule() { return rule; }
 
-		//name=(IDENT | INT | IDENT_DOT)
+		//name=(IDENT | NUMBER | IDENT_DOT)
 		public Assignment getNameAssignment() { return cNameAssignment; }
 
-		//IDENT | INT | IDENT_DOT
+		//IDENT | NUMBER | IDENT_DOT
 		public Alternatives getNameAlternatives_0() { return cNameAlternatives_0; }
 
 		//IDENT
 		public RuleCall getNameIDENTTerminalRuleCall_0_0() { return cNameIDENTTerminalRuleCall_0_0; }
 
-		//INT
-		public RuleCall getNameINTTerminalRuleCall_0_1() { return cNameINTTerminalRuleCall_0_1; }
+		//NUMBER
+		public RuleCall getNameNUMBERTerminalRuleCall_0_1() { return cNameNUMBERTerminalRuleCall_0_1; }
 
 		//IDENT_DOT
 		public RuleCall getNameIDENT_DOTTerminalRuleCall_0_2() { return cNameIDENT_DOTTerminalRuleCall_0_2; }
@@ -6631,7 +6631,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final Alternatives cNameAlternatives_2_0 = (Alternatives)cNameAssignment_2.eContents().get(0);
 		private final RuleCall cNameIDENTTerminalRuleCall_2_0_0 = (RuleCall)cNameAlternatives_2_0.eContents().get(0);
-		private final RuleCall cNameINTTerminalRuleCall_2_0_1 = (RuleCall)cNameAlternatives_2_0.eContents().get(1);
+		private final RuleCall cNameNUMBERTerminalRuleCall_2_0_1 = (RuleCall)cNameAlternatives_2_0.eContents().get(1);
 		private final RuleCall cNameIDENT_DOTTerminalRuleCall_2_0_2 = (RuleCall)cNameAlternatives_2_0.eContents().get(2);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final RuleCall cLPARENTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
@@ -6644,12 +6644,12 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRPARENTerminalRuleCall_3_3 = (RuleCall)cGroup_3.eContents().get(3);
 		
 		//Identifier:
-		//	mode=(EQUALS | LESS_THAN | MORE_THAN)? case=(PLUS | MINUS)? name=(IDENT | INT | IDENT_DOT) (LPAREN modifiers+=Modifier
-		//	(COMMA modifiers+=Modifier)* RPAREN)?;
+		//	mode=(EQUALS | LESS_THAN | MORE_THAN)? case=(PLUS | MINUS)? name=(IDENT | NUMBER | IDENT_DOT) (LPAREN
+		//	modifiers+=Modifier (COMMA modifiers+=Modifier)* RPAREN)?;
 		public ParserRule getRule() { return rule; }
 
-		//mode=(EQUALS | LESS_THAN | MORE_THAN)? case=(PLUS | MINUS)? name=(IDENT | INT | IDENT_DOT) (LPAREN modifiers+=Modifier
-		//(COMMA modifiers+=Modifier)* RPAREN)?
+		//mode=(EQUALS | LESS_THAN | MORE_THAN)? case=(PLUS | MINUS)? name=(IDENT | NUMBER | IDENT_DOT) (LPAREN
+		//modifiers+=Modifier (COMMA modifiers+=Modifier)* RPAREN)?
 		public Group getGroup() { return cGroup; }
 
 		//mode=(EQUALS | LESS_THAN | MORE_THAN)?
@@ -6679,17 +6679,17 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//MINUS
 		public RuleCall getCaseMINUSTerminalRuleCall_1_0_1() { return cCaseMINUSTerminalRuleCall_1_0_1; }
 
-		//name=(IDENT | INT | IDENT_DOT)
+		//name=(IDENT | NUMBER | IDENT_DOT)
 		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
 
-		//IDENT | INT | IDENT_DOT
+		//IDENT | NUMBER | IDENT_DOT
 		public Alternatives getNameAlternatives_2_0() { return cNameAlternatives_2_0; }
 
 		//IDENT
 		public RuleCall getNameIDENTTerminalRuleCall_2_0_0() { return cNameIDENTTerminalRuleCall_2_0_0; }
 
-		//INT
-		public RuleCall getNameINTTerminalRuleCall_2_0_1() { return cNameINTTerminalRuleCall_2_0_1; }
+		//NUMBER
+		public RuleCall getNameNUMBERTerminalRuleCall_2_0_1() { return cNameNUMBERTerminalRuleCall_2_0_1; }
 
 		//IDENT_DOT
 		public RuleCall getNameIDENT_DOTTerminalRuleCall_2_0_2() { return cNameIDENT_DOTTerminalRuleCall_2_0_2; }
@@ -6936,36 +6936,36 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final Alternatives cNameAlternatives_0_0 = (Alternatives)cNameAssignment_0.eContents().get(0);
 		private final RuleCall cNameIDENTTerminalRuleCall_0_0_0 = (RuleCall)cNameAlternatives_0_0.eContents().get(0);
-		private final RuleCall cNameINTTerminalRuleCall_0_0_1 = (RuleCall)cNameAlternatives_0_0.eContents().get(1);
+		private final RuleCall cNameNUMBERTerminalRuleCall_0_0_1 = (RuleCall)cNameAlternatives_0_0.eContents().get(1);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final RuleCall cSTRING1TerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final RuleCall cSTRINGTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
 		private final Assignment cAttrAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cAttrMappingColumnParserRuleCall_1_1_0 = (RuleCall)cAttrAssignment_1_1.eContents().get(0);
 		
 		//MappingItem:
-		//	name=(IDENT | INT) (STRING1 attr=MappingColumn)?;
+		//	name=(IDENT | NUMBER) (STRING attr=MappingColumn)?;
 		public ParserRule getRule() { return rule; }
 
-		//name=(IDENT | INT) (STRING1 attr=MappingColumn)?
+		//name=(IDENT | NUMBER) (STRING attr=MappingColumn)?
 		public Group getGroup() { return cGroup; }
 
-		//name=(IDENT | INT)
+		//name=(IDENT | NUMBER)
 		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
 
-		//IDENT | INT
+		//IDENT | NUMBER
 		public Alternatives getNameAlternatives_0_0() { return cNameAlternatives_0_0; }
 
 		//IDENT
 		public RuleCall getNameIDENTTerminalRuleCall_0_0_0() { return cNameIDENTTerminalRuleCall_0_0_0; }
 
-		//INT
-		public RuleCall getNameINTTerminalRuleCall_0_0_1() { return cNameINTTerminalRuleCall_0_0_1; }
+		//NUMBER
+		public RuleCall getNameNUMBERTerminalRuleCall_0_0_1() { return cNameNUMBERTerminalRuleCall_0_0_1; }
 
-		//(STRING1 attr=MappingColumn)?
+		//(STRING attr=MappingColumn)?
 		public Group getGroup_1() { return cGroup_1; }
 
-		//STRING1
-		public RuleCall getSTRING1TerminalRuleCall_1_0() { return cSTRING1TerminalRuleCall_1_0; }
+		//STRING
+		public RuleCall getSTRINGTerminalRuleCall_1_0() { return cSTRINGTerminalRuleCall_1_0; }
 
 		//attr=MappingColumn
 		public Assignment getAttrAssignment_1_1() { return cAttrAssignment_1_1; }
@@ -7064,16 +7064,16 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cNameAlternatives_0 = (Alternatives)cNameAssignment.eContents().get(0);
 		private final RuleCall cNameIDENTTerminalRuleCall_0_0 = (RuleCall)cNameAlternatives_0.eContents().get(0);
 		private final RuleCall cNameIDENT_DOTTerminalRuleCall_0_1 = (RuleCall)cNameAlternatives_0.eContents().get(1);
-		private final RuleCall cNameINTTerminalRuleCall_0_2 = (RuleCall)cNameAlternatives_0.eContents().get(2);
+		private final RuleCall cNameNUMBERTerminalRuleCall_0_2 = (RuleCall)cNameAlternatives_0.eContents().get(2);
 		
 		//MappingColumnName:
-		//	name=(IDENT | IDENT_DOT | INT);
+		//	name=(IDENT | IDENT_DOT | NUMBER);
 		public ParserRule getRule() { return rule; }
 
-		//name=(IDENT | IDENT_DOT | INT)
+		//name=(IDENT | IDENT_DOT | NUMBER)
 		public Assignment getNameAssignment() { return cNameAssignment; }
 
-		//IDENT | IDENT_DOT | INT
+		//IDENT | IDENT_DOT | NUMBER
 		public Alternatives getNameAlternatives_0() { return cNameAlternatives_0; }
 
 		//IDENT
@@ -7082,8 +7082,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//IDENT_DOT
 		public RuleCall getNameIDENT_DOTTerminalRuleCall_0_1() { return cNameIDENT_DOTTerminalRuleCall_0_1; }
 
-		//INT
-		public RuleCall getNameINTTerminalRuleCall_0_2() { return cNameINTTerminalRuleCall_0_2; }
+		//NUMBER
+		public RuleCall getNameNUMBERTerminalRuleCall_0_2() { return cNameNUMBERTerminalRuleCall_0_2; }
 	}
 
 	public class OptionalFeatureElements extends AbstractParserRuleElementFinder {
@@ -7160,80 +7160,80 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "StatementModifier");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cIDENTTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cINTTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cNUMBERTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//StatementModifier:
-		//	IDENT | INT;
+		//	IDENT | NUMBER;
 		public ParserRule getRule() { return rule; }
 
-		//IDENT | INT
+		//IDENT | NUMBER
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//IDENT
 		public RuleCall getIDENTTerminalRuleCall_0() { return cIDENTTerminalRuleCall_0; }
 
-		//INT
-		public RuleCall getINTTerminalRuleCall_1() { return cINTTerminalRuleCall_1; }
+		//NUMBER
+		public RuleCall getNUMBERTerminalRuleCall_1() { return cNUMBERTerminalRuleCall_1; }
 	}
 
 	public class MappingRuleModifierElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MappingRuleModifier");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cIDENTTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cINTTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cNUMBERTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//MappingRuleModifier:
-		//	IDENT | INT;
+		//	IDENT | NUMBER;
 		public ParserRule getRule() { return rule; }
 
-		//IDENT | INT
+		//IDENT | NUMBER
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//IDENT
 		public RuleCall getIDENTTerminalRuleCall_0() { return cIDENTTerminalRuleCall_0; }
 
-		//INT
-		public RuleCall getINTTerminalRuleCall_1() { return cINTTerminalRuleCall_1; }
+		//NUMBER
+		public RuleCall getNUMBERTerminalRuleCall_1() { return cNUMBERTerminalRuleCall_1; }
 	}
 
 	public class MappingItemModifierElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MappingItemModifier");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cIDENTTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cINTTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cNUMBERTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//MappingItemModifier:
-		//	IDENT | INT;
+		//	IDENT | NUMBER;
 		public ParserRule getRule() { return rule; }
 
-		//IDENT | INT
+		//IDENT | NUMBER
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//IDENT
 		public RuleCall getIDENTTerminalRuleCall_0() { return cIDENTTerminalRuleCall_0; }
 
-		//INT
-		public RuleCall getINTTerminalRuleCall_1() { return cINTTerminalRuleCall_1; }
+		//NUMBER
+		public RuleCall getNUMBERTerminalRuleCall_1() { return cNUMBERTerminalRuleCall_1; }
 	}
 
 	public class OptionalFeatureModifierElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "OptionalFeatureModifier");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cIDENTTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cINTTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cNUMBERTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//OptionalFeatureModifier:
-		//	IDENT | INT;
+		//	IDENT | NUMBER;
 		public ParserRule getRule() { return rule; }
 
-		//IDENT | INT
+		//IDENT | NUMBER
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//IDENT
 		public RuleCall getIDENTTerminalRuleCall_0() { return cIDENTTerminalRuleCall_0; }
 
-		//INT
-		public RuleCall getINTTerminalRuleCall_1() { return cINTTerminalRuleCall_1; }
+		//NUMBER
+		public RuleCall getNUMBERTerminalRuleCall_1() { return cNUMBERTerminalRuleCall_1; }
 	}
 
 	public class ModifierElements extends AbstractParserRuleElementFinder {
@@ -7242,26 +7242,26 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNOTTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
 		private final RuleCall cIDENTTerminalRuleCall_1_0 = (RuleCall)cAlternatives_1.eContents().get(0);
-		private final RuleCall cINTTerminalRuleCall_1_1 = (RuleCall)cAlternatives_1.eContents().get(1);
+		private final RuleCall cNUMBERTerminalRuleCall_1_1 = (RuleCall)cAlternatives_1.eContents().get(1);
 		
 		//Modifier:
-		//	NOT? (IDENT | INT);
+		//	NOT? (IDENT | NUMBER);
 		public ParserRule getRule() { return rule; }
 
-		//NOT? (IDENT | INT)
+		//NOT? (IDENT | NUMBER)
 		public Group getGroup() { return cGroup; }
 
 		//NOT?
 		public RuleCall getNOTTerminalRuleCall_0() { return cNOTTerminalRuleCall_0; }
 
-		//IDENT | INT
+		//IDENT | NUMBER
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
 		//IDENT
 		public RuleCall getIDENTTerminalRuleCall_1_0() { return cIDENTTerminalRuleCall_1_0; }
 
-		//INT
-		public RuleCall getINTTerminalRuleCall_1_1() { return cINTTerminalRuleCall_1_1; }
+		//NUMBER
+		public RuleCall getNUMBERTerminalRuleCall_1_1() { return cNUMBERTerminalRuleCall_1_1; }
 	}
 
 	public class FeatureValueElements extends AbstractParserRuleElementFinder {
@@ -7270,10 +7270,10 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRESTTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cIDENT_DOTTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cIDENTTerminalRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cINTTerminalRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cNUMBERTerminalRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		private final RuleCall cWSTerminalRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		private final RuleCall cCOLONTerminalRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
-		private final RuleCall cSTRING1TerminalRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final RuleCall cSTRINGTerminalRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		private final RuleCall cCOMMATerminalRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
 		private final RuleCall cMINUSTerminalRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
 		private final RuleCall cPLUSTerminalRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
@@ -7301,12 +7301,12 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOPTION_TYPETerminalRuleCall_31 = (RuleCall)cAlternatives.eContents().get(31);
 		
 		//FeatureValue:
-		//	(REST | IDENT_DOT | IDENT | INT | WS | COLON | STRING1 | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE |
+		//	(REST | IDENT_DOT | IDENT | NUMBER | WS | COLON | STRING | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE |
 		//	QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | AND | OR | ESC_CHAR |
 		//	ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE)+;
 		public ParserRule getRule() { return rule; }
 
-		//(REST | IDENT_DOT | IDENT | INT | WS | COLON | STRING1 | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE |
+		//(REST | IDENT_DOT | IDENT | NUMBER | WS | COLON | STRING | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE |
 		//QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | AND | OR | ESC_CHAR | ON_OFF
 		//| STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE)+
 		public Alternatives getAlternatives() { return cAlternatives; }
@@ -7320,8 +7320,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//IDENT
 		public RuleCall getIDENTTerminalRuleCall_2() { return cIDENTTerminalRuleCall_2; }
 
-		//INT
-		public RuleCall getINTTerminalRuleCall_3() { return cINTTerminalRuleCall_3; }
+		//NUMBER
+		public RuleCall getNUMBERTerminalRuleCall_3() { return cNUMBERTerminalRuleCall_3; }
 
 		//WS
 		public RuleCall getWSTerminalRuleCall_4() { return cWSTerminalRuleCall_4; }
@@ -7329,8 +7329,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//COLON
 		public RuleCall getCOLONTerminalRuleCall_5() { return cCOLONTerminalRuleCall_5; }
 
-		//STRING1
-		public RuleCall getSTRING1TerminalRuleCall_6() { return cSTRING1TerminalRuleCall_6; }
+		//STRING
+		public RuleCall getSTRINGTerminalRuleCall_6() { return cSTRINGTerminalRuleCall_6; }
 
 		//COMMA
 		public RuleCall getCOMMATerminalRuleCall_7() { return cCOMMATerminalRuleCall_7; }
@@ -7613,7 +7613,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	private final TerminalRule tOPTION_TYPE;
 	private final TerminalRule tIDENT_DOT;
 	private final TerminalRule tIDENT;
-	private final TerminalRule tINT;
+	private final TerminalRule tNUMBER;
 	private final TerminalRule tESC_CHAR;
 	private final TerminalRule tML_COMMENT;
 	private final TerminalRule tSL_COMMENT;
@@ -7622,7 +7622,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	private final TerminalRule tOR;
 	private final TerminalRule tCOLON;
 	private final TerminalRule tSEMICOLON;
-	private final TerminalRule tSTRING1;
+	private final TerminalRule tSTRING;
 	private final TerminalRule tCOMMA;
 	private final TerminalRule tMINUS;
 	private final TerminalRule tPLUS;
@@ -7643,7 +7643,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	private final TerminalRule tPERCENT;
 	private final TerminalRule tDOT;
 	private final TerminalRule tREST;
-	private final TerminalRule tSTRING;
+	private final TerminalRule tSTRING_VALUE;
 	private final FeatureValueElements pFeatureValue;
 	private final PojoTypeElements pPojoType;
 	private final QualifiedNameElements pQualifiedName;
@@ -7729,7 +7729,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		this.tOPTION_TYPE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "OPTION_TYPE");
 		this.tIDENT_DOT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "IDENT_DOT");
 		this.tIDENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "IDENT");
-		this.tINT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "INT");
+		this.tNUMBER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "NUMBER");
 		this.tESC_CHAR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ESC_CHAR");
 		this.tML_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ML_COMMENT");
 		this.tSL_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SL_COMMENT");
@@ -7738,7 +7738,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		this.tOR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "OR");
 		this.tCOLON = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "COLON");
 		this.tSEMICOLON = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SEMICOLON");
-		this.tSTRING1 = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING1");
+		this.tSTRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING");
 		this.tCOMMA = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "COMMA");
 		this.tMINUS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "MINUS");
 		this.tPLUS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "PLUS");
@@ -7759,7 +7759,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		this.tPERCENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "PERCENT");
 		this.tDOT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DOT");
 		this.tREST = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "REST");
-		this.tSTRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING");
+		this.tSTRING_VALUE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING_VALUE");
 		this.pFeatureValue = new FeatureValueElements();
 		this.pPojoType = new PojoTypeElements();
 		this.pQualifiedName = new QualifiedNameElements();
@@ -7801,7 +7801,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ValueType:
-	//	value=STRING | number=INT | id=QualifiedName;
+	//	value=STRING_VALUE | number=NUMBER | id=QualifiedName;
 	public ValueTypeElements getValueTypeAccess() {
 		return pValueType;
 	}
@@ -7871,7 +7871,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SqlTypeAssignement:
-	//	typeName=IDENT (LPAREN size=INT RPAREN)? "->" type=PojoType;
+	//	typeName=IDENT (LPAREN size=NUMBER RPAREN)? "->" type=PojoType;
 	public SqlTypeAssignementElements getSqlTypeAssignementAccess() {
 		return pSqlTypeAssignement;
 	}
@@ -8225,7 +8225,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SqlFragment:
-	//	value=SqlValue | AT col=Column | STRING1 cnst=Constant | COLON ident=Identifier | STRING1 STRING1
+	//	value=SqlValue | AT col=Column | STRING cnst=Constant | COLON ident=Identifier | STRING STRING
 	//	cnstOper=ConstantOperator | COLON COLON identOper=IdentifierOperator | LBRACE meta=MetaSql RBRACE | PERCENT (PERCENT
 	//	dbtab=DatabaseTable | dbcol=DatabaseColumn);
 	public SqlFragmentElements getSqlFragmentAccess() {
@@ -8238,11 +8238,11 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 
 	////~(COLON | STRING | AT | LBRACE | SEMICOLON)
 	//SqlValue:
-	//	(REST | IDENT_DOT | IDENT | INT | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI | NOT | BAND | BOR |
-	//	HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
-	//	OPTION_TYPE) => (REST | IDENT_DOT | IDENT | INT | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI | NOT
-	//	| BAND | BOR | HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE |
-	//	MAPPING_TYPE | OPTION_TYPE)*;
+	//	(REST | IDENT_DOT | IDENT | NUMBER | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI | NOT | BAND | BOR
+	//	| HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
+	//	OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI |
+	//	NOT | BAND | BOR | HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE
+	//	| MAPPING_TYPE | OPTION_TYPE)*;
 	public SqlValueElements getSqlValueAccess() {
 		return pSqlValue;
 	}
@@ -8253,7 +8253,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 
 	//MetaSql:
 	//	WS ifs+=IfSql (BOR ifs+=IfSql)* | type=QUESTI cond=IfSqlCond BOR ifs+=IfSql (BOR ifs+=IfSql)* | type=BAND ifs+=IfSql
-	//	(BOR ifs+=IfSql)* | type=BOR ifs+=IfSql (BOR ifs+=IfSql)* | type=EQUALS WS* ftype=IDENT ifs+=IfSql | type=HASH INT
+	//	(BOR ifs+=IfSql)* | type=BOR ifs+=IfSql (BOR ifs+=IfSql)* | type=EQUALS WS* ftype=IDENT ifs+=IfSql | type=HASH NUMBER
 	//	ord=OrdSql;
 	public MetaSqlElements getMetaSqlAccess() {
 		return pMetaSql;
@@ -8274,7 +8274,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//IfSqlFragment:
-	//	value=IfSqlValue | AT col=Column | STRING1 cnst=Constant | COLON ident=Identifier | STRING1 STRING1
+	//	value=IfSqlValue | AT col=Column | STRING cnst=Constant | COLON ident=Identifier | STRING STRING
 	//	cnstOper=ConstantOperator | COLON COLON identOper=IdentifierOperator | PERCENT (PERCENT dbtab=DatabaseTable |
 	//	dbcol=DatabaseColumn) | LBRACE meta=IfMetaSql RBRACE;
 	public IfSqlFragmentElements getIfSqlFragmentAccess() {
@@ -8287,10 +8287,10 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 
 	////~(COLON | STRING | AT | LBRACE | BOR | RBRACE)
 	//IfSqlValue:
-	//	(REST | IDENT_DOT | IDENT | INT | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI | NOT | BAND | HASH
-	//	| CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
-	//	OPTION_TYPE) => (REST | IDENT_DOT | IDENT | INT | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI |
-	//	NOT | BAND | HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE |
+	//	(REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI | NOT | BAND |
+	//	HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
+	//	OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI
+	//	| NOT | BAND | HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE |
 	//	MAPPING_TYPE | OPTION_TYPE)*;
 	public IfSqlValueElements getIfSqlValueAccess() {
 		return pIfSqlValue;
@@ -8322,7 +8322,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//IfSqlBool:
-	//	not?=NOT? STRING1 cnst=Constant | not?=NOT? COLON ident=Identifier | not?=NOT? LPAREN cond=IfSqlCond RPAREN;
+	//	not?=NOT? STRING cnst=Constant | not?=NOT? COLON ident=Identifier | not?=NOT? LPAREN cond=IfSqlCond RPAREN;
 	public IfSqlBoolElements getIfSqlBoolAccess() {
 		return pIfSqlBool;
 	}
@@ -8342,7 +8342,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//OrdSql2:
-	//	value=OrdSqlValue | STRING1 cnst=Constant | COLON ident=Identifier | PERCENT dbcol=DatabaseColumn;
+	//	value=OrdSqlValue | STRING cnst=Constant | COLON ident=Identifier | PERCENT dbcol=DatabaseColumn;
 	public OrdSql2Elements getOrdSql2Access() {
 		return pOrdSql2;
 	}
@@ -8353,9 +8353,9 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 
 	////~(COLON | STRING | PERCENT | RBRACE)
 	//OrdSqlValue:
-	//	(REST | IDENT_DOT | IDENT | INT | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | QUESTI | NOT |
+	//	(REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | QUESTI | NOT |
 	//	BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE
-	//	| MAPPING_TYPE | OPTION_TYPE) => (REST | IDENT_DOT | IDENT | INT | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN |
+	//	| MAPPING_TYPE | OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN |
 	//	RPAREN | LBRACE | QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR |
 	//	ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE)*;
 	public OrdSqlValueElements getOrdSqlValueAccess() {
@@ -8387,7 +8387,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ExtendedColumnName:
-	//	name=(IDENT | INT | IDENT_DOT);
+	//	name=(IDENT | NUMBER | IDENT_DOT);
 	public ExtendedColumnNameElements getExtendedColumnNameAccess() {
 		return pExtendedColumnName;
 	}
@@ -8407,8 +8407,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Identifier:
-	//	mode=(EQUALS | LESS_THAN | MORE_THAN)? case=(PLUS | MINUS)? name=(IDENT | INT | IDENT_DOT) (LPAREN modifiers+=Modifier
-	//	(COMMA modifiers+=Modifier)* RPAREN)?;
+	//	mode=(EQUALS | LESS_THAN | MORE_THAN)? case=(PLUS | MINUS)? name=(IDENT | NUMBER | IDENT_DOT) (LPAREN
+	//	modifiers+=Modifier (COMMA modifiers+=Modifier)* RPAREN)?;
 	public IdentifierElements getIdentifierAccess() {
 		return pIdentifier;
 	}
@@ -8478,7 +8478,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//MappingItem:
-	//	name=(IDENT | INT) (STRING1 attr=MappingColumn)?;
+	//	name=(IDENT | NUMBER) (STRING attr=MappingColumn)?;
 	public MappingItemElements getMappingItemAccess() {
 		return pMappingItem;
 	}
@@ -8508,7 +8508,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//MappingColumnName:
-	//	name=(IDENT | IDENT_DOT | INT);
+	//	name=(IDENT | IDENT_DOT | NUMBER);
 	public MappingColumnNameElements getMappingColumnNameAccess() {
 		return pMappingColumnName;
 	}
@@ -8529,7 +8529,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StatementModifier:
-	//	IDENT | INT;
+	//	IDENT | NUMBER;
 	public StatementModifierElements getStatementModifierAccess() {
 		return pStatementModifier;
 	}
@@ -8539,7 +8539,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//MappingRuleModifier:
-	//	IDENT | INT;
+	//	IDENT | NUMBER;
 	public MappingRuleModifierElements getMappingRuleModifierAccess() {
 		return pMappingRuleModifier;
 	}
@@ -8549,7 +8549,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//MappingItemModifier:
-	//	IDENT | INT;
+	//	IDENT | NUMBER;
 	public MappingItemModifierElements getMappingItemModifierAccess() {
 		return pMappingItemModifier;
 	}
@@ -8559,7 +8559,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//OptionalFeatureModifier:
-	//	IDENT | INT;
+	//	IDENT | NUMBER;
 	public OptionalFeatureModifierElements getOptionalFeatureModifierAccess() {
 		return pOptionalFeatureModifier;
 	}
@@ -8569,7 +8569,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Modifier:
-	//	NOT? (IDENT | INT);
+	//	NOT? (IDENT | NUMBER);
 	public ModifierElements getModifierAccess() {
 		return pModifier;
 	}
@@ -8615,15 +8615,15 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		return tIDENT;
 	} 
 
-	//terminal INT:
+	//terminal NUMBER:
 	//	"0".."9"+;
-	public TerminalRule getINTRule() {
-		return tINT;
+	public TerminalRule getNUMBERRule() {
+		return tNUMBER;
 	} 
 
 	////terminal NEGATIVE_NUMBER: '-'('0'..'9')+;
 	//terminal ESC_CHAR:
-	//	"\\" (COLON | SEMICOLON | STRING1 | LBRACE | RBRACE | BOR | HASH | AT | PERCENT | DOT | "/");
+	//	"\\" (COLON | SEMICOLON | STRING | LBRACE | RBRACE | BOR | HASH | AT | PERCENT | DOT | "/");
 	public TerminalRule getESC_CHARRule() {
 		return tESC_CHAR;
 	} 
@@ -8670,10 +8670,10 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		return tSEMICOLON;
 	} 
 
-	//terminal STRING1:
+	//terminal STRING:
 	//	"$";
-	public TerminalRule getSTRING1Rule() {
-		return tSTRING1;
+	public TerminalRule getSTRINGRule() {
+		return tSTRING;
 	} 
 
 	//terminal COMMA:
@@ -8796,14 +8796,14 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		return tREST;
 	} 
 
-	//terminal STRING:
+	//terminal STRING_VALUE:
 	//	"\""->"\"";
-	public TerminalRule getSTRINGRule() {
-		return tSTRING;
+	public TerminalRule getSTRING_VALUERule() {
+		return tSTRING_VALUE;
 	} 
 
 	//FeatureValue:
-	//	(REST | IDENT_DOT | IDENT | INT | WS | COLON | STRING1 | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE |
+	//	(REST | IDENT_DOT | IDENT | NUMBER | WS | COLON | STRING | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE |
 	//	QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | AND | OR | ESC_CHAR |
 	//	ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE)+;
 	public FeatureValueElements getFeatureValueAccess() {

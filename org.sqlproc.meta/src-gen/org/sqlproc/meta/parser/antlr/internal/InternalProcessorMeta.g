@@ -293,9 +293,9 @@ ruleValueType returns [EObject current=null]
     @after { leaveRule(); }:
 ((
 (
-		lv_value_0_0=RULE_STRING
+		lv_value_0_0=RULE_STRING_VALUE
 		{
-			newLeafNode(lv_value_0_0, grammarAccess.getValueTypeAccess().getValueSTRINGTerminalRuleCall_0_0()); 
+			newLeafNode(lv_value_0_0, grammarAccess.getValueTypeAccess().getValueSTRING_VALUETerminalRuleCall_0_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -305,16 +305,16 @@ ruleValueType returns [EObject current=null]
        			$current, 
        			"value",
         		lv_value_0_0, 
-        		"STRING");
+        		"STRING_VALUE");
 	    }
 
 )
 )
     |(
 (
-		lv_number_1_0=RULE_INT
+		lv_number_1_0=RULE_NUMBER
 		{
-			newLeafNode(lv_number_1_0, grammarAccess.getValueTypeAccess().getNumberINTTerminalRuleCall_1_0()); 
+			newLeafNode(lv_number_1_0, grammarAccess.getValueTypeAccess().getNumberNUMBERTerminalRuleCall_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -324,7 +324,7 @@ ruleValueType returns [EObject current=null]
        			$current, 
        			"number",
         		lv_number_1_0, 
-        		"INT");
+        		"NUMBER");
 	    }
 
 )
@@ -648,9 +648,9 @@ ruleSqlTypeAssignement returns [EObject current=null]
     }
 (
 (
-		lv_size_2_0=RULE_INT
+		lv_size_2_0=RULE_NUMBER
 		{
-			newLeafNode(lv_size_2_0, grammarAccess.getSqlTypeAssignementAccess().getSizeINTTerminalRuleCall_1_1_0()); 
+			newLeafNode(lv_size_2_0, grammarAccess.getSqlTypeAssignementAccess().getSizeNUMBERTerminalRuleCall_1_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -660,7 +660,7 @@ ruleSqlTypeAssignement returns [EObject current=null]
        			$current, 
        			"size",
         		lv_size_2_0, 
-        		"INT");
+        		"NUMBER");
 	    }
 
 )
@@ -7190,9 +7190,9 @@ ruleSqlFragment returns [EObject current=null]
 
 )
 ))
-    |(this_STRING1_3=RULE_STRING1
+    |(this_STRING_3=RULE_STRING
     { 
-    newLeafNode(this_STRING1_3, grammarAccess.getSqlFragmentAccess().getSTRING1TerminalRuleCall_2_0()); 
+    newLeafNode(this_STRING_3, grammarAccess.getSqlFragmentAccess().getSTRINGTerminalRuleCall_2_0()); 
     }
 (
 (
@@ -7236,13 +7236,13 @@ ruleSqlFragment returns [EObject current=null]
 
 )
 ))
-    |(this_STRING1_7=RULE_STRING1
+    |(this_STRING_7=RULE_STRING
     { 
-    newLeafNode(this_STRING1_7, grammarAccess.getSqlFragmentAccess().getSTRING1TerminalRuleCall_4_0()); 
+    newLeafNode(this_STRING_7, grammarAccess.getSqlFragmentAccess().getSTRINGTerminalRuleCall_4_0()); 
     }
-this_STRING1_8=RULE_STRING1
+this_STRING_8=RULE_STRING
     { 
-    newLeafNode(this_STRING1_8, grammarAccess.getSqlFragmentAccess().getSTRING1TerminalRuleCall_4_1()); 
+    newLeafNode(this_STRING_8, grammarAccess.getSqlFragmentAccess().getSTRINGTerminalRuleCall_4_1()); 
     }
 (
 (
@@ -7407,12 +7407,12 @@ ruleSqlValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken(
     newLeafNode(this_IDENT_2, grammarAccess.getSqlValueAccess().getIDENTTerminalRuleCall_0_2()); 
     }
 
-    |    this_INT_3=RULE_INT    {
-		$current.merge(this_INT_3);
+    |    this_NUMBER_3=RULE_NUMBER    {
+		$current.merge(this_NUMBER_3);
     }
 
     { 
-    newLeafNode(this_INT_3, grammarAccess.getSqlValueAccess().getINTTerminalRuleCall_0_3()); 
+    newLeafNode(this_NUMBER_3, grammarAccess.getSqlValueAccess().getNUMBERTerminalRuleCall_0_3()); 
     }
 
     |    this_WS_4=RULE_WS    {
@@ -7609,7 +7609,7 @@ ruleSqlValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken(
 )((( RULE_REST
     | RULE_IDENT_DOT
     | RULE_IDENT
-    | RULE_INT
+    | RULE_NUMBER
     | RULE_WS
     | RULE_COMMA
     | RULE_MINUS
@@ -7657,12 +7657,12 @@ ruleSqlValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken(
     newLeafNode(this_IDENT_30, grammarAccess.getSqlValueAccess().getIDENTTerminalRuleCall_1_0_2()); 
     }
 
-    |    this_INT_31=RULE_INT    {
-		$current.merge(this_INT_31);
+    |    this_NUMBER_31=RULE_NUMBER    {
+		$current.merge(this_NUMBER_31);
     }
 
     { 
-    newLeafNode(this_INT_31, grammarAccess.getSqlValueAccess().getINTTerminalRuleCall_1_0_3()); 
+    newLeafNode(this_NUMBER_31, grammarAccess.getSqlValueAccess().getNUMBERTerminalRuleCall_1_0_3()); 
     }
 
     |    this_WS_32=RULE_WS    {
@@ -8198,9 +8198,9 @@ ruleMetaSql returns [EObject current=null]
 	    }
 
 )
-)this_INT_23=RULE_INT
+)this_NUMBER_23=RULE_NUMBER
     { 
-    newLeafNode(this_INT_23, grammarAccess.getMetaSqlAccess().getINTTerminalRuleCall_5_1()); 
+    newLeafNode(this_NUMBER_23, grammarAccess.getMetaSqlAccess().getNUMBERTerminalRuleCall_5_1()); 
     }
 (
 (
@@ -8322,9 +8322,9 @@ ruleIfSqlFragment returns [EObject current=null]
 
 )
 ))
-    |(this_STRING1_3=RULE_STRING1
+    |(this_STRING_3=RULE_STRING
     { 
-    newLeafNode(this_STRING1_3, grammarAccess.getIfSqlFragmentAccess().getSTRING1TerminalRuleCall_2_0()); 
+    newLeafNode(this_STRING_3, grammarAccess.getIfSqlFragmentAccess().getSTRINGTerminalRuleCall_2_0()); 
     }
 (
 (
@@ -8368,13 +8368,13 @@ ruleIfSqlFragment returns [EObject current=null]
 
 )
 ))
-    |(this_STRING1_7=RULE_STRING1
+    |(this_STRING_7=RULE_STRING
     { 
-    newLeafNode(this_STRING1_7, grammarAccess.getIfSqlFragmentAccess().getSTRING1TerminalRuleCall_4_0()); 
+    newLeafNode(this_STRING_7, grammarAccess.getIfSqlFragmentAccess().getSTRINGTerminalRuleCall_4_0()); 
     }
-this_STRING1_8=RULE_STRING1
+this_STRING_8=RULE_STRING
     { 
-    newLeafNode(this_STRING1_8, grammarAccess.getIfSqlFragmentAccess().getSTRING1TerminalRuleCall_4_1()); 
+    newLeafNode(this_STRING_8, grammarAccess.getIfSqlFragmentAccess().getSTRINGTerminalRuleCall_4_1()); 
     }
 (
 (
@@ -8539,12 +8539,12 @@ ruleIfSqlValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToke
     newLeafNode(this_IDENT_2, grammarAccess.getIfSqlValueAccess().getIDENTTerminalRuleCall_0_2()); 
     }
 
-    |    this_INT_3=RULE_INT    {
-		$current.merge(this_INT_3);
+    |    this_NUMBER_3=RULE_NUMBER    {
+		$current.merge(this_NUMBER_3);
     }
 
     { 
-    newLeafNode(this_INT_3, grammarAccess.getIfSqlValueAccess().getINTTerminalRuleCall_0_3()); 
+    newLeafNode(this_NUMBER_3, grammarAccess.getIfSqlValueAccess().getNUMBERTerminalRuleCall_0_3()); 
     }
 
     |    this_WS_4=RULE_WS    {
@@ -8733,7 +8733,7 @@ ruleIfSqlValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToke
 )((( RULE_REST
     | RULE_IDENT_DOT
     | RULE_IDENT
-    | RULE_INT
+    | RULE_NUMBER
     | RULE_WS
     | RULE_SEMICOLON
     | RULE_COMMA
@@ -8780,12 +8780,12 @@ ruleIfSqlValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToke
     newLeafNode(this_IDENT_29, grammarAccess.getIfSqlValueAccess().getIDENTTerminalRuleCall_1_0_2()); 
     }
 
-    |    this_INT_30=RULE_INT    {
-		$current.merge(this_INT_30);
+    |    this_NUMBER_30=RULE_NUMBER    {
+		$current.merge(this_NUMBER_30);
     }
 
     { 
-    newLeafNode(this_INT_30, grammarAccess.getIfSqlValueAccess().getINTTerminalRuleCall_1_0_3()); 
+    newLeafNode(this_NUMBER_30, grammarAccess.getIfSqlValueAccess().getNUMBERTerminalRuleCall_1_0_3()); 
     }
 
     |    this_WS_31=RULE_WS    {
@@ -9383,9 +9383,9 @@ ruleIfSqlBool returns [EObject current=null]
 	    }
 
 )
-)?this_STRING1_1=RULE_STRING1
+)?this_STRING_1=RULE_STRING
     { 
-    newLeafNode(this_STRING1_1, grammarAccess.getIfSqlBoolAccess().getSTRING1TerminalRuleCall_0_1()); 
+    newLeafNode(this_STRING_1, grammarAccess.getIfSqlBoolAccess().getSTRINGTerminalRuleCall_0_1()); 
     }
 (
 (
@@ -9570,9 +9570,9 @@ ruleOrdSql2 returns [EObject current=null]
 
 )
 )
-    |(this_STRING1_1=RULE_STRING1
+    |(this_STRING_1=RULE_STRING
     { 
-    newLeafNode(this_STRING1_1, grammarAccess.getOrdSql2Access().getSTRING1TerminalRuleCall_1_0()); 
+    newLeafNode(this_STRING_1, grammarAccess.getOrdSql2Access().getSTRINGTerminalRuleCall_1_0()); 
     }
 (
 (
@@ -9683,12 +9683,12 @@ ruleOrdSqlValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleTok
     newLeafNode(this_IDENT_2, grammarAccess.getOrdSqlValueAccess().getIDENTTerminalRuleCall_0_2()); 
     }
 
-    |    this_INT_3=RULE_INT    {
-		$current.merge(this_INT_3);
+    |    this_NUMBER_3=RULE_NUMBER    {
+		$current.merge(this_NUMBER_3);
     }
 
     { 
-    newLeafNode(this_INT_3, grammarAccess.getOrdSqlValueAccess().getINTTerminalRuleCall_0_3()); 
+    newLeafNode(this_NUMBER_3, grammarAccess.getOrdSqlValueAccess().getNUMBERTerminalRuleCall_0_3()); 
     }
 
     |    this_WS_4=RULE_WS    {
@@ -9901,7 +9901,7 @@ ruleOrdSqlValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleTok
 )((( RULE_REST
     | RULE_IDENT_DOT
     | RULE_IDENT
-    | RULE_INT
+    | RULE_NUMBER
     | RULE_WS
     | RULE_SEMICOLON
     | RULE_COMMA
@@ -9951,12 +9951,12 @@ ruleOrdSqlValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleTok
     newLeafNode(this_IDENT_32, grammarAccess.getOrdSqlValueAccess().getIDENTTerminalRuleCall_1_0_2()); 
     }
 
-    |    this_INT_33=RULE_INT    {
-		$current.merge(this_INT_33);
+    |    this_NUMBER_33=RULE_NUMBER    {
+		$current.merge(this_NUMBER_33);
     }
 
     { 
-    newLeafNode(this_INT_33, grammarAccess.getOrdSqlValueAccess().getINTTerminalRuleCall_1_0_3()); 
+    newLeafNode(this_NUMBER_33, grammarAccess.getOrdSqlValueAccess().getNUMBERTerminalRuleCall_1_0_3()); 
     }
 
     |    this_WS_34=RULE_WS    {
@@ -10353,9 +10353,9 @@ ruleExtendedColumnName returns [EObject current=null]
         		"IDENT");
 	    }
 
-    |		lv_name_0_2=RULE_INT
+    |		lv_name_0_2=RULE_NUMBER
 		{
-			newLeafNode(lv_name_0_2, grammarAccess.getExtendedColumnNameAccess().getNameINTTerminalRuleCall_0_1()); 
+			newLeafNode(lv_name_0_2, grammarAccess.getExtendedColumnNameAccess().getNameNUMBERTerminalRuleCall_0_1()); 
 		}
 		{
 	        if ($current==null) {
@@ -10365,7 +10365,7 @@ ruleExtendedColumnName returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_0_2, 
-        		"INT");
+        		"NUMBER");
 	    }
 
     |		lv_name_0_3=RULE_IDENT_DOT
@@ -10653,9 +10653,9 @@ ruleIdentifier returns [EObject current=null]
         		"IDENT");
 	    }
 
-    |		lv_name_2_2=RULE_INT
+    |		lv_name_2_2=RULE_NUMBER
 		{
-			newLeafNode(lv_name_2_2, grammarAccess.getIdentifierAccess().getNameINTTerminalRuleCall_2_0_1()); 
+			newLeafNode(lv_name_2_2, grammarAccess.getIdentifierAccess().getNameNUMBERTerminalRuleCall_2_0_1()); 
 		}
 		{
 	        if ($current==null) {
@@ -10665,7 +10665,7 @@ ruleIdentifier returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_2_2, 
-        		"INT");
+        		"NUMBER");
 	    }
 
     |		lv_name_2_3=RULE_IDENT_DOT
@@ -11183,9 +11183,9 @@ ruleMappingItem returns [EObject current=null]
         		"IDENT");
 	    }
 
-    |		lv_name_0_2=RULE_INT
+    |		lv_name_0_2=RULE_NUMBER
 		{
-			newLeafNode(lv_name_0_2, grammarAccess.getMappingItemAccess().getNameINTTerminalRuleCall_0_0_1()); 
+			newLeafNode(lv_name_0_2, grammarAccess.getMappingItemAccess().getNameNUMBERTerminalRuleCall_0_0_1()); 
 		}
 		{
 	        if ($current==null) {
@@ -11195,15 +11195,15 @@ ruleMappingItem returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_0_2, 
-        		"INT");
+        		"NUMBER");
 	    }
 
 )
 
 )
-)(this_STRING1_1=RULE_STRING1
+)(this_STRING_1=RULE_STRING
     { 
-    newLeafNode(this_STRING1_1, grammarAccess.getMappingItemAccess().getSTRING1TerminalRuleCall_1_0()); 
+    newLeafNode(this_STRING_1, grammarAccess.getMappingItemAccess().getSTRINGTerminalRuleCall_1_0()); 
     }
 (
 (
@@ -11425,9 +11425,9 @@ ruleMappingColumnName returns [EObject current=null]
         		"IDENT_DOT");
 	    }
 
-    |		lv_name_0_3=RULE_INT
+    |		lv_name_0_3=RULE_NUMBER
 		{
-			newLeafNode(lv_name_0_3, grammarAccess.getMappingColumnNameAccess().getNameINTTerminalRuleCall_0_2()); 
+			newLeafNode(lv_name_0_3, grammarAccess.getMappingColumnNameAccess().getNameNUMBERTerminalRuleCall_0_2()); 
 		}
 		{
 	        if ($current==null) {
@@ -11437,7 +11437,7 @@ ruleMappingColumnName returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_0_3, 
-        		"INT");
+        		"NUMBER");
 	    }
 
 )
@@ -11585,12 +11585,12 @@ ruleStatementModifier returns [AntlrDatatypeRuleToken current=new AntlrDatatypeR
     newLeafNode(this_IDENT_0, grammarAccess.getStatementModifierAccess().getIDENTTerminalRuleCall_0()); 
     }
 
-    |    this_INT_1=RULE_INT    {
-		$current.merge(this_INT_1);
+    |    this_NUMBER_1=RULE_NUMBER    {
+		$current.merge(this_NUMBER_1);
     }
 
     { 
-    newLeafNode(this_INT_1, grammarAccess.getStatementModifierAccess().getINTTerminalRuleCall_1()); 
+    newLeafNode(this_NUMBER_1, grammarAccess.getStatementModifierAccess().getNUMBERTerminalRuleCall_1()); 
     }
 )
     ;
@@ -11621,12 +11621,12 @@ ruleMappingRuleModifier returns [AntlrDatatypeRuleToken current=new AntlrDatatyp
     newLeafNode(this_IDENT_0, grammarAccess.getMappingRuleModifierAccess().getIDENTTerminalRuleCall_0()); 
     }
 
-    |    this_INT_1=RULE_INT    {
-		$current.merge(this_INT_1);
+    |    this_NUMBER_1=RULE_NUMBER    {
+		$current.merge(this_NUMBER_1);
     }
 
     { 
-    newLeafNode(this_INT_1, grammarAccess.getMappingRuleModifierAccess().getINTTerminalRuleCall_1()); 
+    newLeafNode(this_NUMBER_1, grammarAccess.getMappingRuleModifierAccess().getNUMBERTerminalRuleCall_1()); 
     }
 )
     ;
@@ -11657,12 +11657,12 @@ ruleMappingItemModifier returns [AntlrDatatypeRuleToken current=new AntlrDatatyp
     newLeafNode(this_IDENT_0, grammarAccess.getMappingItemModifierAccess().getIDENTTerminalRuleCall_0()); 
     }
 
-    |    this_INT_1=RULE_INT    {
-		$current.merge(this_INT_1);
+    |    this_NUMBER_1=RULE_NUMBER    {
+		$current.merge(this_NUMBER_1);
     }
 
     { 
-    newLeafNode(this_INT_1, grammarAccess.getMappingItemModifierAccess().getINTTerminalRuleCall_1()); 
+    newLeafNode(this_NUMBER_1, grammarAccess.getMappingItemModifierAccess().getNUMBERTerminalRuleCall_1()); 
     }
 )
     ;
@@ -11693,12 +11693,12 @@ ruleOptionalFeatureModifier returns [AntlrDatatypeRuleToken current=new AntlrDat
     newLeafNode(this_IDENT_0, grammarAccess.getOptionalFeatureModifierAccess().getIDENTTerminalRuleCall_0()); 
     }
 
-    |    this_INT_1=RULE_INT    {
-		$current.merge(this_INT_1);
+    |    this_NUMBER_1=RULE_NUMBER    {
+		$current.merge(this_NUMBER_1);
     }
 
     { 
-    newLeafNode(this_INT_1, grammarAccess.getOptionalFeatureModifierAccess().getINTTerminalRuleCall_1()); 
+    newLeafNode(this_NUMBER_1, grammarAccess.getOptionalFeatureModifierAccess().getNUMBERTerminalRuleCall_1()); 
     }
 )
     ;
@@ -11736,12 +11736,12 @@ ruleModifier returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken(
     newLeafNode(this_IDENT_1, grammarAccess.getModifierAccess().getIDENTTerminalRuleCall_1_0()); 
     }
 
-    |    this_INT_2=RULE_INT    {
-		$current.merge(this_INT_2);
+    |    this_NUMBER_2=RULE_NUMBER    {
+		$current.merge(this_NUMBER_2);
     }
 
     { 
-    newLeafNode(this_INT_2, grammarAccess.getModifierAccess().getINTTerminalRuleCall_1_1()); 
+    newLeafNode(this_NUMBER_2, grammarAccess.getModifierAccess().getNUMBERTerminalRuleCall_1_1()); 
     }
 ))
     ;
@@ -11788,12 +11788,12 @@ ruleFeatureValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleTo
     newLeafNode(this_IDENT_2, grammarAccess.getFeatureValueAccess().getIDENTTerminalRuleCall_2()); 
     }
 
-    |    this_INT_3=RULE_INT    {
-		$current.merge(this_INT_3);
+    |    this_NUMBER_3=RULE_NUMBER    {
+		$current.merge(this_NUMBER_3);
     }
 
     { 
-    newLeafNode(this_INT_3, grammarAccess.getFeatureValueAccess().getINTTerminalRuleCall_3()); 
+    newLeafNode(this_NUMBER_3, grammarAccess.getFeatureValueAccess().getNUMBERTerminalRuleCall_3()); 
     }
 
     |    this_WS_4=RULE_WS    {
@@ -11812,12 +11812,12 @@ ruleFeatureValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleTo
     newLeafNode(this_COLON_5, grammarAccess.getFeatureValueAccess().getCOLONTerminalRuleCall_5()); 
     }
 
-    |    this_STRING1_6=RULE_STRING1    {
-		$current.merge(this_STRING1_6);
+    |    this_STRING_6=RULE_STRING    {
+		$current.merge(this_STRING_6);
     }
 
     { 
-    newLeafNode(this_STRING1_6, grammarAccess.getFeatureValueAccess().getSTRING1TerminalRuleCall_6()); 
+    newLeafNode(this_STRING_6, grammarAccess.getFeatureValueAccess().getSTRINGTerminalRuleCall_6()); 
     }
 
     |    this_COMMA_7=RULE_COMMA    {
@@ -12184,9 +12184,9 @@ RULE_IDENT_DOT : RULE_IDENT (RULE_DOT RULE_IDENT)+;
 
 RULE_IDENT : ('a'..'z'|'A'..'Z') ('a'..'z'|'A'..'Z'|'0'..'9'|'_'|'=')*;
 
-RULE_INT : ('0'..'9')+;
+RULE_NUMBER : ('0'..'9')+;
 
-RULE_ESC_CHAR : '\\' (RULE_COLON|RULE_SEMICOLON|RULE_STRING1|RULE_LBRACE|RULE_RBRACE|RULE_BOR|RULE_HASH|RULE_AT|RULE_PERCENT|RULE_DOT|'/');
+RULE_ESC_CHAR : '\\' (RULE_COLON|RULE_SEMICOLON|RULE_STRING|RULE_LBRACE|RULE_RBRACE|RULE_BOR|RULE_HASH|RULE_AT|RULE_PERCENT|RULE_DOT|'/');
 
 RULE_ML_COMMENT : '/*' ( options {greedy=false;} : . )*'*/';
 
@@ -12202,7 +12202,7 @@ RULE_COLON : ':';
 
 RULE_SEMICOLON : ';';
 
-RULE_STRING1 : '$';
+RULE_STRING : '$';
 
 RULE_COMMA : ',';
 
@@ -12244,6 +12244,6 @@ RULE_DOT : '.';
 
 RULE_REST : ~(RULE_SEMICOLON);
 
-RULE_STRING : '"' ( options {greedy=false;} : . )*'"';
+RULE_STRING_VALUE : '"' ( options {greedy=false;} : . )*'"';
 
 

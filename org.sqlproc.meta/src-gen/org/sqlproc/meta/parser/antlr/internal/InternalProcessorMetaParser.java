@@ -22,7 +22,7 @@ import java.util.HashMap;
 @SuppressWarnings("all")
 public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_WS", "RULE_STRING", "RULE_INT", "RULE_IDENT", "RULE_LPAREN", "RULE_RPAREN", "RULE_COLON", "RULE_PLUS", "RULE_MINUS", "RULE_SEMICOLON", "RULE_IDENT_DOT", "RULE_STATEMENT_TYPE", "RULE_COMMA", "RULE_EQUALS", "RULE_AT", "RULE_STRING1", "RULE_LBRACE", "RULE_RBRACE", "RULE_PERCENT", "RULE_REST", "RULE_QUESTI", "RULE_NOT", "RULE_BAND", "RULE_BOR", "RULE_HASH", "RULE_CARET", "RULE_LESS_THAN", "RULE_MORE_THAN", "RULE_DOT", "RULE_AND", "RULE_OR", "RULE_ESC_CHAR", "RULE_ON_OFF", "RULE_MAPPING_TYPE", "RULE_OPTION_TYPE", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "'->'", "'resolve-pojo-on'", "'resolve-pojo-off'", "'database-'", "'pojogen-'", "'metagen-'", "'daogen-'", "'replace-all-regex'", "'replace-all-replacement'", "'compress-meta-directives'", "'is-online'", "'is-offline'", "'has-url'", "'login-username'", "'login-password'", "'in-catalog'", "'active-schema'", "'jdbc-driver'", "'ddl-create'", "'ddl-drop'", "'index-types'", "'skip-indexes'", "'skip-functions-procedures'", "'skip-check-constraints'", "'is-of-type'", "'show-database-info'", "'show-driver-info'", "'show-driver-output'", "'debug-level'", "'take-comments'", "'lowercase-names'", "'uppercase-names'", "'types-sqltypes'", "'types-in-table'", "'types-for-columns'", "'types-for-procedure'", "'types-for-function'", "'show-type-for-column'", "'show-type-for-procedure'", "'show-type-for-function'", "'ignore-tables'", "'only-tables'", "'not-abstract-tables'", "'join-tables'", "'ignore-columns'", "'required-columns'", "'not-required-columns'", "'create-columns'", "'rename-tables'", "'rename-columns'", "'ignore-one-to-many'", "'ignore-many-to-one'", "'inherit-many-to-one'", "'create-one-to-many'", "'create-many-to-one'", "'table-many-to-many'", "'inherit-discriminator'", "'generate-methods'", "'generate-operators'", "'implements-interfaces'", "'extends-class'", "'implements-interfaces-generics'", "'extends-class-generics'", "'generate-wrappers'", "'generate-validation-annotations'", "'preserve-foreign-keys'", "'make-it-final'", "'version-column'", "'pojos-for-procedures'", "'pojos-for-functions'", "'active-filter'", "'package'", "'enum-for-check-constraints'", "'global-sequence'", "'table-sequence'", "'global-identity'", "'table-identity'", "'column-meta-type'", "'statement-meta-type'", "'like-columns'", "'not-like-columns'", "'generate-sequences'", "'generate-identities'", "'generate-idgenerators'", "'generate-default-idgenerators'", "'function-result'", "'function-result-set'", "'procedure-result-set'", "'optimize-insert'", "'optional-features'", "'pojo'", "'table'", "'procedure'", "'function'", "'[]'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_WS", "RULE_STRING_VALUE", "RULE_NUMBER", "RULE_IDENT", "RULE_LPAREN", "RULE_RPAREN", "RULE_COLON", "RULE_PLUS", "RULE_MINUS", "RULE_SEMICOLON", "RULE_IDENT_DOT", "RULE_STATEMENT_TYPE", "RULE_COMMA", "RULE_EQUALS", "RULE_AT", "RULE_STRING", "RULE_LBRACE", "RULE_RBRACE", "RULE_PERCENT", "RULE_REST", "RULE_QUESTI", "RULE_NOT", "RULE_BAND", "RULE_BOR", "RULE_HASH", "RULE_CARET", "RULE_LESS_THAN", "RULE_MORE_THAN", "RULE_DOT", "RULE_AND", "RULE_OR", "RULE_ESC_CHAR", "RULE_ON_OFF", "RULE_MAPPING_TYPE", "RULE_OPTION_TYPE", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "'->'", "'resolve-pojo-on'", "'resolve-pojo-off'", "'database-'", "'pojogen-'", "'metagen-'", "'daogen-'", "'replace-all-regex'", "'replace-all-replacement'", "'compress-meta-directives'", "'is-online'", "'is-offline'", "'has-url'", "'login-username'", "'login-password'", "'in-catalog'", "'active-schema'", "'jdbc-driver'", "'ddl-create'", "'ddl-drop'", "'index-types'", "'skip-indexes'", "'skip-functions-procedures'", "'skip-check-constraints'", "'is-of-type'", "'show-database-info'", "'show-driver-info'", "'show-driver-output'", "'debug-level'", "'take-comments'", "'lowercase-names'", "'uppercase-names'", "'types-sqltypes'", "'types-in-table'", "'types-for-columns'", "'types-for-procedure'", "'types-for-function'", "'show-type-for-column'", "'show-type-for-procedure'", "'show-type-for-function'", "'ignore-tables'", "'only-tables'", "'not-abstract-tables'", "'join-tables'", "'ignore-columns'", "'required-columns'", "'not-required-columns'", "'create-columns'", "'rename-tables'", "'rename-columns'", "'ignore-one-to-many'", "'ignore-many-to-one'", "'inherit-many-to-one'", "'create-one-to-many'", "'create-many-to-one'", "'table-many-to-many'", "'inherit-discriminator'", "'generate-methods'", "'generate-operators'", "'implements-interfaces'", "'extends-class'", "'implements-interfaces-generics'", "'extends-class-generics'", "'generate-wrappers'", "'generate-validation-annotations'", "'preserve-foreign-keys'", "'make-it-final'", "'version-column'", "'pojos-for-procedures'", "'pojos-for-functions'", "'active-filter'", "'package'", "'enum-for-check-constraints'", "'global-sequence'", "'table-sequence'", "'global-identity'", "'table-identity'", "'column-meta-type'", "'statement-meta-type'", "'like-columns'", "'not-like-columns'", "'generate-sequences'", "'generate-identities'", "'generate-idgenerators'", "'generate-default-idgenerators'", "'function-result'", "'function-result-set'", "'procedure-result-set'", "'optimize-insert'", "'optional-features'", "'pojo'", "'table'", "'procedure'", "'function'", "'[]'"
     };
     public static final int RULE_OR=34;
     public static final int RULE_PERCENT=22;
@@ -47,6 +47,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
     public static final int T__81=81;
     public static final int T__82=82;
     public static final int T__83=83;
+    public static final int RULE_STRING_VALUE=5;
     public static final int RULE_HASH=28;
     public static final int RULE_COMMA=16;
     public static final int T__85=85;
@@ -62,7 +63,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
     public static final int T__125=125;
     public static final int RULE_MINUS=12;
     public static final int T__128=128;
-    public static final int RULE_STRING=5;
+    public static final int RULE_STRING=19;
     public static final int T__127=127;
     public static final int T__71=71;
     public static final int T__129=129;
@@ -111,13 +112,13 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
     public static final int T__55=55;
     public static final int T__56=56;
     public static final int T__57=57;
-    public static final int RULE_STRING1=19;
     public static final int T__58=58;
     public static final int T__51=51;
     public static final int RULE_DOT=32;
     public static final int T__52=52;
     public static final int T__53=53;
     public static final int T__54=54;
+    public static final int RULE_NUMBER=6;
     public static final int T__107=107;
     public static final int T__108=108;
     public static final int T__109=109;
@@ -129,7 +130,6 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
     public static final int T__106=106;
     public static final int T__111=111;
     public static final int T__110=110;
-    public static final int RULE_INT=6;
     public static final int T__113=113;
     public static final int T__112=112;
     public static final int RULE_LBRACE=20;
@@ -1010,7 +1010,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleValueType"
-    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:290:1: ruleValueType returns [EObject current=null] : ( ( (lv_value_0_0= RULE_STRING ) ) | ( (lv_number_1_0= RULE_INT ) ) | ( (lv_id_2_0= ruleQualifiedName ) ) ) ;
+    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:290:1: ruleValueType returns [EObject current=null] : ( ( (lv_value_0_0= RULE_STRING_VALUE ) ) | ( (lv_number_1_0= RULE_NUMBER ) ) | ( (lv_id_2_0= ruleQualifiedName ) ) ) ;
     public final EObject ruleValueType() throws RecognitionException {
         EObject current = null;
 
@@ -1022,18 +1022,18 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:293:28: ( ( ( (lv_value_0_0= RULE_STRING ) ) | ( (lv_number_1_0= RULE_INT ) ) | ( (lv_id_2_0= ruleQualifiedName ) ) ) )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:294:1: ( ( (lv_value_0_0= RULE_STRING ) ) | ( (lv_number_1_0= RULE_INT ) ) | ( (lv_id_2_0= ruleQualifiedName ) ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:293:28: ( ( ( (lv_value_0_0= RULE_STRING_VALUE ) ) | ( (lv_number_1_0= RULE_NUMBER ) ) | ( (lv_id_2_0= ruleQualifiedName ) ) ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:294:1: ( ( (lv_value_0_0= RULE_STRING_VALUE ) ) | ( (lv_number_1_0= RULE_NUMBER ) ) | ( (lv_id_2_0= ruleQualifiedName ) ) )
             {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:294:1: ( ( (lv_value_0_0= RULE_STRING ) ) | ( (lv_number_1_0= RULE_INT ) ) | ( (lv_id_2_0= ruleQualifiedName ) ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:294:1: ( ( (lv_value_0_0= RULE_STRING_VALUE ) ) | ( (lv_number_1_0= RULE_NUMBER ) ) | ( (lv_id_2_0= ruleQualifiedName ) ) )
             int alt11=3;
             switch ( input.LA(1) ) {
-            case RULE_STRING:
+            case RULE_STRING_VALUE:
                 {
                 alt11=1;
                 }
                 break;
-            case RULE_INT:
+            case RULE_NUMBER:
                 {
                 alt11=2;
                 }
@@ -1054,18 +1054,18 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
 
             switch (alt11) {
                 case 1 :
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:294:2: ( (lv_value_0_0= RULE_STRING ) )
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:294:2: ( (lv_value_0_0= RULE_STRING_VALUE ) )
                     {
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:294:2: ( (lv_value_0_0= RULE_STRING ) )
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:295:1: (lv_value_0_0= RULE_STRING )
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:294:2: ( (lv_value_0_0= RULE_STRING_VALUE ) )
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:295:1: (lv_value_0_0= RULE_STRING_VALUE )
                     {
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:295:1: (lv_value_0_0= RULE_STRING )
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:296:3: lv_value_0_0= RULE_STRING
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:295:1: (lv_value_0_0= RULE_STRING_VALUE )
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:296:3: lv_value_0_0= RULE_STRING_VALUE
                     {
-                    lv_value_0_0=(Token)match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_ruleValueType553); if (state.failed) return current;
+                    lv_value_0_0=(Token)match(input,RULE_STRING_VALUE,FollowSets000.FOLLOW_RULE_STRING_VALUE_in_ruleValueType553); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                      			newLeafNode(lv_value_0_0, grammarAccess.getValueTypeAccess().getValueSTRINGTerminalRuleCall_0_0()); 
+                      			newLeafNode(lv_value_0_0, grammarAccess.getValueTypeAccess().getValueSTRING_VALUETerminalRuleCall_0_0()); 
                       		
                     }
                     if ( state.backtracking==0 ) {
@@ -1077,7 +1077,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"value",
                               		lv_value_0_0, 
-                              		"STRING");
+                              		"STRING_VALUE");
                       	    
                     }
 
@@ -1090,18 +1090,18 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:313:6: ( (lv_number_1_0= RULE_INT ) )
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:313:6: ( (lv_number_1_0= RULE_NUMBER ) )
                     {
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:313:6: ( (lv_number_1_0= RULE_INT ) )
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:314:1: (lv_number_1_0= RULE_INT )
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:313:6: ( (lv_number_1_0= RULE_NUMBER ) )
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:314:1: (lv_number_1_0= RULE_NUMBER )
                     {
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:314:1: (lv_number_1_0= RULE_INT )
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:315:3: lv_number_1_0= RULE_INT
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:314:1: (lv_number_1_0= RULE_NUMBER )
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:315:3: lv_number_1_0= RULE_NUMBER
                     {
-                    lv_number_1_0=(Token)match(input,RULE_INT,FollowSets000.FOLLOW_RULE_INT_in_ruleValueType581); if (state.failed) return current;
+                    lv_number_1_0=(Token)match(input,RULE_NUMBER,FollowSets000.FOLLOW_RULE_NUMBER_in_ruleValueType581); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                      			newLeafNode(lv_number_1_0, grammarAccess.getValueTypeAccess().getNumberINTTerminalRuleCall_1_0()); 
+                      			newLeafNode(lv_number_1_0, grammarAccess.getValueTypeAccess().getNumberNUMBERTerminalRuleCall_1_0()); 
                       		
                     }
                     if ( state.backtracking==0 ) {
@@ -1113,7 +1113,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"number",
                               		lv_number_1_0, 
-                              		"INT");
+                              		"NUMBER");
                       	    
                     }
 
@@ -1915,7 +1915,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleSqlTypeAssignement"
-    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:623:1: ruleSqlTypeAssignement returns [EObject current=null] : ( ( (lv_typeName_0_0= RULE_IDENT ) ) (this_LPAREN_1= RULE_LPAREN ( (lv_size_2_0= RULE_INT ) ) this_RPAREN_3= RULE_RPAREN )? otherlv_4= '->' ( (lv_type_5_0= rulePojoType ) ) ) ;
+    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:623:1: ruleSqlTypeAssignement returns [EObject current=null] : ( ( (lv_typeName_0_0= RULE_IDENT ) ) (this_LPAREN_1= RULE_LPAREN ( (lv_size_2_0= RULE_NUMBER ) ) this_RPAREN_3= RULE_RPAREN )? otherlv_4= '->' ( (lv_type_5_0= rulePojoType ) ) ) ;
     public final EObject ruleSqlTypeAssignement() throws RecognitionException {
         EObject current = null;
 
@@ -1930,11 +1930,11 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:626:28: ( ( ( (lv_typeName_0_0= RULE_IDENT ) ) (this_LPAREN_1= RULE_LPAREN ( (lv_size_2_0= RULE_INT ) ) this_RPAREN_3= RULE_RPAREN )? otherlv_4= '->' ( (lv_type_5_0= rulePojoType ) ) ) )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:627:1: ( ( (lv_typeName_0_0= RULE_IDENT ) ) (this_LPAREN_1= RULE_LPAREN ( (lv_size_2_0= RULE_INT ) ) this_RPAREN_3= RULE_RPAREN )? otherlv_4= '->' ( (lv_type_5_0= rulePojoType ) ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:626:28: ( ( ( (lv_typeName_0_0= RULE_IDENT ) ) (this_LPAREN_1= RULE_LPAREN ( (lv_size_2_0= RULE_NUMBER ) ) this_RPAREN_3= RULE_RPAREN )? otherlv_4= '->' ( (lv_type_5_0= rulePojoType ) ) ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:627:1: ( ( (lv_typeName_0_0= RULE_IDENT ) ) (this_LPAREN_1= RULE_LPAREN ( (lv_size_2_0= RULE_NUMBER ) ) this_RPAREN_3= RULE_RPAREN )? otherlv_4= '->' ( (lv_type_5_0= rulePojoType ) ) )
             {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:627:1: ( ( (lv_typeName_0_0= RULE_IDENT ) ) (this_LPAREN_1= RULE_LPAREN ( (lv_size_2_0= RULE_INT ) ) this_RPAREN_3= RULE_RPAREN )? otherlv_4= '->' ( (lv_type_5_0= rulePojoType ) ) )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:627:2: ( (lv_typeName_0_0= RULE_IDENT ) ) (this_LPAREN_1= RULE_LPAREN ( (lv_size_2_0= RULE_INT ) ) this_RPAREN_3= RULE_RPAREN )? otherlv_4= '->' ( (lv_type_5_0= rulePojoType ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:627:1: ( ( (lv_typeName_0_0= RULE_IDENT ) ) (this_LPAREN_1= RULE_LPAREN ( (lv_size_2_0= RULE_NUMBER ) ) this_RPAREN_3= RULE_RPAREN )? otherlv_4= '->' ( (lv_type_5_0= rulePojoType ) ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:627:2: ( (lv_typeName_0_0= RULE_IDENT ) ) (this_LPAREN_1= RULE_LPAREN ( (lv_size_2_0= RULE_NUMBER ) ) this_RPAREN_3= RULE_RPAREN )? otherlv_4= '->' ( (lv_type_5_0= rulePojoType ) )
             {
             // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:627:2: ( (lv_typeName_0_0= RULE_IDENT ) )
             // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:628:1: (lv_typeName_0_0= RULE_IDENT )
@@ -1966,7 +1966,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:645:2: (this_LPAREN_1= RULE_LPAREN ( (lv_size_2_0= RULE_INT ) ) this_RPAREN_3= RULE_RPAREN )?
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:645:2: (this_LPAREN_1= RULE_LPAREN ( (lv_size_2_0= RULE_NUMBER ) ) this_RPAREN_3= RULE_RPAREN )?
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -1975,7 +1975,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
             }
             switch (alt12) {
                 case 1 :
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:645:3: this_LPAREN_1= RULE_LPAREN ( (lv_size_2_0= RULE_INT ) ) this_RPAREN_3= RULE_RPAREN
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:645:3: this_LPAREN_1= RULE_LPAREN ( (lv_size_2_0= RULE_NUMBER ) ) this_RPAREN_3= RULE_RPAREN
                     {
                     this_LPAREN_1=(Token)match(input,RULE_LPAREN,FollowSets000.FOLLOW_RULE_LPAREN_in_ruleSqlTypeAssignement1295); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -1983,16 +1983,16 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                           newLeafNode(this_LPAREN_1, grammarAccess.getSqlTypeAssignementAccess().getLPARENTerminalRuleCall_1_0()); 
                           
                     }
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:649:1: ( (lv_size_2_0= RULE_INT ) )
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:650:1: (lv_size_2_0= RULE_INT )
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:649:1: ( (lv_size_2_0= RULE_NUMBER ) )
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:650:1: (lv_size_2_0= RULE_NUMBER )
                     {
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:650:1: (lv_size_2_0= RULE_INT )
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:651:3: lv_size_2_0= RULE_INT
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:650:1: (lv_size_2_0= RULE_NUMBER )
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:651:3: lv_size_2_0= RULE_NUMBER
                     {
-                    lv_size_2_0=(Token)match(input,RULE_INT,FollowSets000.FOLLOW_RULE_INT_in_ruleSqlTypeAssignement1311); if (state.failed) return current;
+                    lv_size_2_0=(Token)match(input,RULE_NUMBER,FollowSets000.FOLLOW_RULE_NUMBER_in_ruleSqlTypeAssignement1311); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                      			newLeafNode(lv_size_2_0, grammarAccess.getSqlTypeAssignementAccess().getSizeINTTerminalRuleCall_1_1_0()); 
+                      			newLeafNode(lv_size_2_0, grammarAccess.getSqlTypeAssignementAccess().getSizeNUMBERTerminalRuleCall_1_1_0()); 
                       		
                     }
                     if ( state.backtracking==0 ) {
@@ -2004,7 +2004,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"size",
                               		lv_size_2_0, 
-                              		"INT");
+                              		"NUMBER");
                       	    
                     }
 
@@ -7710,7 +7710,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                     if ( (LA63_0==RULE_COLON) && (synpred1_InternalProcessorMeta())) {
                         alt63=1;
                     }
-                    else if ( ((LA63_0>=RULE_STRING && LA63_0<=RULE_IDENT)||LA63_0==RULE_IDENT_DOT) ) {
+                    else if ( ((LA63_0>=RULE_STRING_VALUE && LA63_0<=RULE_IDENT)||LA63_0==RULE_IDENT_DOT) ) {
                         alt63=2;
                     }
                     else {
@@ -22759,7 +22759,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                 int alt246=2;
                 int LA246_0 = input.LA(1);
 
-                if ( (LA246_0==RULE_WS||(LA246_0>=RULE_INT && LA246_0<=RULE_MINUS)||(LA246_0>=RULE_IDENT_DOT && LA246_0<=RULE_OPTION_TYPE)) ) {
+                if ( (LA246_0==RULE_WS||(LA246_0>=RULE_NUMBER && LA246_0<=RULE_MINUS)||(LA246_0>=RULE_IDENT_DOT && LA246_0<=RULE_OPTION_TYPE)) ) {
                     alt246=1;
                 }
 
@@ -22871,15 +22871,15 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleSqlFragment"
-    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7147:1: ruleSqlFragment returns [EObject current=null] : ( ( (lv_value_0_0= ruleSqlValue ) ) | (this_AT_1= RULE_AT ( (lv_col_2_0= ruleColumn ) ) ) | (this_STRING1_3= RULE_STRING1 ( (lv_cnst_4_0= ruleConstant ) ) ) | (this_COLON_5= RULE_COLON ( (lv_ident_6_0= ruleIdentifier ) ) ) | (this_STRING1_7= RULE_STRING1 this_STRING1_8= RULE_STRING1 ( (lv_cnstOper_9_0= ruleConstantOperator ) ) ) | (this_COLON_10= RULE_COLON this_COLON_11= RULE_COLON ( (lv_identOper_12_0= ruleIdentifierOperator ) ) ) | (this_LBRACE_13= RULE_LBRACE ( (lv_meta_14_0= ruleMetaSql ) ) this_RBRACE_15= RULE_RBRACE ) | (this_PERCENT_16= RULE_PERCENT ( (this_PERCENT_17= RULE_PERCENT ( (lv_dbtab_18_0= ruleDatabaseTable ) ) ) | ( (lv_dbcol_19_0= ruleDatabaseColumn ) ) ) ) ) ;
+    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7147:1: ruleSqlFragment returns [EObject current=null] : ( ( (lv_value_0_0= ruleSqlValue ) ) | (this_AT_1= RULE_AT ( (lv_col_2_0= ruleColumn ) ) ) | (this_STRING_3= RULE_STRING ( (lv_cnst_4_0= ruleConstant ) ) ) | (this_COLON_5= RULE_COLON ( (lv_ident_6_0= ruleIdentifier ) ) ) | (this_STRING_7= RULE_STRING this_STRING_8= RULE_STRING ( (lv_cnstOper_9_0= ruleConstantOperator ) ) ) | (this_COLON_10= RULE_COLON this_COLON_11= RULE_COLON ( (lv_identOper_12_0= ruleIdentifierOperator ) ) ) | (this_LBRACE_13= RULE_LBRACE ( (lv_meta_14_0= ruleMetaSql ) ) this_RBRACE_15= RULE_RBRACE ) | (this_PERCENT_16= RULE_PERCENT ( (this_PERCENT_17= RULE_PERCENT ( (lv_dbtab_18_0= ruleDatabaseTable ) ) ) | ( (lv_dbcol_19_0= ruleDatabaseColumn ) ) ) ) ) ;
     public final EObject ruleSqlFragment() throws RecognitionException {
         EObject current = null;
 
         Token this_AT_1=null;
-        Token this_STRING1_3=null;
+        Token this_STRING_3=null;
         Token this_COLON_5=null;
-        Token this_STRING1_7=null;
-        Token this_STRING1_8=null;
+        Token this_STRING_7=null;
+        Token this_STRING_8=null;
         Token this_COLON_10=null;
         Token this_COLON_11=null;
         Token this_LBRACE_13=null;
@@ -22908,10 +22908,10 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7150:28: ( ( ( (lv_value_0_0= ruleSqlValue ) ) | (this_AT_1= RULE_AT ( (lv_col_2_0= ruleColumn ) ) ) | (this_STRING1_3= RULE_STRING1 ( (lv_cnst_4_0= ruleConstant ) ) ) | (this_COLON_5= RULE_COLON ( (lv_ident_6_0= ruleIdentifier ) ) ) | (this_STRING1_7= RULE_STRING1 this_STRING1_8= RULE_STRING1 ( (lv_cnstOper_9_0= ruleConstantOperator ) ) ) | (this_COLON_10= RULE_COLON this_COLON_11= RULE_COLON ( (lv_identOper_12_0= ruleIdentifierOperator ) ) ) | (this_LBRACE_13= RULE_LBRACE ( (lv_meta_14_0= ruleMetaSql ) ) this_RBRACE_15= RULE_RBRACE ) | (this_PERCENT_16= RULE_PERCENT ( (this_PERCENT_17= RULE_PERCENT ( (lv_dbtab_18_0= ruleDatabaseTable ) ) ) | ( (lv_dbcol_19_0= ruleDatabaseColumn ) ) ) ) ) )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7151:1: ( ( (lv_value_0_0= ruleSqlValue ) ) | (this_AT_1= RULE_AT ( (lv_col_2_0= ruleColumn ) ) ) | (this_STRING1_3= RULE_STRING1 ( (lv_cnst_4_0= ruleConstant ) ) ) | (this_COLON_5= RULE_COLON ( (lv_ident_6_0= ruleIdentifier ) ) ) | (this_STRING1_7= RULE_STRING1 this_STRING1_8= RULE_STRING1 ( (lv_cnstOper_9_0= ruleConstantOperator ) ) ) | (this_COLON_10= RULE_COLON this_COLON_11= RULE_COLON ( (lv_identOper_12_0= ruleIdentifierOperator ) ) ) | (this_LBRACE_13= RULE_LBRACE ( (lv_meta_14_0= ruleMetaSql ) ) this_RBRACE_15= RULE_RBRACE ) | (this_PERCENT_16= RULE_PERCENT ( (this_PERCENT_17= RULE_PERCENT ( (lv_dbtab_18_0= ruleDatabaseTable ) ) ) | ( (lv_dbcol_19_0= ruleDatabaseColumn ) ) ) ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7150:28: ( ( ( (lv_value_0_0= ruleSqlValue ) ) | (this_AT_1= RULE_AT ( (lv_col_2_0= ruleColumn ) ) ) | (this_STRING_3= RULE_STRING ( (lv_cnst_4_0= ruleConstant ) ) ) | (this_COLON_5= RULE_COLON ( (lv_ident_6_0= ruleIdentifier ) ) ) | (this_STRING_7= RULE_STRING this_STRING_8= RULE_STRING ( (lv_cnstOper_9_0= ruleConstantOperator ) ) ) | (this_COLON_10= RULE_COLON this_COLON_11= RULE_COLON ( (lv_identOper_12_0= ruleIdentifierOperator ) ) ) | (this_LBRACE_13= RULE_LBRACE ( (lv_meta_14_0= ruleMetaSql ) ) this_RBRACE_15= RULE_RBRACE ) | (this_PERCENT_16= RULE_PERCENT ( (this_PERCENT_17= RULE_PERCENT ( (lv_dbtab_18_0= ruleDatabaseTable ) ) ) | ( (lv_dbcol_19_0= ruleDatabaseColumn ) ) ) ) ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7151:1: ( ( (lv_value_0_0= ruleSqlValue ) ) | (this_AT_1= RULE_AT ( (lv_col_2_0= ruleColumn ) ) ) | (this_STRING_3= RULE_STRING ( (lv_cnst_4_0= ruleConstant ) ) ) | (this_COLON_5= RULE_COLON ( (lv_ident_6_0= ruleIdentifier ) ) ) | (this_STRING_7= RULE_STRING this_STRING_8= RULE_STRING ( (lv_cnstOper_9_0= ruleConstantOperator ) ) ) | (this_COLON_10= RULE_COLON this_COLON_11= RULE_COLON ( (lv_identOper_12_0= ruleIdentifierOperator ) ) ) | (this_LBRACE_13= RULE_LBRACE ( (lv_meta_14_0= ruleMetaSql ) ) this_RBRACE_15= RULE_RBRACE ) | (this_PERCENT_16= RULE_PERCENT ( (this_PERCENT_17= RULE_PERCENT ( (lv_dbtab_18_0= ruleDatabaseTable ) ) ) | ( (lv_dbcol_19_0= ruleDatabaseColumn ) ) ) ) )
             {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7151:1: ( ( (lv_value_0_0= ruleSqlValue ) ) | (this_AT_1= RULE_AT ( (lv_col_2_0= ruleColumn ) ) ) | (this_STRING1_3= RULE_STRING1 ( (lv_cnst_4_0= ruleConstant ) ) ) | (this_COLON_5= RULE_COLON ( (lv_ident_6_0= ruleIdentifier ) ) ) | (this_STRING1_7= RULE_STRING1 this_STRING1_8= RULE_STRING1 ( (lv_cnstOper_9_0= ruleConstantOperator ) ) ) | (this_COLON_10= RULE_COLON this_COLON_11= RULE_COLON ( (lv_identOper_12_0= ruleIdentifierOperator ) ) ) | (this_LBRACE_13= RULE_LBRACE ( (lv_meta_14_0= ruleMetaSql ) ) this_RBRACE_15= RULE_RBRACE ) | (this_PERCENT_16= RULE_PERCENT ( (this_PERCENT_17= RULE_PERCENT ( (lv_dbtab_18_0= ruleDatabaseTable ) ) ) | ( (lv_dbcol_19_0= ruleDatabaseColumn ) ) ) ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7151:1: ( ( (lv_value_0_0= ruleSqlValue ) ) | (this_AT_1= RULE_AT ( (lv_col_2_0= ruleColumn ) ) ) | (this_STRING_3= RULE_STRING ( (lv_cnst_4_0= ruleConstant ) ) ) | (this_COLON_5= RULE_COLON ( (lv_ident_6_0= ruleIdentifier ) ) ) | (this_STRING_7= RULE_STRING this_STRING_8= RULE_STRING ( (lv_cnstOper_9_0= ruleConstantOperator ) ) ) | (this_COLON_10= RULE_COLON this_COLON_11= RULE_COLON ( (lv_identOper_12_0= ruleIdentifierOperator ) ) ) | (this_LBRACE_13= RULE_LBRACE ( (lv_meta_14_0= ruleMetaSql ) ) this_RBRACE_15= RULE_RBRACE ) | (this_PERCENT_16= RULE_PERCENT ( (this_PERCENT_17= RULE_PERCENT ( (lv_dbtab_18_0= ruleDatabaseTable ) ) ) | ( (lv_dbcol_19_0= ruleDatabaseColumn ) ) ) ) )
             int alt248=8;
             alt248 = dfa248.predict(input);
             switch (alt248) {
@@ -23010,15 +23010,15 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7193:6: (this_STRING1_3= RULE_STRING1 ( (lv_cnst_4_0= ruleConstant ) ) )
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7193:6: (this_STRING_3= RULE_STRING ( (lv_cnst_4_0= ruleConstant ) ) )
                     {
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7193:6: (this_STRING1_3= RULE_STRING1 ( (lv_cnst_4_0= ruleConstant ) ) )
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7193:7: this_STRING1_3= RULE_STRING1 ( (lv_cnst_4_0= ruleConstant ) )
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7193:6: (this_STRING_3= RULE_STRING ( (lv_cnst_4_0= ruleConstant ) ) )
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7193:7: this_STRING_3= RULE_STRING ( (lv_cnst_4_0= ruleConstant ) )
                     {
-                    this_STRING1_3=(Token)match(input,RULE_STRING1,FollowSets001.FOLLOW_RULE_STRING1_in_ruleSqlFragment14334); if (state.failed) return current;
+                    this_STRING_3=(Token)match(input,RULE_STRING,FollowSets001.FOLLOW_RULE_STRING_in_ruleSqlFragment14334); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
                        
-                          newLeafNode(this_STRING1_3, grammarAccess.getSqlFragmentAccess().getSTRING1TerminalRuleCall_2_0()); 
+                          newLeafNode(this_STRING_3, grammarAccess.getSqlFragmentAccess().getSTRINGTerminalRuleCall_2_0()); 
                           
                     }
                     // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7197:1: ( (lv_cnst_4_0= ruleConstant ) )
@@ -23116,21 +23116,21 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7239:6: (this_STRING1_7= RULE_STRING1 this_STRING1_8= RULE_STRING1 ( (lv_cnstOper_9_0= ruleConstantOperator ) ) )
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7239:6: (this_STRING_7= RULE_STRING this_STRING_8= RULE_STRING ( (lv_cnstOper_9_0= ruleConstantOperator ) ) )
                     {
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7239:6: (this_STRING1_7= RULE_STRING1 this_STRING1_8= RULE_STRING1 ( (lv_cnstOper_9_0= ruleConstantOperator ) ) )
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7239:7: this_STRING1_7= RULE_STRING1 this_STRING1_8= RULE_STRING1 ( (lv_cnstOper_9_0= ruleConstantOperator ) )
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7239:6: (this_STRING_7= RULE_STRING this_STRING_8= RULE_STRING ( (lv_cnstOper_9_0= ruleConstantOperator ) ) )
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7239:7: this_STRING_7= RULE_STRING this_STRING_8= RULE_STRING ( (lv_cnstOper_9_0= ruleConstantOperator ) )
                     {
-                    this_STRING1_7=(Token)match(input,RULE_STRING1,FollowSets001.FOLLOW_RULE_STRING1_in_ruleSqlFragment14412); if (state.failed) return current;
+                    this_STRING_7=(Token)match(input,RULE_STRING,FollowSets001.FOLLOW_RULE_STRING_in_ruleSqlFragment14412); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
                        
-                          newLeafNode(this_STRING1_7, grammarAccess.getSqlFragmentAccess().getSTRING1TerminalRuleCall_4_0()); 
+                          newLeafNode(this_STRING_7, grammarAccess.getSqlFragmentAccess().getSTRINGTerminalRuleCall_4_0()); 
                           
                     }
-                    this_STRING1_8=(Token)match(input,RULE_STRING1,FollowSets001.FOLLOW_RULE_STRING1_in_ruleSqlFragment14422); if (state.failed) return current;
+                    this_STRING_8=(Token)match(input,RULE_STRING,FollowSets001.FOLLOW_RULE_STRING_in_ruleSqlFragment14422); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
                        
-                          newLeafNode(this_STRING1_8, grammarAccess.getSqlFragmentAccess().getSTRING1TerminalRuleCall_4_1()); 
+                          newLeafNode(this_STRING_8, grammarAccess.getSqlFragmentAccess().getSTRINGTerminalRuleCall_4_1()); 
                           
                     }
                     // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7247:1: ( (lv_cnstOper_9_0= ruleConstantOperator ) )
@@ -23488,14 +23488,14 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleSqlValue"
-    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7382:1: ruleSqlValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : ( (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_INT_3= RULE_INT | this_WS_4= RULE_WS | this_COMMA_5= RULE_COMMA | this_MINUS_6= RULE_MINUS | this_PLUS_7= RULE_PLUS | this_LPAREN_8= RULE_LPAREN | this_RPAREN_9= RULE_RPAREN | this_RBRACE_10= RULE_RBRACE | this_QUESTI_11= RULE_QUESTI | this_NOT_12= RULE_NOT | this_BAND_13= RULE_BAND | this_BOR_14= RULE_BOR | this_HASH_15= RULE_HASH | this_CARET_16= RULE_CARET | this_EQUALS_17= RULE_EQUALS | this_LESS_THAN_18= RULE_LESS_THAN | this_MORE_THAN_19= RULE_MORE_THAN | this_DOT_20= RULE_DOT | this_AND_21= RULE_AND | this_OR_22= RULE_OR | this_ESC_CHAR_23= RULE_ESC_CHAR | this_ON_OFF_24= RULE_ON_OFF | this_STATEMENT_TYPE_25= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_26= RULE_MAPPING_TYPE | this_OPTION_TYPE_27= RULE_OPTION_TYPE ) ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_INT | RULE_WS | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_RBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_28= RULE_REST | this_IDENT_DOT_29= RULE_IDENT_DOT | this_IDENT_30= RULE_IDENT | this_INT_31= RULE_INT | this_WS_32= RULE_WS | this_COMMA_33= RULE_COMMA | this_MINUS_34= RULE_MINUS | this_PLUS_35= RULE_PLUS | this_LPAREN_36= RULE_LPAREN | this_RPAREN_37= RULE_RPAREN | this_RBRACE_38= RULE_RBRACE | this_QUESTI_39= RULE_QUESTI | this_NOT_40= RULE_NOT | this_BAND_41= RULE_BAND | this_BOR_42= RULE_BOR | this_HASH_43= RULE_HASH | this_CARET_44= RULE_CARET | this_EQUALS_45= RULE_EQUALS | this_LESS_THAN_46= RULE_LESS_THAN | this_MORE_THAN_47= RULE_MORE_THAN | this_DOT_48= RULE_DOT | this_AND_49= RULE_AND | this_OR_50= RULE_OR | this_ESC_CHAR_51= RULE_ESC_CHAR | this_ON_OFF_52= RULE_ON_OFF | this_STATEMENT_TYPE_53= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_54= RULE_MAPPING_TYPE | this_OPTION_TYPE_55= RULE_OPTION_TYPE ) )* ) ;
+    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7382:1: ruleSqlValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : ( (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_NUMBER_3= RULE_NUMBER | this_WS_4= RULE_WS | this_COMMA_5= RULE_COMMA | this_MINUS_6= RULE_MINUS | this_PLUS_7= RULE_PLUS | this_LPAREN_8= RULE_LPAREN | this_RPAREN_9= RULE_RPAREN | this_RBRACE_10= RULE_RBRACE | this_QUESTI_11= RULE_QUESTI | this_NOT_12= RULE_NOT | this_BAND_13= RULE_BAND | this_BOR_14= RULE_BOR | this_HASH_15= RULE_HASH | this_CARET_16= RULE_CARET | this_EQUALS_17= RULE_EQUALS | this_LESS_THAN_18= RULE_LESS_THAN | this_MORE_THAN_19= RULE_MORE_THAN | this_DOT_20= RULE_DOT | this_AND_21= RULE_AND | this_OR_22= RULE_OR | this_ESC_CHAR_23= RULE_ESC_CHAR | this_ON_OFF_24= RULE_ON_OFF | this_STATEMENT_TYPE_25= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_26= RULE_MAPPING_TYPE | this_OPTION_TYPE_27= RULE_OPTION_TYPE ) ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_NUMBER | RULE_WS | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_RBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_28= RULE_REST | this_IDENT_DOT_29= RULE_IDENT_DOT | this_IDENT_30= RULE_IDENT | this_NUMBER_31= RULE_NUMBER | this_WS_32= RULE_WS | this_COMMA_33= RULE_COMMA | this_MINUS_34= RULE_MINUS | this_PLUS_35= RULE_PLUS | this_LPAREN_36= RULE_LPAREN | this_RPAREN_37= RULE_RPAREN | this_RBRACE_38= RULE_RBRACE | this_QUESTI_39= RULE_QUESTI | this_NOT_40= RULE_NOT | this_BAND_41= RULE_BAND | this_BOR_42= RULE_BOR | this_HASH_43= RULE_HASH | this_CARET_44= RULE_CARET | this_EQUALS_45= RULE_EQUALS | this_LESS_THAN_46= RULE_LESS_THAN | this_MORE_THAN_47= RULE_MORE_THAN | this_DOT_48= RULE_DOT | this_AND_49= RULE_AND | this_OR_50= RULE_OR | this_ESC_CHAR_51= RULE_ESC_CHAR | this_ON_OFF_52= RULE_ON_OFF | this_STATEMENT_TYPE_53= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_54= RULE_MAPPING_TYPE | this_OPTION_TYPE_55= RULE_OPTION_TYPE ) )* ) ;
     public final AntlrDatatypeRuleToken ruleSqlValue() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
         Token this_REST_0=null;
         Token this_IDENT_DOT_1=null;
         Token this_IDENT_2=null;
-        Token this_INT_3=null;
+        Token this_NUMBER_3=null;
         Token this_WS_4=null;
         Token this_COMMA_5=null;
         Token this_MINUS_6=null;
@@ -23523,7 +23523,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
         Token this_REST_28=null;
         Token this_IDENT_DOT_29=null;
         Token this_IDENT_30=null;
-        Token this_INT_31=null;
+        Token this_NUMBER_31=null;
         Token this_WS_32=null;
         Token this_COMMA_33=null;
         Token this_MINUS_34=null;
@@ -23552,13 +23552,13 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7385:28: ( ( (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_INT_3= RULE_INT | this_WS_4= RULE_WS | this_COMMA_5= RULE_COMMA | this_MINUS_6= RULE_MINUS | this_PLUS_7= RULE_PLUS | this_LPAREN_8= RULE_LPAREN | this_RPAREN_9= RULE_RPAREN | this_RBRACE_10= RULE_RBRACE | this_QUESTI_11= RULE_QUESTI | this_NOT_12= RULE_NOT | this_BAND_13= RULE_BAND | this_BOR_14= RULE_BOR | this_HASH_15= RULE_HASH | this_CARET_16= RULE_CARET | this_EQUALS_17= RULE_EQUALS | this_LESS_THAN_18= RULE_LESS_THAN | this_MORE_THAN_19= RULE_MORE_THAN | this_DOT_20= RULE_DOT | this_AND_21= RULE_AND | this_OR_22= RULE_OR | this_ESC_CHAR_23= RULE_ESC_CHAR | this_ON_OFF_24= RULE_ON_OFF | this_STATEMENT_TYPE_25= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_26= RULE_MAPPING_TYPE | this_OPTION_TYPE_27= RULE_OPTION_TYPE ) ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_INT | RULE_WS | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_RBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_28= RULE_REST | this_IDENT_DOT_29= RULE_IDENT_DOT | this_IDENT_30= RULE_IDENT | this_INT_31= RULE_INT | this_WS_32= RULE_WS | this_COMMA_33= RULE_COMMA | this_MINUS_34= RULE_MINUS | this_PLUS_35= RULE_PLUS | this_LPAREN_36= RULE_LPAREN | this_RPAREN_37= RULE_RPAREN | this_RBRACE_38= RULE_RBRACE | this_QUESTI_39= RULE_QUESTI | this_NOT_40= RULE_NOT | this_BAND_41= RULE_BAND | this_BOR_42= RULE_BOR | this_HASH_43= RULE_HASH | this_CARET_44= RULE_CARET | this_EQUALS_45= RULE_EQUALS | this_LESS_THAN_46= RULE_LESS_THAN | this_MORE_THAN_47= RULE_MORE_THAN | this_DOT_48= RULE_DOT | this_AND_49= RULE_AND | this_OR_50= RULE_OR | this_ESC_CHAR_51= RULE_ESC_CHAR | this_ON_OFF_52= RULE_ON_OFF | this_STATEMENT_TYPE_53= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_54= RULE_MAPPING_TYPE | this_OPTION_TYPE_55= RULE_OPTION_TYPE ) )* ) )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7386:1: ( (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_INT_3= RULE_INT | this_WS_4= RULE_WS | this_COMMA_5= RULE_COMMA | this_MINUS_6= RULE_MINUS | this_PLUS_7= RULE_PLUS | this_LPAREN_8= RULE_LPAREN | this_RPAREN_9= RULE_RPAREN | this_RBRACE_10= RULE_RBRACE | this_QUESTI_11= RULE_QUESTI | this_NOT_12= RULE_NOT | this_BAND_13= RULE_BAND | this_BOR_14= RULE_BOR | this_HASH_15= RULE_HASH | this_CARET_16= RULE_CARET | this_EQUALS_17= RULE_EQUALS | this_LESS_THAN_18= RULE_LESS_THAN | this_MORE_THAN_19= RULE_MORE_THAN | this_DOT_20= RULE_DOT | this_AND_21= RULE_AND | this_OR_22= RULE_OR | this_ESC_CHAR_23= RULE_ESC_CHAR | this_ON_OFF_24= RULE_ON_OFF | this_STATEMENT_TYPE_25= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_26= RULE_MAPPING_TYPE | this_OPTION_TYPE_27= RULE_OPTION_TYPE ) ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_INT | RULE_WS | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_RBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_28= RULE_REST | this_IDENT_DOT_29= RULE_IDENT_DOT | this_IDENT_30= RULE_IDENT | this_INT_31= RULE_INT | this_WS_32= RULE_WS | this_COMMA_33= RULE_COMMA | this_MINUS_34= RULE_MINUS | this_PLUS_35= RULE_PLUS | this_LPAREN_36= RULE_LPAREN | this_RPAREN_37= RULE_RPAREN | this_RBRACE_38= RULE_RBRACE | this_QUESTI_39= RULE_QUESTI | this_NOT_40= RULE_NOT | this_BAND_41= RULE_BAND | this_BOR_42= RULE_BOR | this_HASH_43= RULE_HASH | this_CARET_44= RULE_CARET | this_EQUALS_45= RULE_EQUALS | this_LESS_THAN_46= RULE_LESS_THAN | this_MORE_THAN_47= RULE_MORE_THAN | this_DOT_48= RULE_DOT | this_AND_49= RULE_AND | this_OR_50= RULE_OR | this_ESC_CHAR_51= RULE_ESC_CHAR | this_ON_OFF_52= RULE_ON_OFF | this_STATEMENT_TYPE_53= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_54= RULE_MAPPING_TYPE | this_OPTION_TYPE_55= RULE_OPTION_TYPE ) )* )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7385:28: ( ( (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_NUMBER_3= RULE_NUMBER | this_WS_4= RULE_WS | this_COMMA_5= RULE_COMMA | this_MINUS_6= RULE_MINUS | this_PLUS_7= RULE_PLUS | this_LPAREN_8= RULE_LPAREN | this_RPAREN_9= RULE_RPAREN | this_RBRACE_10= RULE_RBRACE | this_QUESTI_11= RULE_QUESTI | this_NOT_12= RULE_NOT | this_BAND_13= RULE_BAND | this_BOR_14= RULE_BOR | this_HASH_15= RULE_HASH | this_CARET_16= RULE_CARET | this_EQUALS_17= RULE_EQUALS | this_LESS_THAN_18= RULE_LESS_THAN | this_MORE_THAN_19= RULE_MORE_THAN | this_DOT_20= RULE_DOT | this_AND_21= RULE_AND | this_OR_22= RULE_OR | this_ESC_CHAR_23= RULE_ESC_CHAR | this_ON_OFF_24= RULE_ON_OFF | this_STATEMENT_TYPE_25= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_26= RULE_MAPPING_TYPE | this_OPTION_TYPE_27= RULE_OPTION_TYPE ) ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_NUMBER | RULE_WS | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_RBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_28= RULE_REST | this_IDENT_DOT_29= RULE_IDENT_DOT | this_IDENT_30= RULE_IDENT | this_NUMBER_31= RULE_NUMBER | this_WS_32= RULE_WS | this_COMMA_33= RULE_COMMA | this_MINUS_34= RULE_MINUS | this_PLUS_35= RULE_PLUS | this_LPAREN_36= RULE_LPAREN | this_RPAREN_37= RULE_RPAREN | this_RBRACE_38= RULE_RBRACE | this_QUESTI_39= RULE_QUESTI | this_NOT_40= RULE_NOT | this_BAND_41= RULE_BAND | this_BOR_42= RULE_BOR | this_HASH_43= RULE_HASH | this_CARET_44= RULE_CARET | this_EQUALS_45= RULE_EQUALS | this_LESS_THAN_46= RULE_LESS_THAN | this_MORE_THAN_47= RULE_MORE_THAN | this_DOT_48= RULE_DOT | this_AND_49= RULE_AND | this_OR_50= RULE_OR | this_ESC_CHAR_51= RULE_ESC_CHAR | this_ON_OFF_52= RULE_ON_OFF | this_STATEMENT_TYPE_53= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_54= RULE_MAPPING_TYPE | this_OPTION_TYPE_55= RULE_OPTION_TYPE ) )* ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7386:1: ( (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_NUMBER_3= RULE_NUMBER | this_WS_4= RULE_WS | this_COMMA_5= RULE_COMMA | this_MINUS_6= RULE_MINUS | this_PLUS_7= RULE_PLUS | this_LPAREN_8= RULE_LPAREN | this_RPAREN_9= RULE_RPAREN | this_RBRACE_10= RULE_RBRACE | this_QUESTI_11= RULE_QUESTI | this_NOT_12= RULE_NOT | this_BAND_13= RULE_BAND | this_BOR_14= RULE_BOR | this_HASH_15= RULE_HASH | this_CARET_16= RULE_CARET | this_EQUALS_17= RULE_EQUALS | this_LESS_THAN_18= RULE_LESS_THAN | this_MORE_THAN_19= RULE_MORE_THAN | this_DOT_20= RULE_DOT | this_AND_21= RULE_AND | this_OR_22= RULE_OR | this_ESC_CHAR_23= RULE_ESC_CHAR | this_ON_OFF_24= RULE_ON_OFF | this_STATEMENT_TYPE_25= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_26= RULE_MAPPING_TYPE | this_OPTION_TYPE_27= RULE_OPTION_TYPE ) ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_NUMBER | RULE_WS | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_RBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_28= RULE_REST | this_IDENT_DOT_29= RULE_IDENT_DOT | this_IDENT_30= RULE_IDENT | this_NUMBER_31= RULE_NUMBER | this_WS_32= RULE_WS | this_COMMA_33= RULE_COMMA | this_MINUS_34= RULE_MINUS | this_PLUS_35= RULE_PLUS | this_LPAREN_36= RULE_LPAREN | this_RPAREN_37= RULE_RPAREN | this_RBRACE_38= RULE_RBRACE | this_QUESTI_39= RULE_QUESTI | this_NOT_40= RULE_NOT | this_BAND_41= RULE_BAND | this_BOR_42= RULE_BOR | this_HASH_43= RULE_HASH | this_CARET_44= RULE_CARET | this_EQUALS_45= RULE_EQUALS | this_LESS_THAN_46= RULE_LESS_THAN | this_MORE_THAN_47= RULE_MORE_THAN | this_DOT_48= RULE_DOT | this_AND_49= RULE_AND | this_OR_50= RULE_OR | this_ESC_CHAR_51= RULE_ESC_CHAR | this_ON_OFF_52= RULE_ON_OFF | this_STATEMENT_TYPE_53= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_54= RULE_MAPPING_TYPE | this_OPTION_TYPE_55= RULE_OPTION_TYPE ) )* )
             {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7386:1: ( (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_INT_3= RULE_INT | this_WS_4= RULE_WS | this_COMMA_5= RULE_COMMA | this_MINUS_6= RULE_MINUS | this_PLUS_7= RULE_PLUS | this_LPAREN_8= RULE_LPAREN | this_RPAREN_9= RULE_RPAREN | this_RBRACE_10= RULE_RBRACE | this_QUESTI_11= RULE_QUESTI | this_NOT_12= RULE_NOT | this_BAND_13= RULE_BAND | this_BOR_14= RULE_BOR | this_HASH_15= RULE_HASH | this_CARET_16= RULE_CARET | this_EQUALS_17= RULE_EQUALS | this_LESS_THAN_18= RULE_LESS_THAN | this_MORE_THAN_19= RULE_MORE_THAN | this_DOT_20= RULE_DOT | this_AND_21= RULE_AND | this_OR_22= RULE_OR | this_ESC_CHAR_23= RULE_ESC_CHAR | this_ON_OFF_24= RULE_ON_OFF | this_STATEMENT_TYPE_25= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_26= RULE_MAPPING_TYPE | this_OPTION_TYPE_27= RULE_OPTION_TYPE ) ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_INT | RULE_WS | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_RBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_28= RULE_REST | this_IDENT_DOT_29= RULE_IDENT_DOT | this_IDENT_30= RULE_IDENT | this_INT_31= RULE_INT | this_WS_32= RULE_WS | this_COMMA_33= RULE_COMMA | this_MINUS_34= RULE_MINUS | this_PLUS_35= RULE_PLUS | this_LPAREN_36= RULE_LPAREN | this_RPAREN_37= RULE_RPAREN | this_RBRACE_38= RULE_RBRACE | this_QUESTI_39= RULE_QUESTI | this_NOT_40= RULE_NOT | this_BAND_41= RULE_BAND | this_BOR_42= RULE_BOR | this_HASH_43= RULE_HASH | this_CARET_44= RULE_CARET | this_EQUALS_45= RULE_EQUALS | this_LESS_THAN_46= RULE_LESS_THAN | this_MORE_THAN_47= RULE_MORE_THAN | this_DOT_48= RULE_DOT | this_AND_49= RULE_AND | this_OR_50= RULE_OR | this_ESC_CHAR_51= RULE_ESC_CHAR | this_ON_OFF_52= RULE_ON_OFF | this_STATEMENT_TYPE_53= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_54= RULE_MAPPING_TYPE | this_OPTION_TYPE_55= RULE_OPTION_TYPE ) )* )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7386:2: (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_INT_3= RULE_INT | this_WS_4= RULE_WS | this_COMMA_5= RULE_COMMA | this_MINUS_6= RULE_MINUS | this_PLUS_7= RULE_PLUS | this_LPAREN_8= RULE_LPAREN | this_RPAREN_9= RULE_RPAREN | this_RBRACE_10= RULE_RBRACE | this_QUESTI_11= RULE_QUESTI | this_NOT_12= RULE_NOT | this_BAND_13= RULE_BAND | this_BOR_14= RULE_BOR | this_HASH_15= RULE_HASH | this_CARET_16= RULE_CARET | this_EQUALS_17= RULE_EQUALS | this_LESS_THAN_18= RULE_LESS_THAN | this_MORE_THAN_19= RULE_MORE_THAN | this_DOT_20= RULE_DOT | this_AND_21= RULE_AND | this_OR_22= RULE_OR | this_ESC_CHAR_23= RULE_ESC_CHAR | this_ON_OFF_24= RULE_ON_OFF | this_STATEMENT_TYPE_25= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_26= RULE_MAPPING_TYPE | this_OPTION_TYPE_27= RULE_OPTION_TYPE ) ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_INT | RULE_WS | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_RBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_28= RULE_REST | this_IDENT_DOT_29= RULE_IDENT_DOT | this_IDENT_30= RULE_IDENT | this_INT_31= RULE_INT | this_WS_32= RULE_WS | this_COMMA_33= RULE_COMMA | this_MINUS_34= RULE_MINUS | this_PLUS_35= RULE_PLUS | this_LPAREN_36= RULE_LPAREN | this_RPAREN_37= RULE_RPAREN | this_RBRACE_38= RULE_RBRACE | this_QUESTI_39= RULE_QUESTI | this_NOT_40= RULE_NOT | this_BAND_41= RULE_BAND | this_BOR_42= RULE_BOR | this_HASH_43= RULE_HASH | this_CARET_44= RULE_CARET | this_EQUALS_45= RULE_EQUALS | this_LESS_THAN_46= RULE_LESS_THAN | this_MORE_THAN_47= RULE_MORE_THAN | this_DOT_48= RULE_DOT | this_AND_49= RULE_AND | this_OR_50= RULE_OR | this_ESC_CHAR_51= RULE_ESC_CHAR | this_ON_OFF_52= RULE_ON_OFF | this_STATEMENT_TYPE_53= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_54= RULE_MAPPING_TYPE | this_OPTION_TYPE_55= RULE_OPTION_TYPE ) )*
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7386:1: ( (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_NUMBER_3= RULE_NUMBER | this_WS_4= RULE_WS | this_COMMA_5= RULE_COMMA | this_MINUS_6= RULE_MINUS | this_PLUS_7= RULE_PLUS | this_LPAREN_8= RULE_LPAREN | this_RPAREN_9= RULE_RPAREN | this_RBRACE_10= RULE_RBRACE | this_QUESTI_11= RULE_QUESTI | this_NOT_12= RULE_NOT | this_BAND_13= RULE_BAND | this_BOR_14= RULE_BOR | this_HASH_15= RULE_HASH | this_CARET_16= RULE_CARET | this_EQUALS_17= RULE_EQUALS | this_LESS_THAN_18= RULE_LESS_THAN | this_MORE_THAN_19= RULE_MORE_THAN | this_DOT_20= RULE_DOT | this_AND_21= RULE_AND | this_OR_22= RULE_OR | this_ESC_CHAR_23= RULE_ESC_CHAR | this_ON_OFF_24= RULE_ON_OFF | this_STATEMENT_TYPE_25= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_26= RULE_MAPPING_TYPE | this_OPTION_TYPE_27= RULE_OPTION_TYPE ) ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_NUMBER | RULE_WS | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_RBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_28= RULE_REST | this_IDENT_DOT_29= RULE_IDENT_DOT | this_IDENT_30= RULE_IDENT | this_NUMBER_31= RULE_NUMBER | this_WS_32= RULE_WS | this_COMMA_33= RULE_COMMA | this_MINUS_34= RULE_MINUS | this_PLUS_35= RULE_PLUS | this_LPAREN_36= RULE_LPAREN | this_RPAREN_37= RULE_RPAREN | this_RBRACE_38= RULE_RBRACE | this_QUESTI_39= RULE_QUESTI | this_NOT_40= RULE_NOT | this_BAND_41= RULE_BAND | this_BOR_42= RULE_BOR | this_HASH_43= RULE_HASH | this_CARET_44= RULE_CARET | this_EQUALS_45= RULE_EQUALS | this_LESS_THAN_46= RULE_LESS_THAN | this_MORE_THAN_47= RULE_MORE_THAN | this_DOT_48= RULE_DOT | this_AND_49= RULE_AND | this_OR_50= RULE_OR | this_ESC_CHAR_51= RULE_ESC_CHAR | this_ON_OFF_52= RULE_ON_OFF | this_STATEMENT_TYPE_53= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_54= RULE_MAPPING_TYPE | this_OPTION_TYPE_55= RULE_OPTION_TYPE ) )* )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7386:2: (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_NUMBER_3= RULE_NUMBER | this_WS_4= RULE_WS | this_COMMA_5= RULE_COMMA | this_MINUS_6= RULE_MINUS | this_PLUS_7= RULE_PLUS | this_LPAREN_8= RULE_LPAREN | this_RPAREN_9= RULE_RPAREN | this_RBRACE_10= RULE_RBRACE | this_QUESTI_11= RULE_QUESTI | this_NOT_12= RULE_NOT | this_BAND_13= RULE_BAND | this_BOR_14= RULE_BOR | this_HASH_15= RULE_HASH | this_CARET_16= RULE_CARET | this_EQUALS_17= RULE_EQUALS | this_LESS_THAN_18= RULE_LESS_THAN | this_MORE_THAN_19= RULE_MORE_THAN | this_DOT_20= RULE_DOT | this_AND_21= RULE_AND | this_OR_22= RULE_OR | this_ESC_CHAR_23= RULE_ESC_CHAR | this_ON_OFF_24= RULE_ON_OFF | this_STATEMENT_TYPE_25= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_26= RULE_MAPPING_TYPE | this_OPTION_TYPE_27= RULE_OPTION_TYPE ) ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_NUMBER | RULE_WS | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_RBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_28= RULE_REST | this_IDENT_DOT_29= RULE_IDENT_DOT | this_IDENT_30= RULE_IDENT | this_NUMBER_31= RULE_NUMBER | this_WS_32= RULE_WS | this_COMMA_33= RULE_COMMA | this_MINUS_34= RULE_MINUS | this_PLUS_35= RULE_PLUS | this_LPAREN_36= RULE_LPAREN | this_RPAREN_37= RULE_RPAREN | this_RBRACE_38= RULE_RBRACE | this_QUESTI_39= RULE_QUESTI | this_NOT_40= RULE_NOT | this_BAND_41= RULE_BAND | this_BOR_42= RULE_BOR | this_HASH_43= RULE_HASH | this_CARET_44= RULE_CARET | this_EQUALS_45= RULE_EQUALS | this_LESS_THAN_46= RULE_LESS_THAN | this_MORE_THAN_47= RULE_MORE_THAN | this_DOT_48= RULE_DOT | this_AND_49= RULE_AND | this_OR_50= RULE_OR | this_ESC_CHAR_51= RULE_ESC_CHAR | this_ON_OFF_52= RULE_ON_OFF | this_STATEMENT_TYPE_53= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_54= RULE_MAPPING_TYPE | this_OPTION_TYPE_55= RULE_OPTION_TYPE ) )*
             {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7386:2: (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_INT_3= RULE_INT | this_WS_4= RULE_WS | this_COMMA_5= RULE_COMMA | this_MINUS_6= RULE_MINUS | this_PLUS_7= RULE_PLUS | this_LPAREN_8= RULE_LPAREN | this_RPAREN_9= RULE_RPAREN | this_RBRACE_10= RULE_RBRACE | this_QUESTI_11= RULE_QUESTI | this_NOT_12= RULE_NOT | this_BAND_13= RULE_BAND | this_BOR_14= RULE_BOR | this_HASH_15= RULE_HASH | this_CARET_16= RULE_CARET | this_EQUALS_17= RULE_EQUALS | this_LESS_THAN_18= RULE_LESS_THAN | this_MORE_THAN_19= RULE_MORE_THAN | this_DOT_20= RULE_DOT | this_AND_21= RULE_AND | this_OR_22= RULE_OR | this_ESC_CHAR_23= RULE_ESC_CHAR | this_ON_OFF_24= RULE_ON_OFF | this_STATEMENT_TYPE_25= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_26= RULE_MAPPING_TYPE | this_OPTION_TYPE_27= RULE_OPTION_TYPE )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7386:2: (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_NUMBER_3= RULE_NUMBER | this_WS_4= RULE_WS | this_COMMA_5= RULE_COMMA | this_MINUS_6= RULE_MINUS | this_PLUS_7= RULE_PLUS | this_LPAREN_8= RULE_LPAREN | this_RPAREN_9= RULE_RPAREN | this_RBRACE_10= RULE_RBRACE | this_QUESTI_11= RULE_QUESTI | this_NOT_12= RULE_NOT | this_BAND_13= RULE_BAND | this_BOR_14= RULE_BOR | this_HASH_15= RULE_HASH | this_CARET_16= RULE_CARET | this_EQUALS_17= RULE_EQUALS | this_LESS_THAN_18= RULE_LESS_THAN | this_MORE_THAN_19= RULE_MORE_THAN | this_DOT_20= RULE_DOT | this_AND_21= RULE_AND | this_OR_22= RULE_OR | this_ESC_CHAR_23= RULE_ESC_CHAR | this_ON_OFF_24= RULE_ON_OFF | this_STATEMENT_TYPE_25= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_26= RULE_MAPPING_TYPE | this_OPTION_TYPE_27= RULE_OPTION_TYPE )
             int alt249=28;
             switch ( input.LA(1) ) {
             case RULE_REST:
@@ -23576,7 +23576,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                 alt249=3;
                 }
                 break;
-            case RULE_INT:
+            case RULE_NUMBER:
                 {
                 alt249=4;
                 }
@@ -23762,17 +23762,17 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7410:10: this_INT_3= RULE_INT
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7410:10: this_NUMBER_3= RULE_NUMBER
                     {
-                    this_INT_3=(Token)match(input,RULE_INT,FollowSets001.FOLLOW_RULE_INT_in_ruleSqlValue14788); if (state.failed) return current;
+                    this_NUMBER_3=(Token)match(input,RULE_NUMBER,FollowSets001.FOLLOW_RULE_NUMBER_in_ruleSqlValue14788); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                      		current.merge(this_INT_3);
+                      		current.merge(this_NUMBER_3);
                           
                     }
                     if ( state.backtracking==0 ) {
                        
-                          newLeafNode(this_INT_3, grammarAccess.getSqlValueAccess().getINTTerminalRuleCall_0_3()); 
+                          newLeafNode(this_NUMBER_3, grammarAccess.getSqlValueAccess().getNUMBERTerminalRuleCall_0_3()); 
                           
                     }
 
@@ -24189,16 +24189,16 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7609:2: ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_INT | RULE_WS | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_RBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_28= RULE_REST | this_IDENT_DOT_29= RULE_IDENT_DOT | this_IDENT_30= RULE_IDENT | this_INT_31= RULE_INT | this_WS_32= RULE_WS | this_COMMA_33= RULE_COMMA | this_MINUS_34= RULE_MINUS | this_PLUS_35= RULE_PLUS | this_LPAREN_36= RULE_LPAREN | this_RPAREN_37= RULE_RPAREN | this_RBRACE_38= RULE_RBRACE | this_QUESTI_39= RULE_QUESTI | this_NOT_40= RULE_NOT | this_BAND_41= RULE_BAND | this_BOR_42= RULE_BOR | this_HASH_43= RULE_HASH | this_CARET_44= RULE_CARET | this_EQUALS_45= RULE_EQUALS | this_LESS_THAN_46= RULE_LESS_THAN | this_MORE_THAN_47= RULE_MORE_THAN | this_DOT_48= RULE_DOT | this_AND_49= RULE_AND | this_OR_50= RULE_OR | this_ESC_CHAR_51= RULE_ESC_CHAR | this_ON_OFF_52= RULE_ON_OFF | this_STATEMENT_TYPE_53= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_54= RULE_MAPPING_TYPE | this_OPTION_TYPE_55= RULE_OPTION_TYPE ) )*
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7609:2: ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_NUMBER | RULE_WS | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_RBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_28= RULE_REST | this_IDENT_DOT_29= RULE_IDENT_DOT | this_IDENT_30= RULE_IDENT | this_NUMBER_31= RULE_NUMBER | this_WS_32= RULE_WS | this_COMMA_33= RULE_COMMA | this_MINUS_34= RULE_MINUS | this_PLUS_35= RULE_PLUS | this_LPAREN_36= RULE_LPAREN | this_RPAREN_37= RULE_RPAREN | this_RBRACE_38= RULE_RBRACE | this_QUESTI_39= RULE_QUESTI | this_NOT_40= RULE_NOT | this_BAND_41= RULE_BAND | this_BOR_42= RULE_BOR | this_HASH_43= RULE_HASH | this_CARET_44= RULE_CARET | this_EQUALS_45= RULE_EQUALS | this_LESS_THAN_46= RULE_LESS_THAN | this_MORE_THAN_47= RULE_MORE_THAN | this_DOT_48= RULE_DOT | this_AND_49= RULE_AND | this_OR_50= RULE_OR | this_ESC_CHAR_51= RULE_ESC_CHAR | this_ON_OFF_52= RULE_ON_OFF | this_STATEMENT_TYPE_53= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_54= RULE_MAPPING_TYPE | this_OPTION_TYPE_55= RULE_OPTION_TYPE ) )*
             loop251:
             do {
                 int alt251=2;
                 alt251 = dfa251.predict(input);
                 switch (alt251) {
             	case 1 :
-            	    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7609:3: ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_INT | RULE_WS | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_RBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_28= RULE_REST | this_IDENT_DOT_29= RULE_IDENT_DOT | this_IDENT_30= RULE_IDENT | this_INT_31= RULE_INT | this_WS_32= RULE_WS | this_COMMA_33= RULE_COMMA | this_MINUS_34= RULE_MINUS | this_PLUS_35= RULE_PLUS | this_LPAREN_36= RULE_LPAREN | this_RPAREN_37= RULE_RPAREN | this_RBRACE_38= RULE_RBRACE | this_QUESTI_39= RULE_QUESTI | this_NOT_40= RULE_NOT | this_BAND_41= RULE_BAND | this_BOR_42= RULE_BOR | this_HASH_43= RULE_HASH | this_CARET_44= RULE_CARET | this_EQUALS_45= RULE_EQUALS | this_LESS_THAN_46= RULE_LESS_THAN | this_MORE_THAN_47= RULE_MORE_THAN | this_DOT_48= RULE_DOT | this_AND_49= RULE_AND | this_OR_50= RULE_OR | this_ESC_CHAR_51= RULE_ESC_CHAR | this_ON_OFF_52= RULE_ON_OFF | this_STATEMENT_TYPE_53= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_54= RULE_MAPPING_TYPE | this_OPTION_TYPE_55= RULE_OPTION_TYPE )
+            	    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7609:3: ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_NUMBER | RULE_WS | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_RBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_28= RULE_REST | this_IDENT_DOT_29= RULE_IDENT_DOT | this_IDENT_30= RULE_IDENT | this_NUMBER_31= RULE_NUMBER | this_WS_32= RULE_WS | this_COMMA_33= RULE_COMMA | this_MINUS_34= RULE_MINUS | this_PLUS_35= RULE_PLUS | this_LPAREN_36= RULE_LPAREN | this_RPAREN_37= RULE_RPAREN | this_RBRACE_38= RULE_RBRACE | this_QUESTI_39= RULE_QUESTI | this_NOT_40= RULE_NOT | this_BAND_41= RULE_BAND | this_BOR_42= RULE_BOR | this_HASH_43= RULE_HASH | this_CARET_44= RULE_CARET | this_EQUALS_45= RULE_EQUALS | this_LESS_THAN_46= RULE_LESS_THAN | this_MORE_THAN_47= RULE_MORE_THAN | this_DOT_48= RULE_DOT | this_AND_49= RULE_AND | this_OR_50= RULE_OR | this_ESC_CHAR_51= RULE_ESC_CHAR | this_ON_OFF_52= RULE_ON_OFF | this_STATEMENT_TYPE_53= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_54= RULE_MAPPING_TYPE | this_OPTION_TYPE_55= RULE_OPTION_TYPE )
             	    {
-            	    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7636:27: (this_REST_28= RULE_REST | this_IDENT_DOT_29= RULE_IDENT_DOT | this_IDENT_30= RULE_IDENT | this_INT_31= RULE_INT | this_WS_32= RULE_WS | this_COMMA_33= RULE_COMMA | this_MINUS_34= RULE_MINUS | this_PLUS_35= RULE_PLUS | this_LPAREN_36= RULE_LPAREN | this_RPAREN_37= RULE_RPAREN | this_RBRACE_38= RULE_RBRACE | this_QUESTI_39= RULE_QUESTI | this_NOT_40= RULE_NOT | this_BAND_41= RULE_BAND | this_BOR_42= RULE_BOR | this_HASH_43= RULE_HASH | this_CARET_44= RULE_CARET | this_EQUALS_45= RULE_EQUALS | this_LESS_THAN_46= RULE_LESS_THAN | this_MORE_THAN_47= RULE_MORE_THAN | this_DOT_48= RULE_DOT | this_AND_49= RULE_AND | this_OR_50= RULE_OR | this_ESC_CHAR_51= RULE_ESC_CHAR | this_ON_OFF_52= RULE_ON_OFF | this_STATEMENT_TYPE_53= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_54= RULE_MAPPING_TYPE | this_OPTION_TYPE_55= RULE_OPTION_TYPE )
+            	    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7636:27: (this_REST_28= RULE_REST | this_IDENT_DOT_29= RULE_IDENT_DOT | this_IDENT_30= RULE_IDENT | this_NUMBER_31= RULE_NUMBER | this_WS_32= RULE_WS | this_COMMA_33= RULE_COMMA | this_MINUS_34= RULE_MINUS | this_PLUS_35= RULE_PLUS | this_LPAREN_36= RULE_LPAREN | this_RPAREN_37= RULE_RPAREN | this_RBRACE_38= RULE_RBRACE | this_QUESTI_39= RULE_QUESTI | this_NOT_40= RULE_NOT | this_BAND_41= RULE_BAND | this_BOR_42= RULE_BOR | this_HASH_43= RULE_HASH | this_CARET_44= RULE_CARET | this_EQUALS_45= RULE_EQUALS | this_LESS_THAN_46= RULE_LESS_THAN | this_MORE_THAN_47= RULE_MORE_THAN | this_DOT_48= RULE_DOT | this_AND_49= RULE_AND | this_OR_50= RULE_OR | this_ESC_CHAR_51= RULE_ESC_CHAR | this_ON_OFF_52= RULE_ON_OFF | this_STATEMENT_TYPE_53= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_54= RULE_MAPPING_TYPE | this_OPTION_TYPE_55= RULE_OPTION_TYPE )
             	    int alt250=28;
             	    switch ( input.LA(1) ) {
             	    case RULE_REST:
@@ -24216,7 +24216,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
             	        alt250=3;
             	        }
             	        break;
-            	    case RULE_INT:
+            	    case RULE_NUMBER:
             	        {
             	        alt250=4;
             	        }
@@ -24402,17 +24402,17 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
             	            }
             	            break;
             	        case 4 :
-            	            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7660:10: this_INT_31= RULE_INT
+            	            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7660:10: this_NUMBER_31= RULE_NUMBER
             	            {
-            	            this_INT_31=(Token)match(input,RULE_INT,FollowSets001.FOLLOW_RULE_INT_in_ruleSqlValue15736); if (state.failed) return current;
+            	            this_NUMBER_31=(Token)match(input,RULE_NUMBER,FollowSets001.FOLLOW_RULE_NUMBER_in_ruleSqlValue15736); if (state.failed) return current;
             	            if ( state.backtracking==0 ) {
 
-            	              		current.merge(this_INT_31);
+            	              		current.merge(this_NUMBER_31);
             	                  
             	            }
             	            if ( state.backtracking==0 ) {
             	               
-            	                  newLeafNode(this_INT_31, grammarAccess.getSqlValueAccess().getINTTerminalRuleCall_1_0_3()); 
+            	                  newLeafNode(this_NUMBER_31, grammarAccess.getSqlValueAccess().getNUMBERTerminalRuleCall_1_0_3()); 
             	                  
             	            }
 
@@ -24901,7 +24901,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMetaSql"
-    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7876:1: ruleMetaSql returns [EObject current=null] : ( (this_WS_0= RULE_WS ( (lv_ifs_1_0= ruleIfSql ) ) (this_BOR_2= RULE_BOR ( (lv_ifs_3_0= ruleIfSql ) ) )* ) | ( ( (lv_type_4_0= RULE_QUESTI ) ) ( (lv_cond_5_0= ruleIfSqlCond ) ) this_BOR_6= RULE_BOR ( (lv_ifs_7_0= ruleIfSql ) ) (this_BOR_8= RULE_BOR ( (lv_ifs_9_0= ruleIfSql ) ) )* ) | ( ( (lv_type_10_0= RULE_BAND ) ) ( (lv_ifs_11_0= ruleIfSql ) ) (this_BOR_12= RULE_BOR ( (lv_ifs_13_0= ruleIfSql ) ) )* ) | ( ( (lv_type_14_0= RULE_BOR ) ) ( (lv_ifs_15_0= ruleIfSql ) ) (this_BOR_16= RULE_BOR ( (lv_ifs_17_0= ruleIfSql ) ) )* ) | ( ( (lv_type_18_0= RULE_EQUALS ) ) (this_WS_19= RULE_WS )* ( (lv_ftype_20_0= RULE_IDENT ) ) ( (lv_ifs_21_0= ruleIfSql ) ) ) | ( ( (lv_type_22_0= RULE_HASH ) ) this_INT_23= RULE_INT ( (lv_ord_24_0= ruleOrdSql ) ) ) ) ;
+    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7876:1: ruleMetaSql returns [EObject current=null] : ( (this_WS_0= RULE_WS ( (lv_ifs_1_0= ruleIfSql ) ) (this_BOR_2= RULE_BOR ( (lv_ifs_3_0= ruleIfSql ) ) )* ) | ( ( (lv_type_4_0= RULE_QUESTI ) ) ( (lv_cond_5_0= ruleIfSqlCond ) ) this_BOR_6= RULE_BOR ( (lv_ifs_7_0= ruleIfSql ) ) (this_BOR_8= RULE_BOR ( (lv_ifs_9_0= ruleIfSql ) ) )* ) | ( ( (lv_type_10_0= RULE_BAND ) ) ( (lv_ifs_11_0= ruleIfSql ) ) (this_BOR_12= RULE_BOR ( (lv_ifs_13_0= ruleIfSql ) ) )* ) | ( ( (lv_type_14_0= RULE_BOR ) ) ( (lv_ifs_15_0= ruleIfSql ) ) (this_BOR_16= RULE_BOR ( (lv_ifs_17_0= ruleIfSql ) ) )* ) | ( ( (lv_type_18_0= RULE_EQUALS ) ) (this_WS_19= RULE_WS )* ( (lv_ftype_20_0= RULE_IDENT ) ) ( (lv_ifs_21_0= ruleIfSql ) ) ) | ( ( (lv_type_22_0= RULE_HASH ) ) this_NUMBER_23= RULE_NUMBER ( (lv_ord_24_0= ruleOrdSql ) ) ) ) ;
     public final EObject ruleMetaSql() throws RecognitionException {
         EObject current = null;
 
@@ -24918,7 +24918,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
         Token this_WS_19=null;
         Token lv_ftype_20_0=null;
         Token lv_type_22_0=null;
-        Token this_INT_23=null;
+        Token this_NUMBER_23=null;
         EObject lv_ifs_1_0 = null;
 
         EObject lv_ifs_3_0 = null;
@@ -24945,10 +24945,10 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7879:28: ( ( (this_WS_0= RULE_WS ( (lv_ifs_1_0= ruleIfSql ) ) (this_BOR_2= RULE_BOR ( (lv_ifs_3_0= ruleIfSql ) ) )* ) | ( ( (lv_type_4_0= RULE_QUESTI ) ) ( (lv_cond_5_0= ruleIfSqlCond ) ) this_BOR_6= RULE_BOR ( (lv_ifs_7_0= ruleIfSql ) ) (this_BOR_8= RULE_BOR ( (lv_ifs_9_0= ruleIfSql ) ) )* ) | ( ( (lv_type_10_0= RULE_BAND ) ) ( (lv_ifs_11_0= ruleIfSql ) ) (this_BOR_12= RULE_BOR ( (lv_ifs_13_0= ruleIfSql ) ) )* ) | ( ( (lv_type_14_0= RULE_BOR ) ) ( (lv_ifs_15_0= ruleIfSql ) ) (this_BOR_16= RULE_BOR ( (lv_ifs_17_0= ruleIfSql ) ) )* ) | ( ( (lv_type_18_0= RULE_EQUALS ) ) (this_WS_19= RULE_WS )* ( (lv_ftype_20_0= RULE_IDENT ) ) ( (lv_ifs_21_0= ruleIfSql ) ) ) | ( ( (lv_type_22_0= RULE_HASH ) ) this_INT_23= RULE_INT ( (lv_ord_24_0= ruleOrdSql ) ) ) ) )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7880:1: ( (this_WS_0= RULE_WS ( (lv_ifs_1_0= ruleIfSql ) ) (this_BOR_2= RULE_BOR ( (lv_ifs_3_0= ruleIfSql ) ) )* ) | ( ( (lv_type_4_0= RULE_QUESTI ) ) ( (lv_cond_5_0= ruleIfSqlCond ) ) this_BOR_6= RULE_BOR ( (lv_ifs_7_0= ruleIfSql ) ) (this_BOR_8= RULE_BOR ( (lv_ifs_9_0= ruleIfSql ) ) )* ) | ( ( (lv_type_10_0= RULE_BAND ) ) ( (lv_ifs_11_0= ruleIfSql ) ) (this_BOR_12= RULE_BOR ( (lv_ifs_13_0= ruleIfSql ) ) )* ) | ( ( (lv_type_14_0= RULE_BOR ) ) ( (lv_ifs_15_0= ruleIfSql ) ) (this_BOR_16= RULE_BOR ( (lv_ifs_17_0= ruleIfSql ) ) )* ) | ( ( (lv_type_18_0= RULE_EQUALS ) ) (this_WS_19= RULE_WS )* ( (lv_ftype_20_0= RULE_IDENT ) ) ( (lv_ifs_21_0= ruleIfSql ) ) ) | ( ( (lv_type_22_0= RULE_HASH ) ) this_INT_23= RULE_INT ( (lv_ord_24_0= ruleOrdSql ) ) ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7879:28: ( ( (this_WS_0= RULE_WS ( (lv_ifs_1_0= ruleIfSql ) ) (this_BOR_2= RULE_BOR ( (lv_ifs_3_0= ruleIfSql ) ) )* ) | ( ( (lv_type_4_0= RULE_QUESTI ) ) ( (lv_cond_5_0= ruleIfSqlCond ) ) this_BOR_6= RULE_BOR ( (lv_ifs_7_0= ruleIfSql ) ) (this_BOR_8= RULE_BOR ( (lv_ifs_9_0= ruleIfSql ) ) )* ) | ( ( (lv_type_10_0= RULE_BAND ) ) ( (lv_ifs_11_0= ruleIfSql ) ) (this_BOR_12= RULE_BOR ( (lv_ifs_13_0= ruleIfSql ) ) )* ) | ( ( (lv_type_14_0= RULE_BOR ) ) ( (lv_ifs_15_0= ruleIfSql ) ) (this_BOR_16= RULE_BOR ( (lv_ifs_17_0= ruleIfSql ) ) )* ) | ( ( (lv_type_18_0= RULE_EQUALS ) ) (this_WS_19= RULE_WS )* ( (lv_ftype_20_0= RULE_IDENT ) ) ( (lv_ifs_21_0= ruleIfSql ) ) ) | ( ( (lv_type_22_0= RULE_HASH ) ) this_NUMBER_23= RULE_NUMBER ( (lv_ord_24_0= ruleOrdSql ) ) ) ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7880:1: ( (this_WS_0= RULE_WS ( (lv_ifs_1_0= ruleIfSql ) ) (this_BOR_2= RULE_BOR ( (lv_ifs_3_0= ruleIfSql ) ) )* ) | ( ( (lv_type_4_0= RULE_QUESTI ) ) ( (lv_cond_5_0= ruleIfSqlCond ) ) this_BOR_6= RULE_BOR ( (lv_ifs_7_0= ruleIfSql ) ) (this_BOR_8= RULE_BOR ( (lv_ifs_9_0= ruleIfSql ) ) )* ) | ( ( (lv_type_10_0= RULE_BAND ) ) ( (lv_ifs_11_0= ruleIfSql ) ) (this_BOR_12= RULE_BOR ( (lv_ifs_13_0= ruleIfSql ) ) )* ) | ( ( (lv_type_14_0= RULE_BOR ) ) ( (lv_ifs_15_0= ruleIfSql ) ) (this_BOR_16= RULE_BOR ( (lv_ifs_17_0= ruleIfSql ) ) )* ) | ( ( (lv_type_18_0= RULE_EQUALS ) ) (this_WS_19= RULE_WS )* ( (lv_ftype_20_0= RULE_IDENT ) ) ( (lv_ifs_21_0= ruleIfSql ) ) ) | ( ( (lv_type_22_0= RULE_HASH ) ) this_NUMBER_23= RULE_NUMBER ( (lv_ord_24_0= ruleOrdSql ) ) ) )
             {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7880:1: ( (this_WS_0= RULE_WS ( (lv_ifs_1_0= ruleIfSql ) ) (this_BOR_2= RULE_BOR ( (lv_ifs_3_0= ruleIfSql ) ) )* ) | ( ( (lv_type_4_0= RULE_QUESTI ) ) ( (lv_cond_5_0= ruleIfSqlCond ) ) this_BOR_6= RULE_BOR ( (lv_ifs_7_0= ruleIfSql ) ) (this_BOR_8= RULE_BOR ( (lv_ifs_9_0= ruleIfSql ) ) )* ) | ( ( (lv_type_10_0= RULE_BAND ) ) ( (lv_ifs_11_0= ruleIfSql ) ) (this_BOR_12= RULE_BOR ( (lv_ifs_13_0= ruleIfSql ) ) )* ) | ( ( (lv_type_14_0= RULE_BOR ) ) ( (lv_ifs_15_0= ruleIfSql ) ) (this_BOR_16= RULE_BOR ( (lv_ifs_17_0= ruleIfSql ) ) )* ) | ( ( (lv_type_18_0= RULE_EQUALS ) ) (this_WS_19= RULE_WS )* ( (lv_ftype_20_0= RULE_IDENT ) ) ( (lv_ifs_21_0= ruleIfSql ) ) ) | ( ( (lv_type_22_0= RULE_HASH ) ) this_INT_23= RULE_INT ( (lv_ord_24_0= ruleOrdSql ) ) ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7880:1: ( (this_WS_0= RULE_WS ( (lv_ifs_1_0= ruleIfSql ) ) (this_BOR_2= RULE_BOR ( (lv_ifs_3_0= ruleIfSql ) ) )* ) | ( ( (lv_type_4_0= RULE_QUESTI ) ) ( (lv_cond_5_0= ruleIfSqlCond ) ) this_BOR_6= RULE_BOR ( (lv_ifs_7_0= ruleIfSql ) ) (this_BOR_8= RULE_BOR ( (lv_ifs_9_0= ruleIfSql ) ) )* ) | ( ( (lv_type_10_0= RULE_BAND ) ) ( (lv_ifs_11_0= ruleIfSql ) ) (this_BOR_12= RULE_BOR ( (lv_ifs_13_0= ruleIfSql ) ) )* ) | ( ( (lv_type_14_0= RULE_BOR ) ) ( (lv_ifs_15_0= ruleIfSql ) ) (this_BOR_16= RULE_BOR ( (lv_ifs_17_0= ruleIfSql ) ) )* ) | ( ( (lv_type_18_0= RULE_EQUALS ) ) (this_WS_19= RULE_WS )* ( (lv_ftype_20_0= RULE_IDENT ) ) ( (lv_ifs_21_0= ruleIfSql ) ) ) | ( ( (lv_type_22_0= RULE_HASH ) ) this_NUMBER_23= RULE_NUMBER ( (lv_ord_24_0= ruleOrdSql ) ) ) )
             int alt257=6;
             switch ( input.LA(1) ) {
             case RULE_WS:
@@ -25713,10 +25713,10 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8183:6: ( ( (lv_type_22_0= RULE_HASH ) ) this_INT_23= RULE_INT ( (lv_ord_24_0= ruleOrdSql ) ) )
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8183:6: ( ( (lv_type_22_0= RULE_HASH ) ) this_NUMBER_23= RULE_NUMBER ( (lv_ord_24_0= ruleOrdSql ) ) )
                     {
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8183:6: ( ( (lv_type_22_0= RULE_HASH ) ) this_INT_23= RULE_INT ( (lv_ord_24_0= ruleOrdSql ) ) )
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8183:7: ( (lv_type_22_0= RULE_HASH ) ) this_INT_23= RULE_INT ( (lv_ord_24_0= ruleOrdSql ) )
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8183:6: ( ( (lv_type_22_0= RULE_HASH ) ) this_NUMBER_23= RULE_NUMBER ( (lv_ord_24_0= ruleOrdSql ) ) )
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8183:7: ( (lv_type_22_0= RULE_HASH ) ) this_NUMBER_23= RULE_NUMBER ( (lv_ord_24_0= ruleOrdSql ) )
                     {
                     // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8183:7: ( (lv_type_22_0= RULE_HASH ) )
                     // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8184:1: (lv_type_22_0= RULE_HASH )
@@ -25748,10 +25748,10 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    this_INT_23=(Token)match(input,RULE_INT,FollowSets001.FOLLOW_RULE_INT_in_ruleMetaSql16922); if (state.failed) return current;
+                    this_NUMBER_23=(Token)match(input,RULE_NUMBER,FollowSets001.FOLLOW_RULE_NUMBER_in_ruleMetaSql16922); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
                        
-                          newLeafNode(this_INT_23, grammarAccess.getMetaSqlAccess().getINTTerminalRuleCall_5_1()); 
+                          newLeafNode(this_NUMBER_23, grammarAccess.getMetaSqlAccess().getNUMBERTerminalRuleCall_5_1()); 
                           
                     }
                     // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8205:1: ( (lv_ord_24_0= ruleOrdSql ) )
@@ -25878,7 +25878,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                 int alt258=2;
                 int LA258_0 = input.LA(1);
 
-                if ( (LA258_0==RULE_WS||(LA258_0>=RULE_INT && LA258_0<=RULE_LBRACE)||(LA258_0>=RULE_PERCENT && LA258_0<=RULE_BAND)||(LA258_0>=RULE_HASH && LA258_0<=RULE_OPTION_TYPE)) ) {
+                if ( (LA258_0==RULE_WS||(LA258_0>=RULE_NUMBER && LA258_0<=RULE_LBRACE)||(LA258_0>=RULE_PERCENT && LA258_0<=RULE_BAND)||(LA258_0>=RULE_HASH && LA258_0<=RULE_OPTION_TYPE)) ) {
                     alt258=1;
                 }
 
@@ -25990,15 +25990,15 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleIfSqlFragment"
-    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8279:1: ruleIfSqlFragment returns [EObject current=null] : ( ( (lv_value_0_0= ruleIfSqlValue ) ) | (this_AT_1= RULE_AT ( (lv_col_2_0= ruleColumn ) ) ) | (this_STRING1_3= RULE_STRING1 ( (lv_cnst_4_0= ruleConstant ) ) ) | (this_COLON_5= RULE_COLON ( (lv_ident_6_0= ruleIdentifier ) ) ) | (this_STRING1_7= RULE_STRING1 this_STRING1_8= RULE_STRING1 ( (lv_cnstOper_9_0= ruleConstantOperator ) ) ) | (this_COLON_10= RULE_COLON this_COLON_11= RULE_COLON ( (lv_identOper_12_0= ruleIdentifierOperator ) ) ) | (this_PERCENT_13= RULE_PERCENT ( (this_PERCENT_14= RULE_PERCENT ( (lv_dbtab_15_0= ruleDatabaseTable ) ) ) | ( (lv_dbcol_16_0= ruleDatabaseColumn ) ) ) ) | (this_LBRACE_17= RULE_LBRACE ( (lv_meta_18_0= ruleIfMetaSql ) ) this_RBRACE_19= RULE_RBRACE ) ) ;
+    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8279:1: ruleIfSqlFragment returns [EObject current=null] : ( ( (lv_value_0_0= ruleIfSqlValue ) ) | (this_AT_1= RULE_AT ( (lv_col_2_0= ruleColumn ) ) ) | (this_STRING_3= RULE_STRING ( (lv_cnst_4_0= ruleConstant ) ) ) | (this_COLON_5= RULE_COLON ( (lv_ident_6_0= ruleIdentifier ) ) ) | (this_STRING_7= RULE_STRING this_STRING_8= RULE_STRING ( (lv_cnstOper_9_0= ruleConstantOperator ) ) ) | (this_COLON_10= RULE_COLON this_COLON_11= RULE_COLON ( (lv_identOper_12_0= ruleIdentifierOperator ) ) ) | (this_PERCENT_13= RULE_PERCENT ( (this_PERCENT_14= RULE_PERCENT ( (lv_dbtab_15_0= ruleDatabaseTable ) ) ) | ( (lv_dbcol_16_0= ruleDatabaseColumn ) ) ) ) | (this_LBRACE_17= RULE_LBRACE ( (lv_meta_18_0= ruleIfMetaSql ) ) this_RBRACE_19= RULE_RBRACE ) ) ;
     public final EObject ruleIfSqlFragment() throws RecognitionException {
         EObject current = null;
 
         Token this_AT_1=null;
-        Token this_STRING1_3=null;
+        Token this_STRING_3=null;
         Token this_COLON_5=null;
-        Token this_STRING1_7=null;
-        Token this_STRING1_8=null;
+        Token this_STRING_7=null;
+        Token this_STRING_8=null;
         Token this_COLON_10=null;
         Token this_COLON_11=null;
         Token this_PERCENT_13=null;
@@ -26027,10 +26027,10 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8282:28: ( ( ( (lv_value_0_0= ruleIfSqlValue ) ) | (this_AT_1= RULE_AT ( (lv_col_2_0= ruleColumn ) ) ) | (this_STRING1_3= RULE_STRING1 ( (lv_cnst_4_0= ruleConstant ) ) ) | (this_COLON_5= RULE_COLON ( (lv_ident_6_0= ruleIdentifier ) ) ) | (this_STRING1_7= RULE_STRING1 this_STRING1_8= RULE_STRING1 ( (lv_cnstOper_9_0= ruleConstantOperator ) ) ) | (this_COLON_10= RULE_COLON this_COLON_11= RULE_COLON ( (lv_identOper_12_0= ruleIdentifierOperator ) ) ) | (this_PERCENT_13= RULE_PERCENT ( (this_PERCENT_14= RULE_PERCENT ( (lv_dbtab_15_0= ruleDatabaseTable ) ) ) | ( (lv_dbcol_16_0= ruleDatabaseColumn ) ) ) ) | (this_LBRACE_17= RULE_LBRACE ( (lv_meta_18_0= ruleIfMetaSql ) ) this_RBRACE_19= RULE_RBRACE ) ) )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8283:1: ( ( (lv_value_0_0= ruleIfSqlValue ) ) | (this_AT_1= RULE_AT ( (lv_col_2_0= ruleColumn ) ) ) | (this_STRING1_3= RULE_STRING1 ( (lv_cnst_4_0= ruleConstant ) ) ) | (this_COLON_5= RULE_COLON ( (lv_ident_6_0= ruleIdentifier ) ) ) | (this_STRING1_7= RULE_STRING1 this_STRING1_8= RULE_STRING1 ( (lv_cnstOper_9_0= ruleConstantOperator ) ) ) | (this_COLON_10= RULE_COLON this_COLON_11= RULE_COLON ( (lv_identOper_12_0= ruleIdentifierOperator ) ) ) | (this_PERCENT_13= RULE_PERCENT ( (this_PERCENT_14= RULE_PERCENT ( (lv_dbtab_15_0= ruleDatabaseTable ) ) ) | ( (lv_dbcol_16_0= ruleDatabaseColumn ) ) ) ) | (this_LBRACE_17= RULE_LBRACE ( (lv_meta_18_0= ruleIfMetaSql ) ) this_RBRACE_19= RULE_RBRACE ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8282:28: ( ( ( (lv_value_0_0= ruleIfSqlValue ) ) | (this_AT_1= RULE_AT ( (lv_col_2_0= ruleColumn ) ) ) | (this_STRING_3= RULE_STRING ( (lv_cnst_4_0= ruleConstant ) ) ) | (this_COLON_5= RULE_COLON ( (lv_ident_6_0= ruleIdentifier ) ) ) | (this_STRING_7= RULE_STRING this_STRING_8= RULE_STRING ( (lv_cnstOper_9_0= ruleConstantOperator ) ) ) | (this_COLON_10= RULE_COLON this_COLON_11= RULE_COLON ( (lv_identOper_12_0= ruleIdentifierOperator ) ) ) | (this_PERCENT_13= RULE_PERCENT ( (this_PERCENT_14= RULE_PERCENT ( (lv_dbtab_15_0= ruleDatabaseTable ) ) ) | ( (lv_dbcol_16_0= ruleDatabaseColumn ) ) ) ) | (this_LBRACE_17= RULE_LBRACE ( (lv_meta_18_0= ruleIfMetaSql ) ) this_RBRACE_19= RULE_RBRACE ) ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8283:1: ( ( (lv_value_0_0= ruleIfSqlValue ) ) | (this_AT_1= RULE_AT ( (lv_col_2_0= ruleColumn ) ) ) | (this_STRING_3= RULE_STRING ( (lv_cnst_4_0= ruleConstant ) ) ) | (this_COLON_5= RULE_COLON ( (lv_ident_6_0= ruleIdentifier ) ) ) | (this_STRING_7= RULE_STRING this_STRING_8= RULE_STRING ( (lv_cnstOper_9_0= ruleConstantOperator ) ) ) | (this_COLON_10= RULE_COLON this_COLON_11= RULE_COLON ( (lv_identOper_12_0= ruleIdentifierOperator ) ) ) | (this_PERCENT_13= RULE_PERCENT ( (this_PERCENT_14= RULE_PERCENT ( (lv_dbtab_15_0= ruleDatabaseTable ) ) ) | ( (lv_dbcol_16_0= ruleDatabaseColumn ) ) ) ) | (this_LBRACE_17= RULE_LBRACE ( (lv_meta_18_0= ruleIfMetaSql ) ) this_RBRACE_19= RULE_RBRACE ) )
             {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8283:1: ( ( (lv_value_0_0= ruleIfSqlValue ) ) | (this_AT_1= RULE_AT ( (lv_col_2_0= ruleColumn ) ) ) | (this_STRING1_3= RULE_STRING1 ( (lv_cnst_4_0= ruleConstant ) ) ) | (this_COLON_5= RULE_COLON ( (lv_ident_6_0= ruleIdentifier ) ) ) | (this_STRING1_7= RULE_STRING1 this_STRING1_8= RULE_STRING1 ( (lv_cnstOper_9_0= ruleConstantOperator ) ) ) | (this_COLON_10= RULE_COLON this_COLON_11= RULE_COLON ( (lv_identOper_12_0= ruleIdentifierOperator ) ) ) | (this_PERCENT_13= RULE_PERCENT ( (this_PERCENT_14= RULE_PERCENT ( (lv_dbtab_15_0= ruleDatabaseTable ) ) ) | ( (lv_dbcol_16_0= ruleDatabaseColumn ) ) ) ) | (this_LBRACE_17= RULE_LBRACE ( (lv_meta_18_0= ruleIfMetaSql ) ) this_RBRACE_19= RULE_RBRACE ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8283:1: ( ( (lv_value_0_0= ruleIfSqlValue ) ) | (this_AT_1= RULE_AT ( (lv_col_2_0= ruleColumn ) ) ) | (this_STRING_3= RULE_STRING ( (lv_cnst_4_0= ruleConstant ) ) ) | (this_COLON_5= RULE_COLON ( (lv_ident_6_0= ruleIdentifier ) ) ) | (this_STRING_7= RULE_STRING this_STRING_8= RULE_STRING ( (lv_cnstOper_9_0= ruleConstantOperator ) ) ) | (this_COLON_10= RULE_COLON this_COLON_11= RULE_COLON ( (lv_identOper_12_0= ruleIdentifierOperator ) ) ) | (this_PERCENT_13= RULE_PERCENT ( (this_PERCENT_14= RULE_PERCENT ( (lv_dbtab_15_0= ruleDatabaseTable ) ) ) | ( (lv_dbcol_16_0= ruleDatabaseColumn ) ) ) ) | (this_LBRACE_17= RULE_LBRACE ( (lv_meta_18_0= ruleIfMetaSql ) ) this_RBRACE_19= RULE_RBRACE ) )
             int alt260=8;
             alt260 = dfa260.predict(input);
             switch (alt260) {
@@ -26129,15 +26129,15 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8325:6: (this_STRING1_3= RULE_STRING1 ( (lv_cnst_4_0= ruleConstant ) ) )
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8325:6: (this_STRING_3= RULE_STRING ( (lv_cnst_4_0= ruleConstant ) ) )
                     {
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8325:6: (this_STRING1_3= RULE_STRING1 ( (lv_cnst_4_0= ruleConstant ) ) )
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8325:7: this_STRING1_3= RULE_STRING1 ( (lv_cnst_4_0= ruleConstant ) )
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8325:6: (this_STRING_3= RULE_STRING ( (lv_cnst_4_0= ruleConstant ) ) )
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8325:7: this_STRING_3= RULE_STRING ( (lv_cnst_4_0= ruleConstant ) )
                     {
-                    this_STRING1_3=(Token)match(input,RULE_STRING1,FollowSets001.FOLLOW_RULE_STRING1_in_ruleIfSqlFragment17183); if (state.failed) return current;
+                    this_STRING_3=(Token)match(input,RULE_STRING,FollowSets001.FOLLOW_RULE_STRING_in_ruleIfSqlFragment17183); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
                        
-                          newLeafNode(this_STRING1_3, grammarAccess.getIfSqlFragmentAccess().getSTRING1TerminalRuleCall_2_0()); 
+                          newLeafNode(this_STRING_3, grammarAccess.getIfSqlFragmentAccess().getSTRINGTerminalRuleCall_2_0()); 
                           
                     }
                     // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8329:1: ( (lv_cnst_4_0= ruleConstant ) )
@@ -26235,21 +26235,21 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8371:6: (this_STRING1_7= RULE_STRING1 this_STRING1_8= RULE_STRING1 ( (lv_cnstOper_9_0= ruleConstantOperator ) ) )
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8371:6: (this_STRING_7= RULE_STRING this_STRING_8= RULE_STRING ( (lv_cnstOper_9_0= ruleConstantOperator ) ) )
                     {
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8371:6: (this_STRING1_7= RULE_STRING1 this_STRING1_8= RULE_STRING1 ( (lv_cnstOper_9_0= ruleConstantOperator ) ) )
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8371:7: this_STRING1_7= RULE_STRING1 this_STRING1_8= RULE_STRING1 ( (lv_cnstOper_9_0= ruleConstantOperator ) )
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8371:6: (this_STRING_7= RULE_STRING this_STRING_8= RULE_STRING ( (lv_cnstOper_9_0= ruleConstantOperator ) ) )
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8371:7: this_STRING_7= RULE_STRING this_STRING_8= RULE_STRING ( (lv_cnstOper_9_0= ruleConstantOperator ) )
                     {
-                    this_STRING1_7=(Token)match(input,RULE_STRING1,FollowSets001.FOLLOW_RULE_STRING1_in_ruleIfSqlFragment17261); if (state.failed) return current;
+                    this_STRING_7=(Token)match(input,RULE_STRING,FollowSets001.FOLLOW_RULE_STRING_in_ruleIfSqlFragment17261); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
                        
-                          newLeafNode(this_STRING1_7, grammarAccess.getIfSqlFragmentAccess().getSTRING1TerminalRuleCall_4_0()); 
+                          newLeafNode(this_STRING_7, grammarAccess.getIfSqlFragmentAccess().getSTRINGTerminalRuleCall_4_0()); 
                           
                     }
-                    this_STRING1_8=(Token)match(input,RULE_STRING1,FollowSets001.FOLLOW_RULE_STRING1_in_ruleIfSqlFragment17271); if (state.failed) return current;
+                    this_STRING_8=(Token)match(input,RULE_STRING,FollowSets001.FOLLOW_RULE_STRING_in_ruleIfSqlFragment17271); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
                        
-                          newLeafNode(this_STRING1_8, grammarAccess.getIfSqlFragmentAccess().getSTRING1TerminalRuleCall_4_1()); 
+                          newLeafNode(this_STRING_8, grammarAccess.getIfSqlFragmentAccess().getSTRINGTerminalRuleCall_4_1()); 
                           
                     }
                     // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8379:1: ( (lv_cnstOper_9_0= ruleConstantOperator ) )
@@ -26607,14 +26607,14 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleIfSqlValue"
-    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8514:1: ruleIfSqlValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : ( (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_INT_3= RULE_INT | this_WS_4= RULE_WS | this_SEMICOLON_5= RULE_SEMICOLON | this_COMMA_6= RULE_COMMA | this_MINUS_7= RULE_MINUS | this_PLUS_8= RULE_PLUS | this_LPAREN_9= RULE_LPAREN | this_RPAREN_10= RULE_RPAREN | this_QUESTI_11= RULE_QUESTI | this_NOT_12= RULE_NOT | this_BAND_13= RULE_BAND | this_HASH_14= RULE_HASH | this_CARET_15= RULE_CARET | this_EQUALS_16= RULE_EQUALS | this_LESS_THAN_17= RULE_LESS_THAN | this_MORE_THAN_18= RULE_MORE_THAN | this_DOT_19= RULE_DOT | this_AND_20= RULE_AND | this_OR_21= RULE_OR | this_ESC_CHAR_22= RULE_ESC_CHAR | this_ON_OFF_23= RULE_ON_OFF | this_STATEMENT_TYPE_24= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_25= RULE_MAPPING_TYPE | this_OPTION_TYPE_26= RULE_OPTION_TYPE ) ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_INT | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_27= RULE_REST | this_IDENT_DOT_28= RULE_IDENT_DOT | this_IDENT_29= RULE_IDENT | this_INT_30= RULE_INT | this_WS_31= RULE_WS | this_SEMICOLON_32= RULE_SEMICOLON | this_COMMA_33= RULE_COMMA | this_MINUS_34= RULE_MINUS | this_PLUS_35= RULE_PLUS | this_LPAREN_36= RULE_LPAREN | this_RPAREN_37= RULE_RPAREN | this_QUESTI_38= RULE_QUESTI | this_NOT_39= RULE_NOT | this_BAND_40= RULE_BAND | this_HASH_41= RULE_HASH | this_CARET_42= RULE_CARET | this_EQUALS_43= RULE_EQUALS | this_LESS_THAN_44= RULE_LESS_THAN | this_MORE_THAN_45= RULE_MORE_THAN | this_DOT_46= RULE_DOT | this_AND_47= RULE_AND | this_OR_48= RULE_OR | this_ESC_CHAR_49= RULE_ESC_CHAR | this_ON_OFF_50= RULE_ON_OFF | this_STATEMENT_TYPE_51= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_52= RULE_MAPPING_TYPE | this_OPTION_TYPE_53= RULE_OPTION_TYPE ) )* ) ;
+    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8514:1: ruleIfSqlValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : ( (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_NUMBER_3= RULE_NUMBER | this_WS_4= RULE_WS | this_SEMICOLON_5= RULE_SEMICOLON | this_COMMA_6= RULE_COMMA | this_MINUS_7= RULE_MINUS | this_PLUS_8= RULE_PLUS | this_LPAREN_9= RULE_LPAREN | this_RPAREN_10= RULE_RPAREN | this_QUESTI_11= RULE_QUESTI | this_NOT_12= RULE_NOT | this_BAND_13= RULE_BAND | this_HASH_14= RULE_HASH | this_CARET_15= RULE_CARET | this_EQUALS_16= RULE_EQUALS | this_LESS_THAN_17= RULE_LESS_THAN | this_MORE_THAN_18= RULE_MORE_THAN | this_DOT_19= RULE_DOT | this_AND_20= RULE_AND | this_OR_21= RULE_OR | this_ESC_CHAR_22= RULE_ESC_CHAR | this_ON_OFF_23= RULE_ON_OFF | this_STATEMENT_TYPE_24= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_25= RULE_MAPPING_TYPE | this_OPTION_TYPE_26= RULE_OPTION_TYPE ) ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_NUMBER | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_27= RULE_REST | this_IDENT_DOT_28= RULE_IDENT_DOT | this_IDENT_29= RULE_IDENT | this_NUMBER_30= RULE_NUMBER | this_WS_31= RULE_WS | this_SEMICOLON_32= RULE_SEMICOLON | this_COMMA_33= RULE_COMMA | this_MINUS_34= RULE_MINUS | this_PLUS_35= RULE_PLUS | this_LPAREN_36= RULE_LPAREN | this_RPAREN_37= RULE_RPAREN | this_QUESTI_38= RULE_QUESTI | this_NOT_39= RULE_NOT | this_BAND_40= RULE_BAND | this_HASH_41= RULE_HASH | this_CARET_42= RULE_CARET | this_EQUALS_43= RULE_EQUALS | this_LESS_THAN_44= RULE_LESS_THAN | this_MORE_THAN_45= RULE_MORE_THAN | this_DOT_46= RULE_DOT | this_AND_47= RULE_AND | this_OR_48= RULE_OR | this_ESC_CHAR_49= RULE_ESC_CHAR | this_ON_OFF_50= RULE_ON_OFF | this_STATEMENT_TYPE_51= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_52= RULE_MAPPING_TYPE | this_OPTION_TYPE_53= RULE_OPTION_TYPE ) )* ) ;
     public final AntlrDatatypeRuleToken ruleIfSqlValue() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
         Token this_REST_0=null;
         Token this_IDENT_DOT_1=null;
         Token this_IDENT_2=null;
-        Token this_INT_3=null;
+        Token this_NUMBER_3=null;
         Token this_WS_4=null;
         Token this_SEMICOLON_5=null;
         Token this_COMMA_6=null;
@@ -26641,7 +26641,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
         Token this_REST_27=null;
         Token this_IDENT_DOT_28=null;
         Token this_IDENT_29=null;
-        Token this_INT_30=null;
+        Token this_NUMBER_30=null;
         Token this_WS_31=null;
         Token this_SEMICOLON_32=null;
         Token this_COMMA_33=null;
@@ -26669,13 +26669,13 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8517:28: ( ( (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_INT_3= RULE_INT | this_WS_4= RULE_WS | this_SEMICOLON_5= RULE_SEMICOLON | this_COMMA_6= RULE_COMMA | this_MINUS_7= RULE_MINUS | this_PLUS_8= RULE_PLUS | this_LPAREN_9= RULE_LPAREN | this_RPAREN_10= RULE_RPAREN | this_QUESTI_11= RULE_QUESTI | this_NOT_12= RULE_NOT | this_BAND_13= RULE_BAND | this_HASH_14= RULE_HASH | this_CARET_15= RULE_CARET | this_EQUALS_16= RULE_EQUALS | this_LESS_THAN_17= RULE_LESS_THAN | this_MORE_THAN_18= RULE_MORE_THAN | this_DOT_19= RULE_DOT | this_AND_20= RULE_AND | this_OR_21= RULE_OR | this_ESC_CHAR_22= RULE_ESC_CHAR | this_ON_OFF_23= RULE_ON_OFF | this_STATEMENT_TYPE_24= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_25= RULE_MAPPING_TYPE | this_OPTION_TYPE_26= RULE_OPTION_TYPE ) ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_INT | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_27= RULE_REST | this_IDENT_DOT_28= RULE_IDENT_DOT | this_IDENT_29= RULE_IDENT | this_INT_30= RULE_INT | this_WS_31= RULE_WS | this_SEMICOLON_32= RULE_SEMICOLON | this_COMMA_33= RULE_COMMA | this_MINUS_34= RULE_MINUS | this_PLUS_35= RULE_PLUS | this_LPAREN_36= RULE_LPAREN | this_RPAREN_37= RULE_RPAREN | this_QUESTI_38= RULE_QUESTI | this_NOT_39= RULE_NOT | this_BAND_40= RULE_BAND | this_HASH_41= RULE_HASH | this_CARET_42= RULE_CARET | this_EQUALS_43= RULE_EQUALS | this_LESS_THAN_44= RULE_LESS_THAN | this_MORE_THAN_45= RULE_MORE_THAN | this_DOT_46= RULE_DOT | this_AND_47= RULE_AND | this_OR_48= RULE_OR | this_ESC_CHAR_49= RULE_ESC_CHAR | this_ON_OFF_50= RULE_ON_OFF | this_STATEMENT_TYPE_51= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_52= RULE_MAPPING_TYPE | this_OPTION_TYPE_53= RULE_OPTION_TYPE ) )* ) )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8518:1: ( (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_INT_3= RULE_INT | this_WS_4= RULE_WS | this_SEMICOLON_5= RULE_SEMICOLON | this_COMMA_6= RULE_COMMA | this_MINUS_7= RULE_MINUS | this_PLUS_8= RULE_PLUS | this_LPAREN_9= RULE_LPAREN | this_RPAREN_10= RULE_RPAREN | this_QUESTI_11= RULE_QUESTI | this_NOT_12= RULE_NOT | this_BAND_13= RULE_BAND | this_HASH_14= RULE_HASH | this_CARET_15= RULE_CARET | this_EQUALS_16= RULE_EQUALS | this_LESS_THAN_17= RULE_LESS_THAN | this_MORE_THAN_18= RULE_MORE_THAN | this_DOT_19= RULE_DOT | this_AND_20= RULE_AND | this_OR_21= RULE_OR | this_ESC_CHAR_22= RULE_ESC_CHAR | this_ON_OFF_23= RULE_ON_OFF | this_STATEMENT_TYPE_24= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_25= RULE_MAPPING_TYPE | this_OPTION_TYPE_26= RULE_OPTION_TYPE ) ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_INT | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_27= RULE_REST | this_IDENT_DOT_28= RULE_IDENT_DOT | this_IDENT_29= RULE_IDENT | this_INT_30= RULE_INT | this_WS_31= RULE_WS | this_SEMICOLON_32= RULE_SEMICOLON | this_COMMA_33= RULE_COMMA | this_MINUS_34= RULE_MINUS | this_PLUS_35= RULE_PLUS | this_LPAREN_36= RULE_LPAREN | this_RPAREN_37= RULE_RPAREN | this_QUESTI_38= RULE_QUESTI | this_NOT_39= RULE_NOT | this_BAND_40= RULE_BAND | this_HASH_41= RULE_HASH | this_CARET_42= RULE_CARET | this_EQUALS_43= RULE_EQUALS | this_LESS_THAN_44= RULE_LESS_THAN | this_MORE_THAN_45= RULE_MORE_THAN | this_DOT_46= RULE_DOT | this_AND_47= RULE_AND | this_OR_48= RULE_OR | this_ESC_CHAR_49= RULE_ESC_CHAR | this_ON_OFF_50= RULE_ON_OFF | this_STATEMENT_TYPE_51= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_52= RULE_MAPPING_TYPE | this_OPTION_TYPE_53= RULE_OPTION_TYPE ) )* )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8517:28: ( ( (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_NUMBER_3= RULE_NUMBER | this_WS_4= RULE_WS | this_SEMICOLON_5= RULE_SEMICOLON | this_COMMA_6= RULE_COMMA | this_MINUS_7= RULE_MINUS | this_PLUS_8= RULE_PLUS | this_LPAREN_9= RULE_LPAREN | this_RPAREN_10= RULE_RPAREN | this_QUESTI_11= RULE_QUESTI | this_NOT_12= RULE_NOT | this_BAND_13= RULE_BAND | this_HASH_14= RULE_HASH | this_CARET_15= RULE_CARET | this_EQUALS_16= RULE_EQUALS | this_LESS_THAN_17= RULE_LESS_THAN | this_MORE_THAN_18= RULE_MORE_THAN | this_DOT_19= RULE_DOT | this_AND_20= RULE_AND | this_OR_21= RULE_OR | this_ESC_CHAR_22= RULE_ESC_CHAR | this_ON_OFF_23= RULE_ON_OFF | this_STATEMENT_TYPE_24= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_25= RULE_MAPPING_TYPE | this_OPTION_TYPE_26= RULE_OPTION_TYPE ) ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_NUMBER | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_27= RULE_REST | this_IDENT_DOT_28= RULE_IDENT_DOT | this_IDENT_29= RULE_IDENT | this_NUMBER_30= RULE_NUMBER | this_WS_31= RULE_WS | this_SEMICOLON_32= RULE_SEMICOLON | this_COMMA_33= RULE_COMMA | this_MINUS_34= RULE_MINUS | this_PLUS_35= RULE_PLUS | this_LPAREN_36= RULE_LPAREN | this_RPAREN_37= RULE_RPAREN | this_QUESTI_38= RULE_QUESTI | this_NOT_39= RULE_NOT | this_BAND_40= RULE_BAND | this_HASH_41= RULE_HASH | this_CARET_42= RULE_CARET | this_EQUALS_43= RULE_EQUALS | this_LESS_THAN_44= RULE_LESS_THAN | this_MORE_THAN_45= RULE_MORE_THAN | this_DOT_46= RULE_DOT | this_AND_47= RULE_AND | this_OR_48= RULE_OR | this_ESC_CHAR_49= RULE_ESC_CHAR | this_ON_OFF_50= RULE_ON_OFF | this_STATEMENT_TYPE_51= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_52= RULE_MAPPING_TYPE | this_OPTION_TYPE_53= RULE_OPTION_TYPE ) )* ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8518:1: ( (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_NUMBER_3= RULE_NUMBER | this_WS_4= RULE_WS | this_SEMICOLON_5= RULE_SEMICOLON | this_COMMA_6= RULE_COMMA | this_MINUS_7= RULE_MINUS | this_PLUS_8= RULE_PLUS | this_LPAREN_9= RULE_LPAREN | this_RPAREN_10= RULE_RPAREN | this_QUESTI_11= RULE_QUESTI | this_NOT_12= RULE_NOT | this_BAND_13= RULE_BAND | this_HASH_14= RULE_HASH | this_CARET_15= RULE_CARET | this_EQUALS_16= RULE_EQUALS | this_LESS_THAN_17= RULE_LESS_THAN | this_MORE_THAN_18= RULE_MORE_THAN | this_DOT_19= RULE_DOT | this_AND_20= RULE_AND | this_OR_21= RULE_OR | this_ESC_CHAR_22= RULE_ESC_CHAR | this_ON_OFF_23= RULE_ON_OFF | this_STATEMENT_TYPE_24= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_25= RULE_MAPPING_TYPE | this_OPTION_TYPE_26= RULE_OPTION_TYPE ) ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_NUMBER | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_27= RULE_REST | this_IDENT_DOT_28= RULE_IDENT_DOT | this_IDENT_29= RULE_IDENT | this_NUMBER_30= RULE_NUMBER | this_WS_31= RULE_WS | this_SEMICOLON_32= RULE_SEMICOLON | this_COMMA_33= RULE_COMMA | this_MINUS_34= RULE_MINUS | this_PLUS_35= RULE_PLUS | this_LPAREN_36= RULE_LPAREN | this_RPAREN_37= RULE_RPAREN | this_QUESTI_38= RULE_QUESTI | this_NOT_39= RULE_NOT | this_BAND_40= RULE_BAND | this_HASH_41= RULE_HASH | this_CARET_42= RULE_CARET | this_EQUALS_43= RULE_EQUALS | this_LESS_THAN_44= RULE_LESS_THAN | this_MORE_THAN_45= RULE_MORE_THAN | this_DOT_46= RULE_DOT | this_AND_47= RULE_AND | this_OR_48= RULE_OR | this_ESC_CHAR_49= RULE_ESC_CHAR | this_ON_OFF_50= RULE_ON_OFF | this_STATEMENT_TYPE_51= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_52= RULE_MAPPING_TYPE | this_OPTION_TYPE_53= RULE_OPTION_TYPE ) )* )
             {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8518:1: ( (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_INT_3= RULE_INT | this_WS_4= RULE_WS | this_SEMICOLON_5= RULE_SEMICOLON | this_COMMA_6= RULE_COMMA | this_MINUS_7= RULE_MINUS | this_PLUS_8= RULE_PLUS | this_LPAREN_9= RULE_LPAREN | this_RPAREN_10= RULE_RPAREN | this_QUESTI_11= RULE_QUESTI | this_NOT_12= RULE_NOT | this_BAND_13= RULE_BAND | this_HASH_14= RULE_HASH | this_CARET_15= RULE_CARET | this_EQUALS_16= RULE_EQUALS | this_LESS_THAN_17= RULE_LESS_THAN | this_MORE_THAN_18= RULE_MORE_THAN | this_DOT_19= RULE_DOT | this_AND_20= RULE_AND | this_OR_21= RULE_OR | this_ESC_CHAR_22= RULE_ESC_CHAR | this_ON_OFF_23= RULE_ON_OFF | this_STATEMENT_TYPE_24= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_25= RULE_MAPPING_TYPE | this_OPTION_TYPE_26= RULE_OPTION_TYPE ) ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_INT | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_27= RULE_REST | this_IDENT_DOT_28= RULE_IDENT_DOT | this_IDENT_29= RULE_IDENT | this_INT_30= RULE_INT | this_WS_31= RULE_WS | this_SEMICOLON_32= RULE_SEMICOLON | this_COMMA_33= RULE_COMMA | this_MINUS_34= RULE_MINUS | this_PLUS_35= RULE_PLUS | this_LPAREN_36= RULE_LPAREN | this_RPAREN_37= RULE_RPAREN | this_QUESTI_38= RULE_QUESTI | this_NOT_39= RULE_NOT | this_BAND_40= RULE_BAND | this_HASH_41= RULE_HASH | this_CARET_42= RULE_CARET | this_EQUALS_43= RULE_EQUALS | this_LESS_THAN_44= RULE_LESS_THAN | this_MORE_THAN_45= RULE_MORE_THAN | this_DOT_46= RULE_DOT | this_AND_47= RULE_AND | this_OR_48= RULE_OR | this_ESC_CHAR_49= RULE_ESC_CHAR | this_ON_OFF_50= RULE_ON_OFF | this_STATEMENT_TYPE_51= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_52= RULE_MAPPING_TYPE | this_OPTION_TYPE_53= RULE_OPTION_TYPE ) )* )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8518:2: (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_INT_3= RULE_INT | this_WS_4= RULE_WS | this_SEMICOLON_5= RULE_SEMICOLON | this_COMMA_6= RULE_COMMA | this_MINUS_7= RULE_MINUS | this_PLUS_8= RULE_PLUS | this_LPAREN_9= RULE_LPAREN | this_RPAREN_10= RULE_RPAREN | this_QUESTI_11= RULE_QUESTI | this_NOT_12= RULE_NOT | this_BAND_13= RULE_BAND | this_HASH_14= RULE_HASH | this_CARET_15= RULE_CARET | this_EQUALS_16= RULE_EQUALS | this_LESS_THAN_17= RULE_LESS_THAN | this_MORE_THAN_18= RULE_MORE_THAN | this_DOT_19= RULE_DOT | this_AND_20= RULE_AND | this_OR_21= RULE_OR | this_ESC_CHAR_22= RULE_ESC_CHAR | this_ON_OFF_23= RULE_ON_OFF | this_STATEMENT_TYPE_24= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_25= RULE_MAPPING_TYPE | this_OPTION_TYPE_26= RULE_OPTION_TYPE ) ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_INT | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_27= RULE_REST | this_IDENT_DOT_28= RULE_IDENT_DOT | this_IDENT_29= RULE_IDENT | this_INT_30= RULE_INT | this_WS_31= RULE_WS | this_SEMICOLON_32= RULE_SEMICOLON | this_COMMA_33= RULE_COMMA | this_MINUS_34= RULE_MINUS | this_PLUS_35= RULE_PLUS | this_LPAREN_36= RULE_LPAREN | this_RPAREN_37= RULE_RPAREN | this_QUESTI_38= RULE_QUESTI | this_NOT_39= RULE_NOT | this_BAND_40= RULE_BAND | this_HASH_41= RULE_HASH | this_CARET_42= RULE_CARET | this_EQUALS_43= RULE_EQUALS | this_LESS_THAN_44= RULE_LESS_THAN | this_MORE_THAN_45= RULE_MORE_THAN | this_DOT_46= RULE_DOT | this_AND_47= RULE_AND | this_OR_48= RULE_OR | this_ESC_CHAR_49= RULE_ESC_CHAR | this_ON_OFF_50= RULE_ON_OFF | this_STATEMENT_TYPE_51= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_52= RULE_MAPPING_TYPE | this_OPTION_TYPE_53= RULE_OPTION_TYPE ) )*
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8518:1: ( (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_NUMBER_3= RULE_NUMBER | this_WS_4= RULE_WS | this_SEMICOLON_5= RULE_SEMICOLON | this_COMMA_6= RULE_COMMA | this_MINUS_7= RULE_MINUS | this_PLUS_8= RULE_PLUS | this_LPAREN_9= RULE_LPAREN | this_RPAREN_10= RULE_RPAREN | this_QUESTI_11= RULE_QUESTI | this_NOT_12= RULE_NOT | this_BAND_13= RULE_BAND | this_HASH_14= RULE_HASH | this_CARET_15= RULE_CARET | this_EQUALS_16= RULE_EQUALS | this_LESS_THAN_17= RULE_LESS_THAN | this_MORE_THAN_18= RULE_MORE_THAN | this_DOT_19= RULE_DOT | this_AND_20= RULE_AND | this_OR_21= RULE_OR | this_ESC_CHAR_22= RULE_ESC_CHAR | this_ON_OFF_23= RULE_ON_OFF | this_STATEMENT_TYPE_24= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_25= RULE_MAPPING_TYPE | this_OPTION_TYPE_26= RULE_OPTION_TYPE ) ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_NUMBER | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_27= RULE_REST | this_IDENT_DOT_28= RULE_IDENT_DOT | this_IDENT_29= RULE_IDENT | this_NUMBER_30= RULE_NUMBER | this_WS_31= RULE_WS | this_SEMICOLON_32= RULE_SEMICOLON | this_COMMA_33= RULE_COMMA | this_MINUS_34= RULE_MINUS | this_PLUS_35= RULE_PLUS | this_LPAREN_36= RULE_LPAREN | this_RPAREN_37= RULE_RPAREN | this_QUESTI_38= RULE_QUESTI | this_NOT_39= RULE_NOT | this_BAND_40= RULE_BAND | this_HASH_41= RULE_HASH | this_CARET_42= RULE_CARET | this_EQUALS_43= RULE_EQUALS | this_LESS_THAN_44= RULE_LESS_THAN | this_MORE_THAN_45= RULE_MORE_THAN | this_DOT_46= RULE_DOT | this_AND_47= RULE_AND | this_OR_48= RULE_OR | this_ESC_CHAR_49= RULE_ESC_CHAR | this_ON_OFF_50= RULE_ON_OFF | this_STATEMENT_TYPE_51= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_52= RULE_MAPPING_TYPE | this_OPTION_TYPE_53= RULE_OPTION_TYPE ) )* )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8518:2: (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_NUMBER_3= RULE_NUMBER | this_WS_4= RULE_WS | this_SEMICOLON_5= RULE_SEMICOLON | this_COMMA_6= RULE_COMMA | this_MINUS_7= RULE_MINUS | this_PLUS_8= RULE_PLUS | this_LPAREN_9= RULE_LPAREN | this_RPAREN_10= RULE_RPAREN | this_QUESTI_11= RULE_QUESTI | this_NOT_12= RULE_NOT | this_BAND_13= RULE_BAND | this_HASH_14= RULE_HASH | this_CARET_15= RULE_CARET | this_EQUALS_16= RULE_EQUALS | this_LESS_THAN_17= RULE_LESS_THAN | this_MORE_THAN_18= RULE_MORE_THAN | this_DOT_19= RULE_DOT | this_AND_20= RULE_AND | this_OR_21= RULE_OR | this_ESC_CHAR_22= RULE_ESC_CHAR | this_ON_OFF_23= RULE_ON_OFF | this_STATEMENT_TYPE_24= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_25= RULE_MAPPING_TYPE | this_OPTION_TYPE_26= RULE_OPTION_TYPE ) ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_NUMBER | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_27= RULE_REST | this_IDENT_DOT_28= RULE_IDENT_DOT | this_IDENT_29= RULE_IDENT | this_NUMBER_30= RULE_NUMBER | this_WS_31= RULE_WS | this_SEMICOLON_32= RULE_SEMICOLON | this_COMMA_33= RULE_COMMA | this_MINUS_34= RULE_MINUS | this_PLUS_35= RULE_PLUS | this_LPAREN_36= RULE_LPAREN | this_RPAREN_37= RULE_RPAREN | this_QUESTI_38= RULE_QUESTI | this_NOT_39= RULE_NOT | this_BAND_40= RULE_BAND | this_HASH_41= RULE_HASH | this_CARET_42= RULE_CARET | this_EQUALS_43= RULE_EQUALS | this_LESS_THAN_44= RULE_LESS_THAN | this_MORE_THAN_45= RULE_MORE_THAN | this_DOT_46= RULE_DOT | this_AND_47= RULE_AND | this_OR_48= RULE_OR | this_ESC_CHAR_49= RULE_ESC_CHAR | this_ON_OFF_50= RULE_ON_OFF | this_STATEMENT_TYPE_51= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_52= RULE_MAPPING_TYPE | this_OPTION_TYPE_53= RULE_OPTION_TYPE ) )*
             {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8518:2: (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_INT_3= RULE_INT | this_WS_4= RULE_WS | this_SEMICOLON_5= RULE_SEMICOLON | this_COMMA_6= RULE_COMMA | this_MINUS_7= RULE_MINUS | this_PLUS_8= RULE_PLUS | this_LPAREN_9= RULE_LPAREN | this_RPAREN_10= RULE_RPAREN | this_QUESTI_11= RULE_QUESTI | this_NOT_12= RULE_NOT | this_BAND_13= RULE_BAND | this_HASH_14= RULE_HASH | this_CARET_15= RULE_CARET | this_EQUALS_16= RULE_EQUALS | this_LESS_THAN_17= RULE_LESS_THAN | this_MORE_THAN_18= RULE_MORE_THAN | this_DOT_19= RULE_DOT | this_AND_20= RULE_AND | this_OR_21= RULE_OR | this_ESC_CHAR_22= RULE_ESC_CHAR | this_ON_OFF_23= RULE_ON_OFF | this_STATEMENT_TYPE_24= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_25= RULE_MAPPING_TYPE | this_OPTION_TYPE_26= RULE_OPTION_TYPE )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8518:2: (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_NUMBER_3= RULE_NUMBER | this_WS_4= RULE_WS | this_SEMICOLON_5= RULE_SEMICOLON | this_COMMA_6= RULE_COMMA | this_MINUS_7= RULE_MINUS | this_PLUS_8= RULE_PLUS | this_LPAREN_9= RULE_LPAREN | this_RPAREN_10= RULE_RPAREN | this_QUESTI_11= RULE_QUESTI | this_NOT_12= RULE_NOT | this_BAND_13= RULE_BAND | this_HASH_14= RULE_HASH | this_CARET_15= RULE_CARET | this_EQUALS_16= RULE_EQUALS | this_LESS_THAN_17= RULE_LESS_THAN | this_MORE_THAN_18= RULE_MORE_THAN | this_DOT_19= RULE_DOT | this_AND_20= RULE_AND | this_OR_21= RULE_OR | this_ESC_CHAR_22= RULE_ESC_CHAR | this_ON_OFF_23= RULE_ON_OFF | this_STATEMENT_TYPE_24= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_25= RULE_MAPPING_TYPE | this_OPTION_TYPE_26= RULE_OPTION_TYPE )
             int alt261=27;
             switch ( input.LA(1) ) {
             case RULE_REST:
@@ -26693,7 +26693,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                 alt261=3;
                 }
                 break;
-            case RULE_INT:
+            case RULE_NUMBER:
                 {
                 alt261=4;
                 }
@@ -26874,17 +26874,17 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8542:10: this_INT_3= RULE_INT
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8542:10: this_NUMBER_3= RULE_NUMBER
                     {
-                    this_INT_3=(Token)match(input,RULE_INT,FollowSets001.FOLLOW_RULE_INT_in_ruleIfSqlValue17637); if (state.failed) return current;
+                    this_NUMBER_3=(Token)match(input,RULE_NUMBER,FollowSets001.FOLLOW_RULE_NUMBER_in_ruleIfSqlValue17637); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                      		current.merge(this_INT_3);
+                      		current.merge(this_NUMBER_3);
                           
                     }
                     if ( state.backtracking==0 ) {
                        
-                          newLeafNode(this_INT_3, grammarAccess.getIfSqlValueAccess().getINTTerminalRuleCall_0_3()); 
+                          newLeafNode(this_NUMBER_3, grammarAccess.getIfSqlValueAccess().getNUMBERTerminalRuleCall_0_3()); 
                           
                     }
 
@@ -27284,16 +27284,16 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8733:2: ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_INT | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_27= RULE_REST | this_IDENT_DOT_28= RULE_IDENT_DOT | this_IDENT_29= RULE_IDENT | this_INT_30= RULE_INT | this_WS_31= RULE_WS | this_SEMICOLON_32= RULE_SEMICOLON | this_COMMA_33= RULE_COMMA | this_MINUS_34= RULE_MINUS | this_PLUS_35= RULE_PLUS | this_LPAREN_36= RULE_LPAREN | this_RPAREN_37= RULE_RPAREN | this_QUESTI_38= RULE_QUESTI | this_NOT_39= RULE_NOT | this_BAND_40= RULE_BAND | this_HASH_41= RULE_HASH | this_CARET_42= RULE_CARET | this_EQUALS_43= RULE_EQUALS | this_LESS_THAN_44= RULE_LESS_THAN | this_MORE_THAN_45= RULE_MORE_THAN | this_DOT_46= RULE_DOT | this_AND_47= RULE_AND | this_OR_48= RULE_OR | this_ESC_CHAR_49= RULE_ESC_CHAR | this_ON_OFF_50= RULE_ON_OFF | this_STATEMENT_TYPE_51= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_52= RULE_MAPPING_TYPE | this_OPTION_TYPE_53= RULE_OPTION_TYPE ) )*
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8733:2: ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_NUMBER | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_27= RULE_REST | this_IDENT_DOT_28= RULE_IDENT_DOT | this_IDENT_29= RULE_IDENT | this_NUMBER_30= RULE_NUMBER | this_WS_31= RULE_WS | this_SEMICOLON_32= RULE_SEMICOLON | this_COMMA_33= RULE_COMMA | this_MINUS_34= RULE_MINUS | this_PLUS_35= RULE_PLUS | this_LPAREN_36= RULE_LPAREN | this_RPAREN_37= RULE_RPAREN | this_QUESTI_38= RULE_QUESTI | this_NOT_39= RULE_NOT | this_BAND_40= RULE_BAND | this_HASH_41= RULE_HASH | this_CARET_42= RULE_CARET | this_EQUALS_43= RULE_EQUALS | this_LESS_THAN_44= RULE_LESS_THAN | this_MORE_THAN_45= RULE_MORE_THAN | this_DOT_46= RULE_DOT | this_AND_47= RULE_AND | this_OR_48= RULE_OR | this_ESC_CHAR_49= RULE_ESC_CHAR | this_ON_OFF_50= RULE_ON_OFF | this_STATEMENT_TYPE_51= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_52= RULE_MAPPING_TYPE | this_OPTION_TYPE_53= RULE_OPTION_TYPE ) )*
             loop263:
             do {
                 int alt263=2;
                 alt263 = dfa263.predict(input);
                 switch (alt263) {
             	case 1 :
-            	    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8733:3: ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_INT | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_27= RULE_REST | this_IDENT_DOT_28= RULE_IDENT_DOT | this_IDENT_29= RULE_IDENT | this_INT_30= RULE_INT | this_WS_31= RULE_WS | this_SEMICOLON_32= RULE_SEMICOLON | this_COMMA_33= RULE_COMMA | this_MINUS_34= RULE_MINUS | this_PLUS_35= RULE_PLUS | this_LPAREN_36= RULE_LPAREN | this_RPAREN_37= RULE_RPAREN | this_QUESTI_38= RULE_QUESTI | this_NOT_39= RULE_NOT | this_BAND_40= RULE_BAND | this_HASH_41= RULE_HASH | this_CARET_42= RULE_CARET | this_EQUALS_43= RULE_EQUALS | this_LESS_THAN_44= RULE_LESS_THAN | this_MORE_THAN_45= RULE_MORE_THAN | this_DOT_46= RULE_DOT | this_AND_47= RULE_AND | this_OR_48= RULE_OR | this_ESC_CHAR_49= RULE_ESC_CHAR | this_ON_OFF_50= RULE_ON_OFF | this_STATEMENT_TYPE_51= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_52= RULE_MAPPING_TYPE | this_OPTION_TYPE_53= RULE_OPTION_TYPE )
+            	    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8733:3: ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_NUMBER | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_27= RULE_REST | this_IDENT_DOT_28= RULE_IDENT_DOT | this_IDENT_29= RULE_IDENT | this_NUMBER_30= RULE_NUMBER | this_WS_31= RULE_WS | this_SEMICOLON_32= RULE_SEMICOLON | this_COMMA_33= RULE_COMMA | this_MINUS_34= RULE_MINUS | this_PLUS_35= RULE_PLUS | this_LPAREN_36= RULE_LPAREN | this_RPAREN_37= RULE_RPAREN | this_QUESTI_38= RULE_QUESTI | this_NOT_39= RULE_NOT | this_BAND_40= RULE_BAND | this_HASH_41= RULE_HASH | this_CARET_42= RULE_CARET | this_EQUALS_43= RULE_EQUALS | this_LESS_THAN_44= RULE_LESS_THAN | this_MORE_THAN_45= RULE_MORE_THAN | this_DOT_46= RULE_DOT | this_AND_47= RULE_AND | this_OR_48= RULE_OR | this_ESC_CHAR_49= RULE_ESC_CHAR | this_ON_OFF_50= RULE_ON_OFF | this_STATEMENT_TYPE_51= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_52= RULE_MAPPING_TYPE | this_OPTION_TYPE_53= RULE_OPTION_TYPE )
             	    {
-            	    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8759:27: (this_REST_27= RULE_REST | this_IDENT_DOT_28= RULE_IDENT_DOT | this_IDENT_29= RULE_IDENT | this_INT_30= RULE_INT | this_WS_31= RULE_WS | this_SEMICOLON_32= RULE_SEMICOLON | this_COMMA_33= RULE_COMMA | this_MINUS_34= RULE_MINUS | this_PLUS_35= RULE_PLUS | this_LPAREN_36= RULE_LPAREN | this_RPAREN_37= RULE_RPAREN | this_QUESTI_38= RULE_QUESTI | this_NOT_39= RULE_NOT | this_BAND_40= RULE_BAND | this_HASH_41= RULE_HASH | this_CARET_42= RULE_CARET | this_EQUALS_43= RULE_EQUALS | this_LESS_THAN_44= RULE_LESS_THAN | this_MORE_THAN_45= RULE_MORE_THAN | this_DOT_46= RULE_DOT | this_AND_47= RULE_AND | this_OR_48= RULE_OR | this_ESC_CHAR_49= RULE_ESC_CHAR | this_ON_OFF_50= RULE_ON_OFF | this_STATEMENT_TYPE_51= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_52= RULE_MAPPING_TYPE | this_OPTION_TYPE_53= RULE_OPTION_TYPE )
+            	    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8759:27: (this_REST_27= RULE_REST | this_IDENT_DOT_28= RULE_IDENT_DOT | this_IDENT_29= RULE_IDENT | this_NUMBER_30= RULE_NUMBER | this_WS_31= RULE_WS | this_SEMICOLON_32= RULE_SEMICOLON | this_COMMA_33= RULE_COMMA | this_MINUS_34= RULE_MINUS | this_PLUS_35= RULE_PLUS | this_LPAREN_36= RULE_LPAREN | this_RPAREN_37= RULE_RPAREN | this_QUESTI_38= RULE_QUESTI | this_NOT_39= RULE_NOT | this_BAND_40= RULE_BAND | this_HASH_41= RULE_HASH | this_CARET_42= RULE_CARET | this_EQUALS_43= RULE_EQUALS | this_LESS_THAN_44= RULE_LESS_THAN | this_MORE_THAN_45= RULE_MORE_THAN | this_DOT_46= RULE_DOT | this_AND_47= RULE_AND | this_OR_48= RULE_OR | this_ESC_CHAR_49= RULE_ESC_CHAR | this_ON_OFF_50= RULE_ON_OFF | this_STATEMENT_TYPE_51= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_52= RULE_MAPPING_TYPE | this_OPTION_TYPE_53= RULE_OPTION_TYPE )
             	    int alt262=27;
             	    switch ( input.LA(1) ) {
             	    case RULE_REST:
@@ -27311,7 +27311,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
             	        alt262=3;
             	        }
             	        break;
-            	    case RULE_INT:
+            	    case RULE_NUMBER:
             	        {
             	        alt262=4;
             	        }
@@ -27492,17 +27492,17 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
             	            }
             	            break;
             	        case 4 :
-            	            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8783:10: this_INT_30= RULE_INT
+            	            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8783:10: this_NUMBER_30= RULE_NUMBER
             	            {
-            	            this_INT_30=(Token)match(input,RULE_INT,FollowSets001.FOLLOW_RULE_INT_in_ruleIfSqlValue18551); if (state.failed) return current;
+            	            this_NUMBER_30=(Token)match(input,RULE_NUMBER,FollowSets001.FOLLOW_RULE_NUMBER_in_ruleIfSqlValue18551); if (state.failed) return current;
             	            if ( state.backtracking==0 ) {
 
-            	              		current.merge(this_INT_30);
+            	              		current.merge(this_NUMBER_30);
             	                  
             	            }
             	            if ( state.backtracking==0 ) {
             	               
-            	                  newLeafNode(this_INT_30, grammarAccess.getIfSqlValueAccess().getINTTerminalRuleCall_1_0_3()); 
+            	                  newLeafNode(this_NUMBER_30, grammarAccess.getIfSqlValueAccess().getNUMBERTerminalRuleCall_1_0_3()); 
             	                  
             	            }
 
@@ -29074,12 +29074,12 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleIfSqlBool"
-    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9364:1: ruleIfSqlBool returns [EObject current=null] : ( ( ( (lv_not_0_0= RULE_NOT ) )? this_STRING1_1= RULE_STRING1 ( (lv_cnst_2_0= ruleConstant ) ) ) | ( ( (lv_not_3_0= RULE_NOT ) )? this_COLON_4= RULE_COLON ( (lv_ident_5_0= ruleIdentifier ) ) ) | ( ( (lv_not_6_0= RULE_NOT ) )? this_LPAREN_7= RULE_LPAREN ( (lv_cond_8_0= ruleIfSqlCond ) ) this_RPAREN_9= RULE_RPAREN ) ) ;
+    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9364:1: ruleIfSqlBool returns [EObject current=null] : ( ( ( (lv_not_0_0= RULE_NOT ) )? this_STRING_1= RULE_STRING ( (lv_cnst_2_0= ruleConstant ) ) ) | ( ( (lv_not_3_0= RULE_NOT ) )? this_COLON_4= RULE_COLON ( (lv_ident_5_0= ruleIdentifier ) ) ) | ( ( (lv_not_6_0= RULE_NOT ) )? this_LPAREN_7= RULE_LPAREN ( (lv_cond_8_0= ruleIfSqlCond ) ) this_RPAREN_9= RULE_RPAREN ) ) ;
     public final EObject ruleIfSqlBool() throws RecognitionException {
         EObject current = null;
 
         Token lv_not_0_0=null;
-        Token this_STRING1_1=null;
+        Token this_STRING_1=null;
         Token lv_not_3_0=null;
         Token this_COLON_4=null;
         Token lv_not_6_0=null;
@@ -29095,10 +29095,10 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9367:28: ( ( ( ( (lv_not_0_0= RULE_NOT ) )? this_STRING1_1= RULE_STRING1 ( (lv_cnst_2_0= ruleConstant ) ) ) | ( ( (lv_not_3_0= RULE_NOT ) )? this_COLON_4= RULE_COLON ( (lv_ident_5_0= ruleIdentifier ) ) ) | ( ( (lv_not_6_0= RULE_NOT ) )? this_LPAREN_7= RULE_LPAREN ( (lv_cond_8_0= ruleIfSqlCond ) ) this_RPAREN_9= RULE_RPAREN ) ) )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9368:1: ( ( ( (lv_not_0_0= RULE_NOT ) )? this_STRING1_1= RULE_STRING1 ( (lv_cnst_2_0= ruleConstant ) ) ) | ( ( (lv_not_3_0= RULE_NOT ) )? this_COLON_4= RULE_COLON ( (lv_ident_5_0= ruleIdentifier ) ) ) | ( ( (lv_not_6_0= RULE_NOT ) )? this_LPAREN_7= RULE_LPAREN ( (lv_cond_8_0= ruleIfSqlCond ) ) this_RPAREN_9= RULE_RPAREN ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9367:28: ( ( ( ( (lv_not_0_0= RULE_NOT ) )? this_STRING_1= RULE_STRING ( (lv_cnst_2_0= ruleConstant ) ) ) | ( ( (lv_not_3_0= RULE_NOT ) )? this_COLON_4= RULE_COLON ( (lv_ident_5_0= ruleIdentifier ) ) ) | ( ( (lv_not_6_0= RULE_NOT ) )? this_LPAREN_7= RULE_LPAREN ( (lv_cond_8_0= ruleIfSqlCond ) ) this_RPAREN_9= RULE_RPAREN ) ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9368:1: ( ( ( (lv_not_0_0= RULE_NOT ) )? this_STRING_1= RULE_STRING ( (lv_cnst_2_0= ruleConstant ) ) ) | ( ( (lv_not_3_0= RULE_NOT ) )? this_COLON_4= RULE_COLON ( (lv_ident_5_0= ruleIdentifier ) ) ) | ( ( (lv_not_6_0= RULE_NOT ) )? this_LPAREN_7= RULE_LPAREN ( (lv_cond_8_0= ruleIfSqlCond ) ) this_RPAREN_9= RULE_RPAREN ) )
             {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9368:1: ( ( ( (lv_not_0_0= RULE_NOT ) )? this_STRING1_1= RULE_STRING1 ( (lv_cnst_2_0= ruleConstant ) ) ) | ( ( (lv_not_3_0= RULE_NOT ) )? this_COLON_4= RULE_COLON ( (lv_ident_5_0= ruleIdentifier ) ) ) | ( ( (lv_not_6_0= RULE_NOT ) )? this_LPAREN_7= RULE_LPAREN ( (lv_cond_8_0= ruleIfSqlCond ) ) this_RPAREN_9= RULE_RPAREN ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9368:1: ( ( ( (lv_not_0_0= RULE_NOT ) )? this_STRING_1= RULE_STRING ( (lv_cnst_2_0= ruleConstant ) ) ) | ( ( (lv_not_3_0= RULE_NOT ) )? this_COLON_4= RULE_COLON ( (lv_ident_5_0= ruleIdentifier ) ) ) | ( ( (lv_not_6_0= RULE_NOT ) )? this_LPAREN_7= RULE_LPAREN ( (lv_cond_8_0= ruleIfSqlCond ) ) this_RPAREN_9= RULE_RPAREN ) )
             int alt278=3;
             switch ( input.LA(1) ) {
             case RULE_NOT:
@@ -29109,7 +29109,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                     alt278=3;
                     }
                     break;
-                case RULE_STRING1:
+                case RULE_STRING:
                     {
                     alt278=1;
                     }
@@ -29129,7 +29129,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
 
                 }
                 break;
-            case RULE_STRING1:
+            case RULE_STRING:
                 {
                 alt278=1;
                 }
@@ -29154,10 +29154,10 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
 
             switch (alt278) {
                 case 1 :
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9368:2: ( ( (lv_not_0_0= RULE_NOT ) )? this_STRING1_1= RULE_STRING1 ( (lv_cnst_2_0= ruleConstant ) ) )
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9368:2: ( ( (lv_not_0_0= RULE_NOT ) )? this_STRING_1= RULE_STRING ( (lv_cnst_2_0= ruleConstant ) ) )
                     {
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9368:2: ( ( (lv_not_0_0= RULE_NOT ) )? this_STRING1_1= RULE_STRING1 ( (lv_cnst_2_0= ruleConstant ) ) )
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9368:3: ( (lv_not_0_0= RULE_NOT ) )? this_STRING1_1= RULE_STRING1 ( (lv_cnst_2_0= ruleConstant ) )
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9368:2: ( ( (lv_not_0_0= RULE_NOT ) )? this_STRING_1= RULE_STRING ( (lv_cnst_2_0= ruleConstant ) ) )
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9368:3: ( (lv_not_0_0= RULE_NOT ) )? this_STRING_1= RULE_STRING ( (lv_cnst_2_0= ruleConstant ) )
                     {
                     // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9368:3: ( (lv_not_0_0= RULE_NOT ) )?
                     int alt275=2;
@@ -29200,10 +29200,10 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    this_STRING1_1=(Token)match(input,RULE_STRING1,FollowSets001.FOLLOW_RULE_STRING1_in_ruleIfSqlBool19906); if (state.failed) return current;
+                    this_STRING_1=(Token)match(input,RULE_STRING,FollowSets001.FOLLOW_RULE_STRING_in_ruleIfSqlBool19906); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
                        
-                          newLeafNode(this_STRING1_1, grammarAccess.getIfSqlBoolAccess().getSTRING1TerminalRuleCall_0_1()); 
+                          newLeafNode(this_STRING_1, grammarAccess.getIfSqlBoolAccess().getSTRINGTerminalRuleCall_0_1()); 
                           
                     }
                     // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9390:1: ( (lv_cnst_2_0= ruleConstant ) )
@@ -29524,7 +29524,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                 int alt279=2;
                 int LA279_0 = input.LA(1);
 
-                if ( (LA279_0==RULE_WS||(LA279_0>=RULE_INT && LA279_0<=RULE_LBRACE)||(LA279_0>=RULE_PERCENT && LA279_0<=RULE_OPTION_TYPE)) ) {
+                if ( (LA279_0==RULE_WS||(LA279_0>=RULE_NUMBER && LA279_0<=RULE_LBRACE)||(LA279_0>=RULE_PERCENT && LA279_0<=RULE_OPTION_TYPE)) ) {
                     alt279=1;
                 }
 
@@ -29636,11 +29636,11 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleOrdSql2"
-    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9550:1: ruleOrdSql2 returns [EObject current=null] : ( ( (lv_value_0_0= ruleOrdSqlValue ) ) | (this_STRING1_1= RULE_STRING1 ( (lv_cnst_2_0= ruleConstant ) ) ) | (this_COLON_3= RULE_COLON ( (lv_ident_4_0= ruleIdentifier ) ) ) | (this_PERCENT_5= RULE_PERCENT ( (lv_dbcol_6_0= ruleDatabaseColumn ) ) ) ) ;
+    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9550:1: ruleOrdSql2 returns [EObject current=null] : ( ( (lv_value_0_0= ruleOrdSqlValue ) ) | (this_STRING_1= RULE_STRING ( (lv_cnst_2_0= ruleConstant ) ) ) | (this_COLON_3= RULE_COLON ( (lv_ident_4_0= ruleIdentifier ) ) ) | (this_PERCENT_5= RULE_PERCENT ( (lv_dbcol_6_0= ruleDatabaseColumn ) ) ) ) ;
     public final EObject ruleOrdSql2() throws RecognitionException {
         EObject current = null;
 
-        Token this_STRING1_1=null;
+        Token this_STRING_1=null;
         Token this_COLON_3=null;
         Token this_PERCENT_5=null;
         AntlrDatatypeRuleToken lv_value_0_0 = null;
@@ -29655,14 +29655,14 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9553:28: ( ( ( (lv_value_0_0= ruleOrdSqlValue ) ) | (this_STRING1_1= RULE_STRING1 ( (lv_cnst_2_0= ruleConstant ) ) ) | (this_COLON_3= RULE_COLON ( (lv_ident_4_0= ruleIdentifier ) ) ) | (this_PERCENT_5= RULE_PERCENT ( (lv_dbcol_6_0= ruleDatabaseColumn ) ) ) ) )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9554:1: ( ( (lv_value_0_0= ruleOrdSqlValue ) ) | (this_STRING1_1= RULE_STRING1 ( (lv_cnst_2_0= ruleConstant ) ) ) | (this_COLON_3= RULE_COLON ( (lv_ident_4_0= ruleIdentifier ) ) ) | (this_PERCENT_5= RULE_PERCENT ( (lv_dbcol_6_0= ruleDatabaseColumn ) ) ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9553:28: ( ( ( (lv_value_0_0= ruleOrdSqlValue ) ) | (this_STRING_1= RULE_STRING ( (lv_cnst_2_0= ruleConstant ) ) ) | (this_COLON_3= RULE_COLON ( (lv_ident_4_0= ruleIdentifier ) ) ) | (this_PERCENT_5= RULE_PERCENT ( (lv_dbcol_6_0= ruleDatabaseColumn ) ) ) ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9554:1: ( ( (lv_value_0_0= ruleOrdSqlValue ) ) | (this_STRING_1= RULE_STRING ( (lv_cnst_2_0= ruleConstant ) ) ) | (this_COLON_3= RULE_COLON ( (lv_ident_4_0= ruleIdentifier ) ) ) | (this_PERCENT_5= RULE_PERCENT ( (lv_dbcol_6_0= ruleDatabaseColumn ) ) ) )
             {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9554:1: ( ( (lv_value_0_0= ruleOrdSqlValue ) ) | (this_STRING1_1= RULE_STRING1 ( (lv_cnst_2_0= ruleConstant ) ) ) | (this_COLON_3= RULE_COLON ( (lv_ident_4_0= ruleIdentifier ) ) ) | (this_PERCENT_5= RULE_PERCENT ( (lv_dbcol_6_0= ruleDatabaseColumn ) ) ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9554:1: ( ( (lv_value_0_0= ruleOrdSqlValue ) ) | (this_STRING_1= RULE_STRING ( (lv_cnst_2_0= ruleConstant ) ) ) | (this_COLON_3= RULE_COLON ( (lv_ident_4_0= ruleIdentifier ) ) ) | (this_PERCENT_5= RULE_PERCENT ( (lv_dbcol_6_0= ruleDatabaseColumn ) ) ) )
             int alt280=4;
             switch ( input.LA(1) ) {
             case RULE_WS:
-            case RULE_INT:
+            case RULE_NUMBER:
             case RULE_IDENT:
             case RULE_LPAREN:
             case RULE_RPAREN:
@@ -29695,7 +29695,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                 alt280=1;
                 }
                 break;
-            case RULE_STRING1:
+            case RULE_STRING:
                 {
                 alt280=2;
                 }
@@ -29761,15 +29761,15 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9573:6: (this_STRING1_1= RULE_STRING1 ( (lv_cnst_2_0= ruleConstant ) ) )
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9573:6: (this_STRING_1= RULE_STRING ( (lv_cnst_2_0= ruleConstant ) ) )
                     {
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9573:6: (this_STRING1_1= RULE_STRING1 ( (lv_cnst_2_0= ruleConstant ) ) )
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9573:7: this_STRING1_1= RULE_STRING1 ( (lv_cnst_2_0= ruleConstant ) )
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9573:6: (this_STRING_1= RULE_STRING ( (lv_cnst_2_0= ruleConstant ) ) )
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9573:7: this_STRING_1= RULE_STRING ( (lv_cnst_2_0= ruleConstant ) )
                     {
-                    this_STRING1_1=(Token)match(input,RULE_STRING1,FollowSets001.FOLLOW_RULE_STRING1_in_ruleOrdSql220262); if (state.failed) return current;
+                    this_STRING_1=(Token)match(input,RULE_STRING,FollowSets001.FOLLOW_RULE_STRING_in_ruleOrdSql220262); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
                        
-                          newLeafNode(this_STRING1_1, grammarAccess.getOrdSql2Access().getSTRING1TerminalRuleCall_1_0()); 
+                          newLeafNode(this_STRING_1, grammarAccess.getOrdSql2Access().getSTRINGTerminalRuleCall_1_0()); 
                           
                     }
                     // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9577:1: ( (lv_cnst_2_0= ruleConstant ) )
@@ -29982,14 +29982,14 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleOrdSqlValue"
-    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9658:1: ruleOrdSqlValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : ( (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_INT_3= RULE_INT | this_WS_4= RULE_WS | this_SEMICOLON_5= RULE_SEMICOLON | this_COMMA_6= RULE_COMMA | this_MINUS_7= RULE_MINUS | this_PLUS_8= RULE_PLUS | this_LPAREN_9= RULE_LPAREN | this_RPAREN_10= RULE_RPAREN | this_LBRACE_11= RULE_LBRACE | this_QUESTI_12= RULE_QUESTI | this_NOT_13= RULE_NOT | this_BAND_14= RULE_BAND | this_BOR_15= RULE_BOR | this_HASH_16= RULE_HASH | this_AT_17= RULE_AT | this_CARET_18= RULE_CARET | this_EQUALS_19= RULE_EQUALS | this_LESS_THAN_20= RULE_LESS_THAN | this_MORE_THAN_21= RULE_MORE_THAN | this_DOT_22= RULE_DOT | this_AND_23= RULE_AND | this_OR_24= RULE_OR | this_ESC_CHAR_25= RULE_ESC_CHAR | this_ON_OFF_26= RULE_ON_OFF | this_STATEMENT_TYPE_27= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_28= RULE_MAPPING_TYPE | this_OPTION_TYPE_29= RULE_OPTION_TYPE ) ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_INT | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_LBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_AT | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_30= RULE_REST | this_IDENT_DOT_31= RULE_IDENT_DOT | this_IDENT_32= RULE_IDENT | this_INT_33= RULE_INT | this_WS_34= RULE_WS | this_SEMICOLON_35= RULE_SEMICOLON | this_COMMA_36= RULE_COMMA | this_MINUS_37= RULE_MINUS | this_PLUS_38= RULE_PLUS | this_LPAREN_39= RULE_LPAREN | this_RPAREN_40= RULE_RPAREN | this_LBRACE_41= RULE_LBRACE | this_QUESTI_42= RULE_QUESTI | this_NOT_43= RULE_NOT | this_BAND_44= RULE_BAND | this_BOR_45= RULE_BOR | this_HASH_46= RULE_HASH | this_AT_47= RULE_AT | this_CARET_48= RULE_CARET | this_EQUALS_49= RULE_EQUALS | this_LESS_THAN_50= RULE_LESS_THAN | this_MORE_THAN_51= RULE_MORE_THAN | this_DOT_52= RULE_DOT | this_AND_53= RULE_AND | this_OR_54= RULE_OR | this_ESC_CHAR_55= RULE_ESC_CHAR | this_ON_OFF_56= RULE_ON_OFF | this_STATEMENT_TYPE_57= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_58= RULE_MAPPING_TYPE | this_OPTION_TYPE_59= RULE_OPTION_TYPE ) )* ) ;
+    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9658:1: ruleOrdSqlValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : ( (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_NUMBER_3= RULE_NUMBER | this_WS_4= RULE_WS | this_SEMICOLON_5= RULE_SEMICOLON | this_COMMA_6= RULE_COMMA | this_MINUS_7= RULE_MINUS | this_PLUS_8= RULE_PLUS | this_LPAREN_9= RULE_LPAREN | this_RPAREN_10= RULE_RPAREN | this_LBRACE_11= RULE_LBRACE | this_QUESTI_12= RULE_QUESTI | this_NOT_13= RULE_NOT | this_BAND_14= RULE_BAND | this_BOR_15= RULE_BOR | this_HASH_16= RULE_HASH | this_AT_17= RULE_AT | this_CARET_18= RULE_CARET | this_EQUALS_19= RULE_EQUALS | this_LESS_THAN_20= RULE_LESS_THAN | this_MORE_THAN_21= RULE_MORE_THAN | this_DOT_22= RULE_DOT | this_AND_23= RULE_AND | this_OR_24= RULE_OR | this_ESC_CHAR_25= RULE_ESC_CHAR | this_ON_OFF_26= RULE_ON_OFF | this_STATEMENT_TYPE_27= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_28= RULE_MAPPING_TYPE | this_OPTION_TYPE_29= RULE_OPTION_TYPE ) ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_NUMBER | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_LBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_AT | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_30= RULE_REST | this_IDENT_DOT_31= RULE_IDENT_DOT | this_IDENT_32= RULE_IDENT | this_NUMBER_33= RULE_NUMBER | this_WS_34= RULE_WS | this_SEMICOLON_35= RULE_SEMICOLON | this_COMMA_36= RULE_COMMA | this_MINUS_37= RULE_MINUS | this_PLUS_38= RULE_PLUS | this_LPAREN_39= RULE_LPAREN | this_RPAREN_40= RULE_RPAREN | this_LBRACE_41= RULE_LBRACE | this_QUESTI_42= RULE_QUESTI | this_NOT_43= RULE_NOT | this_BAND_44= RULE_BAND | this_BOR_45= RULE_BOR | this_HASH_46= RULE_HASH | this_AT_47= RULE_AT | this_CARET_48= RULE_CARET | this_EQUALS_49= RULE_EQUALS | this_LESS_THAN_50= RULE_LESS_THAN | this_MORE_THAN_51= RULE_MORE_THAN | this_DOT_52= RULE_DOT | this_AND_53= RULE_AND | this_OR_54= RULE_OR | this_ESC_CHAR_55= RULE_ESC_CHAR | this_ON_OFF_56= RULE_ON_OFF | this_STATEMENT_TYPE_57= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_58= RULE_MAPPING_TYPE | this_OPTION_TYPE_59= RULE_OPTION_TYPE ) )* ) ;
     public final AntlrDatatypeRuleToken ruleOrdSqlValue() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
         Token this_REST_0=null;
         Token this_IDENT_DOT_1=null;
         Token this_IDENT_2=null;
-        Token this_INT_3=null;
+        Token this_NUMBER_3=null;
         Token this_WS_4=null;
         Token this_SEMICOLON_5=null;
         Token this_COMMA_6=null;
@@ -30019,7 +30019,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
         Token this_REST_30=null;
         Token this_IDENT_DOT_31=null;
         Token this_IDENT_32=null;
-        Token this_INT_33=null;
+        Token this_NUMBER_33=null;
         Token this_WS_34=null;
         Token this_SEMICOLON_35=null;
         Token this_COMMA_36=null;
@@ -30050,13 +30050,13 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9661:28: ( ( (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_INT_3= RULE_INT | this_WS_4= RULE_WS | this_SEMICOLON_5= RULE_SEMICOLON | this_COMMA_6= RULE_COMMA | this_MINUS_7= RULE_MINUS | this_PLUS_8= RULE_PLUS | this_LPAREN_9= RULE_LPAREN | this_RPAREN_10= RULE_RPAREN | this_LBRACE_11= RULE_LBRACE | this_QUESTI_12= RULE_QUESTI | this_NOT_13= RULE_NOT | this_BAND_14= RULE_BAND | this_BOR_15= RULE_BOR | this_HASH_16= RULE_HASH | this_AT_17= RULE_AT | this_CARET_18= RULE_CARET | this_EQUALS_19= RULE_EQUALS | this_LESS_THAN_20= RULE_LESS_THAN | this_MORE_THAN_21= RULE_MORE_THAN | this_DOT_22= RULE_DOT | this_AND_23= RULE_AND | this_OR_24= RULE_OR | this_ESC_CHAR_25= RULE_ESC_CHAR | this_ON_OFF_26= RULE_ON_OFF | this_STATEMENT_TYPE_27= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_28= RULE_MAPPING_TYPE | this_OPTION_TYPE_29= RULE_OPTION_TYPE ) ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_INT | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_LBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_AT | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_30= RULE_REST | this_IDENT_DOT_31= RULE_IDENT_DOT | this_IDENT_32= RULE_IDENT | this_INT_33= RULE_INT | this_WS_34= RULE_WS | this_SEMICOLON_35= RULE_SEMICOLON | this_COMMA_36= RULE_COMMA | this_MINUS_37= RULE_MINUS | this_PLUS_38= RULE_PLUS | this_LPAREN_39= RULE_LPAREN | this_RPAREN_40= RULE_RPAREN | this_LBRACE_41= RULE_LBRACE | this_QUESTI_42= RULE_QUESTI | this_NOT_43= RULE_NOT | this_BAND_44= RULE_BAND | this_BOR_45= RULE_BOR | this_HASH_46= RULE_HASH | this_AT_47= RULE_AT | this_CARET_48= RULE_CARET | this_EQUALS_49= RULE_EQUALS | this_LESS_THAN_50= RULE_LESS_THAN | this_MORE_THAN_51= RULE_MORE_THAN | this_DOT_52= RULE_DOT | this_AND_53= RULE_AND | this_OR_54= RULE_OR | this_ESC_CHAR_55= RULE_ESC_CHAR | this_ON_OFF_56= RULE_ON_OFF | this_STATEMENT_TYPE_57= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_58= RULE_MAPPING_TYPE | this_OPTION_TYPE_59= RULE_OPTION_TYPE ) )* ) )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9662:1: ( (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_INT_3= RULE_INT | this_WS_4= RULE_WS | this_SEMICOLON_5= RULE_SEMICOLON | this_COMMA_6= RULE_COMMA | this_MINUS_7= RULE_MINUS | this_PLUS_8= RULE_PLUS | this_LPAREN_9= RULE_LPAREN | this_RPAREN_10= RULE_RPAREN | this_LBRACE_11= RULE_LBRACE | this_QUESTI_12= RULE_QUESTI | this_NOT_13= RULE_NOT | this_BAND_14= RULE_BAND | this_BOR_15= RULE_BOR | this_HASH_16= RULE_HASH | this_AT_17= RULE_AT | this_CARET_18= RULE_CARET | this_EQUALS_19= RULE_EQUALS | this_LESS_THAN_20= RULE_LESS_THAN | this_MORE_THAN_21= RULE_MORE_THAN | this_DOT_22= RULE_DOT | this_AND_23= RULE_AND | this_OR_24= RULE_OR | this_ESC_CHAR_25= RULE_ESC_CHAR | this_ON_OFF_26= RULE_ON_OFF | this_STATEMENT_TYPE_27= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_28= RULE_MAPPING_TYPE | this_OPTION_TYPE_29= RULE_OPTION_TYPE ) ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_INT | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_LBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_AT | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_30= RULE_REST | this_IDENT_DOT_31= RULE_IDENT_DOT | this_IDENT_32= RULE_IDENT | this_INT_33= RULE_INT | this_WS_34= RULE_WS | this_SEMICOLON_35= RULE_SEMICOLON | this_COMMA_36= RULE_COMMA | this_MINUS_37= RULE_MINUS | this_PLUS_38= RULE_PLUS | this_LPAREN_39= RULE_LPAREN | this_RPAREN_40= RULE_RPAREN | this_LBRACE_41= RULE_LBRACE | this_QUESTI_42= RULE_QUESTI | this_NOT_43= RULE_NOT | this_BAND_44= RULE_BAND | this_BOR_45= RULE_BOR | this_HASH_46= RULE_HASH | this_AT_47= RULE_AT | this_CARET_48= RULE_CARET | this_EQUALS_49= RULE_EQUALS | this_LESS_THAN_50= RULE_LESS_THAN | this_MORE_THAN_51= RULE_MORE_THAN | this_DOT_52= RULE_DOT | this_AND_53= RULE_AND | this_OR_54= RULE_OR | this_ESC_CHAR_55= RULE_ESC_CHAR | this_ON_OFF_56= RULE_ON_OFF | this_STATEMENT_TYPE_57= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_58= RULE_MAPPING_TYPE | this_OPTION_TYPE_59= RULE_OPTION_TYPE ) )* )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9661:28: ( ( (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_NUMBER_3= RULE_NUMBER | this_WS_4= RULE_WS | this_SEMICOLON_5= RULE_SEMICOLON | this_COMMA_6= RULE_COMMA | this_MINUS_7= RULE_MINUS | this_PLUS_8= RULE_PLUS | this_LPAREN_9= RULE_LPAREN | this_RPAREN_10= RULE_RPAREN | this_LBRACE_11= RULE_LBRACE | this_QUESTI_12= RULE_QUESTI | this_NOT_13= RULE_NOT | this_BAND_14= RULE_BAND | this_BOR_15= RULE_BOR | this_HASH_16= RULE_HASH | this_AT_17= RULE_AT | this_CARET_18= RULE_CARET | this_EQUALS_19= RULE_EQUALS | this_LESS_THAN_20= RULE_LESS_THAN | this_MORE_THAN_21= RULE_MORE_THAN | this_DOT_22= RULE_DOT | this_AND_23= RULE_AND | this_OR_24= RULE_OR | this_ESC_CHAR_25= RULE_ESC_CHAR | this_ON_OFF_26= RULE_ON_OFF | this_STATEMENT_TYPE_27= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_28= RULE_MAPPING_TYPE | this_OPTION_TYPE_29= RULE_OPTION_TYPE ) ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_NUMBER | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_LBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_AT | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_30= RULE_REST | this_IDENT_DOT_31= RULE_IDENT_DOT | this_IDENT_32= RULE_IDENT | this_NUMBER_33= RULE_NUMBER | this_WS_34= RULE_WS | this_SEMICOLON_35= RULE_SEMICOLON | this_COMMA_36= RULE_COMMA | this_MINUS_37= RULE_MINUS | this_PLUS_38= RULE_PLUS | this_LPAREN_39= RULE_LPAREN | this_RPAREN_40= RULE_RPAREN | this_LBRACE_41= RULE_LBRACE | this_QUESTI_42= RULE_QUESTI | this_NOT_43= RULE_NOT | this_BAND_44= RULE_BAND | this_BOR_45= RULE_BOR | this_HASH_46= RULE_HASH | this_AT_47= RULE_AT | this_CARET_48= RULE_CARET | this_EQUALS_49= RULE_EQUALS | this_LESS_THAN_50= RULE_LESS_THAN | this_MORE_THAN_51= RULE_MORE_THAN | this_DOT_52= RULE_DOT | this_AND_53= RULE_AND | this_OR_54= RULE_OR | this_ESC_CHAR_55= RULE_ESC_CHAR | this_ON_OFF_56= RULE_ON_OFF | this_STATEMENT_TYPE_57= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_58= RULE_MAPPING_TYPE | this_OPTION_TYPE_59= RULE_OPTION_TYPE ) )* ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9662:1: ( (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_NUMBER_3= RULE_NUMBER | this_WS_4= RULE_WS | this_SEMICOLON_5= RULE_SEMICOLON | this_COMMA_6= RULE_COMMA | this_MINUS_7= RULE_MINUS | this_PLUS_8= RULE_PLUS | this_LPAREN_9= RULE_LPAREN | this_RPAREN_10= RULE_RPAREN | this_LBRACE_11= RULE_LBRACE | this_QUESTI_12= RULE_QUESTI | this_NOT_13= RULE_NOT | this_BAND_14= RULE_BAND | this_BOR_15= RULE_BOR | this_HASH_16= RULE_HASH | this_AT_17= RULE_AT | this_CARET_18= RULE_CARET | this_EQUALS_19= RULE_EQUALS | this_LESS_THAN_20= RULE_LESS_THAN | this_MORE_THAN_21= RULE_MORE_THAN | this_DOT_22= RULE_DOT | this_AND_23= RULE_AND | this_OR_24= RULE_OR | this_ESC_CHAR_25= RULE_ESC_CHAR | this_ON_OFF_26= RULE_ON_OFF | this_STATEMENT_TYPE_27= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_28= RULE_MAPPING_TYPE | this_OPTION_TYPE_29= RULE_OPTION_TYPE ) ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_NUMBER | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_LBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_AT | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_30= RULE_REST | this_IDENT_DOT_31= RULE_IDENT_DOT | this_IDENT_32= RULE_IDENT | this_NUMBER_33= RULE_NUMBER | this_WS_34= RULE_WS | this_SEMICOLON_35= RULE_SEMICOLON | this_COMMA_36= RULE_COMMA | this_MINUS_37= RULE_MINUS | this_PLUS_38= RULE_PLUS | this_LPAREN_39= RULE_LPAREN | this_RPAREN_40= RULE_RPAREN | this_LBRACE_41= RULE_LBRACE | this_QUESTI_42= RULE_QUESTI | this_NOT_43= RULE_NOT | this_BAND_44= RULE_BAND | this_BOR_45= RULE_BOR | this_HASH_46= RULE_HASH | this_AT_47= RULE_AT | this_CARET_48= RULE_CARET | this_EQUALS_49= RULE_EQUALS | this_LESS_THAN_50= RULE_LESS_THAN | this_MORE_THAN_51= RULE_MORE_THAN | this_DOT_52= RULE_DOT | this_AND_53= RULE_AND | this_OR_54= RULE_OR | this_ESC_CHAR_55= RULE_ESC_CHAR | this_ON_OFF_56= RULE_ON_OFF | this_STATEMENT_TYPE_57= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_58= RULE_MAPPING_TYPE | this_OPTION_TYPE_59= RULE_OPTION_TYPE ) )* )
             {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9662:1: ( (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_INT_3= RULE_INT | this_WS_4= RULE_WS | this_SEMICOLON_5= RULE_SEMICOLON | this_COMMA_6= RULE_COMMA | this_MINUS_7= RULE_MINUS | this_PLUS_8= RULE_PLUS | this_LPAREN_9= RULE_LPAREN | this_RPAREN_10= RULE_RPAREN | this_LBRACE_11= RULE_LBRACE | this_QUESTI_12= RULE_QUESTI | this_NOT_13= RULE_NOT | this_BAND_14= RULE_BAND | this_BOR_15= RULE_BOR | this_HASH_16= RULE_HASH | this_AT_17= RULE_AT | this_CARET_18= RULE_CARET | this_EQUALS_19= RULE_EQUALS | this_LESS_THAN_20= RULE_LESS_THAN | this_MORE_THAN_21= RULE_MORE_THAN | this_DOT_22= RULE_DOT | this_AND_23= RULE_AND | this_OR_24= RULE_OR | this_ESC_CHAR_25= RULE_ESC_CHAR | this_ON_OFF_26= RULE_ON_OFF | this_STATEMENT_TYPE_27= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_28= RULE_MAPPING_TYPE | this_OPTION_TYPE_29= RULE_OPTION_TYPE ) ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_INT | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_LBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_AT | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_30= RULE_REST | this_IDENT_DOT_31= RULE_IDENT_DOT | this_IDENT_32= RULE_IDENT | this_INT_33= RULE_INT | this_WS_34= RULE_WS | this_SEMICOLON_35= RULE_SEMICOLON | this_COMMA_36= RULE_COMMA | this_MINUS_37= RULE_MINUS | this_PLUS_38= RULE_PLUS | this_LPAREN_39= RULE_LPAREN | this_RPAREN_40= RULE_RPAREN | this_LBRACE_41= RULE_LBRACE | this_QUESTI_42= RULE_QUESTI | this_NOT_43= RULE_NOT | this_BAND_44= RULE_BAND | this_BOR_45= RULE_BOR | this_HASH_46= RULE_HASH | this_AT_47= RULE_AT | this_CARET_48= RULE_CARET | this_EQUALS_49= RULE_EQUALS | this_LESS_THAN_50= RULE_LESS_THAN | this_MORE_THAN_51= RULE_MORE_THAN | this_DOT_52= RULE_DOT | this_AND_53= RULE_AND | this_OR_54= RULE_OR | this_ESC_CHAR_55= RULE_ESC_CHAR | this_ON_OFF_56= RULE_ON_OFF | this_STATEMENT_TYPE_57= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_58= RULE_MAPPING_TYPE | this_OPTION_TYPE_59= RULE_OPTION_TYPE ) )* )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9662:2: (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_INT_3= RULE_INT | this_WS_4= RULE_WS | this_SEMICOLON_5= RULE_SEMICOLON | this_COMMA_6= RULE_COMMA | this_MINUS_7= RULE_MINUS | this_PLUS_8= RULE_PLUS | this_LPAREN_9= RULE_LPAREN | this_RPAREN_10= RULE_RPAREN | this_LBRACE_11= RULE_LBRACE | this_QUESTI_12= RULE_QUESTI | this_NOT_13= RULE_NOT | this_BAND_14= RULE_BAND | this_BOR_15= RULE_BOR | this_HASH_16= RULE_HASH | this_AT_17= RULE_AT | this_CARET_18= RULE_CARET | this_EQUALS_19= RULE_EQUALS | this_LESS_THAN_20= RULE_LESS_THAN | this_MORE_THAN_21= RULE_MORE_THAN | this_DOT_22= RULE_DOT | this_AND_23= RULE_AND | this_OR_24= RULE_OR | this_ESC_CHAR_25= RULE_ESC_CHAR | this_ON_OFF_26= RULE_ON_OFF | this_STATEMENT_TYPE_27= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_28= RULE_MAPPING_TYPE | this_OPTION_TYPE_29= RULE_OPTION_TYPE ) ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_INT | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_LBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_AT | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_30= RULE_REST | this_IDENT_DOT_31= RULE_IDENT_DOT | this_IDENT_32= RULE_IDENT | this_INT_33= RULE_INT | this_WS_34= RULE_WS | this_SEMICOLON_35= RULE_SEMICOLON | this_COMMA_36= RULE_COMMA | this_MINUS_37= RULE_MINUS | this_PLUS_38= RULE_PLUS | this_LPAREN_39= RULE_LPAREN | this_RPAREN_40= RULE_RPAREN | this_LBRACE_41= RULE_LBRACE | this_QUESTI_42= RULE_QUESTI | this_NOT_43= RULE_NOT | this_BAND_44= RULE_BAND | this_BOR_45= RULE_BOR | this_HASH_46= RULE_HASH | this_AT_47= RULE_AT | this_CARET_48= RULE_CARET | this_EQUALS_49= RULE_EQUALS | this_LESS_THAN_50= RULE_LESS_THAN | this_MORE_THAN_51= RULE_MORE_THAN | this_DOT_52= RULE_DOT | this_AND_53= RULE_AND | this_OR_54= RULE_OR | this_ESC_CHAR_55= RULE_ESC_CHAR | this_ON_OFF_56= RULE_ON_OFF | this_STATEMENT_TYPE_57= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_58= RULE_MAPPING_TYPE | this_OPTION_TYPE_59= RULE_OPTION_TYPE ) )*
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9662:1: ( (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_NUMBER_3= RULE_NUMBER | this_WS_4= RULE_WS | this_SEMICOLON_5= RULE_SEMICOLON | this_COMMA_6= RULE_COMMA | this_MINUS_7= RULE_MINUS | this_PLUS_8= RULE_PLUS | this_LPAREN_9= RULE_LPAREN | this_RPAREN_10= RULE_RPAREN | this_LBRACE_11= RULE_LBRACE | this_QUESTI_12= RULE_QUESTI | this_NOT_13= RULE_NOT | this_BAND_14= RULE_BAND | this_BOR_15= RULE_BOR | this_HASH_16= RULE_HASH | this_AT_17= RULE_AT | this_CARET_18= RULE_CARET | this_EQUALS_19= RULE_EQUALS | this_LESS_THAN_20= RULE_LESS_THAN | this_MORE_THAN_21= RULE_MORE_THAN | this_DOT_22= RULE_DOT | this_AND_23= RULE_AND | this_OR_24= RULE_OR | this_ESC_CHAR_25= RULE_ESC_CHAR | this_ON_OFF_26= RULE_ON_OFF | this_STATEMENT_TYPE_27= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_28= RULE_MAPPING_TYPE | this_OPTION_TYPE_29= RULE_OPTION_TYPE ) ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_NUMBER | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_LBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_AT | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_30= RULE_REST | this_IDENT_DOT_31= RULE_IDENT_DOT | this_IDENT_32= RULE_IDENT | this_NUMBER_33= RULE_NUMBER | this_WS_34= RULE_WS | this_SEMICOLON_35= RULE_SEMICOLON | this_COMMA_36= RULE_COMMA | this_MINUS_37= RULE_MINUS | this_PLUS_38= RULE_PLUS | this_LPAREN_39= RULE_LPAREN | this_RPAREN_40= RULE_RPAREN | this_LBRACE_41= RULE_LBRACE | this_QUESTI_42= RULE_QUESTI | this_NOT_43= RULE_NOT | this_BAND_44= RULE_BAND | this_BOR_45= RULE_BOR | this_HASH_46= RULE_HASH | this_AT_47= RULE_AT | this_CARET_48= RULE_CARET | this_EQUALS_49= RULE_EQUALS | this_LESS_THAN_50= RULE_LESS_THAN | this_MORE_THAN_51= RULE_MORE_THAN | this_DOT_52= RULE_DOT | this_AND_53= RULE_AND | this_OR_54= RULE_OR | this_ESC_CHAR_55= RULE_ESC_CHAR | this_ON_OFF_56= RULE_ON_OFF | this_STATEMENT_TYPE_57= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_58= RULE_MAPPING_TYPE | this_OPTION_TYPE_59= RULE_OPTION_TYPE ) )* )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9662:2: (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_NUMBER_3= RULE_NUMBER | this_WS_4= RULE_WS | this_SEMICOLON_5= RULE_SEMICOLON | this_COMMA_6= RULE_COMMA | this_MINUS_7= RULE_MINUS | this_PLUS_8= RULE_PLUS | this_LPAREN_9= RULE_LPAREN | this_RPAREN_10= RULE_RPAREN | this_LBRACE_11= RULE_LBRACE | this_QUESTI_12= RULE_QUESTI | this_NOT_13= RULE_NOT | this_BAND_14= RULE_BAND | this_BOR_15= RULE_BOR | this_HASH_16= RULE_HASH | this_AT_17= RULE_AT | this_CARET_18= RULE_CARET | this_EQUALS_19= RULE_EQUALS | this_LESS_THAN_20= RULE_LESS_THAN | this_MORE_THAN_21= RULE_MORE_THAN | this_DOT_22= RULE_DOT | this_AND_23= RULE_AND | this_OR_24= RULE_OR | this_ESC_CHAR_25= RULE_ESC_CHAR | this_ON_OFF_26= RULE_ON_OFF | this_STATEMENT_TYPE_27= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_28= RULE_MAPPING_TYPE | this_OPTION_TYPE_29= RULE_OPTION_TYPE ) ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_NUMBER | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_LBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_AT | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_30= RULE_REST | this_IDENT_DOT_31= RULE_IDENT_DOT | this_IDENT_32= RULE_IDENT | this_NUMBER_33= RULE_NUMBER | this_WS_34= RULE_WS | this_SEMICOLON_35= RULE_SEMICOLON | this_COMMA_36= RULE_COMMA | this_MINUS_37= RULE_MINUS | this_PLUS_38= RULE_PLUS | this_LPAREN_39= RULE_LPAREN | this_RPAREN_40= RULE_RPAREN | this_LBRACE_41= RULE_LBRACE | this_QUESTI_42= RULE_QUESTI | this_NOT_43= RULE_NOT | this_BAND_44= RULE_BAND | this_BOR_45= RULE_BOR | this_HASH_46= RULE_HASH | this_AT_47= RULE_AT | this_CARET_48= RULE_CARET | this_EQUALS_49= RULE_EQUALS | this_LESS_THAN_50= RULE_LESS_THAN | this_MORE_THAN_51= RULE_MORE_THAN | this_DOT_52= RULE_DOT | this_AND_53= RULE_AND | this_OR_54= RULE_OR | this_ESC_CHAR_55= RULE_ESC_CHAR | this_ON_OFF_56= RULE_ON_OFF | this_STATEMENT_TYPE_57= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_58= RULE_MAPPING_TYPE | this_OPTION_TYPE_59= RULE_OPTION_TYPE ) )*
             {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9662:2: (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_INT_3= RULE_INT | this_WS_4= RULE_WS | this_SEMICOLON_5= RULE_SEMICOLON | this_COMMA_6= RULE_COMMA | this_MINUS_7= RULE_MINUS | this_PLUS_8= RULE_PLUS | this_LPAREN_9= RULE_LPAREN | this_RPAREN_10= RULE_RPAREN | this_LBRACE_11= RULE_LBRACE | this_QUESTI_12= RULE_QUESTI | this_NOT_13= RULE_NOT | this_BAND_14= RULE_BAND | this_BOR_15= RULE_BOR | this_HASH_16= RULE_HASH | this_AT_17= RULE_AT | this_CARET_18= RULE_CARET | this_EQUALS_19= RULE_EQUALS | this_LESS_THAN_20= RULE_LESS_THAN | this_MORE_THAN_21= RULE_MORE_THAN | this_DOT_22= RULE_DOT | this_AND_23= RULE_AND | this_OR_24= RULE_OR | this_ESC_CHAR_25= RULE_ESC_CHAR | this_ON_OFF_26= RULE_ON_OFF | this_STATEMENT_TYPE_27= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_28= RULE_MAPPING_TYPE | this_OPTION_TYPE_29= RULE_OPTION_TYPE )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9662:2: (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_NUMBER_3= RULE_NUMBER | this_WS_4= RULE_WS | this_SEMICOLON_5= RULE_SEMICOLON | this_COMMA_6= RULE_COMMA | this_MINUS_7= RULE_MINUS | this_PLUS_8= RULE_PLUS | this_LPAREN_9= RULE_LPAREN | this_RPAREN_10= RULE_RPAREN | this_LBRACE_11= RULE_LBRACE | this_QUESTI_12= RULE_QUESTI | this_NOT_13= RULE_NOT | this_BAND_14= RULE_BAND | this_BOR_15= RULE_BOR | this_HASH_16= RULE_HASH | this_AT_17= RULE_AT | this_CARET_18= RULE_CARET | this_EQUALS_19= RULE_EQUALS | this_LESS_THAN_20= RULE_LESS_THAN | this_MORE_THAN_21= RULE_MORE_THAN | this_DOT_22= RULE_DOT | this_AND_23= RULE_AND | this_OR_24= RULE_OR | this_ESC_CHAR_25= RULE_ESC_CHAR | this_ON_OFF_26= RULE_ON_OFF | this_STATEMENT_TYPE_27= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_28= RULE_MAPPING_TYPE | this_OPTION_TYPE_29= RULE_OPTION_TYPE )
             int alt281=30;
             switch ( input.LA(1) ) {
             case RULE_REST:
@@ -30074,7 +30074,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                 alt281=3;
                 }
                 break;
-            case RULE_INT:
+            case RULE_NUMBER:
                 {
                 alt281=4;
                 }
@@ -30270,17 +30270,17 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9686:10: this_INT_3= RULE_INT
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9686:10: this_NUMBER_3= RULE_NUMBER
                     {
-                    this_INT_3=(Token)match(input,RULE_INT,FollowSets001.FOLLOW_RULE_INT_in_ruleOrdSqlValue20528); if (state.failed) return current;
+                    this_NUMBER_3=(Token)match(input,RULE_NUMBER,FollowSets001.FOLLOW_RULE_NUMBER_in_ruleOrdSqlValue20528); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                      		current.merge(this_INT_3);
+                      		current.merge(this_NUMBER_3);
                           
                     }
                     if ( state.backtracking==0 ) {
                        
-                          newLeafNode(this_INT_3, grammarAccess.getOrdSqlValueAccess().getINTTerminalRuleCall_0_3()); 
+                          newLeafNode(this_NUMBER_3, grammarAccess.getOrdSqlValueAccess().getNUMBERTerminalRuleCall_0_3()); 
                           
                     }
 
@@ -30731,16 +30731,16 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9901:2: ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_INT | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_LBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_AT | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_30= RULE_REST | this_IDENT_DOT_31= RULE_IDENT_DOT | this_IDENT_32= RULE_IDENT | this_INT_33= RULE_INT | this_WS_34= RULE_WS | this_SEMICOLON_35= RULE_SEMICOLON | this_COMMA_36= RULE_COMMA | this_MINUS_37= RULE_MINUS | this_PLUS_38= RULE_PLUS | this_LPAREN_39= RULE_LPAREN | this_RPAREN_40= RULE_RPAREN | this_LBRACE_41= RULE_LBRACE | this_QUESTI_42= RULE_QUESTI | this_NOT_43= RULE_NOT | this_BAND_44= RULE_BAND | this_BOR_45= RULE_BOR | this_HASH_46= RULE_HASH | this_AT_47= RULE_AT | this_CARET_48= RULE_CARET | this_EQUALS_49= RULE_EQUALS | this_LESS_THAN_50= RULE_LESS_THAN | this_MORE_THAN_51= RULE_MORE_THAN | this_DOT_52= RULE_DOT | this_AND_53= RULE_AND | this_OR_54= RULE_OR | this_ESC_CHAR_55= RULE_ESC_CHAR | this_ON_OFF_56= RULE_ON_OFF | this_STATEMENT_TYPE_57= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_58= RULE_MAPPING_TYPE | this_OPTION_TYPE_59= RULE_OPTION_TYPE ) )*
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9901:2: ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_NUMBER | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_LBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_AT | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_30= RULE_REST | this_IDENT_DOT_31= RULE_IDENT_DOT | this_IDENT_32= RULE_IDENT | this_NUMBER_33= RULE_NUMBER | this_WS_34= RULE_WS | this_SEMICOLON_35= RULE_SEMICOLON | this_COMMA_36= RULE_COMMA | this_MINUS_37= RULE_MINUS | this_PLUS_38= RULE_PLUS | this_LPAREN_39= RULE_LPAREN | this_RPAREN_40= RULE_RPAREN | this_LBRACE_41= RULE_LBRACE | this_QUESTI_42= RULE_QUESTI | this_NOT_43= RULE_NOT | this_BAND_44= RULE_BAND | this_BOR_45= RULE_BOR | this_HASH_46= RULE_HASH | this_AT_47= RULE_AT | this_CARET_48= RULE_CARET | this_EQUALS_49= RULE_EQUALS | this_LESS_THAN_50= RULE_LESS_THAN | this_MORE_THAN_51= RULE_MORE_THAN | this_DOT_52= RULE_DOT | this_AND_53= RULE_AND | this_OR_54= RULE_OR | this_ESC_CHAR_55= RULE_ESC_CHAR | this_ON_OFF_56= RULE_ON_OFF | this_STATEMENT_TYPE_57= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_58= RULE_MAPPING_TYPE | this_OPTION_TYPE_59= RULE_OPTION_TYPE ) )*
             loop283:
             do {
                 int alt283=2;
                 alt283 = dfa283.predict(input);
                 switch (alt283) {
             	case 1 :
-            	    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9901:3: ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_INT | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_LBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_AT | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_30= RULE_REST | this_IDENT_DOT_31= RULE_IDENT_DOT | this_IDENT_32= RULE_IDENT | this_INT_33= RULE_INT | this_WS_34= RULE_WS | this_SEMICOLON_35= RULE_SEMICOLON | this_COMMA_36= RULE_COMMA | this_MINUS_37= RULE_MINUS | this_PLUS_38= RULE_PLUS | this_LPAREN_39= RULE_LPAREN | this_RPAREN_40= RULE_RPAREN | this_LBRACE_41= RULE_LBRACE | this_QUESTI_42= RULE_QUESTI | this_NOT_43= RULE_NOT | this_BAND_44= RULE_BAND | this_BOR_45= RULE_BOR | this_HASH_46= RULE_HASH | this_AT_47= RULE_AT | this_CARET_48= RULE_CARET | this_EQUALS_49= RULE_EQUALS | this_LESS_THAN_50= RULE_LESS_THAN | this_MORE_THAN_51= RULE_MORE_THAN | this_DOT_52= RULE_DOT | this_AND_53= RULE_AND | this_OR_54= RULE_OR | this_ESC_CHAR_55= RULE_ESC_CHAR | this_ON_OFF_56= RULE_ON_OFF | this_STATEMENT_TYPE_57= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_58= RULE_MAPPING_TYPE | this_OPTION_TYPE_59= RULE_OPTION_TYPE )
+            	    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9901:3: ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_NUMBER | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_LBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_AT | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_30= RULE_REST | this_IDENT_DOT_31= RULE_IDENT_DOT | this_IDENT_32= RULE_IDENT | this_NUMBER_33= RULE_NUMBER | this_WS_34= RULE_WS | this_SEMICOLON_35= RULE_SEMICOLON | this_COMMA_36= RULE_COMMA | this_MINUS_37= RULE_MINUS | this_PLUS_38= RULE_PLUS | this_LPAREN_39= RULE_LPAREN | this_RPAREN_40= RULE_RPAREN | this_LBRACE_41= RULE_LBRACE | this_QUESTI_42= RULE_QUESTI | this_NOT_43= RULE_NOT | this_BAND_44= RULE_BAND | this_BOR_45= RULE_BOR | this_HASH_46= RULE_HASH | this_AT_47= RULE_AT | this_CARET_48= RULE_CARET | this_EQUALS_49= RULE_EQUALS | this_LESS_THAN_50= RULE_LESS_THAN | this_MORE_THAN_51= RULE_MORE_THAN | this_DOT_52= RULE_DOT | this_AND_53= RULE_AND | this_OR_54= RULE_OR | this_ESC_CHAR_55= RULE_ESC_CHAR | this_ON_OFF_56= RULE_ON_OFF | this_STATEMENT_TYPE_57= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_58= RULE_MAPPING_TYPE | this_OPTION_TYPE_59= RULE_OPTION_TYPE )
             	    {
-            	    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9930:27: (this_REST_30= RULE_REST | this_IDENT_DOT_31= RULE_IDENT_DOT | this_IDENT_32= RULE_IDENT | this_INT_33= RULE_INT | this_WS_34= RULE_WS | this_SEMICOLON_35= RULE_SEMICOLON | this_COMMA_36= RULE_COMMA | this_MINUS_37= RULE_MINUS | this_PLUS_38= RULE_PLUS | this_LPAREN_39= RULE_LPAREN | this_RPAREN_40= RULE_RPAREN | this_LBRACE_41= RULE_LBRACE | this_QUESTI_42= RULE_QUESTI | this_NOT_43= RULE_NOT | this_BAND_44= RULE_BAND | this_BOR_45= RULE_BOR | this_HASH_46= RULE_HASH | this_AT_47= RULE_AT | this_CARET_48= RULE_CARET | this_EQUALS_49= RULE_EQUALS | this_LESS_THAN_50= RULE_LESS_THAN | this_MORE_THAN_51= RULE_MORE_THAN | this_DOT_52= RULE_DOT | this_AND_53= RULE_AND | this_OR_54= RULE_OR | this_ESC_CHAR_55= RULE_ESC_CHAR | this_ON_OFF_56= RULE_ON_OFF | this_STATEMENT_TYPE_57= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_58= RULE_MAPPING_TYPE | this_OPTION_TYPE_59= RULE_OPTION_TYPE )
+            	    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9930:27: (this_REST_30= RULE_REST | this_IDENT_DOT_31= RULE_IDENT_DOT | this_IDENT_32= RULE_IDENT | this_NUMBER_33= RULE_NUMBER | this_WS_34= RULE_WS | this_SEMICOLON_35= RULE_SEMICOLON | this_COMMA_36= RULE_COMMA | this_MINUS_37= RULE_MINUS | this_PLUS_38= RULE_PLUS | this_LPAREN_39= RULE_LPAREN | this_RPAREN_40= RULE_RPAREN | this_LBRACE_41= RULE_LBRACE | this_QUESTI_42= RULE_QUESTI | this_NOT_43= RULE_NOT | this_BAND_44= RULE_BAND | this_BOR_45= RULE_BOR | this_HASH_46= RULE_HASH | this_AT_47= RULE_AT | this_CARET_48= RULE_CARET | this_EQUALS_49= RULE_EQUALS | this_LESS_THAN_50= RULE_LESS_THAN | this_MORE_THAN_51= RULE_MORE_THAN | this_DOT_52= RULE_DOT | this_AND_53= RULE_AND | this_OR_54= RULE_OR | this_ESC_CHAR_55= RULE_ESC_CHAR | this_ON_OFF_56= RULE_ON_OFF | this_STATEMENT_TYPE_57= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_58= RULE_MAPPING_TYPE | this_OPTION_TYPE_59= RULE_OPTION_TYPE )
             	    int alt282=30;
             	    switch ( input.LA(1) ) {
             	    case RULE_REST:
@@ -30758,7 +30758,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
             	        alt282=3;
             	        }
             	        break;
-            	    case RULE_INT:
+            	    case RULE_NUMBER:
             	        {
             	        alt282=4;
             	        }
@@ -30954,17 +30954,17 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
             	            }
             	            break;
             	        case 4 :
-            	            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9954:10: this_INT_33= RULE_INT
+            	            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9954:10: this_NUMBER_33= RULE_NUMBER
             	            {
-            	            this_INT_33=(Token)match(input,RULE_INT,FollowSets001.FOLLOW_RULE_INT_in_ruleOrdSqlValue21544); if (state.failed) return current;
+            	            this_NUMBER_33=(Token)match(input,RULE_NUMBER,FollowSets001.FOLLOW_RULE_NUMBER_in_ruleOrdSqlValue21544); if (state.failed) return current;
             	            if ( state.backtracking==0 ) {
 
-            	              		current.merge(this_INT_33);
+            	              		current.merge(this_NUMBER_33);
             	                  
             	            }
             	            if ( state.backtracking==0 ) {
             	               
-            	                  newLeafNode(this_INT_33, grammarAccess.getOrdSqlValueAccess().getINTTerminalRuleCall_1_0_3()); 
+            	                  newLeafNode(this_NUMBER_33, grammarAccess.getOrdSqlValueAccess().getNUMBERTerminalRuleCall_1_0_3()); 
             	                  
             	            }
 
@@ -31567,7 +31567,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
 
                     }
                     break;
-                case RULE_INT:
+                case RULE_NUMBER:
                     {
                     int LA284_4 = input.LA(2);
 
@@ -31938,7 +31938,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleExtendedColumnName"
-    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10334:1: ruleExtendedColumnName returns [EObject current=null] : ( ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_INT | lv_name_0_3= RULE_IDENT_DOT ) ) ) ;
+    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10334:1: ruleExtendedColumnName returns [EObject current=null] : ( ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_NUMBER | lv_name_0_3= RULE_IDENT_DOT ) ) ) ;
     public final EObject ruleExtendedColumnName() throws RecognitionException {
         EObject current = null;
 
@@ -31949,16 +31949,16 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10337:28: ( ( ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_INT | lv_name_0_3= RULE_IDENT_DOT ) ) ) )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10338:1: ( ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_INT | lv_name_0_3= RULE_IDENT_DOT ) ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10337:28: ( ( ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_NUMBER | lv_name_0_3= RULE_IDENT_DOT ) ) ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10338:1: ( ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_NUMBER | lv_name_0_3= RULE_IDENT_DOT ) ) )
             {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10338:1: ( ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_INT | lv_name_0_3= RULE_IDENT_DOT ) ) )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10339:1: ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_INT | lv_name_0_3= RULE_IDENT_DOT ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10338:1: ( ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_NUMBER | lv_name_0_3= RULE_IDENT_DOT ) ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10339:1: ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_NUMBER | lv_name_0_3= RULE_IDENT_DOT ) )
             {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10339:1: ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_INT | lv_name_0_3= RULE_IDENT_DOT ) )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10340:1: (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_INT | lv_name_0_3= RULE_IDENT_DOT )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10339:1: ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_NUMBER | lv_name_0_3= RULE_IDENT_DOT ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10340:1: (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_NUMBER | lv_name_0_3= RULE_IDENT_DOT )
             {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10340:1: (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_INT | lv_name_0_3= RULE_IDENT_DOT )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10340:1: (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_NUMBER | lv_name_0_3= RULE_IDENT_DOT )
             int alt287=3;
             switch ( input.LA(1) ) {
             case RULE_IDENT:
@@ -31966,7 +31966,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                 alt287=1;
                 }
                 break;
-            case RULE_INT:
+            case RULE_NUMBER:
                 {
                 alt287=2;
                 }
@@ -32010,12 +32010,12 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10356:8: lv_name_0_2= RULE_INT
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10356:8: lv_name_0_2= RULE_NUMBER
                     {
-                    lv_name_0_2=(Token)match(input,RULE_INT,FollowSets001.FOLLOW_RULE_INT_in_ruleExtendedColumnName22642); if (state.failed) return current;
+                    lv_name_0_2=(Token)match(input,RULE_NUMBER,FollowSets001.FOLLOW_RULE_NUMBER_in_ruleExtendedColumnName22642); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                      			newLeafNode(lv_name_0_2, grammarAccess.getExtendedColumnNameAccess().getNameINTTerminalRuleCall_0_1()); 
+                      			newLeafNode(lv_name_0_2, grammarAccess.getExtendedColumnNameAccess().getNameNUMBERTerminalRuleCall_0_1()); 
                       		
                     }
                     if ( state.backtracking==0 ) {
@@ -32027,7 +32027,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"name",
                               		lv_name_0_2, 
-                              		"INT");
+                              		"NUMBER");
                       	    
                     }
 
@@ -32518,7 +32518,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleIdentifier"
-    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10547:1: ruleIdentifier returns [EObject current=null] : ( ( ( (lv_mode_0_1= RULE_EQUALS | lv_mode_0_2= RULE_LESS_THAN | lv_mode_0_3= RULE_MORE_THAN ) ) )? ( ( (lv_case_1_1= RULE_PLUS | lv_case_1_2= RULE_MINUS ) ) )? ( ( (lv_name_2_1= RULE_IDENT | lv_name_2_2= RULE_INT | lv_name_2_3= RULE_IDENT_DOT ) ) ) ( ( ( RULE_LPAREN )=>this_LPAREN_3= RULE_LPAREN ) ( (lv_modifiers_4_0= ruleModifier ) ) (this_COMMA_5= RULE_COMMA ( (lv_modifiers_6_0= ruleModifier ) ) )* this_RPAREN_7= RULE_RPAREN )? ) ;
+    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10547:1: ruleIdentifier returns [EObject current=null] : ( ( ( (lv_mode_0_1= RULE_EQUALS | lv_mode_0_2= RULE_LESS_THAN | lv_mode_0_3= RULE_MORE_THAN ) ) )? ( ( (lv_case_1_1= RULE_PLUS | lv_case_1_2= RULE_MINUS ) ) )? ( ( (lv_name_2_1= RULE_IDENT | lv_name_2_2= RULE_NUMBER | lv_name_2_3= RULE_IDENT_DOT ) ) ) ( ( ( RULE_LPAREN )=>this_LPAREN_3= RULE_LPAREN ) ( (lv_modifiers_4_0= ruleModifier ) ) (this_COMMA_5= RULE_COMMA ( (lv_modifiers_6_0= ruleModifier ) ) )* this_RPAREN_7= RULE_RPAREN )? ) ;
     public final EObject ruleIdentifier() throws RecognitionException {
         EObject current = null;
 
@@ -32541,11 +32541,11 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10550:28: ( ( ( ( (lv_mode_0_1= RULE_EQUALS | lv_mode_0_2= RULE_LESS_THAN | lv_mode_0_3= RULE_MORE_THAN ) ) )? ( ( (lv_case_1_1= RULE_PLUS | lv_case_1_2= RULE_MINUS ) ) )? ( ( (lv_name_2_1= RULE_IDENT | lv_name_2_2= RULE_INT | lv_name_2_3= RULE_IDENT_DOT ) ) ) ( ( ( RULE_LPAREN )=>this_LPAREN_3= RULE_LPAREN ) ( (lv_modifiers_4_0= ruleModifier ) ) (this_COMMA_5= RULE_COMMA ( (lv_modifiers_6_0= ruleModifier ) ) )* this_RPAREN_7= RULE_RPAREN )? ) )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10551:1: ( ( ( (lv_mode_0_1= RULE_EQUALS | lv_mode_0_2= RULE_LESS_THAN | lv_mode_0_3= RULE_MORE_THAN ) ) )? ( ( (lv_case_1_1= RULE_PLUS | lv_case_1_2= RULE_MINUS ) ) )? ( ( (lv_name_2_1= RULE_IDENT | lv_name_2_2= RULE_INT | lv_name_2_3= RULE_IDENT_DOT ) ) ) ( ( ( RULE_LPAREN )=>this_LPAREN_3= RULE_LPAREN ) ( (lv_modifiers_4_0= ruleModifier ) ) (this_COMMA_5= RULE_COMMA ( (lv_modifiers_6_0= ruleModifier ) ) )* this_RPAREN_7= RULE_RPAREN )? )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10550:28: ( ( ( ( (lv_mode_0_1= RULE_EQUALS | lv_mode_0_2= RULE_LESS_THAN | lv_mode_0_3= RULE_MORE_THAN ) ) )? ( ( (lv_case_1_1= RULE_PLUS | lv_case_1_2= RULE_MINUS ) ) )? ( ( (lv_name_2_1= RULE_IDENT | lv_name_2_2= RULE_NUMBER | lv_name_2_3= RULE_IDENT_DOT ) ) ) ( ( ( RULE_LPAREN )=>this_LPAREN_3= RULE_LPAREN ) ( (lv_modifiers_4_0= ruleModifier ) ) (this_COMMA_5= RULE_COMMA ( (lv_modifiers_6_0= ruleModifier ) ) )* this_RPAREN_7= RULE_RPAREN )? ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10551:1: ( ( ( (lv_mode_0_1= RULE_EQUALS | lv_mode_0_2= RULE_LESS_THAN | lv_mode_0_3= RULE_MORE_THAN ) ) )? ( ( (lv_case_1_1= RULE_PLUS | lv_case_1_2= RULE_MINUS ) ) )? ( ( (lv_name_2_1= RULE_IDENT | lv_name_2_2= RULE_NUMBER | lv_name_2_3= RULE_IDENT_DOT ) ) ) ( ( ( RULE_LPAREN )=>this_LPAREN_3= RULE_LPAREN ) ( (lv_modifiers_4_0= ruleModifier ) ) (this_COMMA_5= RULE_COMMA ( (lv_modifiers_6_0= ruleModifier ) ) )* this_RPAREN_7= RULE_RPAREN )? )
             {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10551:1: ( ( ( (lv_mode_0_1= RULE_EQUALS | lv_mode_0_2= RULE_LESS_THAN | lv_mode_0_3= RULE_MORE_THAN ) ) )? ( ( (lv_case_1_1= RULE_PLUS | lv_case_1_2= RULE_MINUS ) ) )? ( ( (lv_name_2_1= RULE_IDENT | lv_name_2_2= RULE_INT | lv_name_2_3= RULE_IDENT_DOT ) ) ) ( ( ( RULE_LPAREN )=>this_LPAREN_3= RULE_LPAREN ) ( (lv_modifiers_4_0= ruleModifier ) ) (this_COMMA_5= RULE_COMMA ( (lv_modifiers_6_0= ruleModifier ) ) )* this_RPAREN_7= RULE_RPAREN )? )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10551:2: ( ( (lv_mode_0_1= RULE_EQUALS | lv_mode_0_2= RULE_LESS_THAN | lv_mode_0_3= RULE_MORE_THAN ) ) )? ( ( (lv_case_1_1= RULE_PLUS | lv_case_1_2= RULE_MINUS ) ) )? ( ( (lv_name_2_1= RULE_IDENT | lv_name_2_2= RULE_INT | lv_name_2_3= RULE_IDENT_DOT ) ) ) ( ( ( RULE_LPAREN )=>this_LPAREN_3= RULE_LPAREN ) ( (lv_modifiers_4_0= ruleModifier ) ) (this_COMMA_5= RULE_COMMA ( (lv_modifiers_6_0= ruleModifier ) ) )* this_RPAREN_7= RULE_RPAREN )?
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10551:1: ( ( ( (lv_mode_0_1= RULE_EQUALS | lv_mode_0_2= RULE_LESS_THAN | lv_mode_0_3= RULE_MORE_THAN ) ) )? ( ( (lv_case_1_1= RULE_PLUS | lv_case_1_2= RULE_MINUS ) ) )? ( ( (lv_name_2_1= RULE_IDENT | lv_name_2_2= RULE_NUMBER | lv_name_2_3= RULE_IDENT_DOT ) ) ) ( ( ( RULE_LPAREN )=>this_LPAREN_3= RULE_LPAREN ) ( (lv_modifiers_4_0= ruleModifier ) ) (this_COMMA_5= RULE_COMMA ( (lv_modifiers_6_0= ruleModifier ) ) )* this_RPAREN_7= RULE_RPAREN )? )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10551:2: ( ( (lv_mode_0_1= RULE_EQUALS | lv_mode_0_2= RULE_LESS_THAN | lv_mode_0_3= RULE_MORE_THAN ) ) )? ( ( (lv_case_1_1= RULE_PLUS | lv_case_1_2= RULE_MINUS ) ) )? ( ( (lv_name_2_1= RULE_IDENT | lv_name_2_2= RULE_NUMBER | lv_name_2_3= RULE_IDENT_DOT ) ) ) ( ( ( RULE_LPAREN )=>this_LPAREN_3= RULE_LPAREN ) ( (lv_modifiers_4_0= ruleModifier ) ) (this_COMMA_5= RULE_COMMA ( (lv_modifiers_6_0= ruleModifier ) ) )* this_RPAREN_7= RULE_RPAREN )?
             {
             // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10551:2: ( ( (lv_mode_0_1= RULE_EQUALS | lv_mode_0_2= RULE_LESS_THAN | lv_mode_0_3= RULE_MORE_THAN ) ) )?
             int alt294=2;
@@ -32764,13 +32764,13 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10638:3: ( ( (lv_name_2_1= RULE_IDENT | lv_name_2_2= RULE_INT | lv_name_2_3= RULE_IDENT_DOT ) ) )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10639:1: ( (lv_name_2_1= RULE_IDENT | lv_name_2_2= RULE_INT | lv_name_2_3= RULE_IDENT_DOT ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10638:3: ( ( (lv_name_2_1= RULE_IDENT | lv_name_2_2= RULE_NUMBER | lv_name_2_3= RULE_IDENT_DOT ) ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10639:1: ( (lv_name_2_1= RULE_IDENT | lv_name_2_2= RULE_NUMBER | lv_name_2_3= RULE_IDENT_DOT ) )
             {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10639:1: ( (lv_name_2_1= RULE_IDENT | lv_name_2_2= RULE_INT | lv_name_2_3= RULE_IDENT_DOT ) )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10640:1: (lv_name_2_1= RULE_IDENT | lv_name_2_2= RULE_INT | lv_name_2_3= RULE_IDENT_DOT )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10639:1: ( (lv_name_2_1= RULE_IDENT | lv_name_2_2= RULE_NUMBER | lv_name_2_3= RULE_IDENT_DOT ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10640:1: (lv_name_2_1= RULE_IDENT | lv_name_2_2= RULE_NUMBER | lv_name_2_3= RULE_IDENT_DOT )
             {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10640:1: (lv_name_2_1= RULE_IDENT | lv_name_2_2= RULE_INT | lv_name_2_3= RULE_IDENT_DOT )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10640:1: (lv_name_2_1= RULE_IDENT | lv_name_2_2= RULE_NUMBER | lv_name_2_3= RULE_IDENT_DOT )
             int alt297=3;
             switch ( input.LA(1) ) {
             case RULE_IDENT:
@@ -32778,7 +32778,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                 alt297=1;
                 }
                 break;
-            case RULE_INT:
+            case RULE_NUMBER:
                 {
                 alt297=2;
                 }
@@ -32822,12 +32822,12 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10656:8: lv_name_2_2= RULE_INT
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:10656:8: lv_name_2_2= RULE_NUMBER
                     {
-                    lv_name_2_2=(Token)match(input,RULE_INT,FollowSets001.FOLLOW_RULE_INT_in_ruleIdentifier23146); if (state.failed) return current;
+                    lv_name_2_2=(Token)match(input,RULE_NUMBER,FollowSets001.FOLLOW_RULE_NUMBER_in_ruleIdentifier23146); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                      			newLeafNode(lv_name_2_2, grammarAccess.getIdentifierAccess().getNameINTTerminalRuleCall_2_0_1()); 
+                      			newLeafNode(lv_name_2_2, grammarAccess.getIdentifierAccess().getNameNUMBERTerminalRuleCall_2_0_1()); 
                       		
                     }
                     if ( state.backtracking==0 ) {
@@ -32839,7 +32839,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"name",
                               		lv_name_2_2, 
-                              		"INT");
+                              		"NUMBER");
                       	    
                     }
 
@@ -34228,39 +34228,39 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMappingItem"
-    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11164:1: ruleMappingItem returns [EObject current=null] : ( ( ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_INT ) ) ) (this_STRING1_1= RULE_STRING1 ( (lv_attr_2_0= ruleMappingColumn ) ) )? ) ;
+    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11164:1: ruleMappingItem returns [EObject current=null] : ( ( ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_NUMBER ) ) ) (this_STRING_1= RULE_STRING ( (lv_attr_2_0= ruleMappingColumn ) ) )? ) ;
     public final EObject ruleMappingItem() throws RecognitionException {
         EObject current = null;
 
         Token lv_name_0_1=null;
         Token lv_name_0_2=null;
-        Token this_STRING1_1=null;
+        Token this_STRING_1=null;
         EObject lv_attr_2_0 = null;
 
 
          enterRule(); 
             
         try {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11167:28: ( ( ( ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_INT ) ) ) (this_STRING1_1= RULE_STRING1 ( (lv_attr_2_0= ruleMappingColumn ) ) )? ) )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11168:1: ( ( ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_INT ) ) ) (this_STRING1_1= RULE_STRING1 ( (lv_attr_2_0= ruleMappingColumn ) ) )? )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11167:28: ( ( ( ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_NUMBER ) ) ) (this_STRING_1= RULE_STRING ( (lv_attr_2_0= ruleMappingColumn ) ) )? ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11168:1: ( ( ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_NUMBER ) ) ) (this_STRING_1= RULE_STRING ( (lv_attr_2_0= ruleMappingColumn ) ) )? )
             {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11168:1: ( ( ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_INT ) ) ) (this_STRING1_1= RULE_STRING1 ( (lv_attr_2_0= ruleMappingColumn ) ) )? )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11168:2: ( ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_INT ) ) ) (this_STRING1_1= RULE_STRING1 ( (lv_attr_2_0= ruleMappingColumn ) ) )?
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11168:1: ( ( ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_NUMBER ) ) ) (this_STRING_1= RULE_STRING ( (lv_attr_2_0= ruleMappingColumn ) ) )? )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11168:2: ( ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_NUMBER ) ) ) (this_STRING_1= RULE_STRING ( (lv_attr_2_0= ruleMappingColumn ) ) )?
             {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11168:2: ( ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_INT ) ) )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11169:1: ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_INT ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11168:2: ( ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_NUMBER ) ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11169:1: ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_NUMBER ) )
             {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11169:1: ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_INT ) )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11170:1: (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_INT )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11169:1: ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_NUMBER ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11170:1: (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_NUMBER )
             {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11170:1: (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_INT )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11170:1: (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_NUMBER )
             int alt309=2;
             int LA309_0 = input.LA(1);
 
             if ( (LA309_0==RULE_IDENT) ) {
                 alt309=1;
             }
-            else if ( (LA309_0==RULE_INT) ) {
+            else if ( (LA309_0==RULE_NUMBER) ) {
                 alt309=2;
             }
             else {
@@ -34296,12 +34296,12 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11186:8: lv_name_0_2= RULE_INT
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11186:8: lv_name_0_2= RULE_NUMBER
                     {
-                    lv_name_0_2=(Token)match(input,RULE_INT,FollowSets001.FOLLOW_RULE_INT_in_ruleMappingItem24198); if (state.failed) return current;
+                    lv_name_0_2=(Token)match(input,RULE_NUMBER,FollowSets001.FOLLOW_RULE_NUMBER_in_ruleMappingItem24198); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                      			newLeafNode(lv_name_0_2, grammarAccess.getMappingItemAccess().getNameINTTerminalRuleCall_0_0_1()); 
+                      			newLeafNode(lv_name_0_2, grammarAccess.getMappingItemAccess().getNameNUMBERTerminalRuleCall_0_0_1()); 
                       		
                     }
                     if ( state.backtracking==0 ) {
@@ -34313,7 +34313,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"name",
                               		lv_name_0_2, 
-                              		"INT");
+                              		"NUMBER");
                       	    
                     }
 
@@ -34328,21 +34328,21 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11204:2: (this_STRING1_1= RULE_STRING1 ( (lv_attr_2_0= ruleMappingColumn ) ) )?
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11204:2: (this_STRING_1= RULE_STRING ( (lv_attr_2_0= ruleMappingColumn ) ) )?
             int alt310=2;
             int LA310_0 = input.LA(1);
 
-            if ( (LA310_0==RULE_STRING1) ) {
+            if ( (LA310_0==RULE_STRING) ) {
                 alt310=1;
             }
             switch (alt310) {
                 case 1 :
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11204:3: this_STRING1_1= RULE_STRING1 ( (lv_attr_2_0= ruleMappingColumn ) )
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11204:3: this_STRING_1= RULE_STRING ( (lv_attr_2_0= ruleMappingColumn ) )
                     {
-                    this_STRING1_1=(Token)match(input,RULE_STRING1,FollowSets001.FOLLOW_RULE_STRING1_in_ruleMappingItem24218); if (state.failed) return current;
+                    this_STRING_1=(Token)match(input,RULE_STRING,FollowSets001.FOLLOW_RULE_STRING_in_ruleMappingItem24218); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
                        
-                          newLeafNode(this_STRING1_1, grammarAccess.getMappingItemAccess().getSTRING1TerminalRuleCall_1_0()); 
+                          newLeafNode(this_STRING_1, grammarAccess.getMappingItemAccess().getSTRINGTerminalRuleCall_1_0()); 
                           
                     }
                     // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11208:1: ( (lv_attr_2_0= ruleMappingColumn ) )
@@ -34514,7 +34514,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                 else if ( (LA311_0==RULE_IDENT_DOT) && (synpred9_InternalProcessorMeta())) {
                     alt311=1;
                 }
-                else if ( (LA311_0==RULE_INT) && (synpred9_InternalProcessorMeta())) {
+                else if ( (LA311_0==RULE_NUMBER) && (synpred9_InternalProcessorMeta())) {
                     alt311=1;
                 }
 
@@ -34880,7 +34880,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMappingColumnName"
-    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11391:1: ruleMappingColumnName returns [EObject current=null] : ( ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_IDENT_DOT | lv_name_0_3= RULE_INT ) ) ) ;
+    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11391:1: ruleMappingColumnName returns [EObject current=null] : ( ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_IDENT_DOT | lv_name_0_3= RULE_NUMBER ) ) ) ;
     public final EObject ruleMappingColumnName() throws RecognitionException {
         EObject current = null;
 
@@ -34891,16 +34891,16 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11394:28: ( ( ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_IDENT_DOT | lv_name_0_3= RULE_INT ) ) ) )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11395:1: ( ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_IDENT_DOT | lv_name_0_3= RULE_INT ) ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11394:28: ( ( ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_IDENT_DOT | lv_name_0_3= RULE_NUMBER ) ) ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11395:1: ( ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_IDENT_DOT | lv_name_0_3= RULE_NUMBER ) ) )
             {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11395:1: ( ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_IDENT_DOT | lv_name_0_3= RULE_INT ) ) )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11396:1: ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_IDENT_DOT | lv_name_0_3= RULE_INT ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11395:1: ( ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_IDENT_DOT | lv_name_0_3= RULE_NUMBER ) ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11396:1: ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_IDENT_DOT | lv_name_0_3= RULE_NUMBER ) )
             {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11396:1: ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_IDENT_DOT | lv_name_0_3= RULE_INT ) )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11397:1: (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_IDENT_DOT | lv_name_0_3= RULE_INT )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11396:1: ( (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_IDENT_DOT | lv_name_0_3= RULE_NUMBER ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11397:1: (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_IDENT_DOT | lv_name_0_3= RULE_NUMBER )
             {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11397:1: (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_IDENT_DOT | lv_name_0_3= RULE_INT )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11397:1: (lv_name_0_1= RULE_IDENT | lv_name_0_2= RULE_IDENT_DOT | lv_name_0_3= RULE_NUMBER )
             int alt314=3;
             switch ( input.LA(1) ) {
             case RULE_IDENT:
@@ -34913,7 +34913,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                 alt314=2;
                 }
                 break;
-            case RULE_INT:
+            case RULE_NUMBER:
                 {
                 alt314=3;
                 }
@@ -34976,12 +34976,12 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11428:8: lv_name_0_3= RULE_INT
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11428:8: lv_name_0_3= RULE_NUMBER
                     {
-                    lv_name_0_3=(Token)match(input,RULE_INT,FollowSets001.FOLLOW_RULE_INT_in_ruleMappingColumnName24670); if (state.failed) return current;
+                    lv_name_0_3=(Token)match(input,RULE_NUMBER,FollowSets001.FOLLOW_RULE_NUMBER_in_ruleMappingColumnName24670); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                      			newLeafNode(lv_name_0_3, grammarAccess.getMappingColumnNameAccess().getNameINTTerminalRuleCall_0_2()); 
+                      			newLeafNode(lv_name_0_3, grammarAccess.getMappingColumnNameAccess().getNameNUMBERTerminalRuleCall_0_2()); 
                       		
                     }
                     if ( state.backtracking==0 ) {
@@ -34993,7 +34993,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"name",
                               		lv_name_0_3, 
-                              		"INT");
+                              		"NUMBER");
                       	    
                     }
 
@@ -35340,27 +35340,27 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleStatementModifier"
-    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11576:1: ruleStatementModifier returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_IDENT_0= RULE_IDENT | this_INT_1= RULE_INT ) ;
+    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11576:1: ruleStatementModifier returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_IDENT_0= RULE_IDENT | this_NUMBER_1= RULE_NUMBER ) ;
     public final AntlrDatatypeRuleToken ruleStatementModifier() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
         Token this_IDENT_0=null;
-        Token this_INT_1=null;
+        Token this_NUMBER_1=null;
 
          enterRule(); 
             
         try {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11579:28: ( (this_IDENT_0= RULE_IDENT | this_INT_1= RULE_INT ) )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11580:1: (this_IDENT_0= RULE_IDENT | this_INT_1= RULE_INT )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11579:28: ( (this_IDENT_0= RULE_IDENT | this_NUMBER_1= RULE_NUMBER ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11580:1: (this_IDENT_0= RULE_IDENT | this_NUMBER_1= RULE_NUMBER )
             {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11580:1: (this_IDENT_0= RULE_IDENT | this_INT_1= RULE_INT )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11580:1: (this_IDENT_0= RULE_IDENT | this_NUMBER_1= RULE_NUMBER )
             int alt316=2;
             int LA316_0 = input.LA(1);
 
             if ( (LA316_0==RULE_IDENT) ) {
                 alt316=1;
             }
-            else if ( (LA316_0==RULE_INT) ) {
+            else if ( (LA316_0==RULE_NUMBER) ) {
                 alt316=2;
             }
             else {
@@ -35389,17 +35389,17 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11588:10: this_INT_1= RULE_INT
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11588:10: this_NUMBER_1= RULE_NUMBER
                     {
-                    this_INT_1=(Token)match(input,RULE_INT,FollowSets002.FOLLOW_RULE_INT_in_ruleStatementModifier25001); if (state.failed) return current;
+                    this_NUMBER_1=(Token)match(input,RULE_NUMBER,FollowSets002.FOLLOW_RULE_NUMBER_in_ruleStatementModifier25001); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                      		current.merge(this_INT_1);
+                      		current.merge(this_NUMBER_1);
                           
                     }
                     if ( state.backtracking==0 ) {
                        
-                          newLeafNode(this_INT_1, grammarAccess.getStatementModifierAccess().getINTTerminalRuleCall_1()); 
+                          newLeafNode(this_NUMBER_1, grammarAccess.getStatementModifierAccess().getNUMBERTerminalRuleCall_1()); 
                           
                     }
 
@@ -35468,27 +35468,27 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMappingRuleModifier"
-    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11612:1: ruleMappingRuleModifier returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_IDENT_0= RULE_IDENT | this_INT_1= RULE_INT ) ;
+    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11612:1: ruleMappingRuleModifier returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_IDENT_0= RULE_IDENT | this_NUMBER_1= RULE_NUMBER ) ;
     public final AntlrDatatypeRuleToken ruleMappingRuleModifier() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
         Token this_IDENT_0=null;
-        Token this_INT_1=null;
+        Token this_NUMBER_1=null;
 
          enterRule(); 
             
         try {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11615:28: ( (this_IDENT_0= RULE_IDENT | this_INT_1= RULE_INT ) )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11616:1: (this_IDENT_0= RULE_IDENT | this_INT_1= RULE_INT )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11615:28: ( (this_IDENT_0= RULE_IDENT | this_NUMBER_1= RULE_NUMBER ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11616:1: (this_IDENT_0= RULE_IDENT | this_NUMBER_1= RULE_NUMBER )
             {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11616:1: (this_IDENT_0= RULE_IDENT | this_INT_1= RULE_INT )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11616:1: (this_IDENT_0= RULE_IDENT | this_NUMBER_1= RULE_NUMBER )
             int alt317=2;
             int LA317_0 = input.LA(1);
 
             if ( (LA317_0==RULE_IDENT) ) {
                 alt317=1;
             }
-            else if ( (LA317_0==RULE_INT) ) {
+            else if ( (LA317_0==RULE_NUMBER) ) {
                 alt317=2;
             }
             else {
@@ -35517,17 +35517,17 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11624:10: this_INT_1= RULE_INT
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11624:10: this_NUMBER_1= RULE_NUMBER
                     {
-                    this_INT_1=(Token)match(input,RULE_INT,FollowSets002.FOLLOW_RULE_INT_in_ruleMappingRuleModifier25124); if (state.failed) return current;
+                    this_NUMBER_1=(Token)match(input,RULE_NUMBER,FollowSets002.FOLLOW_RULE_NUMBER_in_ruleMappingRuleModifier25124); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                      		current.merge(this_INT_1);
+                      		current.merge(this_NUMBER_1);
                           
                     }
                     if ( state.backtracking==0 ) {
                        
-                          newLeafNode(this_INT_1, grammarAccess.getMappingRuleModifierAccess().getINTTerminalRuleCall_1()); 
+                          newLeafNode(this_NUMBER_1, grammarAccess.getMappingRuleModifierAccess().getNUMBERTerminalRuleCall_1()); 
                           
                     }
 
@@ -35596,27 +35596,27 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMappingItemModifier"
-    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11648:1: ruleMappingItemModifier returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_IDENT_0= RULE_IDENT | this_INT_1= RULE_INT ) ;
+    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11648:1: ruleMappingItemModifier returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_IDENT_0= RULE_IDENT | this_NUMBER_1= RULE_NUMBER ) ;
     public final AntlrDatatypeRuleToken ruleMappingItemModifier() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
         Token this_IDENT_0=null;
-        Token this_INT_1=null;
+        Token this_NUMBER_1=null;
 
          enterRule(); 
             
         try {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11651:28: ( (this_IDENT_0= RULE_IDENT | this_INT_1= RULE_INT ) )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11652:1: (this_IDENT_0= RULE_IDENT | this_INT_1= RULE_INT )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11651:28: ( (this_IDENT_0= RULE_IDENT | this_NUMBER_1= RULE_NUMBER ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11652:1: (this_IDENT_0= RULE_IDENT | this_NUMBER_1= RULE_NUMBER )
             {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11652:1: (this_IDENT_0= RULE_IDENT | this_INT_1= RULE_INT )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11652:1: (this_IDENT_0= RULE_IDENT | this_NUMBER_1= RULE_NUMBER )
             int alt318=2;
             int LA318_0 = input.LA(1);
 
             if ( (LA318_0==RULE_IDENT) ) {
                 alt318=1;
             }
-            else if ( (LA318_0==RULE_INT) ) {
+            else if ( (LA318_0==RULE_NUMBER) ) {
                 alt318=2;
             }
             else {
@@ -35645,17 +35645,17 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11660:10: this_INT_1= RULE_INT
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11660:10: this_NUMBER_1= RULE_NUMBER
                     {
-                    this_INT_1=(Token)match(input,RULE_INT,FollowSets002.FOLLOW_RULE_INT_in_ruleMappingItemModifier25247); if (state.failed) return current;
+                    this_NUMBER_1=(Token)match(input,RULE_NUMBER,FollowSets002.FOLLOW_RULE_NUMBER_in_ruleMappingItemModifier25247); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                      		current.merge(this_INT_1);
+                      		current.merge(this_NUMBER_1);
                           
                     }
                     if ( state.backtracking==0 ) {
                        
-                          newLeafNode(this_INT_1, grammarAccess.getMappingItemModifierAccess().getINTTerminalRuleCall_1()); 
+                          newLeafNode(this_NUMBER_1, grammarAccess.getMappingItemModifierAccess().getNUMBERTerminalRuleCall_1()); 
                           
                     }
 
@@ -35724,27 +35724,27 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleOptionalFeatureModifier"
-    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11684:1: ruleOptionalFeatureModifier returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_IDENT_0= RULE_IDENT | this_INT_1= RULE_INT ) ;
+    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11684:1: ruleOptionalFeatureModifier returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_IDENT_0= RULE_IDENT | this_NUMBER_1= RULE_NUMBER ) ;
     public final AntlrDatatypeRuleToken ruleOptionalFeatureModifier() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
         Token this_IDENT_0=null;
-        Token this_INT_1=null;
+        Token this_NUMBER_1=null;
 
          enterRule(); 
             
         try {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11687:28: ( (this_IDENT_0= RULE_IDENT | this_INT_1= RULE_INT ) )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11688:1: (this_IDENT_0= RULE_IDENT | this_INT_1= RULE_INT )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11687:28: ( (this_IDENT_0= RULE_IDENT | this_NUMBER_1= RULE_NUMBER ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11688:1: (this_IDENT_0= RULE_IDENT | this_NUMBER_1= RULE_NUMBER )
             {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11688:1: (this_IDENT_0= RULE_IDENT | this_INT_1= RULE_INT )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11688:1: (this_IDENT_0= RULE_IDENT | this_NUMBER_1= RULE_NUMBER )
             int alt319=2;
             int LA319_0 = input.LA(1);
 
             if ( (LA319_0==RULE_IDENT) ) {
                 alt319=1;
             }
-            else if ( (LA319_0==RULE_INT) ) {
+            else if ( (LA319_0==RULE_NUMBER) ) {
                 alt319=2;
             }
             else {
@@ -35773,17 +35773,17 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11696:10: this_INT_1= RULE_INT
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11696:10: this_NUMBER_1= RULE_NUMBER
                     {
-                    this_INT_1=(Token)match(input,RULE_INT,FollowSets002.FOLLOW_RULE_INT_in_ruleOptionalFeatureModifier25370); if (state.failed) return current;
+                    this_NUMBER_1=(Token)match(input,RULE_NUMBER,FollowSets002.FOLLOW_RULE_NUMBER_in_ruleOptionalFeatureModifier25370); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                      		current.merge(this_INT_1);
+                      		current.merge(this_NUMBER_1);
                           
                     }
                     if ( state.backtracking==0 ) {
                        
-                          newLeafNode(this_INT_1, grammarAccess.getOptionalFeatureModifierAccess().getINTTerminalRuleCall_1()); 
+                          newLeafNode(this_NUMBER_1, grammarAccess.getOptionalFeatureModifierAccess().getNUMBERTerminalRuleCall_1()); 
                           
                     }
 
@@ -35852,22 +35852,22 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleModifier"
-    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11720:1: ruleModifier returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : ( (this_NOT_0= RULE_NOT )? (this_IDENT_1= RULE_IDENT | this_INT_2= RULE_INT ) ) ;
+    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11720:1: ruleModifier returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : ( (this_NOT_0= RULE_NOT )? (this_IDENT_1= RULE_IDENT | this_NUMBER_2= RULE_NUMBER ) ) ;
     public final AntlrDatatypeRuleToken ruleModifier() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
         Token this_NOT_0=null;
         Token this_IDENT_1=null;
-        Token this_INT_2=null;
+        Token this_NUMBER_2=null;
 
          enterRule(); 
             
         try {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11723:28: ( ( (this_NOT_0= RULE_NOT )? (this_IDENT_1= RULE_IDENT | this_INT_2= RULE_INT ) ) )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11724:1: ( (this_NOT_0= RULE_NOT )? (this_IDENT_1= RULE_IDENT | this_INT_2= RULE_INT ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11723:28: ( ( (this_NOT_0= RULE_NOT )? (this_IDENT_1= RULE_IDENT | this_NUMBER_2= RULE_NUMBER ) ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11724:1: ( (this_NOT_0= RULE_NOT )? (this_IDENT_1= RULE_IDENT | this_NUMBER_2= RULE_NUMBER ) )
             {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11724:1: ( (this_NOT_0= RULE_NOT )? (this_IDENT_1= RULE_IDENT | this_INT_2= RULE_INT ) )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11724:2: (this_NOT_0= RULE_NOT )? (this_IDENT_1= RULE_IDENT | this_INT_2= RULE_INT )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11724:1: ( (this_NOT_0= RULE_NOT )? (this_IDENT_1= RULE_IDENT | this_NUMBER_2= RULE_NUMBER ) )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11724:2: (this_NOT_0= RULE_NOT )? (this_IDENT_1= RULE_IDENT | this_NUMBER_2= RULE_NUMBER )
             {
             // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11724:2: (this_NOT_0= RULE_NOT )?
             int alt320=2;
@@ -35897,14 +35897,14 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11731:3: (this_IDENT_1= RULE_IDENT | this_INT_2= RULE_INT )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11731:3: (this_IDENT_1= RULE_IDENT | this_NUMBER_2= RULE_NUMBER )
             int alt321=2;
             int LA321_0 = input.LA(1);
 
             if ( (LA321_0==RULE_IDENT) ) {
                 alt321=1;
             }
-            else if ( (LA321_0==RULE_INT) ) {
+            else if ( (LA321_0==RULE_NUMBER) ) {
                 alt321=2;
             }
             else {
@@ -35933,17 +35933,17 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11739:10: this_INT_2= RULE_INT
+                    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11739:10: this_NUMBER_2= RULE_NUMBER
                     {
-                    this_INT_2=(Token)match(input,RULE_INT,FollowSets002.FOLLOW_RULE_INT_in_ruleModifier25517); if (state.failed) return current;
+                    this_NUMBER_2=(Token)match(input,RULE_NUMBER,FollowSets002.FOLLOW_RULE_NUMBER_in_ruleModifier25517); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                      		current.merge(this_INT_2);
+                      		current.merge(this_NUMBER_2);
                           
                     }
                     if ( state.backtracking==0 ) {
                        
-                          newLeafNode(this_INT_2, grammarAccess.getModifierAccess().getINTTerminalRuleCall_1_1()); 
+                          newLeafNode(this_NUMBER_2, grammarAccess.getModifierAccess().getNUMBERTerminalRuleCall_1_1()); 
                           
                     }
 
@@ -36015,17 +36015,17 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFeatureValue"
-    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11763:1: ruleFeatureValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_INT_3= RULE_INT | this_WS_4= RULE_WS | this_COLON_5= RULE_COLON | this_STRING1_6= RULE_STRING1 | this_COMMA_7= RULE_COMMA | this_MINUS_8= RULE_MINUS | this_PLUS_9= RULE_PLUS | this_LPAREN_10= RULE_LPAREN | this_RPAREN_11= RULE_RPAREN | this_LBRACE_12= RULE_LBRACE | this_RBRACE_13= RULE_RBRACE | this_QUESTI_14= RULE_QUESTI | this_NOT_15= RULE_NOT | this_BAND_16= RULE_BAND | this_BOR_17= RULE_BOR | this_HASH_18= RULE_HASH | this_AT_19= RULE_AT | this_CARET_20= RULE_CARET | this_EQUALS_21= RULE_EQUALS | this_LESS_THAN_22= RULE_LESS_THAN | this_MORE_THAN_23= RULE_MORE_THAN | this_PERCENT_24= RULE_PERCENT | this_AND_25= RULE_AND | this_OR_26= RULE_OR | this_ESC_CHAR_27= RULE_ESC_CHAR | this_ON_OFF_28= RULE_ON_OFF | this_STATEMENT_TYPE_29= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_30= RULE_MAPPING_TYPE | this_OPTION_TYPE_31= RULE_OPTION_TYPE )+ ;
+    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11763:1: ruleFeatureValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_NUMBER_3= RULE_NUMBER | this_WS_4= RULE_WS | this_COLON_5= RULE_COLON | this_STRING_6= RULE_STRING | this_COMMA_7= RULE_COMMA | this_MINUS_8= RULE_MINUS | this_PLUS_9= RULE_PLUS | this_LPAREN_10= RULE_LPAREN | this_RPAREN_11= RULE_RPAREN | this_LBRACE_12= RULE_LBRACE | this_RBRACE_13= RULE_RBRACE | this_QUESTI_14= RULE_QUESTI | this_NOT_15= RULE_NOT | this_BAND_16= RULE_BAND | this_BOR_17= RULE_BOR | this_HASH_18= RULE_HASH | this_AT_19= RULE_AT | this_CARET_20= RULE_CARET | this_EQUALS_21= RULE_EQUALS | this_LESS_THAN_22= RULE_LESS_THAN | this_MORE_THAN_23= RULE_MORE_THAN | this_PERCENT_24= RULE_PERCENT | this_AND_25= RULE_AND | this_OR_26= RULE_OR | this_ESC_CHAR_27= RULE_ESC_CHAR | this_ON_OFF_28= RULE_ON_OFF | this_STATEMENT_TYPE_29= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_30= RULE_MAPPING_TYPE | this_OPTION_TYPE_31= RULE_OPTION_TYPE )+ ;
     public final AntlrDatatypeRuleToken ruleFeatureValue() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
         Token this_REST_0=null;
         Token this_IDENT_DOT_1=null;
         Token this_IDENT_2=null;
-        Token this_INT_3=null;
+        Token this_NUMBER_3=null;
         Token this_WS_4=null;
         Token this_COLON_5=null;
-        Token this_STRING1_6=null;
+        Token this_STRING_6=null;
         Token this_COMMA_7=null;
         Token this_MINUS_8=null;
         Token this_PLUS_9=null;
@@ -36055,10 +36055,10 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11766:28: ( (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_INT_3= RULE_INT | this_WS_4= RULE_WS | this_COLON_5= RULE_COLON | this_STRING1_6= RULE_STRING1 | this_COMMA_7= RULE_COMMA | this_MINUS_8= RULE_MINUS | this_PLUS_9= RULE_PLUS | this_LPAREN_10= RULE_LPAREN | this_RPAREN_11= RULE_RPAREN | this_LBRACE_12= RULE_LBRACE | this_RBRACE_13= RULE_RBRACE | this_QUESTI_14= RULE_QUESTI | this_NOT_15= RULE_NOT | this_BAND_16= RULE_BAND | this_BOR_17= RULE_BOR | this_HASH_18= RULE_HASH | this_AT_19= RULE_AT | this_CARET_20= RULE_CARET | this_EQUALS_21= RULE_EQUALS | this_LESS_THAN_22= RULE_LESS_THAN | this_MORE_THAN_23= RULE_MORE_THAN | this_PERCENT_24= RULE_PERCENT | this_AND_25= RULE_AND | this_OR_26= RULE_OR | this_ESC_CHAR_27= RULE_ESC_CHAR | this_ON_OFF_28= RULE_ON_OFF | this_STATEMENT_TYPE_29= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_30= RULE_MAPPING_TYPE | this_OPTION_TYPE_31= RULE_OPTION_TYPE )+ )
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11767:1: (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_INT_3= RULE_INT | this_WS_4= RULE_WS | this_COLON_5= RULE_COLON | this_STRING1_6= RULE_STRING1 | this_COMMA_7= RULE_COMMA | this_MINUS_8= RULE_MINUS | this_PLUS_9= RULE_PLUS | this_LPAREN_10= RULE_LPAREN | this_RPAREN_11= RULE_RPAREN | this_LBRACE_12= RULE_LBRACE | this_RBRACE_13= RULE_RBRACE | this_QUESTI_14= RULE_QUESTI | this_NOT_15= RULE_NOT | this_BAND_16= RULE_BAND | this_BOR_17= RULE_BOR | this_HASH_18= RULE_HASH | this_AT_19= RULE_AT | this_CARET_20= RULE_CARET | this_EQUALS_21= RULE_EQUALS | this_LESS_THAN_22= RULE_LESS_THAN | this_MORE_THAN_23= RULE_MORE_THAN | this_PERCENT_24= RULE_PERCENT | this_AND_25= RULE_AND | this_OR_26= RULE_OR | this_ESC_CHAR_27= RULE_ESC_CHAR | this_ON_OFF_28= RULE_ON_OFF | this_STATEMENT_TYPE_29= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_30= RULE_MAPPING_TYPE | this_OPTION_TYPE_31= RULE_OPTION_TYPE )+
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11766:28: ( (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_NUMBER_3= RULE_NUMBER | this_WS_4= RULE_WS | this_COLON_5= RULE_COLON | this_STRING_6= RULE_STRING | this_COMMA_7= RULE_COMMA | this_MINUS_8= RULE_MINUS | this_PLUS_9= RULE_PLUS | this_LPAREN_10= RULE_LPAREN | this_RPAREN_11= RULE_RPAREN | this_LBRACE_12= RULE_LBRACE | this_RBRACE_13= RULE_RBRACE | this_QUESTI_14= RULE_QUESTI | this_NOT_15= RULE_NOT | this_BAND_16= RULE_BAND | this_BOR_17= RULE_BOR | this_HASH_18= RULE_HASH | this_AT_19= RULE_AT | this_CARET_20= RULE_CARET | this_EQUALS_21= RULE_EQUALS | this_LESS_THAN_22= RULE_LESS_THAN | this_MORE_THAN_23= RULE_MORE_THAN | this_PERCENT_24= RULE_PERCENT | this_AND_25= RULE_AND | this_OR_26= RULE_OR | this_ESC_CHAR_27= RULE_ESC_CHAR | this_ON_OFF_28= RULE_ON_OFF | this_STATEMENT_TYPE_29= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_30= RULE_MAPPING_TYPE | this_OPTION_TYPE_31= RULE_OPTION_TYPE )+ )
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11767:1: (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_NUMBER_3= RULE_NUMBER | this_WS_4= RULE_WS | this_COLON_5= RULE_COLON | this_STRING_6= RULE_STRING | this_COMMA_7= RULE_COMMA | this_MINUS_8= RULE_MINUS | this_PLUS_9= RULE_PLUS | this_LPAREN_10= RULE_LPAREN | this_RPAREN_11= RULE_RPAREN | this_LBRACE_12= RULE_LBRACE | this_RBRACE_13= RULE_RBRACE | this_QUESTI_14= RULE_QUESTI | this_NOT_15= RULE_NOT | this_BAND_16= RULE_BAND | this_BOR_17= RULE_BOR | this_HASH_18= RULE_HASH | this_AT_19= RULE_AT | this_CARET_20= RULE_CARET | this_EQUALS_21= RULE_EQUALS | this_LESS_THAN_22= RULE_LESS_THAN | this_MORE_THAN_23= RULE_MORE_THAN | this_PERCENT_24= RULE_PERCENT | this_AND_25= RULE_AND | this_OR_26= RULE_OR | this_ESC_CHAR_27= RULE_ESC_CHAR | this_ON_OFF_28= RULE_ON_OFF | this_STATEMENT_TYPE_29= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_30= RULE_MAPPING_TYPE | this_OPTION_TYPE_31= RULE_OPTION_TYPE )+
             {
-            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11767:1: (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_INT_3= RULE_INT | this_WS_4= RULE_WS | this_COLON_5= RULE_COLON | this_STRING1_6= RULE_STRING1 | this_COMMA_7= RULE_COMMA | this_MINUS_8= RULE_MINUS | this_PLUS_9= RULE_PLUS | this_LPAREN_10= RULE_LPAREN | this_RPAREN_11= RULE_RPAREN | this_LBRACE_12= RULE_LBRACE | this_RBRACE_13= RULE_RBRACE | this_QUESTI_14= RULE_QUESTI | this_NOT_15= RULE_NOT | this_BAND_16= RULE_BAND | this_BOR_17= RULE_BOR | this_HASH_18= RULE_HASH | this_AT_19= RULE_AT | this_CARET_20= RULE_CARET | this_EQUALS_21= RULE_EQUALS | this_LESS_THAN_22= RULE_LESS_THAN | this_MORE_THAN_23= RULE_MORE_THAN | this_PERCENT_24= RULE_PERCENT | this_AND_25= RULE_AND | this_OR_26= RULE_OR | this_ESC_CHAR_27= RULE_ESC_CHAR | this_ON_OFF_28= RULE_ON_OFF | this_STATEMENT_TYPE_29= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_30= RULE_MAPPING_TYPE | this_OPTION_TYPE_31= RULE_OPTION_TYPE )+
+            // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11767:1: (this_REST_0= RULE_REST | this_IDENT_DOT_1= RULE_IDENT_DOT | this_IDENT_2= RULE_IDENT | this_NUMBER_3= RULE_NUMBER | this_WS_4= RULE_WS | this_COLON_5= RULE_COLON | this_STRING_6= RULE_STRING | this_COMMA_7= RULE_COMMA | this_MINUS_8= RULE_MINUS | this_PLUS_9= RULE_PLUS | this_LPAREN_10= RULE_LPAREN | this_RPAREN_11= RULE_RPAREN | this_LBRACE_12= RULE_LBRACE | this_RBRACE_13= RULE_RBRACE | this_QUESTI_14= RULE_QUESTI | this_NOT_15= RULE_NOT | this_BAND_16= RULE_BAND | this_BOR_17= RULE_BOR | this_HASH_18= RULE_HASH | this_AT_19= RULE_AT | this_CARET_20= RULE_CARET | this_EQUALS_21= RULE_EQUALS | this_LESS_THAN_22= RULE_LESS_THAN | this_MORE_THAN_23= RULE_MORE_THAN | this_PERCENT_24= RULE_PERCENT | this_AND_25= RULE_AND | this_OR_26= RULE_OR | this_ESC_CHAR_27= RULE_ESC_CHAR | this_ON_OFF_28= RULE_ON_OFF | this_STATEMENT_TYPE_29= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_30= RULE_MAPPING_TYPE | this_OPTION_TYPE_31= RULE_OPTION_TYPE )+
             int cnt322=0;
             loop322:
             do {
@@ -36079,7 +36079,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                     alt322=3;
                     }
                     break;
-                case RULE_INT:
+                case RULE_NUMBER:
                     {
                     alt322=4;
                     }
@@ -36094,7 +36094,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
                     alt322=6;
                     }
                     break;
-                case RULE_STRING1:
+                case RULE_STRING:
                     {
                     alt322=7;
                     }
@@ -36280,17 +36280,17 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
             	    }
             	    break;
             	case 4 :
-            	    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11791:10: this_INT_3= RULE_INT
+            	    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11791:10: this_NUMBER_3= RULE_NUMBER
             	    {
-            	    this_INT_3=(Token)match(input,RULE_INT,FollowSets002.FOLLOW_RULE_INT_in_ruleFeatureValue25693); if (state.failed) return current;
+            	    this_NUMBER_3=(Token)match(input,RULE_NUMBER,FollowSets002.FOLLOW_RULE_NUMBER_in_ruleFeatureValue25693); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
-            	      		current.merge(this_INT_3);
+            	      		current.merge(this_NUMBER_3);
             	          
             	    }
             	    if ( state.backtracking==0 ) {
             	       
-            	          newLeafNode(this_INT_3, grammarAccess.getFeatureValueAccess().getINTTerminalRuleCall_3()); 
+            	          newLeafNode(this_NUMBER_3, grammarAccess.getFeatureValueAccess().getNUMBERTerminalRuleCall_3()); 
             	          
             	    }
 
@@ -36331,17 +36331,17 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
             	    }
             	    break;
             	case 7 :
-            	    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11815:10: this_STRING1_6= RULE_STRING1
+            	    // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:11815:10: this_STRING_6= RULE_STRING
             	    {
-            	    this_STRING1_6=(Token)match(input,RULE_STRING1,FollowSets002.FOLLOW_RULE_STRING1_in_ruleFeatureValue25771); if (state.failed) return current;
+            	    this_STRING_6=(Token)match(input,RULE_STRING,FollowSets002.FOLLOW_RULE_STRING_in_ruleFeatureValue25771); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
-            	      		current.merge(this_STRING1_6);
+            	      		current.merge(this_STRING_6);
             	          
             	    }
             	    if ( state.backtracking==0 ) {
             	       
-            	          newLeafNode(this_STRING1_6, grammarAccess.getFeatureValueAccess().getSTRING1TerminalRuleCall_6()); 
+            	          newLeafNode(this_STRING_6, grammarAccess.getFeatureValueAccess().getSTRINGTerminalRuleCall_6()); 
             	          
             	    }
 
@@ -37300,10 +37300,10 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
 
     // $ANTLR start synpred2_InternalProcessorMeta
     public final void synpred2_InternalProcessorMeta_fragment() throws RecognitionException {   
-        // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7609:3: ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_INT | RULE_WS | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_RBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )
-        // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7609:4: ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_INT | RULE_WS | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_RBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE )
+        // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7609:3: ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_NUMBER | RULE_WS | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_RBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )
+        // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:7609:4: ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_NUMBER | RULE_WS | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_RBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE )
         {
-        if ( input.LA(1)==RULE_WS||(input.LA(1)>=RULE_INT && input.LA(1)<=RULE_RPAREN)||(input.LA(1)>=RULE_PLUS && input.LA(1)<=RULE_MINUS)||(input.LA(1)>=RULE_IDENT_DOT && input.LA(1)<=RULE_EQUALS)||input.LA(1)==RULE_RBRACE||(input.LA(1)>=RULE_REST && input.LA(1)<=RULE_OPTION_TYPE) ) {
+        if ( input.LA(1)==RULE_WS||(input.LA(1)>=RULE_NUMBER && input.LA(1)<=RULE_RPAREN)||(input.LA(1)>=RULE_PLUS && input.LA(1)<=RULE_MINUS)||(input.LA(1)>=RULE_IDENT_DOT && input.LA(1)<=RULE_EQUALS)||input.LA(1)==RULE_RBRACE||(input.LA(1)>=RULE_REST && input.LA(1)<=RULE_OPTION_TYPE) ) {
             input.consume();
             state.errorRecovery=false;state.failed=false;
         }
@@ -37320,10 +37320,10 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
 
     // $ANTLR start synpred3_InternalProcessorMeta
     public final void synpred3_InternalProcessorMeta_fragment() throws RecognitionException {   
-        // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8733:3: ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_INT | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )
-        // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8733:4: ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_INT | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE )
+        // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8733:3: ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_NUMBER | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )
+        // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:8733:4: ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_NUMBER | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE )
         {
-        if ( input.LA(1)==RULE_WS||(input.LA(1)>=RULE_INT && input.LA(1)<=RULE_RPAREN)||(input.LA(1)>=RULE_PLUS && input.LA(1)<=RULE_EQUALS)||(input.LA(1)>=RULE_REST && input.LA(1)<=RULE_BAND)||(input.LA(1)>=RULE_HASH && input.LA(1)<=RULE_OPTION_TYPE) ) {
+        if ( input.LA(1)==RULE_WS||(input.LA(1)>=RULE_NUMBER && input.LA(1)<=RULE_RPAREN)||(input.LA(1)>=RULE_PLUS && input.LA(1)<=RULE_EQUALS)||(input.LA(1)>=RULE_REST && input.LA(1)<=RULE_BAND)||(input.LA(1)>=RULE_HASH && input.LA(1)<=RULE_OPTION_TYPE) ) {
             input.consume();
             state.errorRecovery=false;state.failed=false;
         }
@@ -37340,10 +37340,10 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
 
     // $ANTLR start synpred4_InternalProcessorMeta
     public final void synpred4_InternalProcessorMeta_fragment() throws RecognitionException {   
-        // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9901:3: ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_INT | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_LBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_AT | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )
-        // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9901:4: ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_INT | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_LBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_AT | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE )
+        // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9901:3: ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_NUMBER | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_LBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_AT | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )
+        // ../org.sqlproc.meta/src-gen/org/sqlproc/meta/parser/antlr/internal/InternalProcessorMeta.g:9901:4: ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_NUMBER | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_LBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_AT | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE )
         {
-        if ( input.LA(1)==RULE_WS||(input.LA(1)>=RULE_INT && input.LA(1)<=RULE_RPAREN)||(input.LA(1)>=RULE_PLUS && input.LA(1)<=RULE_AT)||input.LA(1)==RULE_LBRACE||(input.LA(1)>=RULE_REST && input.LA(1)<=RULE_OPTION_TYPE) ) {
+        if ( input.LA(1)==RULE_WS||(input.LA(1)>=RULE_NUMBER && input.LA(1)<=RULE_RPAREN)||(input.LA(1)>=RULE_PLUS && input.LA(1)<=RULE_AT)||input.LA(1)==RULE_LBRACE||(input.LA(1)>=RULE_REST && input.LA(1)<=RULE_OPTION_TYPE) ) {
             input.consume();
             state.errorRecovery=false;state.failed=false;
         }
@@ -38509,7 +38509,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
             this.transition = DFA248_transition;
         }
         public String getDescription() {
-            return "7151:1: ( ( (lv_value_0_0= ruleSqlValue ) ) | (this_AT_1= RULE_AT ( (lv_col_2_0= ruleColumn ) ) ) | (this_STRING1_3= RULE_STRING1 ( (lv_cnst_4_0= ruleConstant ) ) ) | (this_COLON_5= RULE_COLON ( (lv_ident_6_0= ruleIdentifier ) ) ) | (this_STRING1_7= RULE_STRING1 this_STRING1_8= RULE_STRING1 ( (lv_cnstOper_9_0= ruleConstantOperator ) ) ) | (this_COLON_10= RULE_COLON this_COLON_11= RULE_COLON ( (lv_identOper_12_0= ruleIdentifierOperator ) ) ) | (this_LBRACE_13= RULE_LBRACE ( (lv_meta_14_0= ruleMetaSql ) ) this_RBRACE_15= RULE_RBRACE ) | (this_PERCENT_16= RULE_PERCENT ( (this_PERCENT_17= RULE_PERCENT ( (lv_dbtab_18_0= ruleDatabaseTable ) ) ) | ( (lv_dbcol_19_0= ruleDatabaseColumn ) ) ) ) )";
+            return "7151:1: ( ( (lv_value_0_0= ruleSqlValue ) ) | (this_AT_1= RULE_AT ( (lv_col_2_0= ruleColumn ) ) ) | (this_STRING_3= RULE_STRING ( (lv_cnst_4_0= ruleConstant ) ) ) | (this_COLON_5= RULE_COLON ( (lv_ident_6_0= ruleIdentifier ) ) ) | (this_STRING_7= RULE_STRING this_STRING_8= RULE_STRING ( (lv_cnstOper_9_0= ruleConstantOperator ) ) ) | (this_COLON_10= RULE_COLON this_COLON_11= RULE_COLON ( (lv_identOper_12_0= ruleIdentifierOperator ) ) ) | (this_LBRACE_13= RULE_LBRACE ( (lv_meta_14_0= ruleMetaSql ) ) this_RBRACE_15= RULE_RBRACE ) | (this_PERCENT_16= RULE_PERCENT ( (this_PERCENT_17= RULE_PERCENT ( (lv_dbtab_18_0= ruleDatabaseTable ) ) ) | ( (lv_dbcol_19_0= ruleDatabaseColumn ) ) ) ) )";
         }
     }
     static final String DFA251_eotS =
@@ -38588,7 +38588,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
             this.transition = DFA251_transition;
         }
         public String getDescription() {
-            return "()* loopback of 7609:2: ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_INT | RULE_WS | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_RBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_28= RULE_REST | this_IDENT_DOT_29= RULE_IDENT_DOT | this_IDENT_30= RULE_IDENT | this_INT_31= RULE_INT | this_WS_32= RULE_WS | this_COMMA_33= RULE_COMMA | this_MINUS_34= RULE_MINUS | this_PLUS_35= RULE_PLUS | this_LPAREN_36= RULE_LPAREN | this_RPAREN_37= RULE_RPAREN | this_RBRACE_38= RULE_RBRACE | this_QUESTI_39= RULE_QUESTI | this_NOT_40= RULE_NOT | this_BAND_41= RULE_BAND | this_BOR_42= RULE_BOR | this_HASH_43= RULE_HASH | this_CARET_44= RULE_CARET | this_EQUALS_45= RULE_EQUALS | this_LESS_THAN_46= RULE_LESS_THAN | this_MORE_THAN_47= RULE_MORE_THAN | this_DOT_48= RULE_DOT | this_AND_49= RULE_AND | this_OR_50= RULE_OR | this_ESC_CHAR_51= RULE_ESC_CHAR | this_ON_OFF_52= RULE_ON_OFF | this_STATEMENT_TYPE_53= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_54= RULE_MAPPING_TYPE | this_OPTION_TYPE_55= RULE_OPTION_TYPE ) )*";
+            return "()* loopback of 7609:2: ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_NUMBER | RULE_WS | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_RBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_28= RULE_REST | this_IDENT_DOT_29= RULE_IDENT_DOT | this_IDENT_30= RULE_IDENT | this_NUMBER_31= RULE_NUMBER | this_WS_32= RULE_WS | this_COMMA_33= RULE_COMMA | this_MINUS_34= RULE_MINUS | this_PLUS_35= RULE_PLUS | this_LPAREN_36= RULE_LPAREN | this_RPAREN_37= RULE_RPAREN | this_RBRACE_38= RULE_RBRACE | this_QUESTI_39= RULE_QUESTI | this_NOT_40= RULE_NOT | this_BAND_41= RULE_BAND | this_BOR_42= RULE_BOR | this_HASH_43= RULE_HASH | this_CARET_44= RULE_CARET | this_EQUALS_45= RULE_EQUALS | this_LESS_THAN_46= RULE_LESS_THAN | this_MORE_THAN_47= RULE_MORE_THAN | this_DOT_48= RULE_DOT | this_AND_49= RULE_AND | this_OR_50= RULE_OR | this_ESC_CHAR_51= RULE_ESC_CHAR | this_ON_OFF_52= RULE_ON_OFF | this_STATEMENT_TYPE_53= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_54= RULE_MAPPING_TYPE | this_OPTION_TYPE_55= RULE_OPTION_TYPE ) )*";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
@@ -39078,7 +39078,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
             this.transition = DFA260_transition;
         }
         public String getDescription() {
-            return "8283:1: ( ( (lv_value_0_0= ruleIfSqlValue ) ) | (this_AT_1= RULE_AT ( (lv_col_2_0= ruleColumn ) ) ) | (this_STRING1_3= RULE_STRING1 ( (lv_cnst_4_0= ruleConstant ) ) ) | (this_COLON_5= RULE_COLON ( (lv_ident_6_0= ruleIdentifier ) ) ) | (this_STRING1_7= RULE_STRING1 this_STRING1_8= RULE_STRING1 ( (lv_cnstOper_9_0= ruleConstantOperator ) ) ) | (this_COLON_10= RULE_COLON this_COLON_11= RULE_COLON ( (lv_identOper_12_0= ruleIdentifierOperator ) ) ) | (this_PERCENT_13= RULE_PERCENT ( (this_PERCENT_14= RULE_PERCENT ( (lv_dbtab_15_0= ruleDatabaseTable ) ) ) | ( (lv_dbcol_16_0= ruleDatabaseColumn ) ) ) ) | (this_LBRACE_17= RULE_LBRACE ( (lv_meta_18_0= ruleIfMetaSql ) ) this_RBRACE_19= RULE_RBRACE ) )";
+            return "8283:1: ( ( (lv_value_0_0= ruleIfSqlValue ) ) | (this_AT_1= RULE_AT ( (lv_col_2_0= ruleColumn ) ) ) | (this_STRING_3= RULE_STRING ( (lv_cnst_4_0= ruleConstant ) ) ) | (this_COLON_5= RULE_COLON ( (lv_ident_6_0= ruleIdentifier ) ) ) | (this_STRING_7= RULE_STRING this_STRING_8= RULE_STRING ( (lv_cnstOper_9_0= ruleConstantOperator ) ) ) | (this_COLON_10= RULE_COLON this_COLON_11= RULE_COLON ( (lv_identOper_12_0= ruleIdentifierOperator ) ) ) | (this_PERCENT_13= RULE_PERCENT ( (this_PERCENT_14= RULE_PERCENT ( (lv_dbtab_15_0= ruleDatabaseTable ) ) ) | ( (lv_dbcol_16_0= ruleDatabaseColumn ) ) ) ) | (this_LBRACE_17= RULE_LBRACE ( (lv_meta_18_0= ruleIfMetaSql ) ) this_RBRACE_19= RULE_RBRACE ) )";
         }
     }
     static final String DFA263_eotS =
@@ -39156,7 +39156,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
             this.transition = DFA263_transition;
         }
         public String getDescription() {
-            return "()* loopback of 8733:2: ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_INT | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_27= RULE_REST | this_IDENT_DOT_28= RULE_IDENT_DOT | this_IDENT_29= RULE_IDENT | this_INT_30= RULE_INT | this_WS_31= RULE_WS | this_SEMICOLON_32= RULE_SEMICOLON | this_COMMA_33= RULE_COMMA | this_MINUS_34= RULE_MINUS | this_PLUS_35= RULE_PLUS | this_LPAREN_36= RULE_LPAREN | this_RPAREN_37= RULE_RPAREN | this_QUESTI_38= RULE_QUESTI | this_NOT_39= RULE_NOT | this_BAND_40= RULE_BAND | this_HASH_41= RULE_HASH | this_CARET_42= RULE_CARET | this_EQUALS_43= RULE_EQUALS | this_LESS_THAN_44= RULE_LESS_THAN | this_MORE_THAN_45= RULE_MORE_THAN | this_DOT_46= RULE_DOT | this_AND_47= RULE_AND | this_OR_48= RULE_OR | this_ESC_CHAR_49= RULE_ESC_CHAR | this_ON_OFF_50= RULE_ON_OFF | this_STATEMENT_TYPE_51= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_52= RULE_MAPPING_TYPE | this_OPTION_TYPE_53= RULE_OPTION_TYPE ) )*";
+            return "()* loopback of 8733:2: ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_NUMBER | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_HASH | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_27= RULE_REST | this_IDENT_DOT_28= RULE_IDENT_DOT | this_IDENT_29= RULE_IDENT | this_NUMBER_30= RULE_NUMBER | this_WS_31= RULE_WS | this_SEMICOLON_32= RULE_SEMICOLON | this_COMMA_33= RULE_COMMA | this_MINUS_34= RULE_MINUS | this_PLUS_35= RULE_PLUS | this_LPAREN_36= RULE_LPAREN | this_RPAREN_37= RULE_RPAREN | this_QUESTI_38= RULE_QUESTI | this_NOT_39= RULE_NOT | this_BAND_40= RULE_BAND | this_HASH_41= RULE_HASH | this_CARET_42= RULE_CARET | this_EQUALS_43= RULE_EQUALS | this_LESS_THAN_44= RULE_LESS_THAN | this_MORE_THAN_45= RULE_MORE_THAN | this_DOT_46= RULE_DOT | this_AND_47= RULE_AND | this_OR_48= RULE_OR | this_ESC_CHAR_49= RULE_ESC_CHAR | this_ON_OFF_50= RULE_ON_OFF | this_STATEMENT_TYPE_51= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_52= RULE_MAPPING_TYPE | this_OPTION_TYPE_53= RULE_OPTION_TYPE ) )*";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
@@ -39653,7 +39653,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
             this.transition = DFA283_transition;
         }
         public String getDescription() {
-            return "()* loopback of 9901:2: ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_INT | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_LBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_AT | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_30= RULE_REST | this_IDENT_DOT_31= RULE_IDENT_DOT | this_IDENT_32= RULE_IDENT | this_INT_33= RULE_INT | this_WS_34= RULE_WS | this_SEMICOLON_35= RULE_SEMICOLON | this_COMMA_36= RULE_COMMA | this_MINUS_37= RULE_MINUS | this_PLUS_38= RULE_PLUS | this_LPAREN_39= RULE_LPAREN | this_RPAREN_40= RULE_RPAREN | this_LBRACE_41= RULE_LBRACE | this_QUESTI_42= RULE_QUESTI | this_NOT_43= RULE_NOT | this_BAND_44= RULE_BAND | this_BOR_45= RULE_BOR | this_HASH_46= RULE_HASH | this_AT_47= RULE_AT | this_CARET_48= RULE_CARET | this_EQUALS_49= RULE_EQUALS | this_LESS_THAN_50= RULE_LESS_THAN | this_MORE_THAN_51= RULE_MORE_THAN | this_DOT_52= RULE_DOT | this_AND_53= RULE_AND | this_OR_54= RULE_OR | this_ESC_CHAR_55= RULE_ESC_CHAR | this_ON_OFF_56= RULE_ON_OFF | this_STATEMENT_TYPE_57= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_58= RULE_MAPPING_TYPE | this_OPTION_TYPE_59= RULE_OPTION_TYPE ) )*";
+            return "()* loopback of 9901:2: ( ( ( RULE_REST | RULE_IDENT_DOT | RULE_IDENT | RULE_NUMBER | RULE_WS | RULE_SEMICOLON | RULE_COMMA | RULE_MINUS | RULE_PLUS | RULE_LPAREN | RULE_RPAREN | RULE_LBRACE | RULE_QUESTI | RULE_NOT | RULE_BAND | RULE_BOR | RULE_HASH | RULE_AT | RULE_CARET | RULE_EQUALS | RULE_LESS_THAN | RULE_MORE_THAN | RULE_DOT | RULE_AND | RULE_OR | RULE_ESC_CHAR | RULE_ON_OFF | RULE_STATEMENT_TYPE | RULE_MAPPING_TYPE | RULE_OPTION_TYPE ) )=> (this_REST_30= RULE_REST | this_IDENT_DOT_31= RULE_IDENT_DOT | this_IDENT_32= RULE_IDENT | this_NUMBER_33= RULE_NUMBER | this_WS_34= RULE_WS | this_SEMICOLON_35= RULE_SEMICOLON | this_COMMA_36= RULE_COMMA | this_MINUS_37= RULE_MINUS | this_PLUS_38= RULE_PLUS | this_LPAREN_39= RULE_LPAREN | this_RPAREN_40= RULE_RPAREN | this_LBRACE_41= RULE_LBRACE | this_QUESTI_42= RULE_QUESTI | this_NOT_43= RULE_NOT | this_BAND_44= RULE_BAND | this_BOR_45= RULE_BOR | this_HASH_46= RULE_HASH | this_AT_47= RULE_AT | this_CARET_48= RULE_CARET | this_EQUALS_49= RULE_EQUALS | this_LESS_THAN_50= RULE_LESS_THAN | this_MORE_THAN_51= RULE_MORE_THAN | this_DOT_52= RULE_DOT | this_AND_53= RULE_AND | this_OR_54= RULE_OR | this_ESC_CHAR_55= RULE_ESC_CHAR | this_ON_OFF_56= RULE_ON_OFF | this_STATEMENT_TYPE_57= RULE_STATEMENT_TYPE | this_MAPPING_TYPE_58= RULE_MAPPING_TYPE | this_OPTION_TYPE_59= RULE_OPTION_TYPE ) )*";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
@@ -40452,8 +40452,8 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
         public static final BitSet FOLLOW_RULE_WS_in_ruleArtifacts461 = new BitSet(new long[]{0x0007FC0000000092L,0x0000000000000000L,0x0000000000000078L});
         public static final BitSet FOLLOW_ruleValueType_in_entryRuleValueType501 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRuleValueType511 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_STRING_in_ruleValueType553 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_INT_in_ruleValueType581 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_STRING_VALUE_in_ruleValueType553 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_NUMBER_in_ruleValueType581 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleQualifiedName_in_ruleValueType613 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleDatabaseCatalogAssignement_in_entryRuleDatabaseCatalogAssignement649 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRuleDatabaseCatalogAssignement659 = new BitSet(new long[]{0x0000000000000002L});
@@ -40479,7 +40479,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
         public static final BitSet FOLLOW_EOF_in_entryRuleSqlTypeAssignement1236 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_RULE_IDENT_in_ruleSqlTypeAssignement1278 = new BitSet(new long[]{0x0000020000000100L});
         public static final BitSet FOLLOW_RULE_LPAREN_in_ruleSqlTypeAssignement1295 = new BitSet(new long[]{0x0000000000000040L});
-        public static final BitSet FOLLOW_RULE_INT_in_ruleSqlTypeAssignement1311 = new BitSet(new long[]{0x0000000000000200L});
+        public static final BitSet FOLLOW_RULE_NUMBER_in_ruleSqlTypeAssignement1311 = new BitSet(new long[]{0x0000000000000200L});
         public static final BitSet FOLLOW_RULE_RPAREN_in_ruleSqlTypeAssignement1327 = new BitSet(new long[]{0x0000020000000000L});
         public static final BitSet FOLLOW_41_in_ruleSqlTypeAssignement1340 = new BitSet(new long[]{0x0000000000000480L});
         public static final BitSet FOLLOW_rulePojoType_in_ruleSqlTypeAssignement1361 = new BitSet(new long[]{0x0000000000000002L});
@@ -41035,12 +41035,12 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
         public static final BitSet FOLLOW_ruleSqlValue_in_ruleSqlFragment14277 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_RULE_AT_in_ruleSqlFragment14295 = new BitSet(new long[]{0x00000000000040C0L});
         public static final BitSet FOLLOW_ruleColumn_in_ruleSqlFragment14315 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_STRING1_in_ruleSqlFragment14334 = new BitSet(new long[]{0x0000000000005880L});
+        public static final BitSet FOLLOW_RULE_STRING_in_ruleSqlFragment14334 = new BitSet(new long[]{0x0000000000005880L});
         public static final BitSet FOLLOW_ruleConstant_in_ruleSqlFragment14354 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_RULE_COLON_in_ruleSqlFragment14373 = new BitSet(new long[]{0x00000000C00258C0L});
         public static final BitSet FOLLOW_ruleIdentifier_in_ruleSqlFragment14393 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_STRING1_in_ruleSqlFragment14412 = new BitSet(new long[]{0x0000000000080000L});
-        public static final BitSet FOLLOW_RULE_STRING1_in_ruleSqlFragment14422 = new BitSet(new long[]{0x0000000000020080L});
+        public static final BitSet FOLLOW_RULE_STRING_in_ruleSqlFragment14412 = new BitSet(new long[]{0x0000000000080000L});
+        public static final BitSet FOLLOW_RULE_STRING_in_ruleSqlFragment14422 = new BitSet(new long[]{0x0000000000020080L});
         public static final BitSet FOLLOW_ruleConstantOperator_in_ruleSqlFragment14442 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_RULE_COLON_in_ruleSqlFragment14461 = new BitSet(new long[]{0x0000000000000400L});
         public static final BitSet FOLLOW_RULE_COLON_in_ruleSqlFragment14471 = new BitSet(new long[]{0x0000000000020080L});
@@ -41057,7 +41057,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
         public static final BitSet FOLLOW_RULE_REST_in_ruleSqlValue14710 = new BitSet(new long[]{0x0000007FFFA3DBD2L});
         public static final BitSet FOLLOW_RULE_IDENT_DOT_in_ruleSqlValue14736 = new BitSet(new long[]{0x0000007FFFA3DBD2L});
         public static final BitSet FOLLOW_RULE_IDENT_in_ruleSqlValue14762 = new BitSet(new long[]{0x0000007FFFA3DBD2L});
-        public static final BitSet FOLLOW_RULE_INT_in_ruleSqlValue14788 = new BitSet(new long[]{0x0000007FFFA3DBD2L});
+        public static final BitSet FOLLOW_RULE_NUMBER_in_ruleSqlValue14788 = new BitSet(new long[]{0x0000007FFFA3DBD2L});
         public static final BitSet FOLLOW_RULE_WS_in_ruleSqlValue14814 = new BitSet(new long[]{0x0000007FFFA3DBD2L});
         public static final BitSet FOLLOW_RULE_COMMA_in_ruleSqlValue14840 = new BitSet(new long[]{0x0000007FFFA3DBD2L});
         public static final BitSet FOLLOW_RULE_MINUS_in_ruleSqlValue14866 = new BitSet(new long[]{0x0000007FFFA3DBD2L});
@@ -41085,7 +41085,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
         public static final BitSet FOLLOW_RULE_REST_in_ruleSqlValue15658 = new BitSet(new long[]{0x0000007FFFA3DBD2L});
         public static final BitSet FOLLOW_RULE_IDENT_DOT_in_ruleSqlValue15684 = new BitSet(new long[]{0x0000007FFFA3DBD2L});
         public static final BitSet FOLLOW_RULE_IDENT_in_ruleSqlValue15710 = new BitSet(new long[]{0x0000007FFFA3DBD2L});
-        public static final BitSet FOLLOW_RULE_INT_in_ruleSqlValue15736 = new BitSet(new long[]{0x0000007FFFA3DBD2L});
+        public static final BitSet FOLLOW_RULE_NUMBER_in_ruleSqlValue15736 = new BitSet(new long[]{0x0000007FFFA3DBD2L});
         public static final BitSet FOLLOW_RULE_WS_in_ruleSqlValue15762 = new BitSet(new long[]{0x0000007FFFA3DBD2L});
         public static final BitSet FOLLOW_RULE_COMMA_in_ruleSqlValue15788 = new BitSet(new long[]{0x0000007FFFA3DBD2L});
         public static final BitSet FOLLOW_RULE_MINUS_in_ruleSqlValue15814 = new BitSet(new long[]{0x0000007FFFA3DBD2L});
@@ -41135,7 +41135,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
         public static final BitSet FOLLOW_RULE_IDENT_in_ruleMetaSql16855 = new BitSet(new long[]{0x0000007FF7DFFFD0L});
         public static final BitSet FOLLOW_ruleIfSql_in_ruleMetaSql16881 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_RULE_HASH_in_ruleMetaSql16906 = new BitSet(new long[]{0x0000000000000040L});
-        public static final BitSet FOLLOW_RULE_INT_in_ruleMetaSql16922 = new BitSet(new long[]{0x0000007FFFDFFFD0L});
+        public static final BitSet FOLLOW_RULE_NUMBER_in_ruleMetaSql16922 = new BitSet(new long[]{0x0000007FFFDFFFD0L});
         public static final BitSet FOLLOW_ruleOrdSql_in_ruleMetaSql16942 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleIfSql_in_entryRuleIfSql16979 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRuleIfSql16989 = new BitSet(new long[]{0x0000000000000002L});
@@ -41145,12 +41145,12 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
         public static final BitSet FOLLOW_ruleIfSqlValue_in_ruleIfSqlFragment17126 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_RULE_AT_in_ruleIfSqlFragment17144 = new BitSet(new long[]{0x00000000000040C0L});
         public static final BitSet FOLLOW_ruleColumn_in_ruleIfSqlFragment17164 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_STRING1_in_ruleIfSqlFragment17183 = new BitSet(new long[]{0x0000000000005880L});
+        public static final BitSet FOLLOW_RULE_STRING_in_ruleIfSqlFragment17183 = new BitSet(new long[]{0x0000000000005880L});
         public static final BitSet FOLLOW_ruleConstant_in_ruleIfSqlFragment17203 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_RULE_COLON_in_ruleIfSqlFragment17222 = new BitSet(new long[]{0x00000000C00258C0L});
         public static final BitSet FOLLOW_ruleIdentifier_in_ruleIfSqlFragment17242 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_STRING1_in_ruleIfSqlFragment17261 = new BitSet(new long[]{0x0000000000080000L});
-        public static final BitSet FOLLOW_RULE_STRING1_in_ruleIfSqlFragment17271 = new BitSet(new long[]{0x0000000000020080L});
+        public static final BitSet FOLLOW_RULE_STRING_in_ruleIfSqlFragment17261 = new BitSet(new long[]{0x0000000000080000L});
+        public static final BitSet FOLLOW_RULE_STRING_in_ruleIfSqlFragment17271 = new BitSet(new long[]{0x0000000000020080L});
         public static final BitSet FOLLOW_ruleConstantOperator_in_ruleIfSqlFragment17291 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_RULE_COLON_in_ruleIfSqlFragment17310 = new BitSet(new long[]{0x0000000000000400L});
         public static final BitSet FOLLOW_RULE_COLON_in_ruleIfSqlFragment17320 = new BitSet(new long[]{0x0000000000020080L});
@@ -41167,7 +41167,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
         public static final BitSet FOLLOW_RULE_REST_in_ruleIfSqlValue17559 = new BitSet(new long[]{0x0000007FF783FBD2L});
         public static final BitSet FOLLOW_RULE_IDENT_DOT_in_ruleIfSqlValue17585 = new BitSet(new long[]{0x0000007FF783FBD2L});
         public static final BitSet FOLLOW_RULE_IDENT_in_ruleIfSqlValue17611 = new BitSet(new long[]{0x0000007FF783FBD2L});
-        public static final BitSet FOLLOW_RULE_INT_in_ruleIfSqlValue17637 = new BitSet(new long[]{0x0000007FF783FBD2L});
+        public static final BitSet FOLLOW_RULE_NUMBER_in_ruleIfSqlValue17637 = new BitSet(new long[]{0x0000007FF783FBD2L});
         public static final BitSet FOLLOW_RULE_WS_in_ruleIfSqlValue17663 = new BitSet(new long[]{0x0000007FF783FBD2L});
         public static final BitSet FOLLOW_RULE_SEMICOLON_in_ruleIfSqlValue17689 = new BitSet(new long[]{0x0000007FF783FBD2L});
         public static final BitSet FOLLOW_RULE_COMMA_in_ruleIfSqlValue17715 = new BitSet(new long[]{0x0000007FF783FBD2L});
@@ -41194,7 +41194,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
         public static final BitSet FOLLOW_RULE_REST_in_ruleIfSqlValue18473 = new BitSet(new long[]{0x0000007FF783FBD2L});
         public static final BitSet FOLLOW_RULE_IDENT_DOT_in_ruleIfSqlValue18499 = new BitSet(new long[]{0x0000007FF783FBD2L});
         public static final BitSet FOLLOW_RULE_IDENT_in_ruleIfSqlValue18525 = new BitSet(new long[]{0x0000007FF783FBD2L});
-        public static final BitSet FOLLOW_RULE_INT_in_ruleIfSqlValue18551 = new BitSet(new long[]{0x0000007FF783FBD2L});
+        public static final BitSet FOLLOW_RULE_NUMBER_in_ruleIfSqlValue18551 = new BitSet(new long[]{0x0000007FF783FBD2L});
         public static final BitSet FOLLOW_RULE_WS_in_ruleIfSqlValue18577 = new BitSet(new long[]{0x0000007FF783FBD2L});
         public static final BitSet FOLLOW_RULE_SEMICOLON_in_ruleIfSqlValue18603 = new BitSet(new long[]{0x0000007FF783FBD2L});
         public static final BitSet FOLLOW_RULE_COMMA_in_ruleIfSqlValue18629 = new BitSet(new long[]{0x0000007FF783FBD2L});
@@ -41251,7 +41251,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
         public static final BitSet FOLLOW_ruleIfSqlBool_in_entryRuleIfSqlBool19836 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRuleIfSqlBool19846 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_RULE_NOT_in_ruleIfSqlBool19889 = new BitSet(new long[]{0x0000000000080000L});
-        public static final BitSet FOLLOW_RULE_STRING1_in_ruleIfSqlBool19906 = new BitSet(new long[]{0x0000000000005880L});
+        public static final BitSet FOLLOW_RULE_STRING_in_ruleIfSqlBool19906 = new BitSet(new long[]{0x0000000000005880L});
         public static final BitSet FOLLOW_ruleConstant_in_ruleIfSqlBool19926 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_RULE_NOT_in_ruleIfSqlBool19951 = new BitSet(new long[]{0x0000000000000400L});
         public static final BitSet FOLLOW_RULE_COLON_in_ruleIfSqlBool19968 = new BitSet(new long[]{0x00000000C00258C0L});
@@ -41266,7 +41266,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
         public static final BitSet FOLLOW_ruleOrdSql2_in_entryRuleOrdSql220188 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRuleOrdSql220198 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleOrdSqlValue_in_ruleOrdSql220244 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_STRING1_in_ruleOrdSql220262 = new BitSet(new long[]{0x0000000000005880L});
+        public static final BitSet FOLLOW_RULE_STRING_in_ruleOrdSql220262 = new BitSet(new long[]{0x0000000000005880L});
         public static final BitSet FOLLOW_ruleConstant_in_ruleOrdSql220282 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_RULE_COLON_in_ruleOrdSql220301 = new BitSet(new long[]{0x00000000C00258C0L});
         public static final BitSet FOLLOW_ruleIdentifier_in_ruleOrdSql220321 = new BitSet(new long[]{0x0000000000000002L});
@@ -41277,7 +41277,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
         public static final BitSet FOLLOW_RULE_REST_in_ruleOrdSqlValue20450 = new BitSet(new long[]{0x0000007FFF97FBD2L});
         public static final BitSet FOLLOW_RULE_IDENT_DOT_in_ruleOrdSqlValue20476 = new BitSet(new long[]{0x0000007FFF97FBD2L});
         public static final BitSet FOLLOW_RULE_IDENT_in_ruleOrdSqlValue20502 = new BitSet(new long[]{0x0000007FFF97FBD2L});
-        public static final BitSet FOLLOW_RULE_INT_in_ruleOrdSqlValue20528 = new BitSet(new long[]{0x0000007FFF97FBD2L});
+        public static final BitSet FOLLOW_RULE_NUMBER_in_ruleOrdSqlValue20528 = new BitSet(new long[]{0x0000007FFF97FBD2L});
         public static final BitSet FOLLOW_RULE_WS_in_ruleOrdSqlValue20554 = new BitSet(new long[]{0x0000007FFF97FBD2L});
         public static final BitSet FOLLOW_RULE_SEMICOLON_in_ruleOrdSqlValue20580 = new BitSet(new long[]{0x0000007FFF97FBD2L});
         public static final BitSet FOLLOW_RULE_COMMA_in_ruleOrdSqlValue20606 = new BitSet(new long[]{0x0000007FFF97FBD2L});
@@ -41307,7 +41307,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
         public static final BitSet FOLLOW_RULE_REST_in_ruleOrdSqlValue21466 = new BitSet(new long[]{0x0000007FFF97FBD2L});
         public static final BitSet FOLLOW_RULE_IDENT_DOT_in_ruleOrdSqlValue21492 = new BitSet(new long[]{0x0000007FFF97FBD2L});
         public static final BitSet FOLLOW_RULE_IDENT_in_ruleOrdSqlValue21518 = new BitSet(new long[]{0x0000007FFF97FBD2L});
-        public static final BitSet FOLLOW_RULE_INT_in_ruleOrdSqlValue21544 = new BitSet(new long[]{0x0000007FFF97FBD2L});
+        public static final BitSet FOLLOW_RULE_NUMBER_in_ruleOrdSqlValue21544 = new BitSet(new long[]{0x0000007FFF97FBD2L});
         public static final BitSet FOLLOW_RULE_WS_in_ruleOrdSqlValue21570 = new BitSet(new long[]{0x0000007FFF97FBD2L});
         public static final BitSet FOLLOW_RULE_SEMICOLON_in_ruleOrdSqlValue21596 = new BitSet(new long[]{0x0000007FFF97FBD2L});
         public static final BitSet FOLLOW_RULE_COMMA_in_ruleOrdSqlValue21622 = new BitSet(new long[]{0x0000007FFF97FBD2L});
@@ -41349,7 +41349,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
         public static final BitSet FOLLOW_ruleExtendedColumnName_in_entryRuleExtendedColumnName22569 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRuleExtendedColumnName22579 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_RULE_IDENT_in_ruleExtendedColumnName22622 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_INT_in_ruleExtendedColumnName22642 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_NUMBER_in_ruleExtendedColumnName22642 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_RULE_IDENT_DOT_in_ruleExtendedColumnName22662 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleConstant_in_entryRuleConstant22705 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRuleConstant22715 = new BitSet(new long[]{0x0000000000000002L});
@@ -41370,7 +41370,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
         public static final BitSet FOLLOW_RULE_PLUS_in_ruleIdentifier23078 = new BitSet(new long[]{0x00000000000040C0L});
         public static final BitSet FOLLOW_RULE_MINUS_in_ruleIdentifier23098 = new BitSet(new long[]{0x00000000000040C0L});
         public static final BitSet FOLLOW_RULE_IDENT_in_ruleIdentifier23126 = new BitSet(new long[]{0x0000000000000102L});
-        public static final BitSet FOLLOW_RULE_INT_in_ruleIdentifier23146 = new BitSet(new long[]{0x0000000000000102L});
+        public static final BitSet FOLLOW_RULE_NUMBER_in_ruleIdentifier23146 = new BitSet(new long[]{0x0000000000000102L});
         public static final BitSet FOLLOW_RULE_IDENT_DOT_in_ruleIdentifier23166 = new BitSet(new long[]{0x0000000000000102L});
         public static final BitSet FOLLOW_RULE_LPAREN_in_ruleIdentifier23192 = new BitSet(new long[]{0x00000000020000C0L});
         public static final BitSet FOLLOW_ruleModifier_in_ruleIdentifier23213 = new BitSet(new long[]{0x0000000000010200L});
@@ -41414,8 +41414,8 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
         public static final BitSet FOLLOW_ruleMappingItem_in_entryRuleMappingItem24124 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRuleMappingItem24134 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_RULE_IDENT_in_ruleMappingItem24178 = new BitSet(new long[]{0x0000000000080002L});
-        public static final BitSet FOLLOW_RULE_INT_in_ruleMappingItem24198 = new BitSet(new long[]{0x0000000000080002L});
-        public static final BitSet FOLLOW_RULE_STRING1_in_ruleMappingItem24218 = new BitSet(new long[]{0x00000000000040C0L});
+        public static final BitSet FOLLOW_RULE_NUMBER_in_ruleMappingItem24198 = new BitSet(new long[]{0x0000000000080002L});
+        public static final BitSet FOLLOW_RULE_STRING_in_ruleMappingItem24218 = new BitSet(new long[]{0x00000000000040C0L});
         public static final BitSet FOLLOW_ruleMappingColumn_in_ruleMappingItem24238 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleMappingColumn_in_entryRuleMappingColumn24276 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRuleMappingColumn24286 = new BitSet(new long[]{0x0000000000000002L});
@@ -41433,7 +41433,7 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
         public static final BitSet FOLLOW_EOF_in_entryRuleMappingColumnName24587 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_RULE_IDENT_in_ruleMappingColumnName24630 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_RULE_IDENT_DOT_in_ruleMappingColumnName24650 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_INT_in_ruleMappingColumnName24670 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_NUMBER_in_ruleMappingColumnName24670 = new BitSet(new long[]{0x0000000000000002L});
     }
 
     private static class FollowSets002 {
@@ -41451,33 +41451,33 @@ public class InternalProcessorMetaParser extends AbstractInternalAntlrParser {
         public static final BitSet FOLLOW_ruleStatementModifier_in_entryRuleStatementModifier24924 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRuleStatementModifier24935 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_RULE_IDENT_in_ruleStatementModifier24975 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_INT_in_ruleStatementModifier25001 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_NUMBER_in_ruleStatementModifier25001 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleMappingRuleModifier_in_entryRuleMappingRuleModifier25047 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRuleMappingRuleModifier25058 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_RULE_IDENT_in_ruleMappingRuleModifier25098 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_INT_in_ruleMappingRuleModifier25124 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_NUMBER_in_ruleMappingRuleModifier25124 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleMappingItemModifier_in_entryRuleMappingItemModifier25170 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRuleMappingItemModifier25181 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_RULE_IDENT_in_ruleMappingItemModifier25221 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_INT_in_ruleMappingItemModifier25247 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_NUMBER_in_ruleMappingItemModifier25247 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleOptionalFeatureModifier_in_entryRuleOptionalFeatureModifier25293 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRuleOptionalFeatureModifier25304 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_RULE_IDENT_in_ruleOptionalFeatureModifier25344 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_INT_in_ruleOptionalFeatureModifier25370 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_NUMBER_in_ruleOptionalFeatureModifier25370 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleModifier_in_entryRuleModifier25416 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRuleModifier25427 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_RULE_NOT_in_ruleModifier25468 = new BitSet(new long[]{0x00000000000000C0L});
         public static final BitSet FOLLOW_RULE_IDENT_in_ruleModifier25491 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_INT_in_ruleModifier25517 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_NUMBER_in_ruleModifier25517 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleFeatureValue_in_entryRuleFeatureValue25564 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRuleFeatureValue25575 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_RULE_REST_in_ruleFeatureValue25615 = new BitSet(new long[]{0x0000007EFFFFDFD2L});
         public static final BitSet FOLLOW_RULE_IDENT_DOT_in_ruleFeatureValue25641 = new BitSet(new long[]{0x0000007EFFFFDFD2L});
         public static final BitSet FOLLOW_RULE_IDENT_in_ruleFeatureValue25667 = new BitSet(new long[]{0x0000007EFFFFDFD2L});
-        public static final BitSet FOLLOW_RULE_INT_in_ruleFeatureValue25693 = new BitSet(new long[]{0x0000007EFFFFDFD2L});
+        public static final BitSet FOLLOW_RULE_NUMBER_in_ruleFeatureValue25693 = new BitSet(new long[]{0x0000007EFFFFDFD2L});
         public static final BitSet FOLLOW_RULE_WS_in_ruleFeatureValue25719 = new BitSet(new long[]{0x0000007EFFFFDFD2L});
         public static final BitSet FOLLOW_RULE_COLON_in_ruleFeatureValue25745 = new BitSet(new long[]{0x0000007EFFFFDFD2L});
-        public static final BitSet FOLLOW_RULE_STRING1_in_ruleFeatureValue25771 = new BitSet(new long[]{0x0000007EFFFFDFD2L});
+        public static final BitSet FOLLOW_RULE_STRING_in_ruleFeatureValue25771 = new BitSet(new long[]{0x0000007EFFFFDFD2L});
         public static final BitSet FOLLOW_RULE_COMMA_in_ruleFeatureValue25797 = new BitSet(new long[]{0x0000007EFFFFDFD2L});
         public static final BitSet FOLLOW_RULE_MINUS_in_ruleFeatureValue25823 = new BitSet(new long[]{0x0000007EFFFFDFD2L});
         public static final BitSet FOLLOW_RULE_PLUS_in_ruleFeatureValue25849 = new BitSet(new long[]{0x0000007EFFFFDFD2L});

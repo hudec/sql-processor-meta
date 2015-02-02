@@ -744,7 +744,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     (name=IDENT | name=INT | name=IDENT_DOT)
+	 *     (name=IDENT | name=NUMBER | name=IDENT_DOT)
 	 */
 	protected void sequence_ExtendedColumnName(EObject context, ExtendedColumnName semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -839,7 +839,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *     (
 	 *         (mode=EQUALS | mode=LESS_THAN | mode=MORE_THAN)? 
 	 *         (case=PLUS | case=MINUS)? 
-	 *         (name=IDENT | name=INT | name=IDENT_DOT) 
+	 *         (name=IDENT | name=NUMBER | name=IDENT_DOT) 
 	 *         (modifiers+=Modifier modifiers+=Modifier*)?
 	 *     )
 	 */
@@ -964,7 +964,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     (name=IDENT | name=IDENT_DOT | name=INT)
+	 *     (name=IDENT | name=IDENT_DOT | name=NUMBER)
 	 */
 	protected void sequence_MappingColumnName(EObject context, MappingColumnName semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -982,7 +982,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     ((name=IDENT | name=INT) attr=MappingColumn?)
+	 *     ((name=IDENT | name=NUMBER) attr=MappingColumn?)
 	 */
 	protected void sequence_MappingItem(EObject context, MappingItem semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1266,7 +1266,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     (typeName=IDENT size=INT? type=PojoType)
+	 *     (typeName=IDENT size=NUMBER? type=PojoType)
 	 */
 	protected void sequence_SqlTypeAssignement(EObject context, SqlTypeAssignement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1322,7 +1322,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     (value=STRING | number=INT | id=QualifiedName)
+	 *     (value=STRING_VALUE | number=NUMBER | id=QualifiedName)
 	 */
 	protected void sequence_ValueType(EObject context, ValueType semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
