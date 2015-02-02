@@ -38,6 +38,7 @@ import org.sqlproc.meta.processorMeta.ProcessorMetaPackage;
 import org.sqlproc.meta.processorMeta.ShowColumnTypeAssignement;
 import org.sqlproc.meta.processorMeta.SqlTypeAssignement;
 import org.sqlproc.meta.processorMeta.TableAssignement;
+import org.sqlproc.meta.processorMeta.ValueType;
 
 /**
  * <!-- begin-user-doc -->
@@ -436,24 +437,14 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
   protected EList<FunctionPojoAssignement> funPojos;
 
   /**
-   * The default value of the '{@link #getActiveFilter() <em>Active Filter</em>}' attribute.
+   * The cached value of the '{@link #getActiveFilter() <em>Active Filter</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getActiveFilter()
    * @generated
    * @ordered
    */
-  protected static final String ACTIVE_FILTER_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getActiveFilter() <em>Active Filter</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getActiveFilter()
-   * @generated
-   * @ordered
-   */
-  protected String activeFilter = ACTIVE_FILTER_EDEFAULT;
+  protected ValueType activeFilter;
 
   /**
    * The default value of the '{@link #getPckg() <em>Pckg</em>}' attribute.
@@ -1190,7 +1181,7 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getActiveFilter()
+  public ValueType getActiveFilter()
   {
     return activeFilter;
   }
@@ -1200,12 +1191,37 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setActiveFilter(String newActiveFilter)
+  public NotificationChain basicSetActiveFilter(ValueType newActiveFilter, NotificationChain msgs)
   {
-    String oldActiveFilter = activeFilter;
+    ValueType oldActiveFilter = activeFilter;
     activeFilter = newActiveFilter;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.POJOGEN_PROPERTY__ACTIVE_FILTER, oldActiveFilter, activeFilter));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.POJOGEN_PROPERTY__ACTIVE_FILTER, oldActiveFilter, newActiveFilter);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setActiveFilter(ValueType newActiveFilter)
+  {
+    if (newActiveFilter != activeFilter)
+    {
+      NotificationChain msgs = null;
+      if (activeFilter != null)
+        msgs = ((InternalEObject)activeFilter).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorMetaPackage.POJOGEN_PROPERTY__ACTIVE_FILTER, null, msgs);
+      if (newActiveFilter != null)
+        msgs = ((InternalEObject)newActiveFilter).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorMetaPackage.POJOGEN_PROPERTY__ACTIVE_FILTER, null, msgs);
+      msgs = basicSetActiveFilter(newActiveFilter, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.POJOGEN_PROPERTY__ACTIVE_FILTER, newActiveFilter, newActiveFilter));
   }
 
   /**
@@ -1312,6 +1328,8 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
         return ((InternalEList<?>)getProcPojos()).basicRemove(otherEnd, msgs);
       case ProcessorMetaPackage.POJOGEN_PROPERTY__FUN_POJOS:
         return ((InternalEList<?>)getFunPojos()).basicRemove(otherEnd, msgs);
+      case ProcessorMetaPackage.POJOGEN_PROPERTY__ACTIVE_FILTER:
+        return basicSetActiveFilter(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -1505,7 +1523,7 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
         getFunPojos().addAll((Collection<? extends FunctionPojoAssignement>)newValue);
         return;
       case ProcessorMetaPackage.POJOGEN_PROPERTY__ACTIVE_FILTER:
-        setActiveFilter((String)newValue);
+        setActiveFilter((ValueType)newValue);
         return;
       case ProcessorMetaPackage.POJOGEN_PROPERTY__PCKG:
         setPckg((String)newValue);
@@ -1616,7 +1634,7 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
         getFunPojos().clear();
         return;
       case ProcessorMetaPackage.POJOGEN_PROPERTY__ACTIVE_FILTER:
-        setActiveFilter(ACTIVE_FILTER_EDEFAULT);
+        setActiveFilter((ValueType)null);
         return;
       case ProcessorMetaPackage.POJOGEN_PROPERTY__PCKG:
         setPckg(PCKG_EDEFAULT);
@@ -1698,7 +1716,7 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
       case ProcessorMetaPackage.POJOGEN_PROPERTY__FUN_POJOS:
         return funPojos != null && !funPojos.isEmpty();
       case ProcessorMetaPackage.POJOGEN_PROPERTY__ACTIVE_FILTER:
-        return ACTIVE_FILTER_EDEFAULT == null ? activeFilter != null : !ACTIVE_FILTER_EDEFAULT.equals(activeFilter);
+        return activeFilter != null;
       case ProcessorMetaPackage.POJOGEN_PROPERTY__PCKG:
         return PCKG_EDEFAULT == null ? pckg != null : !PCKG_EDEFAULT.equals(pckg);
       case ProcessorMetaPackage.POJOGEN_PROPERTY__ENUM_NAME:
@@ -1742,8 +1760,6 @@ public class PojogenPropertyImpl extends MinimalEObjectImpl.Container implements
     result.append(version);
     result.append(", dbNotTables: ");
     result.append(dbNotTables);
-    result.append(", activeFilter: ");
-    result.append(activeFilter);
     result.append(", pckg: ");
     result.append(pckg);
     result.append(", enumName: ");

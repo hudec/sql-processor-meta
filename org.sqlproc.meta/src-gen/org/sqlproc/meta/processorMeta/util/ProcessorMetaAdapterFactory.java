@@ -80,6 +80,11 @@ public class ProcessorMetaAdapterFactory extends AdapterFactoryImpl
         return createArtifactsAdapter();
       }
       @Override
+      public Adapter caseValueType(ValueType object)
+      {
+        return createValueTypeAdapter();
+      }
+      @Override
       public Adapter caseDatabaseCatalogAssignement(DatabaseCatalogAssignement object)
       {
         return createDatabaseCatalogAssignementAdapter();
@@ -417,6 +422,21 @@ public class ProcessorMetaAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createArtifactsAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.sqlproc.meta.processorMeta.ValueType <em>Value Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.sqlproc.meta.processorMeta.ValueType
+   * @generated
+   */
+  public Adapter createValueTypeAdapter()
   {
     return null;
   }

@@ -634,30 +634,30 @@ public interface PojogenProperty extends EObject
   EList<FunctionPojoAssignement> getFunPojos();
 
   /**
-   * Returns the value of the '<em><b>Active Filter</b></em>' attribute.
+   * Returns the value of the '<em><b>Active Filter</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Active Filter</em>' attribute isn't clear,
+   * If the meaning of the '<em>Active Filter</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Active Filter</em>' attribute.
-   * @see #setActiveFilter(String)
+   * @return the value of the '<em>Active Filter</em>' containment reference.
+   * @see #setActiveFilter(ValueType)
    * @see org.sqlproc.meta.processorMeta.ProcessorMetaPackage#getPojogenProperty_ActiveFilter()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  String getActiveFilter();
+  ValueType getActiveFilter();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.meta.processorMeta.PojogenProperty#getActiveFilter <em>Active Filter</em>}' attribute.
+   * Sets the value of the '{@link org.sqlproc.meta.processorMeta.PojogenProperty#getActiveFilter <em>Active Filter</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Active Filter</em>' attribute.
+   * @param value the new value of the '<em>Active Filter</em>' containment reference.
    * @see #getActiveFilter()
    * @generated
    */
-  void setActiveFilter(String value);
+  void setActiveFilter(ValueType value);
 
   /**
    * Returns the value of the '<em><b>Pckg</b></em>' attribute.

@@ -65,6 +65,7 @@ public class ProcessorMetaFactoryImpl extends EFactoryImpl implements ProcessorM
     switch (eClass.getClassifierID())
     {
       case ProcessorMetaPackage.ARTIFACTS: return createArtifacts();
+      case ProcessorMetaPackage.VALUE_TYPE: return createValueType();
       case ProcessorMetaPackage.DATABASE_CATALOG_ASSIGNEMENT: return createDatabaseCatalogAssignement();
       case ProcessorMetaPackage.DATABASE_SCHEMA_ASSIGNEMENT: return createDatabaseSchemaAssignement();
       case ProcessorMetaPackage.DATABASE_TYPE_ASSIGNEMENT: return createDatabaseTypeAssignement();
@@ -140,6 +141,17 @@ public class ProcessorMetaFactoryImpl extends EFactoryImpl implements ProcessorM
   {
     ArtifactsImpl artifacts = new ArtifactsImpl();
     return artifacts;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ValueType createValueType()
+  {
+    ValueTypeImpl valueType = new ValueTypeImpl();
+    return valueType;
   }
 
   /**

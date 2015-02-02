@@ -12,13 +12,13 @@ public class TokenToIdMapper extends DefaultAntlrTokenToAttributeIdMapper {
     static {
         punctations.add(InternalProcessorMetaLexer.RULE_IDENT_DOT);
         punctations.add(InternalProcessorMetaLexer.RULE_IDENT);
-        punctations.add(InternalProcessorMetaLexer.RULE_NUMBER);
+        punctations.add(InternalProcessorMetaLexer.RULE_INT);
         punctations.add(InternalProcessorMetaLexer.RULE_ESC_CHAR);
         punctations.add(InternalProcessorMetaLexer.RULE_AND);
         punctations.add(InternalProcessorMetaLexer.RULE_OR);
         punctations.add(InternalProcessorMetaLexer.RULE_COLON);
         punctations.add(InternalProcessorMetaLexer.RULE_SEMICOLON);
-        punctations.add(InternalProcessorMetaLexer.RULE_STRING);
+        punctations.add(InternalProcessorMetaLexer.RULE_STRING1);
         punctations.add(InternalProcessorMetaLexer.RULE_COMMA);
         punctations.add(InternalProcessorMetaLexer.RULE_MINUS);
         punctations.add(InternalProcessorMetaLexer.RULE_PLUS);

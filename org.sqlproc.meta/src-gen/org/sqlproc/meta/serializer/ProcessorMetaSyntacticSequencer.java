@@ -359,6 +359,8 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 			return getCOMMAToken(semanticObject, ruleCall, node);
 		else if(ruleCall.getRule() == grammarAccess.getEQUALSRule())
 			return getEQUALSToken(semanticObject, ruleCall, node);
+		else if(ruleCall.getRule() == grammarAccess.getINTRule())
+			return getINTToken(semanticObject, ruleCall, node);
 		else if(ruleCall.getRule() == grammarAccess.getLBRACERule())
 			return getLBRACEToken(semanticObject, ruleCall, node);
 		else if(ruleCall.getRule() == grammarAccess.getLESS_THANRule())
@@ -371,8 +373,6 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 			return getMORE_THANToken(semanticObject, ruleCall, node);
 		else if(ruleCall.getRule() == grammarAccess.getNOTRule())
 			return getNOTToken(semanticObject, ruleCall, node);
-		else if(ruleCall.getRule() == grammarAccess.getNUMBERRule())
-			return getNUMBERToken(semanticObject, ruleCall, node);
 		else if(ruleCall.getRule() == grammarAccess.getPERCENTRule())
 			return getPERCENTToken(semanticObject, ruleCall, node);
 		else if(ruleCall.getRule() == grammarAccess.getPLUSRule())
@@ -383,8 +383,8 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 			return getRPARENToken(semanticObject, ruleCall, node);
 		else if(ruleCall.getRule() == grammarAccess.getSEMICOLONRule())
 			return getSEMICOLONToken(semanticObject, ruleCall, node);
-		else if(ruleCall.getRule() == grammarAccess.getSTRINGRule())
-			return getSTRINGToken(semanticObject, ruleCall, node);
+		else if(ruleCall.getRule() == grammarAccess.getSTRING1Rule())
+			return getSTRING1Token(semanticObject, ruleCall, node);
 		else if(ruleCall.getRule() == grammarAccess.getWSRule())
 			return getWSToken(semanticObject, ruleCall, node);
 		return "";
@@ -433,6 +433,15 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 		if (node != null)
 			return getTokenText(node);
 		return "=";
+	}
+	
+	/**
+	 * terminal INT: ('0'..'9')+;
+	 */
+	protected String getINTToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "";
 	}
 	
 	/**
@@ -490,15 +499,6 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	}
 	
 	/**
-	 * terminal NUMBER: ('0'..'9')+;
-	 */
-	protected String getNUMBERToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "";
-	}
-	
-	/**
 	 * terminal PERCENT:  '%' ;
 	 */
 	protected String getPERCENTToken(EObject semanticObject, RuleCall ruleCall, INode node) {
@@ -544,9 +544,9 @@ public class ProcessorMetaSyntacticSequencer extends AbstractSyntacticSequencer 
 	}
 	
 	/**
-	 * terminal STRING:   '$' ;
+	 * terminal STRING1:   '$' ;
 	 */
-	protected String getSTRINGToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+	protected String getSTRING1Token(EObject semanticObject, RuleCall ruleCall, INode node) {
 		if (node != null)
 			return getTokenText(node);
 		return "$";

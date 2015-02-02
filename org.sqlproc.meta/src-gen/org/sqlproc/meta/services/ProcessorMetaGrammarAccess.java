@@ -175,36 +175,72 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getWSTerminalRuleCall_2_7_1() { return cWSTerminalRuleCall_2_7_1; }
 	}
 
+	public class ValueTypeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ValueType");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Assignment cValueAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final RuleCall cValueSTRINGTerminalRuleCall_0_0 = (RuleCall)cValueAssignment_0.eContents().get(0);
+		private final Assignment cNumberAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
+		private final RuleCall cNumberINTTerminalRuleCall_1_0 = (RuleCall)cNumberAssignment_1.eContents().get(0);
+		private final Assignment cIdAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
+		private final RuleCall cIdQualifiedNameParserRuleCall_2_0 = (RuleCall)cIdAssignment_2.eContents().get(0);
+		
+		//ValueType:
+		//	value=STRING | number=INT | id=QualifiedName;
+		public ParserRule getRule() { return rule; }
+
+		//value=STRING | number=INT | id=QualifiedName
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//value=STRING
+		public Assignment getValueAssignment_0() { return cValueAssignment_0; }
+
+		//STRING
+		public RuleCall getValueSTRINGTerminalRuleCall_0_0() { return cValueSTRINGTerminalRuleCall_0_0; }
+
+		//number=INT
+		public Assignment getNumberAssignment_1() { return cNumberAssignment_1; }
+
+		//INT
+		public RuleCall getNumberINTTerminalRuleCall_1_0() { return cNumberINTTerminalRuleCall_1_0; }
+
+		//id=QualifiedName
+		public Assignment getIdAssignment_2() { return cIdAssignment_2; }
+
+		//QualifiedName
+		public RuleCall getIdQualifiedNameParserRuleCall_2_0() { return cIdQualifiedNameParserRuleCall_2_0; }
+	}
+
 	public class DatabaseCatalogAssignementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DatabaseCatalogAssignement");
 		private final Assignment cDbCatalogAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cDbCatalogPropertyValueParserRuleCall_0 = (RuleCall)cDbCatalogAssignment.eContents().get(0);
+		private final RuleCall cDbCatalogQualifiedNameParserRuleCall_0 = (RuleCall)cDbCatalogAssignment.eContents().get(0);
 		
 		//DatabaseCatalogAssignement:
-		//	dbCatalog=PropertyValue;
+		//	dbCatalog=QualifiedName;
 		public ParserRule getRule() { return rule; }
 
-		//dbCatalog=PropertyValue
+		//dbCatalog=QualifiedName
 		public Assignment getDbCatalogAssignment() { return cDbCatalogAssignment; }
 
-		//PropertyValue
-		public RuleCall getDbCatalogPropertyValueParserRuleCall_0() { return cDbCatalogPropertyValueParserRuleCall_0; }
+		//QualifiedName
+		public RuleCall getDbCatalogQualifiedNameParserRuleCall_0() { return cDbCatalogQualifiedNameParserRuleCall_0; }
 	}
 
 	public class DatabaseSchemaAssignementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DatabaseSchemaAssignement");
 		private final Assignment cDbSchemaAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cDbSchemaPropertyValueParserRuleCall_0 = (RuleCall)cDbSchemaAssignment.eContents().get(0);
+		private final RuleCall cDbSchemaQualifiedNameParserRuleCall_0 = (RuleCall)cDbSchemaAssignment.eContents().get(0);
 		
 		//DatabaseSchemaAssignement:
-		//	dbSchema=PropertyValue;
+		//	dbSchema=QualifiedName;
 		public ParserRule getRule() { return rule; }
 
-		//dbSchema=PropertyValue
+		//dbSchema=QualifiedName
 		public Assignment getDbSchemaAssignment() { return cDbSchemaAssignment; }
 
-		//PropertyValue
-		public RuleCall getDbSchemaPropertyValueParserRuleCall_0() { return cDbSchemaPropertyValueParserRuleCall_0; }
+		//QualifiedName
+		public RuleCall getDbSchemaQualifiedNameParserRuleCall_0() { return cDbSchemaQualifiedNameParserRuleCall_0; }
 	}
 
 	public class DatabaseTypeAssignementElements extends AbstractParserRuleElementFinder {
@@ -226,33 +262,33 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	public class DatabaseMetaInfoAssignementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DatabaseMetaInfoAssignement");
 		private final Assignment cDbMetaInfoAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cDbMetaInfoPropertyValueParserRuleCall_0 = (RuleCall)cDbMetaInfoAssignment.eContents().get(0);
+		private final RuleCall cDbMetaInfoValueTypeParserRuleCall_0 = (RuleCall)cDbMetaInfoAssignment.eContents().get(0);
 		
 		//DatabaseMetaInfoAssignement:
-		//	dbMetaInfo=PropertyValue;
+		//	dbMetaInfo=ValueType;
 		public ParserRule getRule() { return rule; }
 
-		//dbMetaInfo=PropertyValue
+		//dbMetaInfo=ValueType
 		public Assignment getDbMetaInfoAssignment() { return cDbMetaInfoAssignment; }
 
-		//PropertyValue
-		public RuleCall getDbMetaInfoPropertyValueParserRuleCall_0() { return cDbMetaInfoPropertyValueParserRuleCall_0; }
+		//ValueType
+		public RuleCall getDbMetaInfoValueTypeParserRuleCall_0() { return cDbMetaInfoValueTypeParserRuleCall_0; }
 	}
 
 	public class DriverMetaInfoAssignementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DriverMetaInfoAssignement");
 		private final Assignment cDbDriverInfoAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cDbDriverInfoPropertyValueParserRuleCall_0 = (RuleCall)cDbDriverInfoAssignment.eContents().get(0);
+		private final RuleCall cDbDriverInfoValueTypeParserRuleCall_0 = (RuleCall)cDbDriverInfoAssignment.eContents().get(0);
 		
 		//DriverMetaInfoAssignement:
-		//	dbDriverInfo=PropertyValue;
+		//	dbDriverInfo=ValueType;
 		public ParserRule getRule() { return rule; }
 
-		//dbDriverInfo=PropertyValue
+		//dbDriverInfo=ValueType
 		public Assignment getDbDriverInfoAssignment() { return cDbDriverInfoAssignment; }
 
-		//PropertyValue
-		public RuleCall getDbDriverInfoPropertyValueParserRuleCall_0() { return cDbDriverInfoPropertyValueParserRuleCall_0; }
+		//ValueType
+		public RuleCall getDbDriverInfoValueTypeParserRuleCall_0() { return cDbDriverInfoValueTypeParserRuleCall_0; }
 	}
 
 	public class DriverMethodOutputAssignementElements extends AbstractParserRuleElementFinder {
@@ -262,13 +298,13 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cDriverMethodIDENTTerminalRuleCall_0_0 = (RuleCall)cDriverMethodAssignment_0.eContents().get(0);
 		private final Keyword cHyphenMinusGreaterThanSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cCallOutputAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cCallOutputPropertyValueParserRuleCall_2_0 = (RuleCall)cCallOutputAssignment_2.eContents().get(0);
+		private final RuleCall cCallOutputValueTypeParserRuleCall_2_0 = (RuleCall)cCallOutputAssignment_2.eContents().get(0);
 		
 		//DriverMethodOutputAssignement:
-		//	driverMethod=IDENT "->" callOutput=PropertyValue;
+		//	driverMethod=IDENT "->" callOutput=ValueType;
 		public ParserRule getRule() { return rule; }
 
-		//driverMethod=IDENT "->" callOutput=PropertyValue
+		//driverMethod=IDENT "->" callOutput=ValueType
 		public Group getGroup() { return cGroup; }
 
 		//driverMethod=IDENT
@@ -280,11 +316,11 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//"->"
 		public Keyword getHyphenMinusGreaterThanSignKeyword_1() { return cHyphenMinusGreaterThanSignKeyword_1; }
 
-		//callOutput=PropertyValue
+		//callOutput=ValueType
 		public Assignment getCallOutputAssignment_2() { return cCallOutputAssignment_2; }
 
-		//PropertyValue
-		public RuleCall getCallOutputPropertyValueParserRuleCall_2_0() { return cCallOutputPropertyValueParserRuleCall_2_0; }
+		//ValueType
+		public RuleCall getCallOutputValueTypeParserRuleCall_2_0() { return cCallOutputValueTypeParserRuleCall_2_0; }
 	}
 
 	public class SqlTypeAssignementElements extends AbstractParserRuleElementFinder {
@@ -295,17 +331,17 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final RuleCall cLPARENTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
 		private final Assignment cSizeAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cSizeNUMBERTerminalRuleCall_1_1_0 = (RuleCall)cSizeAssignment_1_1.eContents().get(0);
+		private final RuleCall cSizeINTTerminalRuleCall_1_1_0 = (RuleCall)cSizeAssignment_1_1.eContents().get(0);
 		private final RuleCall cRPARENTerminalRuleCall_1_2 = (RuleCall)cGroup_1.eContents().get(2);
 		private final Keyword cHyphenMinusGreaterThanSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cTypeAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cTypePojoTypeParserRuleCall_3_0 = (RuleCall)cTypeAssignment_3.eContents().get(0);
 		
 		//SqlTypeAssignement:
-		//	typeName=IDENT (LPAREN size=NUMBER RPAREN)? "->" type=PojoType;
+		//	typeName=IDENT (LPAREN size=INT RPAREN)? "->" type=PojoType;
 		public ParserRule getRule() { return rule; }
 
-		//typeName=IDENT (LPAREN size=NUMBER RPAREN)? "->" type=PojoType
+		//typeName=IDENT (LPAREN size=INT RPAREN)? "->" type=PojoType
 		public Group getGroup() { return cGroup; }
 
 		//typeName=IDENT
@@ -314,17 +350,17 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//IDENT
 		public RuleCall getTypeNameIDENTTerminalRuleCall_0_0() { return cTypeNameIDENTTerminalRuleCall_0_0; }
 
-		//(LPAREN size=NUMBER RPAREN)?
+		//(LPAREN size=INT RPAREN)?
 		public Group getGroup_1() { return cGroup_1; }
 
 		//LPAREN
 		public RuleCall getLPARENTerminalRuleCall_1_0() { return cLPARENTerminalRuleCall_1_0; }
 
-		//size=NUMBER
+		//size=INT
 		public Assignment getSizeAssignment_1_1() { return cSizeAssignment_1_1; }
 
-		//NUMBER
-		public RuleCall getSizeNUMBERTerminalRuleCall_1_1_0() { return cSizeNUMBERTerminalRuleCall_1_1_0; }
+		//INT
+		public RuleCall getSizeINTTerminalRuleCall_1_1_0() { return cSizeINTTerminalRuleCall_1_1_0; }
 
 		//RPAREN
 		public RuleCall getRPARENTerminalRuleCall_1_2() { return cRPARENTerminalRuleCall_1_2; }
@@ -378,13 +414,13 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cDbColumnIDENTTerminalRuleCall_0_0 = (RuleCall)cDbColumnAssignment_0.eContents().get(0);
 		private final Keyword cHyphenMinusGreaterThanSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cTypePropertyValueParserRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
+		private final RuleCall cTypeValueTypeParserRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
 		
 		//ShowColumnTypeAssignement:
-		//	dbColumn=IDENT "->" type=PropertyValue;
+		//	dbColumn=IDENT "->" type=ValueType;
 		public ParserRule getRule() { return rule; }
 
-		//dbColumn=IDENT "->" type=PropertyValue
+		//dbColumn=IDENT "->" type=ValueType
 		public Group getGroup() { return cGroup; }
 
 		//dbColumn=IDENT
@@ -396,11 +432,11 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//"->"
 		public Keyword getHyphenMinusGreaterThanSignKeyword_1() { return cHyphenMinusGreaterThanSignKeyword_1; }
 
-		//type=PropertyValue
+		//type=ValueType
 		public Assignment getTypeAssignment_2() { return cTypeAssignment_2; }
 
-		//PropertyValue
-		public RuleCall getTypePropertyValueParserRuleCall_2_0() { return cTypePropertyValueParserRuleCall_2_0; }
+		//ValueType
+		public RuleCall getTypeValueTypeParserRuleCall_2_0() { return cTypeValueTypeParserRuleCall_2_0; }
 	}
 
 	public class TableAssignementElements extends AbstractParserRuleElementFinder {
@@ -703,13 +739,13 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final RuleCall cWSTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
 		private final Assignment cScopeAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cScopePropertyValueParserRuleCall_1_1_0 = (RuleCall)cScopeAssignment_1_1.eContents().get(0);
+		private final RuleCall cScopeIDENTTerminalRuleCall_1_1_0 = (RuleCall)cScopeAssignment_1_1.eContents().get(0);
 		
 		//DebugLevelAssignement:
-		//	debug=IDENT (WS+ scope=PropertyValue)?;
+		//	debug=IDENT (WS+ scope=IDENT)?;
 		public ParserRule getRule() { return rule; }
 
-		//debug=IDENT (WS+ scope=PropertyValue)?
+		//debug=IDENT (WS+ scope=IDENT)?
 		public Group getGroup() { return cGroup; }
 
 		//debug=IDENT
@@ -718,17 +754,17 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//IDENT
 		public RuleCall getDebugIDENTTerminalRuleCall_0_0() { return cDebugIDENTTerminalRuleCall_0_0; }
 
-		//(WS+ scope=PropertyValue)?
+		//(WS+ scope=IDENT)?
 		public Group getGroup_1() { return cGroup_1; }
 
 		//WS+
 		public RuleCall getWSTerminalRuleCall_1_0() { return cWSTerminalRuleCall_1_0; }
 
-		//scope=PropertyValue
+		//scope=IDENT
 		public Assignment getScopeAssignment_1_1() { return cScopeAssignment_1_1; }
 
-		//PropertyValue
-		public RuleCall getScopePropertyValueParserRuleCall_1_1_0() { return cScopePropertyValueParserRuleCall_1_1_0; }
+		//IDENT
+		public RuleCall getScopeIDENTTerminalRuleCall_1_1_0() { return cScopeIDENTTerminalRuleCall_1_1_0; }
 	}
 
 	public class ProcedurePojoAssignementElements extends AbstractParserRuleElementFinder {
@@ -1175,7 +1211,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cReplaceIdIDENTTerminalRuleCall_0_6_2_0 = (RuleCall)cReplaceIdAssignment_0_6_2.eContents().get(0);
 		private final RuleCall cWSTerminalRuleCall_0_6_3 = (RuleCall)cGroup_0_6.eContents().get(3);
 		private final Assignment cRegexAssignment_0_6_4 = (Assignment)cGroup_0_6.eContents().get(4);
-		private final RuleCall cRegexPropertyValueParserRuleCall_0_6_4_0 = (RuleCall)cRegexAssignment_0_6_4.eContents().get(0);
+		private final RuleCall cRegexValueTypeParserRuleCall_0_6_4_0 = (RuleCall)cRegexAssignment_0_6_4.eContents().get(0);
 		private final Group cGroup_0_7 = (Group)cAlternatives_0.eContents().get(7);
 		private final Assignment cNameAssignment_0_7_0 = (Assignment)cGroup_0_7.eContents().get(0);
 		private final Keyword cNameReplaceAllReplacementKeyword_0_7_0_0 = (Keyword)cNameAssignment_0_7_0.eContents().get(0);
@@ -1184,7 +1220,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cReplaceIdIDENTTerminalRuleCall_0_7_2_0 = (RuleCall)cReplaceIdAssignment_0_7_2.eContents().get(0);
 		private final RuleCall cWSTerminalRuleCall_0_7_3 = (RuleCall)cGroup_0_7.eContents().get(3);
 		private final Assignment cReplacementAssignment_0_7_4 = (Assignment)cGroup_0_7.eContents().get(4);
-		private final RuleCall cReplacementPropertyValueParserRuleCall_0_7_4_0 = (RuleCall)cReplacementAssignment_0_7_4.eContents().get(0);
+		private final RuleCall cReplacementValueTypeParserRuleCall_0_7_4_0 = (RuleCall)cReplacementAssignment_0_7_4.eContents().get(0);
 		private final Assignment cNameAssignment_0_8 = (Assignment)cAlternatives_0.eContents().get(8);
 		private final Keyword cNameCompressMetaDirectivesKeyword_0_8_0 = (Keyword)cNameAssignment_0_8.eContents().get(0);
 		private final RuleCall cSEMICOLONTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
@@ -1192,20 +1228,20 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//Property:
 		//	(name="resolve-pojo-on" | name="resolve-pojo-off" | name="database-" database=DatabaseProperty | name="pojogen-"
 		//	pojogen=PojogenProperty | name="metagen-" metagen=MetagenProperty | name="daogen-" daogen=DaogenProperty |
-		//	name="replace-all-regex" WS+ replaceId=IDENT WS+ regex=PropertyValue | name="replace-all-replacement" WS+
-		//	replaceId=IDENT WS+ replacement=PropertyValue | name="compress-meta-directives") SEMICOLON;
+		//	name="replace-all-regex" WS+ replaceId=IDENT WS+ regex=ValueType | name="replace-all-replacement" WS+ replaceId=IDENT
+		//	WS+ replacement=ValueType | name="compress-meta-directives") SEMICOLON;
 		public ParserRule getRule() { return rule; }
 
 		//(name="resolve-pojo-on" | name="resolve-pojo-off" | name="database-" database=DatabaseProperty | name="pojogen-"
 		//pojogen=PojogenProperty | name="metagen-" metagen=MetagenProperty | name="daogen-" daogen=DaogenProperty |
-		//name="replace-all-regex" WS+ replaceId=IDENT WS+ regex=PropertyValue | name="replace-all-replacement" WS+
-		//replaceId=IDENT WS+ replacement=PropertyValue | name="compress-meta-directives") SEMICOLON
+		//name="replace-all-regex" WS+ replaceId=IDENT WS+ regex=ValueType | name="replace-all-replacement" WS+ replaceId=IDENT
+		//WS+ replacement=ValueType | name="compress-meta-directives") SEMICOLON
 		public Group getGroup() { return cGroup; }
 
 		//name="resolve-pojo-on" | name="resolve-pojo-off" | name="database-" database=DatabaseProperty | name="pojogen-"
 		//pojogen=PojogenProperty | name="metagen-" metagen=MetagenProperty | name="daogen-" daogen=DaogenProperty |
-		//name="replace-all-regex" WS+ replaceId=IDENT WS+ regex=PropertyValue | name="replace-all-replacement" WS+
-		//replaceId=IDENT WS+ replacement=PropertyValue | name="compress-meta-directives"
+		//name="replace-all-regex" WS+ replaceId=IDENT WS+ regex=ValueType | name="replace-all-replacement" WS+ replaceId=IDENT
+		//WS+ replacement=ValueType | name="compress-meta-directives"
 		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 
 		//name="resolve-pojo-on"
@@ -1280,7 +1316,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//DaogenProperty
 		public RuleCall getDaogenDaogenPropertyParserRuleCall_0_5_1_0() { return cDaogenDaogenPropertyParserRuleCall_0_5_1_0; }
 
-		//name="replace-all-regex" WS+ replaceId=IDENT WS+ regex=PropertyValue
+		//name="replace-all-regex" WS+ replaceId=IDENT WS+ regex=ValueType
 		public Group getGroup_0_6() { return cGroup_0_6; }
 
 		//name="replace-all-regex"
@@ -1301,13 +1337,13 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//WS+
 		public RuleCall getWSTerminalRuleCall_0_6_3() { return cWSTerminalRuleCall_0_6_3; }
 
-		//regex=PropertyValue
+		//regex=ValueType
 		public Assignment getRegexAssignment_0_6_4() { return cRegexAssignment_0_6_4; }
 
-		//PropertyValue
-		public RuleCall getRegexPropertyValueParserRuleCall_0_6_4_0() { return cRegexPropertyValueParserRuleCall_0_6_4_0; }
+		//ValueType
+		public RuleCall getRegexValueTypeParserRuleCall_0_6_4_0() { return cRegexValueTypeParserRuleCall_0_6_4_0; }
 
-		//name="replace-all-replacement" WS+ replaceId=IDENT WS+ replacement=PropertyValue
+		//name="replace-all-replacement" WS+ replaceId=IDENT WS+ replacement=ValueType
 		public Group getGroup_0_7() { return cGroup_0_7; }
 
 		//name="replace-all-replacement"
@@ -1328,11 +1364,11 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//WS+
 		public RuleCall getWSTerminalRuleCall_0_7_3() { return cWSTerminalRuleCall_0_7_3; }
 
-		//replacement=PropertyValue
+		//replacement=ValueType
 		public Assignment getReplacementAssignment_0_7_4() { return cReplacementAssignment_0_7_4; }
 
-		//PropertyValue
-		public RuleCall getReplacementPropertyValueParserRuleCall_0_7_4_0() { return cReplacementPropertyValueParserRuleCall_0_7_4_0; }
+		//ValueType
+		public RuleCall getReplacementValueTypeParserRuleCall_0_7_4_0() { return cReplacementValueTypeParserRuleCall_0_7_4_0; }
 
 		//name="compress-meta-directives"
 		public Assignment getNameAssignment_0_8() { return cNameAssignment_0_8; }
@@ -1356,19 +1392,19 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cNameHasUrlKeyword_2_0_0 = (Keyword)cNameAssignment_2_0.eContents().get(0);
 		private final RuleCall cWSTerminalRuleCall_2_1 = (RuleCall)cGroup_2.eContents().get(1);
 		private final Assignment cDbUrlAssignment_2_2 = (Assignment)cGroup_2.eContents().get(2);
-		private final RuleCall cDbUrlPropertyValueParserRuleCall_2_2_0 = (RuleCall)cDbUrlAssignment_2_2.eContents().get(0);
+		private final RuleCall cDbUrlValueTypeParserRuleCall_2_2_0 = (RuleCall)cDbUrlAssignment_2_2.eContents().get(0);
 		private final Group cGroup_3 = (Group)cAlternatives.eContents().get(3);
 		private final Assignment cNameAssignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
 		private final Keyword cNameLoginUsernameKeyword_3_0_0 = (Keyword)cNameAssignment_3_0.eContents().get(0);
 		private final RuleCall cWSTerminalRuleCall_3_1 = (RuleCall)cGroup_3.eContents().get(1);
 		private final Assignment cDbUsernameAssignment_3_2 = (Assignment)cGroup_3.eContents().get(2);
-		private final RuleCall cDbUsernamePropertyValueParserRuleCall_3_2_0 = (RuleCall)cDbUsernameAssignment_3_2.eContents().get(0);
+		private final RuleCall cDbUsernameValueTypeParserRuleCall_3_2_0 = (RuleCall)cDbUsernameAssignment_3_2.eContents().get(0);
 		private final Group cGroup_4 = (Group)cAlternatives.eContents().get(4);
 		private final Assignment cNameAssignment_4_0 = (Assignment)cGroup_4.eContents().get(0);
 		private final Keyword cNameLoginPasswordKeyword_4_0_0 = (Keyword)cNameAssignment_4_0.eContents().get(0);
 		private final RuleCall cWSTerminalRuleCall_4_1 = (RuleCall)cGroup_4.eContents().get(1);
 		private final Assignment cDbPasswordAssignment_4_2 = (Assignment)cGroup_4.eContents().get(2);
-		private final RuleCall cDbPasswordPropertyValueParserRuleCall_4_2_0 = (RuleCall)cDbPasswordAssignment_4_2.eContents().get(0);
+		private final RuleCall cDbPasswordValueTypeParserRuleCall_4_2_0 = (RuleCall)cDbPasswordAssignment_4_2.eContents().get(0);
 		private final Group cGroup_5 = (Group)cAlternatives.eContents().get(5);
 		private final Assignment cNameAssignment_5_0 = (Assignment)cGroup_5.eContents().get(0);
 		private final Keyword cNameInCatalogKeyword_5_0_0 = (Keyword)cNameAssignment_5_0.eContents().get(0);
@@ -1392,25 +1428,25 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final CrossReference cDbDriverxJvmTypeCrossReference_7_2_0_1_0 = (CrossReference)cDbDriverxAssignment_7_2_0_1.eContents().get(0);
 		private final RuleCall cDbDriverxJvmTypeQualifiedNameParserRuleCall_7_2_0_1_0_1 = (RuleCall)cDbDriverxJvmTypeCrossReference_7_2_0_1_0.eContents().get(1);
 		private final Assignment cDbDriverAssignment_7_2_1 = (Assignment)cAlternatives_7_2.eContents().get(1);
-		private final RuleCall cDbDriverPropertyValueParserRuleCall_7_2_1_0 = (RuleCall)cDbDriverAssignment_7_2_1.eContents().get(0);
+		private final RuleCall cDbDriverValueTypeParserRuleCall_7_2_1_0 = (RuleCall)cDbDriverAssignment_7_2_1.eContents().get(0);
 		private final Group cGroup_8 = (Group)cAlternatives.eContents().get(8);
 		private final Assignment cNameAssignment_8_0 = (Assignment)cGroup_8.eContents().get(0);
 		private final Keyword cNameDdlCreateKeyword_8_0_0 = (Keyword)cNameAssignment_8_0.eContents().get(0);
 		private final RuleCall cWSTerminalRuleCall_8_1 = (RuleCall)cGroup_8.eContents().get(1);
 		private final Assignment cDbExecuteBeforeAssignment_8_2 = (Assignment)cGroup_8.eContents().get(2);
-		private final RuleCall cDbExecuteBeforePropertyValueParserRuleCall_8_2_0 = (RuleCall)cDbExecuteBeforeAssignment_8_2.eContents().get(0);
+		private final RuleCall cDbExecuteBeforeValueTypeParserRuleCall_8_2_0 = (RuleCall)cDbExecuteBeforeAssignment_8_2.eContents().get(0);
 		private final Group cGroup_9 = (Group)cAlternatives.eContents().get(9);
 		private final Assignment cNameAssignment_9_0 = (Assignment)cGroup_9.eContents().get(0);
 		private final Keyword cNameDdlDropKeyword_9_0_0 = (Keyword)cNameAssignment_9_0.eContents().get(0);
 		private final RuleCall cWSTerminalRuleCall_9_1 = (RuleCall)cGroup_9.eContents().get(1);
 		private final Assignment cDbExecuteAfterAssignment_9_2 = (Assignment)cGroup_9.eContents().get(2);
-		private final RuleCall cDbExecuteAfterPropertyValueParserRuleCall_9_2_0 = (RuleCall)cDbExecuteAfterAssignment_9_2.eContents().get(0);
+		private final RuleCall cDbExecuteAfterValueTypeParserRuleCall_9_2_0 = (RuleCall)cDbExecuteAfterAssignment_9_2.eContents().get(0);
 		private final Group cGroup_10 = (Group)cAlternatives.eContents().get(10);
 		private final Assignment cNameAssignment_10_0 = (Assignment)cGroup_10.eContents().get(0);
 		private final Keyword cNameIndexTypesKeyword_10_0_0 = (Keyword)cNameAssignment_10_0.eContents().get(0);
 		private final RuleCall cWSTerminalRuleCall_10_1 = (RuleCall)cGroup_10.eContents().get(1);
 		private final Assignment cDbIndexTypesAssignment_10_2 = (Assignment)cGroup_10.eContents().get(2);
-		private final RuleCall cDbIndexTypesPropertyValueParserRuleCall_10_2_0 = (RuleCall)cDbIndexTypesAssignment_10_2.eContents().get(0);
+		private final RuleCall cDbIndexTypesValueTypeParserRuleCall_10_2_0 = (RuleCall)cDbIndexTypesAssignment_10_2.eContents().get(0);
 		private final Assignment cNameAssignment_11 = (Assignment)cAlternatives.eContents().get(11);
 		private final Keyword cNameSkipIndexesKeyword_11_0 = (Keyword)cNameAssignment_11.eContents().get(0);
 		private final Assignment cNameAssignment_12 = (Assignment)cAlternatives.eContents().get(12);
@@ -1459,24 +1495,24 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		////	LBRACE WS* name=IDENT WS+ EQUALS WS+ value=(IDENT | NUMBER) WS* RBRACE
 		////;
 		//DatabaseProperty:
-		//	name="is-online" | name="is-offline" | name="has-url" WS+ dbUrl=PropertyValue | name="login-username" WS+
-		//	dbUsername=PropertyValue | name="login-password" WS+ dbPassword=PropertyValue | name="in-catalog" WS+
+		//	name="is-online" | name="is-offline" | name="has-url" WS+ dbUrl=ValueType | name="login-username" WS+
+		//	dbUsername=ValueType | name="login-password" WS+ dbPassword=ValueType | name="in-catalog" WS+
 		//	dbCatalog=DatabaseCatalogAssignement | name="active-schema" WS+ dbSchema=DatabaseSchemaAssignement |
-		//	name="jdbc-driver" WS+ (COLON dbDriverx=[jvmTypes::JvmType|QualifiedName] | dbDriver=PropertyValue) |
-		//	name="ddl-create" WS+ dbExecuteBefore=PropertyValue | name="ddl-drop" WS+ dbExecuteAfter=PropertyValue |
-		//	name="index-types" WS+ dbIndexTypes=PropertyValue | name="skip-indexes" | name="skip-functions-procedures" |
-		//	name="skip-check-constraints" | name="is-of-type" WS+ dbType=DatabaseTypeAssignement | name="show-database-info" WS+
+		//	name="jdbc-driver" WS+ (COLON dbDriverx=[jvmTypes::JvmType|QualifiedName] | dbDriver=ValueType) | name="ddl-create"
+		//	WS+ dbExecuteBefore=ValueType | name="ddl-drop" WS+ dbExecuteAfter=ValueType | name="index-types" WS+
+		//	dbIndexTypes=ValueType | name="skip-indexes" | name="skip-functions-procedures" | name="skip-check-constraints" |
+		//	name="is-of-type" WS+ dbType=DatabaseTypeAssignement | name="show-database-info" WS+
 		//	dbMetaInfo=DatabaseMetaInfoAssignement | name="show-driver-info" WS+ dbDriverInfo=DriverMetaInfoAssignement |
 		//	name="show-driver-output" (WS+ dbMethodsCalls+=DriverMethodOutputAssignement)+ | name="debug-level" WS+
 		//	debug=DebugLevelAssignement | name="take-comments" | name="lowercase-names" | name="uppercase-names";
 		public ParserRule getRule() { return rule; }
 
-		//name="is-online" | name="is-offline" | name="has-url" WS+ dbUrl=PropertyValue | name="login-username" WS+
-		//dbUsername=PropertyValue | name="login-password" WS+ dbPassword=PropertyValue | name="in-catalog" WS+
+		//name="is-online" | name="is-offline" | name="has-url" WS+ dbUrl=ValueType | name="login-username" WS+
+		//dbUsername=ValueType | name="login-password" WS+ dbPassword=ValueType | name="in-catalog" WS+
 		//dbCatalog=DatabaseCatalogAssignement | name="active-schema" WS+ dbSchema=DatabaseSchemaAssignement | name="jdbc-driver"
-		//WS+ (COLON dbDriverx=[jvmTypes::JvmType|QualifiedName] | dbDriver=PropertyValue) | name="ddl-create" WS+
-		//dbExecuteBefore=PropertyValue | name="ddl-drop" WS+ dbExecuteAfter=PropertyValue | name="index-types" WS+
-		//dbIndexTypes=PropertyValue | name="skip-indexes" | name="skip-functions-procedures" | name="skip-check-constraints" |
+		//WS+ (COLON dbDriverx=[jvmTypes::JvmType|QualifiedName] | dbDriver=ValueType) | name="ddl-create" WS+
+		//dbExecuteBefore=ValueType | name="ddl-drop" WS+ dbExecuteAfter=ValueType | name="index-types" WS+
+		//dbIndexTypes=ValueType | name="skip-indexes" | name="skip-functions-procedures" | name="skip-check-constraints" |
 		//name="is-of-type" WS+ dbType=DatabaseTypeAssignement | name="show-database-info" WS+
 		//dbMetaInfo=DatabaseMetaInfoAssignement | name="show-driver-info" WS+ dbDriverInfo=DriverMetaInfoAssignement |
 		//name="show-driver-output" (WS+ dbMethodsCalls+=DriverMethodOutputAssignement)+ | name="debug-level" WS+
@@ -1495,7 +1531,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//"is-offline"
 		public Keyword getNameIsOfflineKeyword_1_0() { return cNameIsOfflineKeyword_1_0; }
 
-		//name="has-url" WS+ dbUrl=PropertyValue
+		//name="has-url" WS+ dbUrl=ValueType
 		public Group getGroup_2() { return cGroup_2; }
 
 		//name="has-url"
@@ -1507,13 +1543,13 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//WS+
 		public RuleCall getWSTerminalRuleCall_2_1() { return cWSTerminalRuleCall_2_1; }
 
-		//dbUrl=PropertyValue
+		//dbUrl=ValueType
 		public Assignment getDbUrlAssignment_2_2() { return cDbUrlAssignment_2_2; }
 
-		//PropertyValue
-		public RuleCall getDbUrlPropertyValueParserRuleCall_2_2_0() { return cDbUrlPropertyValueParserRuleCall_2_2_0; }
+		//ValueType
+		public RuleCall getDbUrlValueTypeParserRuleCall_2_2_0() { return cDbUrlValueTypeParserRuleCall_2_2_0; }
 
-		//name="login-username" WS+ dbUsername=PropertyValue
+		//name="login-username" WS+ dbUsername=ValueType
 		public Group getGroup_3() { return cGroup_3; }
 
 		//name="login-username"
@@ -1525,13 +1561,13 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//WS+
 		public RuleCall getWSTerminalRuleCall_3_1() { return cWSTerminalRuleCall_3_1; }
 
-		//dbUsername=PropertyValue
+		//dbUsername=ValueType
 		public Assignment getDbUsernameAssignment_3_2() { return cDbUsernameAssignment_3_2; }
 
-		//PropertyValue
-		public RuleCall getDbUsernamePropertyValueParserRuleCall_3_2_0() { return cDbUsernamePropertyValueParserRuleCall_3_2_0; }
+		//ValueType
+		public RuleCall getDbUsernameValueTypeParserRuleCall_3_2_0() { return cDbUsernameValueTypeParserRuleCall_3_2_0; }
 
-		//name="login-password" WS+ dbPassword=PropertyValue
+		//name="login-password" WS+ dbPassword=ValueType
 		public Group getGroup_4() { return cGroup_4; }
 
 		//name="login-password"
@@ -1543,11 +1579,11 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//WS+
 		public RuleCall getWSTerminalRuleCall_4_1() { return cWSTerminalRuleCall_4_1; }
 
-		//dbPassword=PropertyValue
+		//dbPassword=ValueType
 		public Assignment getDbPasswordAssignment_4_2() { return cDbPasswordAssignment_4_2; }
 
-		//PropertyValue
-		public RuleCall getDbPasswordPropertyValueParserRuleCall_4_2_0() { return cDbPasswordPropertyValueParserRuleCall_4_2_0; }
+		//ValueType
+		public RuleCall getDbPasswordValueTypeParserRuleCall_4_2_0() { return cDbPasswordValueTypeParserRuleCall_4_2_0; }
 
 		//name="in-catalog" WS+ dbCatalog=DatabaseCatalogAssignement
 		public Group getGroup_5() { return cGroup_5; }
@@ -1585,7 +1621,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//DatabaseSchemaAssignement
 		public RuleCall getDbSchemaDatabaseSchemaAssignementParserRuleCall_6_2_0() { return cDbSchemaDatabaseSchemaAssignementParserRuleCall_6_2_0; }
 
-		//name="jdbc-driver" WS+ (COLON dbDriverx=[jvmTypes::JvmType|QualifiedName] | dbDriver=PropertyValue)
+		//name="jdbc-driver" WS+ (COLON dbDriverx=[jvmTypes::JvmType|QualifiedName] | dbDriver=ValueType)
 		public Group getGroup_7() { return cGroup_7; }
 
 		//name="jdbc-driver"
@@ -1597,7 +1633,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//WS+
 		public RuleCall getWSTerminalRuleCall_7_1() { return cWSTerminalRuleCall_7_1; }
 
-		//=> COLON dbDriverx=[jvmTypes::JvmType|QualifiedName] | dbDriver=PropertyValue
+		//=> COLON dbDriverx=[jvmTypes::JvmType|QualifiedName] | dbDriver=ValueType
 		public Alternatives getAlternatives_7_2() { return cAlternatives_7_2; }
 
 		//=> COLON dbDriverx=[jvmTypes::JvmType|QualifiedName]
@@ -1615,13 +1651,13 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//QualifiedName
 		public RuleCall getDbDriverxJvmTypeQualifiedNameParserRuleCall_7_2_0_1_0_1() { return cDbDriverxJvmTypeQualifiedNameParserRuleCall_7_2_0_1_0_1; }
 
-		//dbDriver=PropertyValue
+		//dbDriver=ValueType
 		public Assignment getDbDriverAssignment_7_2_1() { return cDbDriverAssignment_7_2_1; }
 
-		//PropertyValue
-		public RuleCall getDbDriverPropertyValueParserRuleCall_7_2_1_0() { return cDbDriverPropertyValueParserRuleCall_7_2_1_0; }
+		//ValueType
+		public RuleCall getDbDriverValueTypeParserRuleCall_7_2_1_0() { return cDbDriverValueTypeParserRuleCall_7_2_1_0; }
 
-		//name="ddl-create" WS+ dbExecuteBefore=PropertyValue
+		//name="ddl-create" WS+ dbExecuteBefore=ValueType
 		public Group getGroup_8() { return cGroup_8; }
 
 		//name="ddl-create"
@@ -1633,13 +1669,13 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//WS+
 		public RuleCall getWSTerminalRuleCall_8_1() { return cWSTerminalRuleCall_8_1; }
 
-		//dbExecuteBefore=PropertyValue
+		//dbExecuteBefore=ValueType
 		public Assignment getDbExecuteBeforeAssignment_8_2() { return cDbExecuteBeforeAssignment_8_2; }
 
-		//PropertyValue
-		public RuleCall getDbExecuteBeforePropertyValueParserRuleCall_8_2_0() { return cDbExecuteBeforePropertyValueParserRuleCall_8_2_0; }
+		//ValueType
+		public RuleCall getDbExecuteBeforeValueTypeParserRuleCall_8_2_0() { return cDbExecuteBeforeValueTypeParserRuleCall_8_2_0; }
 
-		//name="ddl-drop" WS+ dbExecuteAfter=PropertyValue
+		//name="ddl-drop" WS+ dbExecuteAfter=ValueType
 		public Group getGroup_9() { return cGroup_9; }
 
 		//name="ddl-drop"
@@ -1651,13 +1687,13 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//WS+
 		public RuleCall getWSTerminalRuleCall_9_1() { return cWSTerminalRuleCall_9_1; }
 
-		//dbExecuteAfter=PropertyValue
+		//dbExecuteAfter=ValueType
 		public Assignment getDbExecuteAfterAssignment_9_2() { return cDbExecuteAfterAssignment_9_2; }
 
-		//PropertyValue
-		public RuleCall getDbExecuteAfterPropertyValueParserRuleCall_9_2_0() { return cDbExecuteAfterPropertyValueParserRuleCall_9_2_0; }
+		//ValueType
+		public RuleCall getDbExecuteAfterValueTypeParserRuleCall_9_2_0() { return cDbExecuteAfterValueTypeParserRuleCall_9_2_0; }
 
-		//name="index-types" WS+ dbIndexTypes=PropertyValue
+		//name="index-types" WS+ dbIndexTypes=ValueType
 		public Group getGroup_10() { return cGroup_10; }
 
 		//name="index-types"
@@ -1669,11 +1705,11 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//WS+
 		public RuleCall getWSTerminalRuleCall_10_1() { return cWSTerminalRuleCall_10_1; }
 
-		//dbIndexTypes=PropertyValue
+		//dbIndexTypes=ValueType
 		public Assignment getDbIndexTypesAssignment_10_2() { return cDbIndexTypesAssignment_10_2; }
 
-		//PropertyValue
-		public RuleCall getDbIndexTypesPropertyValueParserRuleCall_10_2_0() { return cDbIndexTypesPropertyValueParserRuleCall_10_2_0; }
+		//ValueType
+		public RuleCall getDbIndexTypesValueTypeParserRuleCall_10_2_0() { return cDbIndexTypesValueTypeParserRuleCall_10_2_0; }
 
 		//name="skip-indexes"
 		public Assignment getNameAssignment_11() { return cNameAssignment_11; }
@@ -2136,13 +2172,13 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cNameActiveFilterKeyword_39_0_0 = (Keyword)cNameAssignment_39_0.eContents().get(0);
 		private final RuleCall cWSTerminalRuleCall_39_1 = (RuleCall)cGroup_39.eContents().get(1);
 		private final Assignment cActiveFilterAssignment_39_2 = (Assignment)cGroup_39.eContents().get(2);
-		private final RuleCall cActiveFilterPropertyValueParserRuleCall_39_2_0 = (RuleCall)cActiveFilterAssignment_39_2.eContents().get(0);
+		private final RuleCall cActiveFilterValueTypeParserRuleCall_39_2_0 = (RuleCall)cActiveFilterAssignment_39_2.eContents().get(0);
 		private final Group cGroup_40 = (Group)cAlternatives.eContents().get(40);
 		private final Assignment cNameAssignment_40_0 = (Assignment)cGroup_40.eContents().get(0);
 		private final Keyword cNamePackageKeyword_40_0_0 = (Keyword)cNameAssignment_40_0.eContents().get(0);
 		private final RuleCall cWSTerminalRuleCall_40_1 = (RuleCall)cGroup_40.eContents().get(1);
 		private final Assignment cPckgAssignment_40_2 = (Assignment)cGroup_40.eContents().get(2);
-		private final RuleCall cPckgPropertyValueParserRuleCall_40_2_0 = (RuleCall)cPckgAssignment_40_2.eContents().get(0);
+		private final RuleCall cPckgQualifiedNameParserRuleCall_40_2_0 = (RuleCall)cPckgAssignment_40_2.eContents().get(0);
 		private final Group cGroup_41 = (Group)cAlternatives.eContents().get(41);
 		private final Assignment cNameAssignment_41_0 = (Assignment)cGroup_41.eContents().get(0);
 		private final Keyword cNameEnumForCheckConstraintsKeyword_41_0_0 = (Keyword)cNameAssignment_41_0.eContents().get(0);
@@ -2182,7 +2218,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//	name="version-column" WS+ version=IDENT (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)? |
 		//	name="debug-level" WS+ debug=DebugLevelAssignement | name="pojos-for-procedures" (WS+
 		//	procPojos+=ProcedurePojoAssignement)+ | name="pojos-for-functions" (WS+ funPojos+=FunctionPojoAssignement)+ |
-		//	name="active-filter" WS+ activeFilter=PropertyValue | name="package" WS+ pckg=PropertyValue |
+		//	name="active-filter" WS+ activeFilter=ValueType | name="package" WS+ pckg=QualifiedName |
 		//	name="enum-for-check-constraints" WS+ enumName=IDENT (WS+ dbCheckConstraints+=IDENT)+;
 		public ParserRule getRule() { return rule; }
 
@@ -2213,7 +2249,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//name="version-column" WS+ version=IDENT (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)? |
 		//name="debug-level" WS+ debug=DebugLevelAssignement | name="pojos-for-procedures" (WS+
 		//procPojos+=ProcedurePojoAssignement)+ | name="pojos-for-functions" (WS+ funPojos+=FunctionPojoAssignement)+ |
-		//name="active-filter" WS+ activeFilter=PropertyValue | name="package" WS+ pckg=PropertyValue |
+		//name="active-filter" WS+ activeFilter=ValueType | name="package" WS+ pckg=QualifiedName |
 		//name="enum-for-check-constraints" WS+ enumName=IDENT (WS+ dbCheckConstraints+=IDENT)+
 		public Alternatives getAlternatives() { return cAlternatives; }
 
@@ -3186,7 +3222,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//FunctionPojoAssignement
 		public RuleCall getFunPojosFunctionPojoAssignementParserRuleCall_38_1_1_0() { return cFunPojosFunctionPojoAssignementParserRuleCall_38_1_1_0; }
 
-		//name="active-filter" WS+ activeFilter=PropertyValue
+		//name="active-filter" WS+ activeFilter=ValueType
 		public Group getGroup_39() { return cGroup_39; }
 
 		//name="active-filter"
@@ -3198,13 +3234,13 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//WS+
 		public RuleCall getWSTerminalRuleCall_39_1() { return cWSTerminalRuleCall_39_1; }
 
-		//activeFilter=PropertyValue
+		//activeFilter=ValueType
 		public Assignment getActiveFilterAssignment_39_2() { return cActiveFilterAssignment_39_2; }
 
-		//PropertyValue
-		public RuleCall getActiveFilterPropertyValueParserRuleCall_39_2_0() { return cActiveFilterPropertyValueParserRuleCall_39_2_0; }
+		//ValueType
+		public RuleCall getActiveFilterValueTypeParserRuleCall_39_2_0() { return cActiveFilterValueTypeParserRuleCall_39_2_0; }
 
-		//name="package" WS+ pckg=PropertyValue
+		//name="package" WS+ pckg=QualifiedName
 		public Group getGroup_40() { return cGroup_40; }
 
 		//name="package"
@@ -3216,11 +3252,11 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//WS+
 		public RuleCall getWSTerminalRuleCall_40_1() { return cWSTerminalRuleCall_40_1; }
 
-		//pckg=PropertyValue
+		//pckg=QualifiedName
 		public Assignment getPckgAssignment_40_2() { return cPckgAssignment_40_2; }
 
-		//PropertyValue
-		public RuleCall getPckgPropertyValueParserRuleCall_40_2_0() { return cPckgPropertyValueParserRuleCall_40_2_0; }
+		//QualifiedName
+		public RuleCall getPckgQualifiedNameParserRuleCall_40_2_0() { return cPckgQualifiedNameParserRuleCall_40_2_0; }
 
 		//name="enum-for-check-constraints" WS+ enumName=IDENT (WS+ dbCheckConstraints+=IDENT)+
 		public Group getGroup_41() { return cGroup_41; }
@@ -3484,7 +3520,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cNameActiveFilterKeyword_20_0_0 = (Keyword)cNameAssignment_20_0.eContents().get(0);
 		private final RuleCall cWSTerminalRuleCall_20_1 = (RuleCall)cGroup_20.eContents().get(1);
 		private final Assignment cActiveFilterAssignment_20_2 = (Assignment)cGroup_20.eContents().get(2);
-		private final RuleCall cActiveFilterPropertyValueParserRuleCall_20_2_0 = (RuleCall)cActiveFilterAssignment_20_2.eContents().get(0);
+		private final RuleCall cActiveFilterValueTypeParserRuleCall_20_2_0 = (RuleCall)cActiveFilterAssignment_20_2.eContents().get(0);
 		
 		//MetagenProperty:
 		//	name="global-sequence" WS+ sequence=IDENT type=IDENT? (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+
@@ -3499,7 +3535,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//	name="function-result-set" WS+ dbFunction=IDENT WS+ dbTable=IDENT | name="procedure-result-set" WS+ dbProcedure=IDENT
 		//	WS+ dbTable=IDENT | name="debug-level" WS+ debug=DebugLevelAssignement | name="generate-operators" |
 		//	name="optimize-insert" (WS+ dbTables+=IDENT)* | name="optional-features" WS+ dbStatement=IDENT (WS+
-		//	optionalFeatures+=IDENT)+ | name="active-filter" WS+ activeFilter=PropertyValue;
+		//	optionalFeatures+=IDENT)+ | name="active-filter" WS+ activeFilter=ValueType;
 		public ParserRule getRule() { return rule; }
 
 		//name="global-sequence" WS+ sequence=IDENT type=IDENT? (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+
@@ -3514,7 +3550,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//name="function-result-set" WS+ dbFunction=IDENT WS+ dbTable=IDENT | name="procedure-result-set" WS+ dbProcedure=IDENT
 		//WS+ dbTable=IDENT | name="debug-level" WS+ debug=DebugLevelAssignement | name="generate-operators" |
 		//name="optimize-insert" (WS+ dbTables+=IDENT)* | name="optional-features" WS+ dbStatement=IDENT (WS+
-		//optionalFeatures+=IDENT)+ | name="active-filter" WS+ activeFilter=PropertyValue
+		//optionalFeatures+=IDENT)+ | name="active-filter" WS+ activeFilter=ValueType
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//name="global-sequence" WS+ sequence=IDENT type=IDENT? (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+
@@ -4044,7 +4080,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//IDENT
 		public RuleCall getOptionalFeaturesIDENTTerminalRuleCall_19_3_1_0() { return cOptionalFeaturesIDENTTerminalRuleCall_19_3_1_0; }
 
-		//name="active-filter" WS+ activeFilter=PropertyValue
+		//name="active-filter" WS+ activeFilter=ValueType
 		public Group getGroup_20() { return cGroup_20; }
 
 		//name="active-filter"
@@ -4056,11 +4092,11 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//WS+
 		public RuleCall getWSTerminalRuleCall_20_1() { return cWSTerminalRuleCall_20_1; }
 
-		//activeFilter=PropertyValue
+		//activeFilter=ValueType
 		public Assignment getActiveFilterAssignment_20_2() { return cActiveFilterAssignment_20_2; }
 
-		//PropertyValue
-		public RuleCall getActiveFilterPropertyValueParserRuleCall_20_2_0() { return cActiveFilterPropertyValueParserRuleCall_20_2_0; }
+		//ValueType
+		public RuleCall getActiveFilterValueTypeParserRuleCall_20_2_0() { return cActiveFilterValueTypeParserRuleCall_20_2_0; }
 	}
 
 	public class DaogenPropertyElements extends AbstractParserRuleElementFinder {
@@ -4126,13 +4162,13 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cNameActiveFilterKeyword_9_0_0 = (Keyword)cNameAssignment_9_0.eContents().get(0);
 		private final RuleCall cWSTerminalRuleCall_9_1 = (RuleCall)cGroup_9.eContents().get(1);
 		private final Assignment cActiveFilterAssignment_9_2 = (Assignment)cGroup_9.eContents().get(2);
-		private final RuleCall cActiveFilterPropertyValueParserRuleCall_9_2_0 = (RuleCall)cActiveFilterAssignment_9_2.eContents().get(0);
+		private final RuleCall cActiveFilterValueTypeParserRuleCall_9_2_0 = (RuleCall)cActiveFilterAssignment_9_2.eContents().get(0);
 		private final Group cGroup_10 = (Group)cAlternatives.eContents().get(10);
 		private final Assignment cNameAssignment_10_0 = (Assignment)cGroup_10.eContents().get(0);
 		private final Keyword cNamePackageKeyword_10_0_0 = (Keyword)cNameAssignment_10_0.eContents().get(0);
 		private final RuleCall cWSTerminalRuleCall_10_1 = (RuleCall)cGroup_10.eContents().get(1);
 		private final Assignment cPckgAssignment_10_2 = (Assignment)cGroup_10.eContents().get(2);
-		private final RuleCall cPckgPropertyValueParserRuleCall_10_2_0 = (RuleCall)cPckgAssignment_10_2.eContents().get(0);
+		private final RuleCall cPckgQualifiedNameParserRuleCall_10_2_0 = (RuleCall)cPckgAssignment_10_2.eContents().get(0);
 		
 		//DaogenProperty:
 		//	name="ignore-tables" (WS+ dbTables+=IDENT)+ | name="only-tables" (WS+ dbTables+=IDENT)* | name="implements-interfaces"
@@ -4140,8 +4176,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//	name="implements-interfaces-generics" WS+ toImplementsGenerics=ImplementsAssignementGenerics |
 		//	name="extends-class-generics" WS+ toExtendsGenerics=ExtendsAssignementGenerics | name="make-it-final" |
 		//	name="function-result" WS+ dbFunction=IDENT WS+ resultType=PojoType | name="debug-level" WS+
-		//	debug=DebugLevelAssignement | name="active-filter" WS+ activeFilter=PropertyValue | name="package" WS+
-		//	pckg=PropertyValue;
+		//	debug=DebugLevelAssignement | name="active-filter" WS+ activeFilter=ValueType | name="package" WS+ pckg=QualifiedName;
 		public ParserRule getRule() { return rule; }
 
 		//name="ignore-tables" (WS+ dbTables+=IDENT)+ | name="only-tables" (WS+ dbTables+=IDENT)* | name="implements-interfaces"
@@ -4149,8 +4184,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//name="implements-interfaces-generics" WS+ toImplementsGenerics=ImplementsAssignementGenerics |
 		//name="extends-class-generics" WS+ toExtendsGenerics=ExtendsAssignementGenerics | name="make-it-final" |
 		//name="function-result" WS+ dbFunction=IDENT WS+ resultType=PojoType | name="debug-level" WS+
-		//debug=DebugLevelAssignement | name="active-filter" WS+ activeFilter=PropertyValue | name="package" WS+
-		//pckg=PropertyValue
+		//debug=DebugLevelAssignement | name="active-filter" WS+ activeFilter=ValueType | name="package" WS+ pckg=QualifiedName
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//name="ignore-tables" (WS+ dbTables+=IDENT)+
@@ -4318,7 +4352,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//DebugLevelAssignement
 		public RuleCall getDebugDebugLevelAssignementParserRuleCall_8_2_0() { return cDebugDebugLevelAssignementParserRuleCall_8_2_0; }
 
-		//name="active-filter" WS+ activeFilter=PropertyValue
+		//name="active-filter" WS+ activeFilter=ValueType
 		public Group getGroup_9() { return cGroup_9; }
 
 		//name="active-filter"
@@ -4330,13 +4364,13 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//WS+
 		public RuleCall getWSTerminalRuleCall_9_1() { return cWSTerminalRuleCall_9_1; }
 
-		//activeFilter=PropertyValue
+		//activeFilter=ValueType
 		public Assignment getActiveFilterAssignment_9_2() { return cActiveFilterAssignment_9_2; }
 
-		//PropertyValue
-		public RuleCall getActiveFilterPropertyValueParserRuleCall_9_2_0() { return cActiveFilterPropertyValueParserRuleCall_9_2_0; }
+		//ValueType
+		public RuleCall getActiveFilterValueTypeParserRuleCall_9_2_0() { return cActiveFilterValueTypeParserRuleCall_9_2_0; }
 
-		//name="package" WS+ pckg=PropertyValue
+		//name="package" WS+ pckg=QualifiedName
 		public Group getGroup_10() { return cGroup_10; }
 
 		//name="package"
@@ -4348,322 +4382,11 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//WS+
 		public RuleCall getWSTerminalRuleCall_10_1() { return cWSTerminalRuleCall_10_1; }
 
-		//pckg=PropertyValue
+		//pckg=QualifiedName
 		public Assignment getPckgAssignment_10_2() { return cPckgAssignment_10_2; }
 
-		//PropertyValue
-		public RuleCall getPckgPropertyValueParserRuleCall_10_2_0() { return cPckgPropertyValueParserRuleCall_10_2_0; }
-	}
-
-	public class PropertyValueElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PropertyValue");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Alternatives cAlternatives_0_0 = (Alternatives)cGroup_0.eContents().get(0);
-		private final RuleCall cRESTTerminalRuleCall_0_0_0 = (RuleCall)cAlternatives_0_0.eContents().get(0);
-		private final RuleCall cIDENT_DOTTerminalRuleCall_0_0_1 = (RuleCall)cAlternatives_0_0.eContents().get(1);
-		private final RuleCall cIDENTTerminalRuleCall_0_0_2 = (RuleCall)cAlternatives_0_0.eContents().get(2);
-		private final RuleCall cNUMBERTerminalRuleCall_0_0_3 = (RuleCall)cAlternatives_0_0.eContents().get(3);
-		private final RuleCall cCOLONTerminalRuleCall_0_0_4 = (RuleCall)cAlternatives_0_0.eContents().get(4);
-		private final RuleCall cSTRINGTerminalRuleCall_0_0_5 = (RuleCall)cAlternatives_0_0.eContents().get(5);
-		private final RuleCall cCOMMATerminalRuleCall_0_0_6 = (RuleCall)cAlternatives_0_0.eContents().get(6);
-		private final RuleCall cMINUSTerminalRuleCall_0_0_7 = (RuleCall)cAlternatives_0_0.eContents().get(7);
-		private final RuleCall cPLUSTerminalRuleCall_0_0_8 = (RuleCall)cAlternatives_0_0.eContents().get(8);
-		private final RuleCall cLPARENTerminalRuleCall_0_0_9 = (RuleCall)cAlternatives_0_0.eContents().get(9);
-		private final RuleCall cRPARENTerminalRuleCall_0_0_10 = (RuleCall)cAlternatives_0_0.eContents().get(10);
-		private final RuleCall cLBRACETerminalRuleCall_0_0_11 = (RuleCall)cAlternatives_0_0.eContents().get(11);
-		private final RuleCall cRBRACETerminalRuleCall_0_0_12 = (RuleCall)cAlternatives_0_0.eContents().get(12);
-		private final RuleCall cQUESTITerminalRuleCall_0_0_13 = (RuleCall)cAlternatives_0_0.eContents().get(13);
-		private final RuleCall cNOTTerminalRuleCall_0_0_14 = (RuleCall)cAlternatives_0_0.eContents().get(14);
-		private final RuleCall cBANDTerminalRuleCall_0_0_15 = (RuleCall)cAlternatives_0_0.eContents().get(15);
-		private final RuleCall cBORTerminalRuleCall_0_0_16 = (RuleCall)cAlternatives_0_0.eContents().get(16);
-		private final RuleCall cHASHTerminalRuleCall_0_0_17 = (RuleCall)cAlternatives_0_0.eContents().get(17);
-		private final RuleCall cATTerminalRuleCall_0_0_18 = (RuleCall)cAlternatives_0_0.eContents().get(18);
-		private final RuleCall cCARETTerminalRuleCall_0_0_19 = (RuleCall)cAlternatives_0_0.eContents().get(19);
-		private final RuleCall cEQUALSTerminalRuleCall_0_0_20 = (RuleCall)cAlternatives_0_0.eContents().get(20);
-		private final RuleCall cLESS_THANTerminalRuleCall_0_0_21 = (RuleCall)cAlternatives_0_0.eContents().get(21);
-		private final RuleCall cMORE_THANTerminalRuleCall_0_0_22 = (RuleCall)cAlternatives_0_0.eContents().get(22);
-		private final RuleCall cPERCENTTerminalRuleCall_0_0_23 = (RuleCall)cAlternatives_0_0.eContents().get(23);
-		private final RuleCall cDOTTerminalRuleCall_0_0_24 = (RuleCall)cAlternatives_0_0.eContents().get(24);
-		private final RuleCall cANDTerminalRuleCall_0_0_25 = (RuleCall)cAlternatives_0_0.eContents().get(25);
-		private final RuleCall cORTerminalRuleCall_0_0_26 = (RuleCall)cAlternatives_0_0.eContents().get(26);
-		private final RuleCall cESC_CHARTerminalRuleCall_0_0_27 = (RuleCall)cAlternatives_0_0.eContents().get(27);
-		private final RuleCall cON_OFFTerminalRuleCall_0_0_28 = (RuleCall)cAlternatives_0_0.eContents().get(28);
-		private final RuleCall cSTATEMENT_TYPETerminalRuleCall_0_0_29 = (RuleCall)cAlternatives_0_0.eContents().get(29);
-		private final RuleCall cMAPPING_TYPETerminalRuleCall_0_0_30 = (RuleCall)cAlternatives_0_0.eContents().get(30);
-		private final RuleCall cOPTION_TYPETerminalRuleCall_0_0_31 = (RuleCall)cAlternatives_0_0.eContents().get(31);
-		private final Group cGroup_0_1 = (Group)cGroup_0.eContents().get(1);
-		private final Alternatives cAlternatives_0_1_0 = (Alternatives)cGroup_0_1.eContents().get(0);
-		private final RuleCall cRESTTerminalRuleCall_0_1_0_0 = (RuleCall)cAlternatives_0_1_0.eContents().get(0);
-		private final RuleCall cIDENT_DOTTerminalRuleCall_0_1_0_1 = (RuleCall)cAlternatives_0_1_0.eContents().get(1);
-		private final RuleCall cIDENTTerminalRuleCall_0_1_0_2 = (RuleCall)cAlternatives_0_1_0.eContents().get(2);
-		private final RuleCall cNUMBERTerminalRuleCall_0_1_0_3 = (RuleCall)cAlternatives_0_1_0.eContents().get(3);
-		private final RuleCall cWSTerminalRuleCall_0_1_0_4 = (RuleCall)cAlternatives_0_1_0.eContents().get(4);
-		private final RuleCall cCOLONTerminalRuleCall_0_1_0_5 = (RuleCall)cAlternatives_0_1_0.eContents().get(5);
-		private final RuleCall cSTRINGTerminalRuleCall_0_1_0_6 = (RuleCall)cAlternatives_0_1_0.eContents().get(6);
-		private final RuleCall cCOMMATerminalRuleCall_0_1_0_7 = (RuleCall)cAlternatives_0_1_0.eContents().get(7);
-		private final RuleCall cMINUSTerminalRuleCall_0_1_0_8 = (RuleCall)cAlternatives_0_1_0.eContents().get(8);
-		private final RuleCall cPLUSTerminalRuleCall_0_1_0_9 = (RuleCall)cAlternatives_0_1_0.eContents().get(9);
-		private final RuleCall cLPARENTerminalRuleCall_0_1_0_10 = (RuleCall)cAlternatives_0_1_0.eContents().get(10);
-		private final RuleCall cRPARENTerminalRuleCall_0_1_0_11 = (RuleCall)cAlternatives_0_1_0.eContents().get(11);
-		private final RuleCall cLBRACETerminalRuleCall_0_1_0_12 = (RuleCall)cAlternatives_0_1_0.eContents().get(12);
-		private final RuleCall cRBRACETerminalRuleCall_0_1_0_13 = (RuleCall)cAlternatives_0_1_0.eContents().get(13);
-		private final RuleCall cQUESTITerminalRuleCall_0_1_0_14 = (RuleCall)cAlternatives_0_1_0.eContents().get(14);
-		private final RuleCall cNOTTerminalRuleCall_0_1_0_15 = (RuleCall)cAlternatives_0_1_0.eContents().get(15);
-		private final RuleCall cBANDTerminalRuleCall_0_1_0_16 = (RuleCall)cAlternatives_0_1_0.eContents().get(16);
-		private final RuleCall cBORTerminalRuleCall_0_1_0_17 = (RuleCall)cAlternatives_0_1_0.eContents().get(17);
-		private final RuleCall cHASHTerminalRuleCall_0_1_0_18 = (RuleCall)cAlternatives_0_1_0.eContents().get(18);
-		private final RuleCall cATTerminalRuleCall_0_1_0_19 = (RuleCall)cAlternatives_0_1_0.eContents().get(19);
-		private final RuleCall cCARETTerminalRuleCall_0_1_0_20 = (RuleCall)cAlternatives_0_1_0.eContents().get(20);
-		private final RuleCall cEQUALSTerminalRuleCall_0_1_0_21 = (RuleCall)cAlternatives_0_1_0.eContents().get(21);
-		private final RuleCall cLESS_THANTerminalRuleCall_0_1_0_22 = (RuleCall)cAlternatives_0_1_0.eContents().get(22);
-		private final RuleCall cMORE_THANTerminalRuleCall_0_1_0_23 = (RuleCall)cAlternatives_0_1_0.eContents().get(23);
-		private final RuleCall cPERCENTTerminalRuleCall_0_1_0_24 = (RuleCall)cAlternatives_0_1_0.eContents().get(24);
-		private final RuleCall cDOTTerminalRuleCall_0_1_0_25 = (RuleCall)cAlternatives_0_1_0.eContents().get(25);
-		private final RuleCall cANDTerminalRuleCall_0_1_0_26 = (RuleCall)cAlternatives_0_1_0.eContents().get(26);
-		private final RuleCall cORTerminalRuleCall_0_1_0_27 = (RuleCall)cAlternatives_0_1_0.eContents().get(27);
-		private final RuleCall cESC_CHARTerminalRuleCall_0_1_0_28 = (RuleCall)cAlternatives_0_1_0.eContents().get(28);
-		private final RuleCall cON_OFFTerminalRuleCall_0_1_0_29 = (RuleCall)cAlternatives_0_1_0.eContents().get(29);
-		private final RuleCall cSTATEMENT_TYPETerminalRuleCall_0_1_0_30 = (RuleCall)cAlternatives_0_1_0.eContents().get(30);
-		private final RuleCall cMAPPING_TYPETerminalRuleCall_0_1_0_31 = (RuleCall)cAlternatives_0_1_0.eContents().get(31);
-		private final RuleCall cOPTION_TYPETerminalRuleCall_0_1_0_32 = (RuleCall)cAlternatives_0_1_0.eContents().get(32);
-		private final RuleCall cSTRING_VALUETerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		
-		//PropertyValue:
-		//	(REST | IDENT_DOT | IDENT | NUMBER | COLON | STRING | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE |
-		//	QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR |
-		//	ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | COLON | STRING |
-		//	COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE | QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS |
-		//	LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE)* |
-		//	STRING_VALUE;
-		public ParserRule getRule() { return rule; }
-
-		//(REST | IDENT_DOT | IDENT | NUMBER | COLON | STRING | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE | QUESTI
-		//| NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR | ON_OFF
-		//| STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | COLON | STRING | COMMA |
-		//MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE | QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN |
-		//MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE)* | STRING_VALUE
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//(REST | IDENT_DOT | IDENT | NUMBER | COLON | STRING | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE | QUESTI
-		//| NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR | ON_OFF
-		//| STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | COLON | STRING | COMMA |
-		//MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE | QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN |
-		//MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE)*
-		public Group getGroup_0() { return cGroup_0; }
-
-		//REST | IDENT_DOT | IDENT | NUMBER | COLON | STRING | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE | QUESTI |
-		//NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR | ON_OFF |
-		//STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE
-		public Alternatives getAlternatives_0_0() { return cAlternatives_0_0; }
-
-		//REST
-		public RuleCall getRESTTerminalRuleCall_0_0_0() { return cRESTTerminalRuleCall_0_0_0; }
-
-		//IDENT_DOT
-		public RuleCall getIDENT_DOTTerminalRuleCall_0_0_1() { return cIDENT_DOTTerminalRuleCall_0_0_1; }
-
-		//IDENT
-		public RuleCall getIDENTTerminalRuleCall_0_0_2() { return cIDENTTerminalRuleCall_0_0_2; }
-
-		//NUMBER
-		public RuleCall getNUMBERTerminalRuleCall_0_0_3() { return cNUMBERTerminalRuleCall_0_0_3; }
-
-		//COLON
-		public RuleCall getCOLONTerminalRuleCall_0_0_4() { return cCOLONTerminalRuleCall_0_0_4; }
-
-		//STRING
-		public RuleCall getSTRINGTerminalRuleCall_0_0_5() { return cSTRINGTerminalRuleCall_0_0_5; }
-
-		//COMMA
-		public RuleCall getCOMMATerminalRuleCall_0_0_6() { return cCOMMATerminalRuleCall_0_0_6; }
-
-		//MINUS
-		public RuleCall getMINUSTerminalRuleCall_0_0_7() { return cMINUSTerminalRuleCall_0_0_7; }
-
-		//PLUS
-		public RuleCall getPLUSTerminalRuleCall_0_0_8() { return cPLUSTerminalRuleCall_0_0_8; }
-
-		//LPAREN
-		public RuleCall getLPARENTerminalRuleCall_0_0_9() { return cLPARENTerminalRuleCall_0_0_9; }
-
-		//RPAREN
-		public RuleCall getRPARENTerminalRuleCall_0_0_10() { return cRPARENTerminalRuleCall_0_0_10; }
-
-		//LBRACE
-		public RuleCall getLBRACETerminalRuleCall_0_0_11() { return cLBRACETerminalRuleCall_0_0_11; }
-
-		//RBRACE
-		public RuleCall getRBRACETerminalRuleCall_0_0_12() { return cRBRACETerminalRuleCall_0_0_12; }
-
-		//QUESTI
-		public RuleCall getQUESTITerminalRuleCall_0_0_13() { return cQUESTITerminalRuleCall_0_0_13; }
-
-		//NOT
-		public RuleCall getNOTTerminalRuleCall_0_0_14() { return cNOTTerminalRuleCall_0_0_14; }
-
-		//BAND
-		public RuleCall getBANDTerminalRuleCall_0_0_15() { return cBANDTerminalRuleCall_0_0_15; }
-
-		//BOR
-		public RuleCall getBORTerminalRuleCall_0_0_16() { return cBORTerminalRuleCall_0_0_16; }
-
-		//HASH
-		public RuleCall getHASHTerminalRuleCall_0_0_17() { return cHASHTerminalRuleCall_0_0_17; }
-
-		//AT
-		public RuleCall getATTerminalRuleCall_0_0_18() { return cATTerminalRuleCall_0_0_18; }
-
-		//CARET
-		public RuleCall getCARETTerminalRuleCall_0_0_19() { return cCARETTerminalRuleCall_0_0_19; }
-
-		//EQUALS
-		public RuleCall getEQUALSTerminalRuleCall_0_0_20() { return cEQUALSTerminalRuleCall_0_0_20; }
-
-		//LESS_THAN
-		public RuleCall getLESS_THANTerminalRuleCall_0_0_21() { return cLESS_THANTerminalRuleCall_0_0_21; }
-
-		//MORE_THAN
-		public RuleCall getMORE_THANTerminalRuleCall_0_0_22() { return cMORE_THANTerminalRuleCall_0_0_22; }
-
-		//PERCENT
-		public RuleCall getPERCENTTerminalRuleCall_0_0_23() { return cPERCENTTerminalRuleCall_0_0_23; }
-
-		//DOT
-		public RuleCall getDOTTerminalRuleCall_0_0_24() { return cDOTTerminalRuleCall_0_0_24; }
-
-		//AND
-		public RuleCall getANDTerminalRuleCall_0_0_25() { return cANDTerminalRuleCall_0_0_25; }
-
-		//OR
-		public RuleCall getORTerminalRuleCall_0_0_26() { return cORTerminalRuleCall_0_0_26; }
-
-		//ESC_CHAR
-		public RuleCall getESC_CHARTerminalRuleCall_0_0_27() { return cESC_CHARTerminalRuleCall_0_0_27; }
-
-		//ON_OFF
-		public RuleCall getON_OFFTerminalRuleCall_0_0_28() { return cON_OFFTerminalRuleCall_0_0_28; }
-
-		//STATEMENT_TYPE
-		public RuleCall getSTATEMENT_TYPETerminalRuleCall_0_0_29() { return cSTATEMENT_TYPETerminalRuleCall_0_0_29; }
-
-		//MAPPING_TYPE
-		public RuleCall getMAPPING_TYPETerminalRuleCall_0_0_30() { return cMAPPING_TYPETerminalRuleCall_0_0_30; }
-
-		//OPTION_TYPE
-		public RuleCall getOPTION_TYPETerminalRuleCall_0_0_31() { return cOPTION_TYPETerminalRuleCall_0_0_31; }
-
-		//=> (REST | IDENT_DOT | IDENT | NUMBER | WS | COLON | STRING | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE |
-		//QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR |
-		//ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE)*
-		public Group getGroup_0_1() { return cGroup_0_1; }
-
-		//REST | IDENT_DOT | IDENT | NUMBER | WS | COLON | STRING | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE |
-		//QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR |
-		//ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE
-		public Alternatives getAlternatives_0_1_0() { return cAlternatives_0_1_0; }
-
-		//REST
-		public RuleCall getRESTTerminalRuleCall_0_1_0_0() { return cRESTTerminalRuleCall_0_1_0_0; }
-
-		//IDENT_DOT
-		public RuleCall getIDENT_DOTTerminalRuleCall_0_1_0_1() { return cIDENT_DOTTerminalRuleCall_0_1_0_1; }
-
-		//IDENT
-		public RuleCall getIDENTTerminalRuleCall_0_1_0_2() { return cIDENTTerminalRuleCall_0_1_0_2; }
-
-		//NUMBER
-		public RuleCall getNUMBERTerminalRuleCall_0_1_0_3() { return cNUMBERTerminalRuleCall_0_1_0_3; }
-
-		//WS
-		public RuleCall getWSTerminalRuleCall_0_1_0_4() { return cWSTerminalRuleCall_0_1_0_4; }
-
-		//COLON
-		public RuleCall getCOLONTerminalRuleCall_0_1_0_5() { return cCOLONTerminalRuleCall_0_1_0_5; }
-
-		//STRING
-		public RuleCall getSTRINGTerminalRuleCall_0_1_0_6() { return cSTRINGTerminalRuleCall_0_1_0_6; }
-
-		//COMMA
-		public RuleCall getCOMMATerminalRuleCall_0_1_0_7() { return cCOMMATerminalRuleCall_0_1_0_7; }
-
-		//MINUS
-		public RuleCall getMINUSTerminalRuleCall_0_1_0_8() { return cMINUSTerminalRuleCall_0_1_0_8; }
-
-		//PLUS
-		public RuleCall getPLUSTerminalRuleCall_0_1_0_9() { return cPLUSTerminalRuleCall_0_1_0_9; }
-
-		//LPAREN
-		public RuleCall getLPARENTerminalRuleCall_0_1_0_10() { return cLPARENTerminalRuleCall_0_1_0_10; }
-
-		//RPAREN
-		public RuleCall getRPARENTerminalRuleCall_0_1_0_11() { return cRPARENTerminalRuleCall_0_1_0_11; }
-
-		//LBRACE
-		public RuleCall getLBRACETerminalRuleCall_0_1_0_12() { return cLBRACETerminalRuleCall_0_1_0_12; }
-
-		//RBRACE
-		public RuleCall getRBRACETerminalRuleCall_0_1_0_13() { return cRBRACETerminalRuleCall_0_1_0_13; }
-
-		//QUESTI
-		public RuleCall getQUESTITerminalRuleCall_0_1_0_14() { return cQUESTITerminalRuleCall_0_1_0_14; }
-
-		//NOT
-		public RuleCall getNOTTerminalRuleCall_0_1_0_15() { return cNOTTerminalRuleCall_0_1_0_15; }
-
-		//BAND
-		public RuleCall getBANDTerminalRuleCall_0_1_0_16() { return cBANDTerminalRuleCall_0_1_0_16; }
-
-		//BOR
-		public RuleCall getBORTerminalRuleCall_0_1_0_17() { return cBORTerminalRuleCall_0_1_0_17; }
-
-		//HASH
-		public RuleCall getHASHTerminalRuleCall_0_1_0_18() { return cHASHTerminalRuleCall_0_1_0_18; }
-
-		//AT
-		public RuleCall getATTerminalRuleCall_0_1_0_19() { return cATTerminalRuleCall_0_1_0_19; }
-
-		//CARET
-		public RuleCall getCARETTerminalRuleCall_0_1_0_20() { return cCARETTerminalRuleCall_0_1_0_20; }
-
-		//EQUALS
-		public RuleCall getEQUALSTerminalRuleCall_0_1_0_21() { return cEQUALSTerminalRuleCall_0_1_0_21; }
-
-		//LESS_THAN
-		public RuleCall getLESS_THANTerminalRuleCall_0_1_0_22() { return cLESS_THANTerminalRuleCall_0_1_0_22; }
-
-		//MORE_THAN
-		public RuleCall getMORE_THANTerminalRuleCall_0_1_0_23() { return cMORE_THANTerminalRuleCall_0_1_0_23; }
-
-		//PERCENT
-		public RuleCall getPERCENTTerminalRuleCall_0_1_0_24() { return cPERCENTTerminalRuleCall_0_1_0_24; }
-
-		//DOT
-		public RuleCall getDOTTerminalRuleCall_0_1_0_25() { return cDOTTerminalRuleCall_0_1_0_25; }
-
-		//AND
-		public RuleCall getANDTerminalRuleCall_0_1_0_26() { return cANDTerminalRuleCall_0_1_0_26; }
-
-		//OR
-		public RuleCall getORTerminalRuleCall_0_1_0_27() { return cORTerminalRuleCall_0_1_0_27; }
-
-		//ESC_CHAR
-		public RuleCall getESC_CHARTerminalRuleCall_0_1_0_28() { return cESC_CHARTerminalRuleCall_0_1_0_28; }
-
-		//ON_OFF
-		public RuleCall getON_OFFTerminalRuleCall_0_1_0_29() { return cON_OFFTerminalRuleCall_0_1_0_29; }
-
-		//STATEMENT_TYPE
-		public RuleCall getSTATEMENT_TYPETerminalRuleCall_0_1_0_30() { return cSTATEMENT_TYPETerminalRuleCall_0_1_0_30; }
-
-		//MAPPING_TYPE
-		public RuleCall getMAPPING_TYPETerminalRuleCall_0_1_0_31() { return cMAPPING_TYPETerminalRuleCall_0_1_0_31; }
-
-		//OPTION_TYPE
-		public RuleCall getOPTION_TYPETerminalRuleCall_0_1_0_32() { return cOPTION_TYPETerminalRuleCall_0_1_0_32; }
-
-		//STRING_VALUE
-		public RuleCall getSTRING_VALUETerminalRuleCall_1() { return cSTRING_VALUETerminalRuleCall_1; }
+		//QualifiedName
+		public RuleCall getPckgQualifiedNameParserRuleCall_10_2_0() { return cPckgQualifiedNameParserRuleCall_10_2_0; }
 	}
 
 	public class PojoDefinitionElements extends AbstractParserRuleElementFinder {
@@ -4936,7 +4659,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cColAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cColColumnParserRuleCall_1_1_0 = (RuleCall)cColAssignment_1_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
-		private final RuleCall cSTRINGTerminalRuleCall_2_0 = (RuleCall)cGroup_2.eContents().get(0);
+		private final RuleCall cSTRING1TerminalRuleCall_2_0 = (RuleCall)cGroup_2.eContents().get(0);
 		private final Assignment cCnstAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
 		private final RuleCall cCnstConstantParserRuleCall_2_1_0 = (RuleCall)cCnstAssignment_2_1.eContents().get(0);
 		private final Group cGroup_3 = (Group)cAlternatives.eContents().get(3);
@@ -4944,8 +4667,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cIdentAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
 		private final RuleCall cIdentIdentifierParserRuleCall_3_1_0 = (RuleCall)cIdentAssignment_3_1.eContents().get(0);
 		private final Group cGroup_4 = (Group)cAlternatives.eContents().get(4);
-		private final RuleCall cSTRINGTerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
-		private final RuleCall cSTRINGTerminalRuleCall_4_1 = (RuleCall)cGroup_4.eContents().get(1);
+		private final RuleCall cSTRING1TerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
+		private final RuleCall cSTRING1TerminalRuleCall_4_1 = (RuleCall)cGroup_4.eContents().get(1);
 		private final Assignment cCnstOperAssignment_4_2 = (Assignment)cGroup_4.eContents().get(2);
 		private final RuleCall cCnstOperConstantOperatorParserRuleCall_4_2_0 = (RuleCall)cCnstOperAssignment_4_2.eContents().get(0);
 		private final Group cGroup_5 = (Group)cAlternatives.eContents().get(5);
@@ -4969,14 +4692,14 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cDbcolDatabaseColumnParserRuleCall_7_1_1_0 = (RuleCall)cDbcolAssignment_7_1_1.eContents().get(0);
 		
 		//SqlFragment:
-		//	value=SqlValue | AT col=Column | STRING cnst=Constant | COLON ident=Identifier | STRING STRING
+		//	value=SqlValue | AT col=Column | STRING1 cnst=Constant | COLON ident=Identifier | STRING1 STRING1
 		//	cnstOper=ConstantOperator | COLON COLON identOper=IdentifierOperator | LBRACE meta=MetaSql RBRACE | PERCENT (PERCENT
 		//	dbtab=DatabaseTable | dbcol=DatabaseColumn);
 		public ParserRule getRule() { return rule; }
 
-		//value=SqlValue | AT col=Column | STRING cnst=Constant | COLON ident=Identifier | STRING STRING cnstOper=ConstantOperator
-		//| COLON COLON identOper=IdentifierOperator | LBRACE meta=MetaSql RBRACE | PERCENT (PERCENT dbtab=DatabaseTable |
-		//dbcol=DatabaseColumn)
+		//value=SqlValue | AT col=Column | STRING1 cnst=Constant | COLON ident=Identifier | STRING1 STRING1
+		//cnstOper=ConstantOperator | COLON COLON identOper=IdentifierOperator | LBRACE meta=MetaSql RBRACE | PERCENT (PERCENT
+		//dbtab=DatabaseTable | dbcol=DatabaseColumn)
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//value=SqlValue
@@ -4997,11 +4720,11 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//Column
 		public RuleCall getColColumnParserRuleCall_1_1_0() { return cColColumnParserRuleCall_1_1_0; }
 
-		//STRING cnst=Constant
+		//STRING1 cnst=Constant
 		public Group getGroup_2() { return cGroup_2; }
 
-		//STRING
-		public RuleCall getSTRINGTerminalRuleCall_2_0() { return cSTRINGTerminalRuleCall_2_0; }
+		//STRING1
+		public RuleCall getSTRING1TerminalRuleCall_2_0() { return cSTRING1TerminalRuleCall_2_0; }
 
 		//cnst=Constant
 		public Assignment getCnstAssignment_2_1() { return cCnstAssignment_2_1; }
@@ -5021,14 +4744,14 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//Identifier
 		public RuleCall getIdentIdentifierParserRuleCall_3_1_0() { return cIdentIdentifierParserRuleCall_3_1_0; }
 
-		//STRING STRING cnstOper=ConstantOperator
+		//STRING1 STRING1 cnstOper=ConstantOperator
 		public Group getGroup_4() { return cGroup_4; }
 
-		//STRING
-		public RuleCall getSTRINGTerminalRuleCall_4_0() { return cSTRINGTerminalRuleCall_4_0; }
+		//STRING1
+		public RuleCall getSTRING1TerminalRuleCall_4_0() { return cSTRING1TerminalRuleCall_4_0; }
 
-		//STRING
-		public RuleCall getSTRINGTerminalRuleCall_4_1() { return cSTRINGTerminalRuleCall_4_1; }
+		//STRING1
+		public RuleCall getSTRING1TerminalRuleCall_4_1() { return cSTRING1TerminalRuleCall_4_1; }
 
 		//cnstOper=ConstantOperator
 		public Assignment getCnstOperAssignment_4_2() { return cCnstOperAssignment_4_2; }
@@ -5101,7 +4824,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRESTTerminalRuleCall_0_0 = (RuleCall)cAlternatives_0.eContents().get(0);
 		private final RuleCall cIDENT_DOTTerminalRuleCall_0_1 = (RuleCall)cAlternatives_0.eContents().get(1);
 		private final RuleCall cIDENTTerminalRuleCall_0_2 = (RuleCall)cAlternatives_0.eContents().get(2);
-		private final RuleCall cNUMBERTerminalRuleCall_0_3 = (RuleCall)cAlternatives_0.eContents().get(3);
+		private final RuleCall cINTTerminalRuleCall_0_3 = (RuleCall)cAlternatives_0.eContents().get(3);
 		private final RuleCall cWSTerminalRuleCall_0_4 = (RuleCall)cAlternatives_0.eContents().get(4);
 		private final RuleCall cCOMMATerminalRuleCall_0_5 = (RuleCall)cAlternatives_0.eContents().get(5);
 		private final RuleCall cMINUSTerminalRuleCall_0_6 = (RuleCall)cAlternatives_0.eContents().get(6);
@@ -5131,7 +4854,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRESTTerminalRuleCall_1_0_0 = (RuleCall)cAlternatives_1_0.eContents().get(0);
 		private final RuleCall cIDENT_DOTTerminalRuleCall_1_0_1 = (RuleCall)cAlternatives_1_0.eContents().get(1);
 		private final RuleCall cIDENTTerminalRuleCall_1_0_2 = (RuleCall)cAlternatives_1_0.eContents().get(2);
-		private final RuleCall cNUMBERTerminalRuleCall_1_0_3 = (RuleCall)cAlternatives_1_0.eContents().get(3);
+		private final RuleCall cINTTerminalRuleCall_1_0_3 = (RuleCall)cAlternatives_1_0.eContents().get(3);
 		private final RuleCall cWSTerminalRuleCall_1_0_4 = (RuleCall)cAlternatives_1_0.eContents().get(4);
 		private final RuleCall cCOMMATerminalRuleCall_1_0_5 = (RuleCall)cAlternatives_1_0.eContents().get(5);
 		private final RuleCall cMINUSTerminalRuleCall_1_0_6 = (RuleCall)cAlternatives_1_0.eContents().get(6);
@@ -5159,22 +4882,22 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		
 		////~(COLON | STRING | AT | LBRACE | SEMICOLON)
 		//SqlValue:
-		//	(REST | IDENT_DOT | IDENT | NUMBER | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI | NOT | BAND | BOR
-		//	| HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
-		//	OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI |
-		//	NOT | BAND | BOR | HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE
-		//	| MAPPING_TYPE | OPTION_TYPE)*;
+		//	(REST | IDENT_DOT | IDENT | INT | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI | NOT | BAND | BOR |
+		//	HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
+		//	OPTION_TYPE) => (REST | IDENT_DOT | IDENT | INT | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI | NOT
+		//	| BAND | BOR | HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE |
+		//	MAPPING_TYPE | OPTION_TYPE)*;
 		public ParserRule getRule() { return rule; }
 
-		//(REST | IDENT_DOT | IDENT | NUMBER | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI | NOT | BAND | BOR |
+		//(REST | IDENT_DOT | IDENT | INT | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI | NOT | BAND | BOR |
 		//HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
-		//OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI |
-		//NOT | BAND | BOR | HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE
-		//| MAPPING_TYPE | OPTION_TYPE)*
+		//OPTION_TYPE) => (REST | IDENT_DOT | IDENT | INT | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI | NOT |
+		//BAND | BOR | HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE |
+		//MAPPING_TYPE | OPTION_TYPE)*
 		public Group getGroup() { return cGroup; }
 
-		//REST | IDENT_DOT | IDENT | NUMBER | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI | NOT | BAND | BOR |
-		//HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
+		//REST | IDENT_DOT | IDENT | INT | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI | NOT | BAND | BOR | HASH
+		//| CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
 		//OPTION_TYPE
 		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 
@@ -5187,8 +4910,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//IDENT
 		public RuleCall getIDENTTerminalRuleCall_0_2() { return cIDENTTerminalRuleCall_0_2; }
 
-		//NUMBER
-		public RuleCall getNUMBERTerminalRuleCall_0_3() { return cNUMBERTerminalRuleCall_0_3; }
+		//INT
+		public RuleCall getINTTerminalRuleCall_0_3() { return cINTTerminalRuleCall_0_3; }
 
 		//WS
 		public RuleCall getWSTerminalRuleCall_0_4() { return cWSTerminalRuleCall_0_4; }
@@ -5262,13 +4985,13 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//OPTION_TYPE
 		public RuleCall getOPTION_TYPETerminalRuleCall_0_27() { return cOPTION_TYPETerminalRuleCall_0_27; }
 
-		//=> (REST | IDENT_DOT | IDENT | NUMBER | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI | NOT | BAND | BOR
-		//| HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
+		//=> (REST | IDENT_DOT | IDENT | INT | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI | NOT | BAND | BOR |
+		//HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
 		//OPTION_TYPE)*
 		public Group getGroup_1() { return cGroup_1; }
 
-		//REST | IDENT_DOT | IDENT | NUMBER | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI | NOT | BAND | BOR |
-		//HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
+		//REST | IDENT_DOT | IDENT | INT | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI | NOT | BAND | BOR | HASH
+		//| CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
 		//OPTION_TYPE
 		public Alternatives getAlternatives_1_0() { return cAlternatives_1_0; }
 
@@ -5281,8 +5004,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//IDENT
 		public RuleCall getIDENTTerminalRuleCall_1_0_2() { return cIDENTTerminalRuleCall_1_0_2; }
 
-		//NUMBER
-		public RuleCall getNUMBERTerminalRuleCall_1_0_3() { return cNUMBERTerminalRuleCall_1_0_3; }
+		//INT
+		public RuleCall getINTTerminalRuleCall_1_0_3() { return cINTTerminalRuleCall_1_0_3; }
 
 		//WS
 		public RuleCall getWSTerminalRuleCall_1_0_4() { return cWSTerminalRuleCall_1_0_4; }
@@ -5409,18 +5132,18 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_5 = (Group)cAlternatives.eContents().get(5);
 		private final Assignment cTypeAssignment_5_0 = (Assignment)cGroup_5.eContents().get(0);
 		private final RuleCall cTypeHASHTerminalRuleCall_5_0_0 = (RuleCall)cTypeAssignment_5_0.eContents().get(0);
-		private final RuleCall cNUMBERTerminalRuleCall_5_1 = (RuleCall)cGroup_5.eContents().get(1);
+		private final RuleCall cINTTerminalRuleCall_5_1 = (RuleCall)cGroup_5.eContents().get(1);
 		private final Assignment cOrdAssignment_5_2 = (Assignment)cGroup_5.eContents().get(2);
 		private final RuleCall cOrdOrdSqlParserRuleCall_5_2_0 = (RuleCall)cOrdAssignment_5_2.eContents().get(0);
 		
 		//MetaSql:
 		//	WS ifs+=IfSql (BOR ifs+=IfSql)* | type=QUESTI cond=IfSqlCond BOR ifs+=IfSql (BOR ifs+=IfSql)* | type=BAND ifs+=IfSql
-		//	(BOR ifs+=IfSql)* | type=BOR ifs+=IfSql (BOR ifs+=IfSql)* | type=EQUALS WS* ftype=IDENT ifs+=IfSql | type=HASH NUMBER
+		//	(BOR ifs+=IfSql)* | type=BOR ifs+=IfSql (BOR ifs+=IfSql)* | type=EQUALS WS* ftype=IDENT ifs+=IfSql | type=HASH INT
 		//	ord=OrdSql;
 		public ParserRule getRule() { return rule; }
 
 		//WS ifs+=IfSql (BOR ifs+=IfSql)* | type=QUESTI cond=IfSqlCond BOR ifs+=IfSql (BOR ifs+=IfSql)* | type=BAND ifs+=IfSql
-		//(BOR ifs+=IfSql)* | type=BOR ifs+=IfSql (BOR ifs+=IfSql)* | type=EQUALS WS* ftype=IDENT ifs+=IfSql | type=HASH NUMBER
+		//(BOR ifs+=IfSql)* | type=BOR ifs+=IfSql (BOR ifs+=IfSql)* | type=EQUALS WS* ftype=IDENT ifs+=IfSql | type=HASH INT
 		//ord=OrdSql
 		public Alternatives getAlternatives() { return cAlternatives; }
 
@@ -5562,7 +5285,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//IfSql
 		public RuleCall getIfsIfSqlParserRuleCall_4_3_0() { return cIfsIfSqlParserRuleCall_4_3_0; }
 
-		//type=HASH NUMBER ord=OrdSql
+		//type=HASH INT ord=OrdSql
 		public Group getGroup_5() { return cGroup_5; }
 
 		//type=HASH
@@ -5571,8 +5294,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//HASH
 		public RuleCall getTypeHASHTerminalRuleCall_5_0_0() { return cTypeHASHTerminalRuleCall_5_0_0; }
 
-		//NUMBER
-		public RuleCall getNUMBERTerminalRuleCall_5_1() { return cNUMBERTerminalRuleCall_5_1; }
+		//INT
+		public RuleCall getINTTerminalRuleCall_5_1() { return cINTTerminalRuleCall_5_1; }
 
 		//ord=OrdSql
 		public Assignment getOrdAssignment_5_2() { return cOrdAssignment_5_2; }
@@ -5607,7 +5330,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cColAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cColColumnParserRuleCall_1_1_0 = (RuleCall)cColAssignment_1_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
-		private final RuleCall cSTRINGTerminalRuleCall_2_0 = (RuleCall)cGroup_2.eContents().get(0);
+		private final RuleCall cSTRING1TerminalRuleCall_2_0 = (RuleCall)cGroup_2.eContents().get(0);
 		private final Assignment cCnstAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
 		private final RuleCall cCnstConstantParserRuleCall_2_1_0 = (RuleCall)cCnstAssignment_2_1.eContents().get(0);
 		private final Group cGroup_3 = (Group)cAlternatives.eContents().get(3);
@@ -5615,8 +5338,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cIdentAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
 		private final RuleCall cIdentIdentifierParserRuleCall_3_1_0 = (RuleCall)cIdentAssignment_3_1.eContents().get(0);
 		private final Group cGroup_4 = (Group)cAlternatives.eContents().get(4);
-		private final RuleCall cSTRINGTerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
-		private final RuleCall cSTRINGTerminalRuleCall_4_1 = (RuleCall)cGroup_4.eContents().get(1);
+		private final RuleCall cSTRING1TerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
+		private final RuleCall cSTRING1TerminalRuleCall_4_1 = (RuleCall)cGroup_4.eContents().get(1);
 		private final Assignment cCnstOperAssignment_4_2 = (Assignment)cGroup_4.eContents().get(2);
 		private final RuleCall cCnstOperConstantOperatorParserRuleCall_4_2_0 = (RuleCall)cCnstOperAssignment_4_2.eContents().get(0);
 		private final Group cGroup_5 = (Group)cAlternatives.eContents().get(5);
@@ -5640,12 +5363,12 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRBRACETerminalRuleCall_7_2 = (RuleCall)cGroup_7.eContents().get(2);
 		
 		//IfSqlFragment:
-		//	value=IfSqlValue | AT col=Column | STRING cnst=Constant | COLON ident=Identifier | STRING STRING
+		//	value=IfSqlValue | AT col=Column | STRING1 cnst=Constant | COLON ident=Identifier | STRING1 STRING1
 		//	cnstOper=ConstantOperator | COLON COLON identOper=IdentifierOperator | PERCENT (PERCENT dbtab=DatabaseTable |
 		//	dbcol=DatabaseColumn) | LBRACE meta=IfMetaSql RBRACE;
 		public ParserRule getRule() { return rule; }
 
-		//value=IfSqlValue | AT col=Column | STRING cnst=Constant | COLON ident=Identifier | STRING STRING
+		//value=IfSqlValue | AT col=Column | STRING1 cnst=Constant | COLON ident=Identifier | STRING1 STRING1
 		//cnstOper=ConstantOperator | COLON COLON identOper=IdentifierOperator | PERCENT (PERCENT dbtab=DatabaseTable |
 		//dbcol=DatabaseColumn) | LBRACE meta=IfMetaSql RBRACE
 		public Alternatives getAlternatives() { return cAlternatives; }
@@ -5668,11 +5391,11 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//Column
 		public RuleCall getColColumnParserRuleCall_1_1_0() { return cColColumnParserRuleCall_1_1_0; }
 
-		//STRING cnst=Constant
+		//STRING1 cnst=Constant
 		public Group getGroup_2() { return cGroup_2; }
 
-		//STRING
-		public RuleCall getSTRINGTerminalRuleCall_2_0() { return cSTRINGTerminalRuleCall_2_0; }
+		//STRING1
+		public RuleCall getSTRING1TerminalRuleCall_2_0() { return cSTRING1TerminalRuleCall_2_0; }
 
 		//cnst=Constant
 		public Assignment getCnstAssignment_2_1() { return cCnstAssignment_2_1; }
@@ -5692,14 +5415,14 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//Identifier
 		public RuleCall getIdentIdentifierParserRuleCall_3_1_0() { return cIdentIdentifierParserRuleCall_3_1_0; }
 
-		//STRING STRING cnstOper=ConstantOperator
+		//STRING1 STRING1 cnstOper=ConstantOperator
 		public Group getGroup_4() { return cGroup_4; }
 
-		//STRING
-		public RuleCall getSTRINGTerminalRuleCall_4_0() { return cSTRINGTerminalRuleCall_4_0; }
+		//STRING1
+		public RuleCall getSTRING1TerminalRuleCall_4_0() { return cSTRING1TerminalRuleCall_4_0; }
 
-		//STRING
-		public RuleCall getSTRINGTerminalRuleCall_4_1() { return cSTRINGTerminalRuleCall_4_1; }
+		//STRING1
+		public RuleCall getSTRING1TerminalRuleCall_4_1() { return cSTRING1TerminalRuleCall_4_1; }
 
 		//cnstOper=ConstantOperator
 		public Assignment getCnstOperAssignment_4_2() { return cCnstOperAssignment_4_2; }
@@ -5772,7 +5495,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRESTTerminalRuleCall_0_0 = (RuleCall)cAlternatives_0.eContents().get(0);
 		private final RuleCall cIDENT_DOTTerminalRuleCall_0_1 = (RuleCall)cAlternatives_0.eContents().get(1);
 		private final RuleCall cIDENTTerminalRuleCall_0_2 = (RuleCall)cAlternatives_0.eContents().get(2);
-		private final RuleCall cNUMBERTerminalRuleCall_0_3 = (RuleCall)cAlternatives_0.eContents().get(3);
+		private final RuleCall cINTTerminalRuleCall_0_3 = (RuleCall)cAlternatives_0.eContents().get(3);
 		private final RuleCall cWSTerminalRuleCall_0_4 = (RuleCall)cAlternatives_0.eContents().get(4);
 		private final RuleCall cSEMICOLONTerminalRuleCall_0_5 = (RuleCall)cAlternatives_0.eContents().get(5);
 		private final RuleCall cCOMMATerminalRuleCall_0_6 = (RuleCall)cAlternatives_0.eContents().get(6);
@@ -5801,7 +5524,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRESTTerminalRuleCall_1_0_0 = (RuleCall)cAlternatives_1_0.eContents().get(0);
 		private final RuleCall cIDENT_DOTTerminalRuleCall_1_0_1 = (RuleCall)cAlternatives_1_0.eContents().get(1);
 		private final RuleCall cIDENTTerminalRuleCall_1_0_2 = (RuleCall)cAlternatives_1_0.eContents().get(2);
-		private final RuleCall cNUMBERTerminalRuleCall_1_0_3 = (RuleCall)cAlternatives_1_0.eContents().get(3);
+		private final RuleCall cINTTerminalRuleCall_1_0_3 = (RuleCall)cAlternatives_1_0.eContents().get(3);
 		private final RuleCall cWSTerminalRuleCall_1_0_4 = (RuleCall)cAlternatives_1_0.eContents().get(4);
 		private final RuleCall cSEMICOLONTerminalRuleCall_1_0_5 = (RuleCall)cAlternatives_1_0.eContents().get(5);
 		private final RuleCall cCOMMATerminalRuleCall_1_0_6 = (RuleCall)cAlternatives_1_0.eContents().get(6);
@@ -5828,22 +5551,22 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		
 		////~(COLON | STRING | AT | LBRACE | BOR | RBRACE)
 		//IfSqlValue:
-		//	(REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI | NOT | BAND |
-		//	HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
-		//	OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI
-		//	| NOT | BAND | HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE |
+		//	(REST | IDENT_DOT | IDENT | INT | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI | NOT | BAND | HASH
+		//	| CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
+		//	OPTION_TYPE) => (REST | IDENT_DOT | IDENT | INT | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI |
+		//	NOT | BAND | HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE |
 		//	MAPPING_TYPE | OPTION_TYPE)*;
 		public ParserRule getRule() { return rule; }
 
-		//(REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI | NOT | BAND |
-		//HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
-		//OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI |
+		//(REST | IDENT_DOT | IDENT | INT | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI | NOT | BAND | HASH |
+		//CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
+		//OPTION_TYPE) => (REST | IDENT_DOT | IDENT | INT | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI |
 		//NOT | BAND | HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE |
 		//MAPPING_TYPE | OPTION_TYPE)*
 		public Group getGroup() { return cGroup; }
 
-		//REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI | NOT | BAND | HASH
-		//| CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
+		//REST | IDENT_DOT | IDENT | INT | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI | NOT | BAND | HASH |
+		//CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
 		//OPTION_TYPE
 		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 
@@ -5856,8 +5579,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//IDENT
 		public RuleCall getIDENTTerminalRuleCall_0_2() { return cIDENTTerminalRuleCall_0_2; }
 
-		//NUMBER
-		public RuleCall getNUMBERTerminalRuleCall_0_3() { return cNUMBERTerminalRuleCall_0_3; }
+		//INT
+		public RuleCall getINTTerminalRuleCall_0_3() { return cINTTerminalRuleCall_0_3; }
 
 		//WS
 		public RuleCall getWSTerminalRuleCall_0_4() { return cWSTerminalRuleCall_0_4; }
@@ -5928,13 +5651,13 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//OPTION_TYPE
 		public RuleCall getOPTION_TYPETerminalRuleCall_0_26() { return cOPTION_TYPETerminalRuleCall_0_26; }
 
-		//=> (REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI | NOT | BAND |
+		//=> (REST | IDENT_DOT | IDENT | INT | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI | NOT | BAND |
 		//HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
 		//OPTION_TYPE)*
 		public Group getGroup_1() { return cGroup_1; }
 
-		//REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI | NOT | BAND | HASH
-		//| CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
+		//REST | IDENT_DOT | IDENT | INT | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI | NOT | BAND | HASH |
+		//CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
 		//OPTION_TYPE
 		public Alternatives getAlternatives_1_0() { return cAlternatives_1_0; }
 
@@ -5947,8 +5670,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//IDENT
 		public RuleCall getIDENTTerminalRuleCall_1_0_2() { return cIDENTTerminalRuleCall_1_0_2; }
 
-		//NUMBER
-		public RuleCall getNUMBERTerminalRuleCall_1_0_3() { return cNUMBERTerminalRuleCall_1_0_3; }
+		//INT
+		public RuleCall getINTTerminalRuleCall_1_0_3() { return cINTTerminalRuleCall_1_0_3; }
 
 		//WS
 		public RuleCall getWSTerminalRuleCall_1_0_4() { return cWSTerminalRuleCall_1_0_4; }
@@ -6256,7 +5979,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
 		private final Assignment cNotAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
 		private final RuleCall cNotNOTTerminalRuleCall_0_0_0 = (RuleCall)cNotAssignment_0_0.eContents().get(0);
-		private final RuleCall cSTRINGTerminalRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
+		private final RuleCall cSTRING1TerminalRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
 		private final Assignment cCnstAssignment_0_2 = (Assignment)cGroup_0.eContents().get(2);
 		private final RuleCall cCnstConstantParserRuleCall_0_2_0 = (RuleCall)cCnstAssignment_0_2.eContents().get(0);
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
@@ -6274,13 +5997,13 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRPARENTerminalRuleCall_2_3 = (RuleCall)cGroup_2.eContents().get(3);
 		
 		//IfSqlBool:
-		//	not?=NOT? STRING cnst=Constant | not?=NOT? COLON ident=Identifier | not?=NOT? LPAREN cond=IfSqlCond RPAREN;
+		//	not?=NOT? STRING1 cnst=Constant | not?=NOT? COLON ident=Identifier | not?=NOT? LPAREN cond=IfSqlCond RPAREN;
 		public ParserRule getRule() { return rule; }
 
-		//not?=NOT? STRING cnst=Constant | not?=NOT? COLON ident=Identifier | not?=NOT? LPAREN cond=IfSqlCond RPAREN
+		//not?=NOT? STRING1 cnst=Constant | not?=NOT? COLON ident=Identifier | not?=NOT? LPAREN cond=IfSqlCond RPAREN
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//not?=NOT? STRING cnst=Constant
+		//not?=NOT? STRING1 cnst=Constant
 		public Group getGroup_0() { return cGroup_0; }
 
 		//not?=NOT?
@@ -6289,8 +6012,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//NOT
 		public RuleCall getNotNOTTerminalRuleCall_0_0_0() { return cNotNOTTerminalRuleCall_0_0_0; }
 
-		//STRING
-		public RuleCall getSTRINGTerminalRuleCall_0_1() { return cSTRINGTerminalRuleCall_0_1; }
+		//STRING1
+		public RuleCall getSTRING1TerminalRuleCall_0_1() { return cSTRING1TerminalRuleCall_0_1; }
 
 		//cnst=Constant
 		public Assignment getCnstAssignment_0_2() { return cCnstAssignment_0_2; }
@@ -6360,7 +6083,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cValueAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
 		private final RuleCall cValueOrdSqlValueParserRuleCall_0_0 = (RuleCall)cValueAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final RuleCall cSTRINGTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final RuleCall cSTRING1TerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
 		private final Assignment cCnstAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cCnstConstantParserRuleCall_1_1_0 = (RuleCall)cCnstAssignment_1_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
@@ -6373,10 +6096,10 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cDbcolDatabaseColumnParserRuleCall_3_1_0 = (RuleCall)cDbcolAssignment_3_1.eContents().get(0);
 		
 		//OrdSql2:
-		//	value=OrdSqlValue | STRING cnst=Constant | COLON ident=Identifier | PERCENT dbcol=DatabaseColumn;
+		//	value=OrdSqlValue | STRING1 cnst=Constant | COLON ident=Identifier | PERCENT dbcol=DatabaseColumn;
 		public ParserRule getRule() { return rule; }
 
-		//value=OrdSqlValue | STRING cnst=Constant | COLON ident=Identifier | PERCENT dbcol=DatabaseColumn
+		//value=OrdSqlValue | STRING1 cnst=Constant | COLON ident=Identifier | PERCENT dbcol=DatabaseColumn
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//value=OrdSqlValue
@@ -6385,11 +6108,11 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//OrdSqlValue
 		public RuleCall getValueOrdSqlValueParserRuleCall_0_0() { return cValueOrdSqlValueParserRuleCall_0_0; }
 
-		//STRING cnst=Constant
+		//STRING1 cnst=Constant
 		public Group getGroup_1() { return cGroup_1; }
 
-		//STRING
-		public RuleCall getSTRINGTerminalRuleCall_1_0() { return cSTRINGTerminalRuleCall_1_0; }
+		//STRING1
+		public RuleCall getSTRING1TerminalRuleCall_1_0() { return cSTRING1TerminalRuleCall_1_0; }
 
 		//cnst=Constant
 		public Assignment getCnstAssignment_1_1() { return cCnstAssignment_1_1; }
@@ -6429,7 +6152,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRESTTerminalRuleCall_0_0 = (RuleCall)cAlternatives_0.eContents().get(0);
 		private final RuleCall cIDENT_DOTTerminalRuleCall_0_1 = (RuleCall)cAlternatives_0.eContents().get(1);
 		private final RuleCall cIDENTTerminalRuleCall_0_2 = (RuleCall)cAlternatives_0.eContents().get(2);
-		private final RuleCall cNUMBERTerminalRuleCall_0_3 = (RuleCall)cAlternatives_0.eContents().get(3);
+		private final RuleCall cINTTerminalRuleCall_0_3 = (RuleCall)cAlternatives_0.eContents().get(3);
 		private final RuleCall cWSTerminalRuleCall_0_4 = (RuleCall)cAlternatives_0.eContents().get(4);
 		private final RuleCall cSEMICOLONTerminalRuleCall_0_5 = (RuleCall)cAlternatives_0.eContents().get(5);
 		private final RuleCall cCOMMATerminalRuleCall_0_6 = (RuleCall)cAlternatives_0.eContents().get(6);
@@ -6461,7 +6184,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRESTTerminalRuleCall_1_0_0 = (RuleCall)cAlternatives_1_0.eContents().get(0);
 		private final RuleCall cIDENT_DOTTerminalRuleCall_1_0_1 = (RuleCall)cAlternatives_1_0.eContents().get(1);
 		private final RuleCall cIDENTTerminalRuleCall_1_0_2 = (RuleCall)cAlternatives_1_0.eContents().get(2);
-		private final RuleCall cNUMBERTerminalRuleCall_1_0_3 = (RuleCall)cAlternatives_1_0.eContents().get(3);
+		private final RuleCall cINTTerminalRuleCall_1_0_3 = (RuleCall)cAlternatives_1_0.eContents().get(3);
 		private final RuleCall cWSTerminalRuleCall_1_0_4 = (RuleCall)cAlternatives_1_0.eContents().get(4);
 		private final RuleCall cSEMICOLONTerminalRuleCall_1_0_5 = (RuleCall)cAlternatives_1_0.eContents().get(5);
 		private final RuleCall cCOMMATerminalRuleCall_1_0_6 = (RuleCall)cAlternatives_1_0.eContents().get(6);
@@ -6491,22 +6214,22 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		
 		////~(COLON | STRING | PERCENT | RBRACE)
 		//OrdSqlValue:
-		//	(REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | QUESTI | NOT |
+		//	(REST | IDENT_DOT | IDENT | INT | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | QUESTI | NOT |
 		//	BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE
-		//	| MAPPING_TYPE | OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN |
+		//	| MAPPING_TYPE | OPTION_TYPE) => (REST | IDENT_DOT | IDENT | INT | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN |
 		//	RPAREN | LBRACE | QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR |
 		//	ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE)*;
 		public ParserRule getRule() { return rule; }
 
-		//(REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | QUESTI | NOT |
-		//BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE |
-		//MAPPING_TYPE | OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN |
+		//(REST | IDENT_DOT | IDENT | INT | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | QUESTI | NOT | BAND
+		//| BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE |
+		//MAPPING_TYPE | OPTION_TYPE) => (REST | IDENT_DOT | IDENT | INT | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN |
 		//RPAREN | LBRACE | QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR |
 		//ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE)*
 		public Group getGroup() { return cGroup; }
 
-		//REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | QUESTI | NOT |
-		//BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE |
+		//REST | IDENT_DOT | IDENT | INT | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | QUESTI | NOT | BAND
+		//| BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE |
 		//MAPPING_TYPE | OPTION_TYPE
 		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 
@@ -6519,8 +6242,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//IDENT
 		public RuleCall getIDENTTerminalRuleCall_0_2() { return cIDENTTerminalRuleCall_0_2; }
 
-		//NUMBER
-		public RuleCall getNUMBERTerminalRuleCall_0_3() { return cNUMBERTerminalRuleCall_0_3; }
+		//INT
+		public RuleCall getINTTerminalRuleCall_0_3() { return cINTTerminalRuleCall_0_3; }
 
 		//WS
 		public RuleCall getWSTerminalRuleCall_0_4() { return cWSTerminalRuleCall_0_4; }
@@ -6600,13 +6323,13 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//OPTION_TYPE
 		public RuleCall getOPTION_TYPETerminalRuleCall_0_29() { return cOPTION_TYPETerminalRuleCall_0_29; }
 
-		//=> (REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | QUESTI | NOT
-		//| BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE
-		//| MAPPING_TYPE | OPTION_TYPE)*
+		//=> (REST | IDENT_DOT | IDENT | INT | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | QUESTI | NOT |
+		//BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE |
+		//MAPPING_TYPE | OPTION_TYPE)*
 		public Group getGroup_1() { return cGroup_1; }
 
-		//REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | QUESTI | NOT |
-		//BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE |
+		//REST | IDENT_DOT | IDENT | INT | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | QUESTI | NOT | BAND
+		//| BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE |
 		//MAPPING_TYPE | OPTION_TYPE
 		public Alternatives getAlternatives_1_0() { return cAlternatives_1_0; }
 
@@ -6619,8 +6342,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//IDENT
 		public RuleCall getIDENTTerminalRuleCall_1_0_2() { return cIDENTTerminalRuleCall_1_0_2; }
 
-		//NUMBER
-		public RuleCall getNUMBERTerminalRuleCall_1_0_3() { return cNUMBERTerminalRuleCall_1_0_3; }
+		//INT
+		public RuleCall getINTTerminalRuleCall_1_0_3() { return cINTTerminalRuleCall_1_0_3; }
 
 		//WS
 		public RuleCall getWSTerminalRuleCall_1_0_4() { return cWSTerminalRuleCall_1_0_4; }
@@ -6790,24 +6513,24 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
 		private final Alternatives cNameAlternatives_0 = (Alternatives)cNameAssignment.eContents().get(0);
 		private final RuleCall cNameIDENTTerminalRuleCall_0_0 = (RuleCall)cNameAlternatives_0.eContents().get(0);
-		private final RuleCall cNameNUMBERTerminalRuleCall_0_1 = (RuleCall)cNameAlternatives_0.eContents().get(1);
+		private final RuleCall cNameINTTerminalRuleCall_0_1 = (RuleCall)cNameAlternatives_0.eContents().get(1);
 		private final RuleCall cNameIDENT_DOTTerminalRuleCall_0_2 = (RuleCall)cNameAlternatives_0.eContents().get(2);
 		
 		//ExtendedColumnName:
-		//	name=(IDENT | NUMBER | IDENT_DOT);
+		//	name=(IDENT | INT | IDENT_DOT);
 		public ParserRule getRule() { return rule; }
 
-		//name=(IDENT | NUMBER | IDENT_DOT)
+		//name=(IDENT | INT | IDENT_DOT)
 		public Assignment getNameAssignment() { return cNameAssignment; }
 
-		//IDENT | NUMBER | IDENT_DOT
+		//IDENT | INT | IDENT_DOT
 		public Alternatives getNameAlternatives_0() { return cNameAlternatives_0; }
 
 		//IDENT
 		public RuleCall getNameIDENTTerminalRuleCall_0_0() { return cNameIDENTTerminalRuleCall_0_0; }
 
-		//NUMBER
-		public RuleCall getNameNUMBERTerminalRuleCall_0_1() { return cNameNUMBERTerminalRuleCall_0_1; }
+		//INT
+		public RuleCall getNameINTTerminalRuleCall_0_1() { return cNameINTTerminalRuleCall_0_1; }
 
 		//IDENT_DOT
 		public RuleCall getNameIDENT_DOTTerminalRuleCall_0_2() { return cNameIDENT_DOTTerminalRuleCall_0_2; }
@@ -6908,7 +6631,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final Alternatives cNameAlternatives_2_0 = (Alternatives)cNameAssignment_2.eContents().get(0);
 		private final RuleCall cNameIDENTTerminalRuleCall_2_0_0 = (RuleCall)cNameAlternatives_2_0.eContents().get(0);
-		private final RuleCall cNameNUMBERTerminalRuleCall_2_0_1 = (RuleCall)cNameAlternatives_2_0.eContents().get(1);
+		private final RuleCall cNameINTTerminalRuleCall_2_0_1 = (RuleCall)cNameAlternatives_2_0.eContents().get(1);
 		private final RuleCall cNameIDENT_DOTTerminalRuleCall_2_0_2 = (RuleCall)cNameAlternatives_2_0.eContents().get(2);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final RuleCall cLPARENTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
@@ -6921,12 +6644,12 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRPARENTerminalRuleCall_3_3 = (RuleCall)cGroup_3.eContents().get(3);
 		
 		//Identifier:
-		//	mode=(EQUALS | LESS_THAN | MORE_THAN)? case=(PLUS | MINUS)? name=(IDENT | NUMBER | IDENT_DOT) (LPAREN
-		//	modifiers+=Modifier (COMMA modifiers+=Modifier)* RPAREN)?;
+		//	mode=(EQUALS | LESS_THAN | MORE_THAN)? case=(PLUS | MINUS)? name=(IDENT | INT | IDENT_DOT) (LPAREN modifiers+=Modifier
+		//	(COMMA modifiers+=Modifier)* RPAREN)?;
 		public ParserRule getRule() { return rule; }
 
-		//mode=(EQUALS | LESS_THAN | MORE_THAN)? case=(PLUS | MINUS)? name=(IDENT | NUMBER | IDENT_DOT) (LPAREN
-		//modifiers+=Modifier (COMMA modifiers+=Modifier)* RPAREN)?
+		//mode=(EQUALS | LESS_THAN | MORE_THAN)? case=(PLUS | MINUS)? name=(IDENT | INT | IDENT_DOT) (LPAREN modifiers+=Modifier
+		//(COMMA modifiers+=Modifier)* RPAREN)?
 		public Group getGroup() { return cGroup; }
 
 		//mode=(EQUALS | LESS_THAN | MORE_THAN)?
@@ -6956,17 +6679,17 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//MINUS
 		public RuleCall getCaseMINUSTerminalRuleCall_1_0_1() { return cCaseMINUSTerminalRuleCall_1_0_1; }
 
-		//name=(IDENT | NUMBER | IDENT_DOT)
+		//name=(IDENT | INT | IDENT_DOT)
 		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
 
-		//IDENT | NUMBER | IDENT_DOT
+		//IDENT | INT | IDENT_DOT
 		public Alternatives getNameAlternatives_2_0() { return cNameAlternatives_2_0; }
 
 		//IDENT
 		public RuleCall getNameIDENTTerminalRuleCall_2_0_0() { return cNameIDENTTerminalRuleCall_2_0_0; }
 
-		//NUMBER
-		public RuleCall getNameNUMBERTerminalRuleCall_2_0_1() { return cNameNUMBERTerminalRuleCall_2_0_1; }
+		//INT
+		public RuleCall getNameINTTerminalRuleCall_2_0_1() { return cNameINTTerminalRuleCall_2_0_1; }
 
 		//IDENT_DOT
 		public RuleCall getNameIDENT_DOTTerminalRuleCall_2_0_2() { return cNameIDENT_DOTTerminalRuleCall_2_0_2; }
@@ -7213,36 +6936,36 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final Alternatives cNameAlternatives_0_0 = (Alternatives)cNameAssignment_0.eContents().get(0);
 		private final RuleCall cNameIDENTTerminalRuleCall_0_0_0 = (RuleCall)cNameAlternatives_0_0.eContents().get(0);
-		private final RuleCall cNameNUMBERTerminalRuleCall_0_0_1 = (RuleCall)cNameAlternatives_0_0.eContents().get(1);
+		private final RuleCall cNameINTTerminalRuleCall_0_0_1 = (RuleCall)cNameAlternatives_0_0.eContents().get(1);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final RuleCall cSTRINGTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final RuleCall cSTRING1TerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
 		private final Assignment cAttrAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cAttrMappingColumnParserRuleCall_1_1_0 = (RuleCall)cAttrAssignment_1_1.eContents().get(0);
 		
 		//MappingItem:
-		//	name=(IDENT | NUMBER) (STRING attr=MappingColumn)?;
+		//	name=(IDENT | INT) (STRING1 attr=MappingColumn)?;
 		public ParserRule getRule() { return rule; }
 
-		//name=(IDENT | NUMBER) (STRING attr=MappingColumn)?
+		//name=(IDENT | INT) (STRING1 attr=MappingColumn)?
 		public Group getGroup() { return cGroup; }
 
-		//name=(IDENT | NUMBER)
+		//name=(IDENT | INT)
 		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
 
-		//IDENT | NUMBER
+		//IDENT | INT
 		public Alternatives getNameAlternatives_0_0() { return cNameAlternatives_0_0; }
 
 		//IDENT
 		public RuleCall getNameIDENTTerminalRuleCall_0_0_0() { return cNameIDENTTerminalRuleCall_0_0_0; }
 
-		//NUMBER
-		public RuleCall getNameNUMBERTerminalRuleCall_0_0_1() { return cNameNUMBERTerminalRuleCall_0_0_1; }
+		//INT
+		public RuleCall getNameINTTerminalRuleCall_0_0_1() { return cNameINTTerminalRuleCall_0_0_1; }
 
-		//(STRING attr=MappingColumn)?
+		//(STRING1 attr=MappingColumn)?
 		public Group getGroup_1() { return cGroup_1; }
 
-		//STRING
-		public RuleCall getSTRINGTerminalRuleCall_1_0() { return cSTRINGTerminalRuleCall_1_0; }
+		//STRING1
+		public RuleCall getSTRING1TerminalRuleCall_1_0() { return cSTRING1TerminalRuleCall_1_0; }
 
 		//attr=MappingColumn
 		public Assignment getAttrAssignment_1_1() { return cAttrAssignment_1_1; }
@@ -7341,16 +7064,16 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cNameAlternatives_0 = (Alternatives)cNameAssignment.eContents().get(0);
 		private final RuleCall cNameIDENTTerminalRuleCall_0_0 = (RuleCall)cNameAlternatives_0.eContents().get(0);
 		private final RuleCall cNameIDENT_DOTTerminalRuleCall_0_1 = (RuleCall)cNameAlternatives_0.eContents().get(1);
-		private final RuleCall cNameNUMBERTerminalRuleCall_0_2 = (RuleCall)cNameAlternatives_0.eContents().get(2);
+		private final RuleCall cNameINTTerminalRuleCall_0_2 = (RuleCall)cNameAlternatives_0.eContents().get(2);
 		
 		//MappingColumnName:
-		//	name=(IDENT | IDENT_DOT | NUMBER);
+		//	name=(IDENT | IDENT_DOT | INT);
 		public ParserRule getRule() { return rule; }
 
-		//name=(IDENT | IDENT_DOT | NUMBER)
+		//name=(IDENT | IDENT_DOT | INT)
 		public Assignment getNameAssignment() { return cNameAssignment; }
 
-		//IDENT | IDENT_DOT | NUMBER
+		//IDENT | IDENT_DOT | INT
 		public Alternatives getNameAlternatives_0() { return cNameAlternatives_0; }
 
 		//IDENT
@@ -7359,8 +7082,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//IDENT_DOT
 		public RuleCall getNameIDENT_DOTTerminalRuleCall_0_1() { return cNameIDENT_DOTTerminalRuleCall_0_1; }
 
-		//NUMBER
-		public RuleCall getNameNUMBERTerminalRuleCall_0_2() { return cNameNUMBERTerminalRuleCall_0_2; }
+		//INT
+		public RuleCall getNameINTTerminalRuleCall_0_2() { return cNameINTTerminalRuleCall_0_2; }
 	}
 
 	public class OptionalFeatureElements extends AbstractParserRuleElementFinder {
@@ -7437,80 +7160,80 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "StatementModifier");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cIDENTTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cNUMBERTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cINTTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//StatementModifier:
-		//	IDENT | NUMBER;
+		//	IDENT | INT;
 		public ParserRule getRule() { return rule; }
 
-		//IDENT | NUMBER
+		//IDENT | INT
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//IDENT
 		public RuleCall getIDENTTerminalRuleCall_0() { return cIDENTTerminalRuleCall_0; }
 
-		//NUMBER
-		public RuleCall getNUMBERTerminalRuleCall_1() { return cNUMBERTerminalRuleCall_1; }
+		//INT
+		public RuleCall getINTTerminalRuleCall_1() { return cINTTerminalRuleCall_1; }
 	}
 
 	public class MappingRuleModifierElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MappingRuleModifier");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cIDENTTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cNUMBERTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cINTTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//MappingRuleModifier:
-		//	IDENT | NUMBER;
+		//	IDENT | INT;
 		public ParserRule getRule() { return rule; }
 
-		//IDENT | NUMBER
+		//IDENT | INT
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//IDENT
 		public RuleCall getIDENTTerminalRuleCall_0() { return cIDENTTerminalRuleCall_0; }
 
-		//NUMBER
-		public RuleCall getNUMBERTerminalRuleCall_1() { return cNUMBERTerminalRuleCall_1; }
+		//INT
+		public RuleCall getINTTerminalRuleCall_1() { return cINTTerminalRuleCall_1; }
 	}
 
 	public class MappingItemModifierElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MappingItemModifier");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cIDENTTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cNUMBERTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cINTTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//MappingItemModifier:
-		//	IDENT | NUMBER;
+		//	IDENT | INT;
 		public ParserRule getRule() { return rule; }
 
-		//IDENT | NUMBER
+		//IDENT | INT
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//IDENT
 		public RuleCall getIDENTTerminalRuleCall_0() { return cIDENTTerminalRuleCall_0; }
 
-		//NUMBER
-		public RuleCall getNUMBERTerminalRuleCall_1() { return cNUMBERTerminalRuleCall_1; }
+		//INT
+		public RuleCall getINTTerminalRuleCall_1() { return cINTTerminalRuleCall_1; }
 	}
 
 	public class OptionalFeatureModifierElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "OptionalFeatureModifier");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cIDENTTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cNUMBERTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cINTTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//OptionalFeatureModifier:
-		//	IDENT | NUMBER;
+		//	IDENT | INT;
 		public ParserRule getRule() { return rule; }
 
-		//IDENT | NUMBER
+		//IDENT | INT
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//IDENT
 		public RuleCall getIDENTTerminalRuleCall_0() { return cIDENTTerminalRuleCall_0; }
 
-		//NUMBER
-		public RuleCall getNUMBERTerminalRuleCall_1() { return cNUMBERTerminalRuleCall_1; }
+		//INT
+		public RuleCall getINTTerminalRuleCall_1() { return cINTTerminalRuleCall_1; }
 	}
 
 	public class ModifierElements extends AbstractParserRuleElementFinder {
@@ -7519,26 +7242,26 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNOTTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
 		private final RuleCall cIDENTTerminalRuleCall_1_0 = (RuleCall)cAlternatives_1.eContents().get(0);
-		private final RuleCall cNUMBERTerminalRuleCall_1_1 = (RuleCall)cAlternatives_1.eContents().get(1);
+		private final RuleCall cINTTerminalRuleCall_1_1 = (RuleCall)cAlternatives_1.eContents().get(1);
 		
 		//Modifier:
-		//	NOT? (IDENT | NUMBER);
+		//	NOT? (IDENT | INT);
 		public ParserRule getRule() { return rule; }
 
-		//NOT? (IDENT | NUMBER)
+		//NOT? (IDENT | INT)
 		public Group getGroup() { return cGroup; }
 
 		//NOT?
 		public RuleCall getNOTTerminalRuleCall_0() { return cNOTTerminalRuleCall_0; }
 
-		//IDENT | NUMBER
+		//IDENT | INT
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
 		//IDENT
 		public RuleCall getIDENTTerminalRuleCall_1_0() { return cIDENTTerminalRuleCall_1_0; }
 
-		//NUMBER
-		public RuleCall getNUMBERTerminalRuleCall_1_1() { return cNUMBERTerminalRuleCall_1_1; }
+		//INT
+		public RuleCall getINTTerminalRuleCall_1_1() { return cINTTerminalRuleCall_1_1; }
 	}
 
 	public class FeatureValueElements extends AbstractParserRuleElementFinder {
@@ -7547,10 +7270,10 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRESTTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cIDENT_DOTTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cIDENTTerminalRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cNUMBERTerminalRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cINTTerminalRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		private final RuleCall cWSTerminalRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		private final RuleCall cCOLONTerminalRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
-		private final RuleCall cSTRINGTerminalRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final RuleCall cSTRING1TerminalRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		private final RuleCall cCOMMATerminalRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
 		private final RuleCall cMINUSTerminalRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
 		private final RuleCall cPLUSTerminalRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
@@ -7578,12 +7301,12 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOPTION_TYPETerminalRuleCall_31 = (RuleCall)cAlternatives.eContents().get(31);
 		
 		//FeatureValue:
-		//	(REST | IDENT_DOT | IDENT | NUMBER | WS | COLON | STRING | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE |
+		//	(REST | IDENT_DOT | IDENT | INT | WS | COLON | STRING1 | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE |
 		//	QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | AND | OR | ESC_CHAR |
 		//	ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE)+;
 		public ParserRule getRule() { return rule; }
 
-		//(REST | IDENT_DOT | IDENT | NUMBER | WS | COLON | STRING | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE |
+		//(REST | IDENT_DOT | IDENT | INT | WS | COLON | STRING1 | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE |
 		//QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | AND | OR | ESC_CHAR | ON_OFF
 		//| STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE)+
 		public Alternatives getAlternatives() { return cAlternatives; }
@@ -7597,8 +7320,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//IDENT
 		public RuleCall getIDENTTerminalRuleCall_2() { return cIDENTTerminalRuleCall_2; }
 
-		//NUMBER
-		public RuleCall getNUMBERTerminalRuleCall_3() { return cNUMBERTerminalRuleCall_3; }
+		//INT
+		public RuleCall getINTTerminalRuleCall_3() { return cINTTerminalRuleCall_3; }
 
 		//WS
 		public RuleCall getWSTerminalRuleCall_4() { return cWSTerminalRuleCall_4; }
@@ -7606,8 +7329,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		//COLON
 		public RuleCall getCOLONTerminalRuleCall_5() { return cCOLONTerminalRuleCall_5; }
 
-		//STRING
-		public RuleCall getSTRINGTerminalRuleCall_6() { return cSTRINGTerminalRuleCall_6; }
+		//STRING1
+		public RuleCall getSTRING1TerminalRuleCall_6() { return cSTRING1TerminalRuleCall_6; }
 
 		//COMMA
 		public RuleCall getCOMMATerminalRuleCall_7() { return cCOMMATerminalRuleCall_7; }
@@ -7815,6 +7538,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	
 	
 	private final ArtifactsElements pArtifacts;
+	private final ValueTypeElements pValueType;
 	private final DatabaseCatalogAssignementElements pDatabaseCatalogAssignement;
 	private final DatabaseSchemaAssignementElements pDatabaseSchemaAssignement;
 	private final DatabaseTypeAssignementElements pDatabaseTypeAssignement;
@@ -7844,7 +7568,6 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	private final MetaTypeAssignementElements pMetaTypeAssignement;
 	private final MetagenPropertyElements pMetagenProperty;
 	private final DaogenPropertyElements pDaogenProperty;
-	private final PropertyValueElements pPropertyValue;
 	private final PojoDefinitionElements pPojoDefinition;
 	private final TableDefinitionElements pTableDefinition;
 	private final ProcedureDefinitionElements pProcedureDefinition;
@@ -7890,7 +7613,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	private final TerminalRule tOPTION_TYPE;
 	private final TerminalRule tIDENT_DOT;
 	private final TerminalRule tIDENT;
-	private final TerminalRule tNUMBER;
+	private final TerminalRule tINT;
 	private final TerminalRule tESC_CHAR;
 	private final TerminalRule tML_COMMENT;
 	private final TerminalRule tSL_COMMENT;
@@ -7899,7 +7622,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	private final TerminalRule tOR;
 	private final TerminalRule tCOLON;
 	private final TerminalRule tSEMICOLON;
-	private final TerminalRule tSTRING;
+	private final TerminalRule tSTRING1;
 	private final TerminalRule tCOMMA;
 	private final TerminalRule tMINUS;
 	private final TerminalRule tPLUS;
@@ -7920,7 +7643,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	private final TerminalRule tPERCENT;
 	private final TerminalRule tDOT;
 	private final TerminalRule tREST;
-	private final TerminalRule tSTRING_VALUE;
+	private final TerminalRule tSTRING;
 	private final FeatureValueElements pFeatureValue;
 	private final PojoTypeElements pPojoType;
 	private final QualifiedNameElements pQualifiedName;
@@ -7931,6 +7654,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	public ProcessorMetaGrammarAccess(GrammarProvider grammarProvider) {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.pArtifacts = new ArtifactsElements();
+		this.pValueType = new ValueTypeElements();
 		this.pDatabaseCatalogAssignement = new DatabaseCatalogAssignementElements();
 		this.pDatabaseSchemaAssignement = new DatabaseSchemaAssignementElements();
 		this.pDatabaseTypeAssignement = new DatabaseTypeAssignementElements();
@@ -7960,7 +7684,6 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		this.pMetaTypeAssignement = new MetaTypeAssignementElements();
 		this.pMetagenProperty = new MetagenPropertyElements();
 		this.pDaogenProperty = new DaogenPropertyElements();
-		this.pPropertyValue = new PropertyValueElements();
 		this.pPojoDefinition = new PojoDefinitionElements();
 		this.pTableDefinition = new TableDefinitionElements();
 		this.pProcedureDefinition = new ProcedureDefinitionElements();
@@ -8006,7 +7729,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		this.tOPTION_TYPE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "OPTION_TYPE");
 		this.tIDENT_DOT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "IDENT_DOT");
 		this.tIDENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "IDENT");
-		this.tNUMBER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "NUMBER");
+		this.tINT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "INT");
 		this.tESC_CHAR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ESC_CHAR");
 		this.tML_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ML_COMMENT");
 		this.tSL_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SL_COMMENT");
@@ -8015,7 +7738,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		this.tOR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "OR");
 		this.tCOLON = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "COLON");
 		this.tSEMICOLON = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SEMICOLON");
-		this.tSTRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING");
+		this.tSTRING1 = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING1");
 		this.tCOMMA = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "COMMA");
 		this.tMINUS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "MINUS");
 		this.tPLUS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "PLUS");
@@ -8036,7 +7759,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		this.tPERCENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "PERCENT");
 		this.tDOT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DOT");
 		this.tREST = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "REST");
-		this.tSTRING_VALUE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING_VALUE");
+		this.tSTRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING");
 		this.pFeatureValue = new FeatureValueElements();
 		this.pPojoType = new PojoTypeElements();
 		this.pQualifiedName = new QualifiedNameElements();
@@ -8077,8 +7800,18 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		return getArtifactsAccess().getRule();
 	}
 
+	//ValueType:
+	//	value=STRING | number=INT | id=QualifiedName;
+	public ValueTypeElements getValueTypeAccess() {
+		return pValueType;
+	}
+	
+	public ParserRule getValueTypeRule() {
+		return getValueTypeAccess().getRule();
+	}
+
 	//DatabaseCatalogAssignement:
-	//	dbCatalog=PropertyValue;
+	//	dbCatalog=QualifiedName;
 	public DatabaseCatalogAssignementElements getDatabaseCatalogAssignementAccess() {
 		return pDatabaseCatalogAssignement;
 	}
@@ -8088,7 +7821,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//DatabaseSchemaAssignement:
-	//	dbSchema=PropertyValue;
+	//	dbSchema=QualifiedName;
 	public DatabaseSchemaAssignementElements getDatabaseSchemaAssignementAccess() {
 		return pDatabaseSchemaAssignement;
 	}
@@ -8108,7 +7841,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//DatabaseMetaInfoAssignement:
-	//	dbMetaInfo=PropertyValue;
+	//	dbMetaInfo=ValueType;
 	public DatabaseMetaInfoAssignementElements getDatabaseMetaInfoAssignementAccess() {
 		return pDatabaseMetaInfoAssignement;
 	}
@@ -8118,7 +7851,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//DriverMetaInfoAssignement:
-	//	dbDriverInfo=PropertyValue;
+	//	dbDriverInfo=ValueType;
 	public DriverMetaInfoAssignementElements getDriverMetaInfoAssignementAccess() {
 		return pDriverMetaInfoAssignement;
 	}
@@ -8128,7 +7861,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//DriverMethodOutputAssignement:
-	//	driverMethod=IDENT "->" callOutput=PropertyValue;
+	//	driverMethod=IDENT "->" callOutput=ValueType;
 	public DriverMethodOutputAssignementElements getDriverMethodOutputAssignementAccess() {
 		return pDriverMethodOutputAssignement;
 	}
@@ -8138,7 +7871,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SqlTypeAssignement:
-	//	typeName=IDENT (LPAREN size=NUMBER RPAREN)? "->" type=PojoType;
+	//	typeName=IDENT (LPAREN size=INT RPAREN)? "->" type=PojoType;
 	public SqlTypeAssignementElements getSqlTypeAssignementAccess() {
 		return pSqlTypeAssignement;
 	}
@@ -8158,7 +7891,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ShowColumnTypeAssignement:
-	//	dbColumn=IDENT "->" type=PropertyValue;
+	//	dbColumn=IDENT "->" type=ValueType;
 	public ShowColumnTypeAssignementElements getShowColumnTypeAssignementAccess() {
 		return pShowColumnTypeAssignement;
 	}
@@ -8238,7 +7971,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//DebugLevelAssignement:
-	//	debug=IDENT (WS+ scope=PropertyValue)?;
+	//	debug=IDENT (WS+ scope=IDENT)?;
 	public DebugLevelAssignementElements getDebugLevelAssignementAccess() {
 		return pDebugLevelAssignement;
 	}
@@ -8314,8 +8047,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	//Property:
 	//	(name="resolve-pojo-on" | name="resolve-pojo-off" | name="database-" database=DatabaseProperty | name="pojogen-"
 	//	pojogen=PojogenProperty | name="metagen-" metagen=MetagenProperty | name="daogen-" daogen=DaogenProperty |
-	//	name="replace-all-regex" WS+ replaceId=IDENT WS+ regex=PropertyValue | name="replace-all-replacement" WS+
-	//	replaceId=IDENT WS+ replacement=PropertyValue | name="compress-meta-directives") SEMICOLON;
+	//	name="replace-all-regex" WS+ replaceId=IDENT WS+ regex=ValueType | name="replace-all-replacement" WS+ replaceId=IDENT
+	//	WS+ replacement=ValueType | name="compress-meta-directives") SEMICOLON;
 	public PropertyElements getPropertyAccess() {
 		return pProperty;
 	}
@@ -8328,13 +8061,13 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	////	LBRACE WS* name=IDENT WS+ EQUALS WS+ value=(IDENT | NUMBER) WS* RBRACE
 	////;
 	//DatabaseProperty:
-	//	name="is-online" | name="is-offline" | name="has-url" WS+ dbUrl=PropertyValue | name="login-username" WS+
-	//	dbUsername=PropertyValue | name="login-password" WS+ dbPassword=PropertyValue | name="in-catalog" WS+
+	//	name="is-online" | name="is-offline" | name="has-url" WS+ dbUrl=ValueType | name="login-username" WS+
+	//	dbUsername=ValueType | name="login-password" WS+ dbPassword=ValueType | name="in-catalog" WS+
 	//	dbCatalog=DatabaseCatalogAssignement | name="active-schema" WS+ dbSchema=DatabaseSchemaAssignement |
-	//	name="jdbc-driver" WS+ (COLON dbDriverx=[jvmTypes::JvmType|QualifiedName] | dbDriver=PropertyValue) |
-	//	name="ddl-create" WS+ dbExecuteBefore=PropertyValue | name="ddl-drop" WS+ dbExecuteAfter=PropertyValue |
-	//	name="index-types" WS+ dbIndexTypes=PropertyValue | name="skip-indexes" | name="skip-functions-procedures" |
-	//	name="skip-check-constraints" | name="is-of-type" WS+ dbType=DatabaseTypeAssignement | name="show-database-info" WS+
+	//	name="jdbc-driver" WS+ (COLON dbDriverx=[jvmTypes::JvmType|QualifiedName] | dbDriver=ValueType) | name="ddl-create"
+	//	WS+ dbExecuteBefore=ValueType | name="ddl-drop" WS+ dbExecuteAfter=ValueType | name="index-types" WS+
+	//	dbIndexTypes=ValueType | name="skip-indexes" | name="skip-functions-procedures" | name="skip-check-constraints" |
+	//	name="is-of-type" WS+ dbType=DatabaseTypeAssignement | name="show-database-info" WS+
 	//	dbMetaInfo=DatabaseMetaInfoAssignement | name="show-driver-info" WS+ dbDriverInfo=DriverMetaInfoAssignement |
 	//	name="show-driver-output" (WS+ dbMethodsCalls+=DriverMethodOutputAssignement)+ | name="debug-level" WS+
 	//	debug=DebugLevelAssignement | name="take-comments" | name="lowercase-names" | name="uppercase-names";
@@ -8374,7 +8107,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	//	name="version-column" WS+ version=IDENT (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)? |
 	//	name="debug-level" WS+ debug=DebugLevelAssignement | name="pojos-for-procedures" (WS+
 	//	procPojos+=ProcedurePojoAssignement)+ | name="pojos-for-functions" (WS+ funPojos+=FunctionPojoAssignement)+ |
-	//	name="active-filter" WS+ activeFilter=PropertyValue | name="package" WS+ pckg=PropertyValue |
+	//	name="active-filter" WS+ activeFilter=ValueType | name="package" WS+ pckg=QualifiedName |
 	//	name="enum-for-check-constraints" WS+ enumName=IDENT (WS+ dbCheckConstraints+=IDENT)+;
 	public PojogenPropertyElements getPojogenPropertyAccess() {
 		return pPojogenProperty;
@@ -8407,7 +8140,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	//	name="function-result-set" WS+ dbFunction=IDENT WS+ dbTable=IDENT | name="procedure-result-set" WS+ dbProcedure=IDENT
 	//	WS+ dbTable=IDENT | name="debug-level" WS+ debug=DebugLevelAssignement | name="generate-operators" |
 	//	name="optimize-insert" (WS+ dbTables+=IDENT)* | name="optional-features" WS+ dbStatement=IDENT (WS+
-	//	optionalFeatures+=IDENT)+ | name="active-filter" WS+ activeFilter=PropertyValue;
+	//	optionalFeatures+=IDENT)+ | name="active-filter" WS+ activeFilter=ValueType;
 	public MetagenPropertyElements getMetagenPropertyAccess() {
 		return pMetagenProperty;
 	}
@@ -8422,29 +8155,13 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	//	name="implements-interfaces-generics" WS+ toImplementsGenerics=ImplementsAssignementGenerics |
 	//	name="extends-class-generics" WS+ toExtendsGenerics=ExtendsAssignementGenerics | name="make-it-final" |
 	//	name="function-result" WS+ dbFunction=IDENT WS+ resultType=PojoType | name="debug-level" WS+
-	//	debug=DebugLevelAssignement | name="active-filter" WS+ activeFilter=PropertyValue | name="package" WS+
-	//	pckg=PropertyValue;
+	//	debug=DebugLevelAssignement | name="active-filter" WS+ activeFilter=ValueType | name="package" WS+ pckg=QualifiedName;
 	public DaogenPropertyElements getDaogenPropertyAccess() {
 		return pDaogenProperty;
 	}
 	
 	public ParserRule getDaogenPropertyRule() {
 		return getDaogenPropertyAccess().getRule();
-	}
-
-	//PropertyValue:
-	//	(REST | IDENT_DOT | IDENT | NUMBER | COLON | STRING | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE |
-	//	QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR |
-	//	ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | COLON | STRING |
-	//	COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE | QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS |
-	//	LESS_THAN | MORE_THAN | PERCENT | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE)* |
-	//	STRING_VALUE;
-	public PropertyValueElements getPropertyValueAccess() {
-		return pPropertyValue;
-	}
-	
-	public ParserRule getPropertyValueRule() {
-		return getPropertyValueAccess().getRule();
 	}
 
 	//PojoDefinition hidden(ML_COMMENT, SL_COMMENT, WS):
@@ -8508,7 +8225,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SqlFragment:
-	//	value=SqlValue | AT col=Column | STRING cnst=Constant | COLON ident=Identifier | STRING STRING
+	//	value=SqlValue | AT col=Column | STRING1 cnst=Constant | COLON ident=Identifier | STRING1 STRING1
 	//	cnstOper=ConstantOperator | COLON COLON identOper=IdentifierOperator | LBRACE meta=MetaSql RBRACE | PERCENT (PERCENT
 	//	dbtab=DatabaseTable | dbcol=DatabaseColumn);
 	public SqlFragmentElements getSqlFragmentAccess() {
@@ -8521,11 +8238,11 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 
 	////~(COLON | STRING | AT | LBRACE | SEMICOLON)
 	//SqlValue:
-	//	(REST | IDENT_DOT | IDENT | NUMBER | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI | NOT | BAND | BOR
-	//	| HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
-	//	OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI |
-	//	NOT | BAND | BOR | HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE
-	//	| MAPPING_TYPE | OPTION_TYPE)*;
+	//	(REST | IDENT_DOT | IDENT | INT | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI | NOT | BAND | BOR |
+	//	HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
+	//	OPTION_TYPE) => (REST | IDENT_DOT | IDENT | INT | WS | COMMA | MINUS | PLUS | LPAREN | RPAREN | RBRACE | QUESTI | NOT
+	//	| BAND | BOR | HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE |
+	//	MAPPING_TYPE | OPTION_TYPE)*;
 	public SqlValueElements getSqlValueAccess() {
 		return pSqlValue;
 	}
@@ -8536,7 +8253,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 
 	//MetaSql:
 	//	WS ifs+=IfSql (BOR ifs+=IfSql)* | type=QUESTI cond=IfSqlCond BOR ifs+=IfSql (BOR ifs+=IfSql)* | type=BAND ifs+=IfSql
-	//	(BOR ifs+=IfSql)* | type=BOR ifs+=IfSql (BOR ifs+=IfSql)* | type=EQUALS WS* ftype=IDENT ifs+=IfSql | type=HASH NUMBER
+	//	(BOR ifs+=IfSql)* | type=BOR ifs+=IfSql (BOR ifs+=IfSql)* | type=EQUALS WS* ftype=IDENT ifs+=IfSql | type=HASH INT
 	//	ord=OrdSql;
 	public MetaSqlElements getMetaSqlAccess() {
 		return pMetaSql;
@@ -8557,7 +8274,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//IfSqlFragment:
-	//	value=IfSqlValue | AT col=Column | STRING cnst=Constant | COLON ident=Identifier | STRING STRING
+	//	value=IfSqlValue | AT col=Column | STRING1 cnst=Constant | COLON ident=Identifier | STRING1 STRING1
 	//	cnstOper=ConstantOperator | COLON COLON identOper=IdentifierOperator | PERCENT (PERCENT dbtab=DatabaseTable |
 	//	dbcol=DatabaseColumn) | LBRACE meta=IfMetaSql RBRACE;
 	public IfSqlFragmentElements getIfSqlFragmentAccess() {
@@ -8570,10 +8287,10 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 
 	////~(COLON | STRING | AT | LBRACE | BOR | RBRACE)
 	//IfSqlValue:
-	//	(REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI | NOT | BAND |
-	//	HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
-	//	OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI
-	//	| NOT | BAND | HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE |
+	//	(REST | IDENT_DOT | IDENT | INT | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI | NOT | BAND | HASH
+	//	| CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE |
+	//	OPTION_TYPE) => (REST | IDENT_DOT | IDENT | INT | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | QUESTI |
+	//	NOT | BAND | HASH | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE |
 	//	MAPPING_TYPE | OPTION_TYPE)*;
 	public IfSqlValueElements getIfSqlValueAccess() {
 		return pIfSqlValue;
@@ -8605,7 +8322,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//IfSqlBool:
-	//	not?=NOT? STRING cnst=Constant | not?=NOT? COLON ident=Identifier | not?=NOT? LPAREN cond=IfSqlCond RPAREN;
+	//	not?=NOT? STRING1 cnst=Constant | not?=NOT? COLON ident=Identifier | not?=NOT? LPAREN cond=IfSqlCond RPAREN;
 	public IfSqlBoolElements getIfSqlBoolAccess() {
 		return pIfSqlBool;
 	}
@@ -8625,7 +8342,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//OrdSql2:
-	//	value=OrdSqlValue | STRING cnst=Constant | COLON ident=Identifier | PERCENT dbcol=DatabaseColumn;
+	//	value=OrdSqlValue | STRING1 cnst=Constant | COLON ident=Identifier | PERCENT dbcol=DatabaseColumn;
 	public OrdSql2Elements getOrdSql2Access() {
 		return pOrdSql2;
 	}
@@ -8636,9 +8353,9 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 
 	////~(COLON | STRING | PERCENT | RBRACE)
 	//OrdSqlValue:
-	//	(REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | QUESTI | NOT |
+	//	(REST | IDENT_DOT | IDENT | INT | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | QUESTI | NOT |
 	//	BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR | ESC_CHAR | ON_OFF | STATEMENT_TYPE
-	//	| MAPPING_TYPE | OPTION_TYPE) => (REST | IDENT_DOT | IDENT | NUMBER | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN |
+	//	| MAPPING_TYPE | OPTION_TYPE) => (REST | IDENT_DOT | IDENT | INT | WS | SEMICOLON | COMMA | MINUS | PLUS | LPAREN |
 	//	RPAREN | LBRACE | QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | DOT | AND | OR |
 	//	ESC_CHAR | ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE)*;
 	public OrdSqlValueElements getOrdSqlValueAccess() {
@@ -8670,7 +8387,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ExtendedColumnName:
-	//	name=(IDENT | NUMBER | IDENT_DOT);
+	//	name=(IDENT | INT | IDENT_DOT);
 	public ExtendedColumnNameElements getExtendedColumnNameAccess() {
 		return pExtendedColumnName;
 	}
@@ -8690,8 +8407,8 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Identifier:
-	//	mode=(EQUALS | LESS_THAN | MORE_THAN)? case=(PLUS | MINUS)? name=(IDENT | NUMBER | IDENT_DOT) (LPAREN
-	//	modifiers+=Modifier (COMMA modifiers+=Modifier)* RPAREN)?;
+	//	mode=(EQUALS | LESS_THAN | MORE_THAN)? case=(PLUS | MINUS)? name=(IDENT | INT | IDENT_DOT) (LPAREN modifiers+=Modifier
+	//	(COMMA modifiers+=Modifier)* RPAREN)?;
 	public IdentifierElements getIdentifierAccess() {
 		return pIdentifier;
 	}
@@ -8761,7 +8478,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//MappingItem:
-	//	name=(IDENT | NUMBER) (STRING attr=MappingColumn)?;
+	//	name=(IDENT | INT) (STRING1 attr=MappingColumn)?;
 	public MappingItemElements getMappingItemAccess() {
 		return pMappingItem;
 	}
@@ -8791,7 +8508,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//MappingColumnName:
-	//	name=(IDENT | IDENT_DOT | NUMBER);
+	//	name=(IDENT | IDENT_DOT | INT);
 	public MappingColumnNameElements getMappingColumnNameAccess() {
 		return pMappingColumnName;
 	}
@@ -8812,7 +8529,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StatementModifier:
-	//	IDENT | NUMBER;
+	//	IDENT | INT;
 	public StatementModifierElements getStatementModifierAccess() {
 		return pStatementModifier;
 	}
@@ -8822,7 +8539,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//MappingRuleModifier:
-	//	IDENT | NUMBER;
+	//	IDENT | INT;
 	public MappingRuleModifierElements getMappingRuleModifierAccess() {
 		return pMappingRuleModifier;
 	}
@@ -8832,7 +8549,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//MappingItemModifier:
-	//	IDENT | NUMBER;
+	//	IDENT | INT;
 	public MappingItemModifierElements getMappingItemModifierAccess() {
 		return pMappingItemModifier;
 	}
@@ -8842,7 +8559,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//OptionalFeatureModifier:
-	//	IDENT | NUMBER;
+	//	IDENT | INT;
 	public OptionalFeatureModifierElements getOptionalFeatureModifierAccess() {
 		return pOptionalFeatureModifier;
 	}
@@ -8852,7 +8569,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Modifier:
-	//	NOT? (IDENT | NUMBER);
+	//	NOT? (IDENT | INT);
 	public ModifierElements getModifierAccess() {
 		return pModifier;
 	}
@@ -8898,15 +8615,15 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		return tIDENT;
 	} 
 
-	//terminal NUMBER:
+	//terminal INT:
 	//	"0".."9"+;
-	public TerminalRule getNUMBERRule() {
-		return tNUMBER;
+	public TerminalRule getINTRule() {
+		return tINT;
 	} 
 
 	////terminal NEGATIVE_NUMBER: '-'('0'..'9')+;
 	//terminal ESC_CHAR:
-	//	"\\" (COLON | SEMICOLON | STRING | LBRACE | RBRACE | BOR | HASH | AT | PERCENT | DOT | "/");
+	//	"\\" (COLON | SEMICOLON | STRING1 | LBRACE | RBRACE | BOR | HASH | AT | PERCENT | DOT | "/");
 	public TerminalRule getESC_CHARRule() {
 		return tESC_CHAR;
 	} 
@@ -8953,10 +8670,10 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		return tSEMICOLON;
 	} 
 
-	//terminal STRING:
+	//terminal STRING1:
 	//	"$";
-	public TerminalRule getSTRINGRule() {
-		return tSTRING;
+	public TerminalRule getSTRING1Rule() {
+		return tSTRING1;
 	} 
 
 	//terminal COMMA:
@@ -9079,14 +8796,14 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 		return tREST;
 	} 
 
-	//terminal STRING_VALUE:
+	//terminal STRING:
 	//	"\""->"\"";
-	public TerminalRule getSTRING_VALUERule() {
-		return tSTRING_VALUE;
+	public TerminalRule getSTRINGRule() {
+		return tSTRING;
 	} 
 
 	//FeatureValue:
-	//	(REST | IDENT_DOT | IDENT | NUMBER | WS | COLON | STRING | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE |
+	//	(REST | IDENT_DOT | IDENT | INT | WS | COLON | STRING1 | COMMA | MINUS | PLUS | LPAREN | RPAREN | LBRACE | RBRACE |
 	//	QUESTI | NOT | BAND | BOR | HASH | AT | CARET | EQUALS | LESS_THAN | MORE_THAN | PERCENT | AND | OR | ESC_CHAR |
 	//	ON_OFF | STATEMENT_TYPE | MAPPING_TYPE | OPTION_TYPE)+;
 	public FeatureValueElements getFeatureValueAccess() {

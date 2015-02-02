@@ -29,6 +29,7 @@ import org.sqlproc.meta.processorMeta.DebugLevelAssignement;
 import org.sqlproc.meta.processorMeta.DriverMetaInfoAssignement;
 import org.sqlproc.meta.processorMeta.DriverMethodOutputAssignement;
 import org.sqlproc.meta.processorMeta.ProcessorMetaPackage;
+import org.sqlproc.meta.processorMeta.ValueType;
 
 /**
  * <!-- begin-user-doc -->
@@ -81,64 +82,34 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getDbUrl() <em>Db Url</em>}' attribute.
+   * The cached value of the '{@link #getDbUrl() <em>Db Url</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getDbUrl()
    * @generated
    * @ordered
    */
-  protected static final String DB_URL_EDEFAULT = null;
+  protected ValueType dbUrl;
 
   /**
-   * The cached value of the '{@link #getDbUrl() <em>Db Url</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getDbUrl()
-   * @generated
-   * @ordered
-   */
-  protected String dbUrl = DB_URL_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getDbUsername() <em>Db Username</em>}' attribute.
+   * The cached value of the '{@link #getDbUsername() <em>Db Username</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getDbUsername()
    * @generated
    * @ordered
    */
-  protected static final String DB_USERNAME_EDEFAULT = null;
+  protected ValueType dbUsername;
 
   /**
-   * The cached value of the '{@link #getDbUsername() <em>Db Username</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getDbUsername()
-   * @generated
-   * @ordered
-   */
-  protected String dbUsername = DB_USERNAME_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getDbPassword() <em>Db Password</em>}' attribute.
+   * The cached value of the '{@link #getDbPassword() <em>Db Password</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getDbPassword()
    * @generated
    * @ordered
    */
-  protected static final String DB_PASSWORD_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getDbPassword() <em>Db Password</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getDbPassword()
-   * @generated
-   * @ordered
-   */
-  protected String dbPassword = DB_PASSWORD_EDEFAULT;
+  protected ValueType dbPassword;
 
   /**
    * The cached value of the '{@link #getDbCatalog() <em>Db Catalog</em>}' containment reference.
@@ -171,84 +142,44 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
   protected JvmType dbDriverx;
 
   /**
-   * The default value of the '{@link #getDbDriver() <em>Db Driver</em>}' attribute.
+   * The cached value of the '{@link #getDbDriver() <em>Db Driver</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getDbDriver()
    * @generated
    * @ordered
    */
-  protected static final String DB_DRIVER_EDEFAULT = null;
+  protected ValueType dbDriver;
 
   /**
-   * The cached value of the '{@link #getDbDriver() <em>Db Driver</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getDbDriver()
-   * @generated
-   * @ordered
-   */
-  protected String dbDriver = DB_DRIVER_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getDbExecuteBefore() <em>Db Execute Before</em>}' attribute.
+   * The cached value of the '{@link #getDbExecuteBefore() <em>Db Execute Before</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getDbExecuteBefore()
    * @generated
    * @ordered
    */
-  protected static final String DB_EXECUTE_BEFORE_EDEFAULT = null;
+  protected ValueType dbExecuteBefore;
 
   /**
-   * The cached value of the '{@link #getDbExecuteBefore() <em>Db Execute Before</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getDbExecuteBefore()
-   * @generated
-   * @ordered
-   */
-  protected String dbExecuteBefore = DB_EXECUTE_BEFORE_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getDbExecuteAfter() <em>Db Execute After</em>}' attribute.
+   * The cached value of the '{@link #getDbExecuteAfter() <em>Db Execute After</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getDbExecuteAfter()
    * @generated
    * @ordered
    */
-  protected static final String DB_EXECUTE_AFTER_EDEFAULT = null;
+  protected ValueType dbExecuteAfter;
 
   /**
-   * The cached value of the '{@link #getDbExecuteAfter() <em>Db Execute After</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getDbExecuteAfter()
-   * @generated
-   * @ordered
-   */
-  protected String dbExecuteAfter = DB_EXECUTE_AFTER_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getDbIndexTypes() <em>Db Index Types</em>}' attribute.
+   * The cached value of the '{@link #getDbIndexTypes() <em>Db Index Types</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getDbIndexTypes()
    * @generated
    * @ordered
    */
-  protected static final String DB_INDEX_TYPES_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getDbIndexTypes() <em>Db Index Types</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getDbIndexTypes()
-   * @generated
-   * @ordered
-   */
-  protected String dbIndexTypes = DB_INDEX_TYPES_EDEFAULT;
+  protected ValueType dbIndexTypes;
 
   /**
    * The cached value of the '{@link #getDbType() <em>Db Type</em>}' containment reference.
@@ -349,7 +280,7 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getDbUrl()
+  public ValueType getDbUrl()
   {
     return dbUrl;
   }
@@ -359,12 +290,16 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setDbUrl(String newDbUrl)
+  public NotificationChain basicSetDbUrl(ValueType newDbUrl, NotificationChain msgs)
   {
-    String oldDbUrl = dbUrl;
+    ValueType oldDbUrl = dbUrl;
     dbUrl = newDbUrl;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.DATABASE_PROPERTY__DB_URL, oldDbUrl, dbUrl));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.DATABASE_PROPERTY__DB_URL, oldDbUrl, newDbUrl);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
   }
 
   /**
@@ -372,7 +307,28 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getDbUsername()
+  public void setDbUrl(ValueType newDbUrl)
+  {
+    if (newDbUrl != dbUrl)
+    {
+      NotificationChain msgs = null;
+      if (dbUrl != null)
+        msgs = ((InternalEObject)dbUrl).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorMetaPackage.DATABASE_PROPERTY__DB_URL, null, msgs);
+      if (newDbUrl != null)
+        msgs = ((InternalEObject)newDbUrl).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorMetaPackage.DATABASE_PROPERTY__DB_URL, null, msgs);
+      msgs = basicSetDbUrl(newDbUrl, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.DATABASE_PROPERTY__DB_URL, newDbUrl, newDbUrl));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ValueType getDbUsername()
   {
     return dbUsername;
   }
@@ -382,12 +338,16 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setDbUsername(String newDbUsername)
+  public NotificationChain basicSetDbUsername(ValueType newDbUsername, NotificationChain msgs)
   {
-    String oldDbUsername = dbUsername;
+    ValueType oldDbUsername = dbUsername;
     dbUsername = newDbUsername;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.DATABASE_PROPERTY__DB_USERNAME, oldDbUsername, dbUsername));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.DATABASE_PROPERTY__DB_USERNAME, oldDbUsername, newDbUsername);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
   }
 
   /**
@@ -395,7 +355,28 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getDbPassword()
+  public void setDbUsername(ValueType newDbUsername)
+  {
+    if (newDbUsername != dbUsername)
+    {
+      NotificationChain msgs = null;
+      if (dbUsername != null)
+        msgs = ((InternalEObject)dbUsername).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorMetaPackage.DATABASE_PROPERTY__DB_USERNAME, null, msgs);
+      if (newDbUsername != null)
+        msgs = ((InternalEObject)newDbUsername).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorMetaPackage.DATABASE_PROPERTY__DB_USERNAME, null, msgs);
+      msgs = basicSetDbUsername(newDbUsername, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.DATABASE_PROPERTY__DB_USERNAME, newDbUsername, newDbUsername));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ValueType getDbPassword()
   {
     return dbPassword;
   }
@@ -405,12 +386,37 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setDbPassword(String newDbPassword)
+  public NotificationChain basicSetDbPassword(ValueType newDbPassword, NotificationChain msgs)
   {
-    String oldDbPassword = dbPassword;
+    ValueType oldDbPassword = dbPassword;
     dbPassword = newDbPassword;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.DATABASE_PROPERTY__DB_PASSWORD, oldDbPassword, dbPassword));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.DATABASE_PROPERTY__DB_PASSWORD, oldDbPassword, newDbPassword);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setDbPassword(ValueType newDbPassword)
+  {
+    if (newDbPassword != dbPassword)
+    {
+      NotificationChain msgs = null;
+      if (dbPassword != null)
+        msgs = ((InternalEObject)dbPassword).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorMetaPackage.DATABASE_PROPERTY__DB_PASSWORD, null, msgs);
+      if (newDbPassword != null)
+        msgs = ((InternalEObject)newDbPassword).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorMetaPackage.DATABASE_PROPERTY__DB_PASSWORD, null, msgs);
+      msgs = basicSetDbPassword(newDbPassword, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.DATABASE_PROPERTY__DB_PASSWORD, newDbPassword, newDbPassword));
   }
 
   /**
@@ -557,7 +563,7 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getDbDriver()
+  public ValueType getDbDriver()
   {
     return dbDriver;
   }
@@ -567,12 +573,16 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setDbDriver(String newDbDriver)
+  public NotificationChain basicSetDbDriver(ValueType newDbDriver, NotificationChain msgs)
   {
-    String oldDbDriver = dbDriver;
+    ValueType oldDbDriver = dbDriver;
     dbDriver = newDbDriver;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.DATABASE_PROPERTY__DB_DRIVER, oldDbDriver, dbDriver));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.DATABASE_PROPERTY__DB_DRIVER, oldDbDriver, newDbDriver);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
   }
 
   /**
@@ -580,7 +590,28 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getDbExecuteBefore()
+  public void setDbDriver(ValueType newDbDriver)
+  {
+    if (newDbDriver != dbDriver)
+    {
+      NotificationChain msgs = null;
+      if (dbDriver != null)
+        msgs = ((InternalEObject)dbDriver).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorMetaPackage.DATABASE_PROPERTY__DB_DRIVER, null, msgs);
+      if (newDbDriver != null)
+        msgs = ((InternalEObject)newDbDriver).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorMetaPackage.DATABASE_PROPERTY__DB_DRIVER, null, msgs);
+      msgs = basicSetDbDriver(newDbDriver, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.DATABASE_PROPERTY__DB_DRIVER, newDbDriver, newDbDriver));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ValueType getDbExecuteBefore()
   {
     return dbExecuteBefore;
   }
@@ -590,12 +621,16 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setDbExecuteBefore(String newDbExecuteBefore)
+  public NotificationChain basicSetDbExecuteBefore(ValueType newDbExecuteBefore, NotificationChain msgs)
   {
-    String oldDbExecuteBefore = dbExecuteBefore;
+    ValueType oldDbExecuteBefore = dbExecuteBefore;
     dbExecuteBefore = newDbExecuteBefore;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.DATABASE_PROPERTY__DB_EXECUTE_BEFORE, oldDbExecuteBefore, dbExecuteBefore));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.DATABASE_PROPERTY__DB_EXECUTE_BEFORE, oldDbExecuteBefore, newDbExecuteBefore);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
   }
 
   /**
@@ -603,7 +638,28 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getDbExecuteAfter()
+  public void setDbExecuteBefore(ValueType newDbExecuteBefore)
+  {
+    if (newDbExecuteBefore != dbExecuteBefore)
+    {
+      NotificationChain msgs = null;
+      if (dbExecuteBefore != null)
+        msgs = ((InternalEObject)dbExecuteBefore).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorMetaPackage.DATABASE_PROPERTY__DB_EXECUTE_BEFORE, null, msgs);
+      if (newDbExecuteBefore != null)
+        msgs = ((InternalEObject)newDbExecuteBefore).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorMetaPackage.DATABASE_PROPERTY__DB_EXECUTE_BEFORE, null, msgs);
+      msgs = basicSetDbExecuteBefore(newDbExecuteBefore, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.DATABASE_PROPERTY__DB_EXECUTE_BEFORE, newDbExecuteBefore, newDbExecuteBefore));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ValueType getDbExecuteAfter()
   {
     return dbExecuteAfter;
   }
@@ -613,12 +669,16 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setDbExecuteAfter(String newDbExecuteAfter)
+  public NotificationChain basicSetDbExecuteAfter(ValueType newDbExecuteAfter, NotificationChain msgs)
   {
-    String oldDbExecuteAfter = dbExecuteAfter;
+    ValueType oldDbExecuteAfter = dbExecuteAfter;
     dbExecuteAfter = newDbExecuteAfter;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.DATABASE_PROPERTY__DB_EXECUTE_AFTER, oldDbExecuteAfter, dbExecuteAfter));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.DATABASE_PROPERTY__DB_EXECUTE_AFTER, oldDbExecuteAfter, newDbExecuteAfter);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
   }
 
   /**
@@ -626,7 +686,28 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getDbIndexTypes()
+  public void setDbExecuteAfter(ValueType newDbExecuteAfter)
+  {
+    if (newDbExecuteAfter != dbExecuteAfter)
+    {
+      NotificationChain msgs = null;
+      if (dbExecuteAfter != null)
+        msgs = ((InternalEObject)dbExecuteAfter).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorMetaPackage.DATABASE_PROPERTY__DB_EXECUTE_AFTER, null, msgs);
+      if (newDbExecuteAfter != null)
+        msgs = ((InternalEObject)newDbExecuteAfter).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorMetaPackage.DATABASE_PROPERTY__DB_EXECUTE_AFTER, null, msgs);
+      msgs = basicSetDbExecuteAfter(newDbExecuteAfter, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.DATABASE_PROPERTY__DB_EXECUTE_AFTER, newDbExecuteAfter, newDbExecuteAfter));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ValueType getDbIndexTypes()
   {
     return dbIndexTypes;
   }
@@ -636,12 +717,37 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setDbIndexTypes(String newDbIndexTypes)
+  public NotificationChain basicSetDbIndexTypes(ValueType newDbIndexTypes, NotificationChain msgs)
   {
-    String oldDbIndexTypes = dbIndexTypes;
+    ValueType oldDbIndexTypes = dbIndexTypes;
     dbIndexTypes = newDbIndexTypes;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.DATABASE_PROPERTY__DB_INDEX_TYPES, oldDbIndexTypes, dbIndexTypes));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.DATABASE_PROPERTY__DB_INDEX_TYPES, oldDbIndexTypes, newDbIndexTypes);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setDbIndexTypes(ValueType newDbIndexTypes)
+  {
+    if (newDbIndexTypes != dbIndexTypes)
+    {
+      NotificationChain msgs = null;
+      if (dbIndexTypes != null)
+        msgs = ((InternalEObject)dbIndexTypes).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorMetaPackage.DATABASE_PROPERTY__DB_INDEX_TYPES, null, msgs);
+      if (newDbIndexTypes != null)
+        msgs = ((InternalEObject)newDbIndexTypes).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorMetaPackage.DATABASE_PROPERTY__DB_INDEX_TYPES, null, msgs);
+      msgs = basicSetDbIndexTypes(newDbIndexTypes, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.DATABASE_PROPERTY__DB_INDEX_TYPES, newDbIndexTypes, newDbIndexTypes));
   }
 
   /**
@@ -860,10 +966,24 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
   {
     switch (featureID)
     {
+      case ProcessorMetaPackage.DATABASE_PROPERTY__DB_URL:
+        return basicSetDbUrl(null, msgs);
+      case ProcessorMetaPackage.DATABASE_PROPERTY__DB_USERNAME:
+        return basicSetDbUsername(null, msgs);
+      case ProcessorMetaPackage.DATABASE_PROPERTY__DB_PASSWORD:
+        return basicSetDbPassword(null, msgs);
       case ProcessorMetaPackage.DATABASE_PROPERTY__DB_CATALOG:
         return basicSetDbCatalog(null, msgs);
       case ProcessorMetaPackage.DATABASE_PROPERTY__DB_SCHEMA:
         return basicSetDbSchema(null, msgs);
+      case ProcessorMetaPackage.DATABASE_PROPERTY__DB_DRIVER:
+        return basicSetDbDriver(null, msgs);
+      case ProcessorMetaPackage.DATABASE_PROPERTY__DB_EXECUTE_BEFORE:
+        return basicSetDbExecuteBefore(null, msgs);
+      case ProcessorMetaPackage.DATABASE_PROPERTY__DB_EXECUTE_AFTER:
+        return basicSetDbExecuteAfter(null, msgs);
+      case ProcessorMetaPackage.DATABASE_PROPERTY__DB_INDEX_TYPES:
+        return basicSetDbIndexTypes(null, msgs);
       case ProcessorMetaPackage.DATABASE_PROPERTY__DB_TYPE:
         return basicSetDbType(null, msgs);
       case ProcessorMetaPackage.DATABASE_PROPERTY__DB_META_INFO:
@@ -940,13 +1060,13 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
         setName((String)newValue);
         return;
       case ProcessorMetaPackage.DATABASE_PROPERTY__DB_URL:
-        setDbUrl((String)newValue);
+        setDbUrl((ValueType)newValue);
         return;
       case ProcessorMetaPackage.DATABASE_PROPERTY__DB_USERNAME:
-        setDbUsername((String)newValue);
+        setDbUsername((ValueType)newValue);
         return;
       case ProcessorMetaPackage.DATABASE_PROPERTY__DB_PASSWORD:
-        setDbPassword((String)newValue);
+        setDbPassword((ValueType)newValue);
         return;
       case ProcessorMetaPackage.DATABASE_PROPERTY__DB_CATALOG:
         setDbCatalog((DatabaseCatalogAssignement)newValue);
@@ -958,16 +1078,16 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
         setDbDriverx((JvmType)newValue);
         return;
       case ProcessorMetaPackage.DATABASE_PROPERTY__DB_DRIVER:
-        setDbDriver((String)newValue);
+        setDbDriver((ValueType)newValue);
         return;
       case ProcessorMetaPackage.DATABASE_PROPERTY__DB_EXECUTE_BEFORE:
-        setDbExecuteBefore((String)newValue);
+        setDbExecuteBefore((ValueType)newValue);
         return;
       case ProcessorMetaPackage.DATABASE_PROPERTY__DB_EXECUTE_AFTER:
-        setDbExecuteAfter((String)newValue);
+        setDbExecuteAfter((ValueType)newValue);
         return;
       case ProcessorMetaPackage.DATABASE_PROPERTY__DB_INDEX_TYPES:
-        setDbIndexTypes((String)newValue);
+        setDbIndexTypes((ValueType)newValue);
         return;
       case ProcessorMetaPackage.DATABASE_PROPERTY__DB_TYPE:
         setDbType((DatabaseTypeAssignement)newValue);
@@ -1003,13 +1123,13 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
         setName(NAME_EDEFAULT);
         return;
       case ProcessorMetaPackage.DATABASE_PROPERTY__DB_URL:
-        setDbUrl(DB_URL_EDEFAULT);
+        setDbUrl((ValueType)null);
         return;
       case ProcessorMetaPackage.DATABASE_PROPERTY__DB_USERNAME:
-        setDbUsername(DB_USERNAME_EDEFAULT);
+        setDbUsername((ValueType)null);
         return;
       case ProcessorMetaPackage.DATABASE_PROPERTY__DB_PASSWORD:
-        setDbPassword(DB_PASSWORD_EDEFAULT);
+        setDbPassword((ValueType)null);
         return;
       case ProcessorMetaPackage.DATABASE_PROPERTY__DB_CATALOG:
         setDbCatalog((DatabaseCatalogAssignement)null);
@@ -1021,16 +1141,16 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
         setDbDriverx((JvmType)null);
         return;
       case ProcessorMetaPackage.DATABASE_PROPERTY__DB_DRIVER:
-        setDbDriver(DB_DRIVER_EDEFAULT);
+        setDbDriver((ValueType)null);
         return;
       case ProcessorMetaPackage.DATABASE_PROPERTY__DB_EXECUTE_BEFORE:
-        setDbExecuteBefore(DB_EXECUTE_BEFORE_EDEFAULT);
+        setDbExecuteBefore((ValueType)null);
         return;
       case ProcessorMetaPackage.DATABASE_PROPERTY__DB_EXECUTE_AFTER:
-        setDbExecuteAfter(DB_EXECUTE_AFTER_EDEFAULT);
+        setDbExecuteAfter((ValueType)null);
         return;
       case ProcessorMetaPackage.DATABASE_PROPERTY__DB_INDEX_TYPES:
-        setDbIndexTypes(DB_INDEX_TYPES_EDEFAULT);
+        setDbIndexTypes((ValueType)null);
         return;
       case ProcessorMetaPackage.DATABASE_PROPERTY__DB_TYPE:
         setDbType((DatabaseTypeAssignement)null);
@@ -1064,11 +1184,11 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
       case ProcessorMetaPackage.DATABASE_PROPERTY__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case ProcessorMetaPackage.DATABASE_PROPERTY__DB_URL:
-        return DB_URL_EDEFAULT == null ? dbUrl != null : !DB_URL_EDEFAULT.equals(dbUrl);
+        return dbUrl != null;
       case ProcessorMetaPackage.DATABASE_PROPERTY__DB_USERNAME:
-        return DB_USERNAME_EDEFAULT == null ? dbUsername != null : !DB_USERNAME_EDEFAULT.equals(dbUsername);
+        return dbUsername != null;
       case ProcessorMetaPackage.DATABASE_PROPERTY__DB_PASSWORD:
-        return DB_PASSWORD_EDEFAULT == null ? dbPassword != null : !DB_PASSWORD_EDEFAULT.equals(dbPassword);
+        return dbPassword != null;
       case ProcessorMetaPackage.DATABASE_PROPERTY__DB_CATALOG:
         return dbCatalog != null;
       case ProcessorMetaPackage.DATABASE_PROPERTY__DB_SCHEMA:
@@ -1076,13 +1196,13 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
       case ProcessorMetaPackage.DATABASE_PROPERTY__DB_DRIVERX:
         return dbDriverx != null;
       case ProcessorMetaPackage.DATABASE_PROPERTY__DB_DRIVER:
-        return DB_DRIVER_EDEFAULT == null ? dbDriver != null : !DB_DRIVER_EDEFAULT.equals(dbDriver);
+        return dbDriver != null;
       case ProcessorMetaPackage.DATABASE_PROPERTY__DB_EXECUTE_BEFORE:
-        return DB_EXECUTE_BEFORE_EDEFAULT == null ? dbExecuteBefore != null : !DB_EXECUTE_BEFORE_EDEFAULT.equals(dbExecuteBefore);
+        return dbExecuteBefore != null;
       case ProcessorMetaPackage.DATABASE_PROPERTY__DB_EXECUTE_AFTER:
-        return DB_EXECUTE_AFTER_EDEFAULT == null ? dbExecuteAfter != null : !DB_EXECUTE_AFTER_EDEFAULT.equals(dbExecuteAfter);
+        return dbExecuteAfter != null;
       case ProcessorMetaPackage.DATABASE_PROPERTY__DB_INDEX_TYPES:
-        return DB_INDEX_TYPES_EDEFAULT == null ? dbIndexTypes != null : !DB_INDEX_TYPES_EDEFAULT.equals(dbIndexTypes);
+        return dbIndexTypes != null;
       case ProcessorMetaPackage.DATABASE_PROPERTY__DB_TYPE:
         return dbType != null;
       case ProcessorMetaPackage.DATABASE_PROPERTY__DB_META_INFO:
@@ -1110,20 +1230,6 @@ public class DatabasePropertyImpl extends MinimalEObjectImpl.Container implement
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (name: ");
     result.append(name);
-    result.append(", dbUrl: ");
-    result.append(dbUrl);
-    result.append(", dbUsername: ");
-    result.append(dbUsername);
-    result.append(", dbPassword: ");
-    result.append(dbPassword);
-    result.append(", dbDriver: ");
-    result.append(dbDriver);
-    result.append(", dbExecuteBefore: ");
-    result.append(dbExecuteBefore);
-    result.append(", dbExecuteAfter: ");
-    result.append(dbExecuteAfter);
-    result.append(", dbIndexTypes: ");
-    result.append(dbIndexTypes);
     result.append(')');
     return result.toString();
   }

@@ -38,15 +38,13 @@ public class ProcessorMetaParser extends AbstractContentAssistParser {
 				private static final long serialVersionUID = 1L;
 				{
 					put(grammarAccess.getArtifactsAccess().getAlternatives_2(), "rule__Artifacts__Alternatives_2");
+					put(grammarAccess.getValueTypeAccess().getAlternatives(), "rule__ValueType__Alternatives");
 					put(grammarAccess.getPropertyAccess().getAlternatives_0(), "rule__Property__Alternatives_0");
 					put(grammarAccess.getDatabasePropertyAccess().getAlternatives(), "rule__DatabaseProperty__Alternatives");
 					put(grammarAccess.getDatabasePropertyAccess().getAlternatives_7_2(), "rule__DatabaseProperty__Alternatives_7_2");
 					put(grammarAccess.getPojogenPropertyAccess().getAlternatives(), "rule__PojogenProperty__Alternatives");
 					put(grammarAccess.getMetagenPropertyAccess().getAlternatives(), "rule__MetagenProperty__Alternatives");
 					put(grammarAccess.getDaogenPropertyAccess().getAlternatives(), "rule__DaogenProperty__Alternatives");
-					put(grammarAccess.getPropertyValueAccess().getAlternatives(), "rule__PropertyValue__Alternatives");
-					put(grammarAccess.getPropertyValueAccess().getAlternatives_0_0(), "rule__PropertyValue__Alternatives_0_0");
-					put(grammarAccess.getPropertyValueAccess().getAlternatives_0_1_0(), "rule__PropertyValue__Alternatives_0_1_0");
 					put(grammarAccess.getPojoDefinitionAccess().getAlternatives_2(), "rule__PojoDefinition__Alternatives_2");
 					put(grammarAccess.getPojoDefinitionAccess().getClassAlternatives_2_0_0(), "rule__PojoDefinition__ClassAlternatives_2_0_0");
 					put(grammarAccess.getSqlFragmentAccess().getAlternatives(), "rule__SqlFragment__Alternatives");
@@ -277,8 +275,6 @@ public class ProcessorMetaParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDaogenPropertyAccess().getGroup_8(), "rule__DaogenProperty__Group_8__0");
 					put(grammarAccess.getDaogenPropertyAccess().getGroup_9(), "rule__DaogenProperty__Group_9__0");
 					put(grammarAccess.getDaogenPropertyAccess().getGroup_10(), "rule__DaogenProperty__Group_10__0");
-					put(grammarAccess.getPropertyValueAccess().getGroup_0(), "rule__PropertyValue__Group_0__0");
-					put(grammarAccess.getPropertyValueAccess().getGroup_0_1(), "rule__PropertyValue__Group_0_1__0");
 					put(grammarAccess.getPojoDefinitionAccess().getGroup(), "rule__PojoDefinition__Group__0");
 					put(grammarAccess.getPojoDefinitionAccess().getGroup_2_1(), "rule__PojoDefinition__Group_2_1__0");
 					put(grammarAccess.getTableDefinitionAccess().getGroup(), "rule__TableDefinition__Group__0");
@@ -369,6 +365,9 @@ public class ProcessorMetaParser extends AbstractContentAssistParser {
 					put(grammarAccess.getArtifactsAccess().getStatementsAssignment_2_5_0(), "rule__Artifacts__StatementsAssignment_2_5_0");
 					put(grammarAccess.getArtifactsAccess().getMappingsAssignment_2_6_0(), "rule__Artifacts__MappingsAssignment_2_6_0");
 					put(grammarAccess.getArtifactsAccess().getFeaturesAssignment_2_7_0(), "rule__Artifacts__FeaturesAssignment_2_7_0");
+					put(grammarAccess.getValueTypeAccess().getValueAssignment_0(), "rule__ValueType__ValueAssignment_0");
+					put(grammarAccess.getValueTypeAccess().getNumberAssignment_1(), "rule__ValueType__NumberAssignment_1");
+					put(grammarAccess.getValueTypeAccess().getIdAssignment_2(), "rule__ValueType__IdAssignment_2");
 					put(grammarAccess.getDatabaseCatalogAssignementAccess().getDbCatalogAssignment(), "rule__DatabaseCatalogAssignement__DbCatalogAssignment");
 					put(grammarAccess.getDatabaseSchemaAssignementAccess().getDbSchemaAssignment(), "rule__DatabaseSchemaAssignement__DbSchemaAssignment");
 					put(grammarAccess.getDatabaseTypeAssignementAccess().getDbTypeAssignment(), "rule__DatabaseTypeAssignement__DbTypeAssignment");

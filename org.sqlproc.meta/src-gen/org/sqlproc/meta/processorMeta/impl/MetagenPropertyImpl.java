@@ -23,6 +23,7 @@ import org.sqlproc.meta.processorMeta.DebugLevelAssignement;
 import org.sqlproc.meta.processorMeta.MetaTypeAssignement;
 import org.sqlproc.meta.processorMeta.MetagenProperty;
 import org.sqlproc.meta.processorMeta.ProcessorMetaPackage;
+import org.sqlproc.meta.processorMeta.ValueType;
 
 /**
  * <!-- begin-user-doc -->
@@ -274,24 +275,14 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
   protected EList<String> optionalFeatures;
 
   /**
-   * The default value of the '{@link #getActiveFilter() <em>Active Filter</em>}' attribute.
+   * The cached value of the '{@link #getActiveFilter() <em>Active Filter</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getActiveFilter()
    * @generated
    * @ordered
    */
-  protected static final String ACTIVE_FILTER_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getActiveFilter() <em>Active Filter</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getActiveFilter()
-   * @generated
-   * @ordered
-   */
-  protected String activeFilter = ACTIVE_FILTER_EDEFAULT;
+  protected ValueType activeFilter;
 
   /**
    * <!-- begin-user-doc -->
@@ -621,7 +612,7 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getActiveFilter()
+  public ValueType getActiveFilter()
   {
     return activeFilter;
   }
@@ -631,12 +622,37 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setActiveFilter(String newActiveFilter)
+  public NotificationChain basicSetActiveFilter(ValueType newActiveFilter, NotificationChain msgs)
   {
-    String oldActiveFilter = activeFilter;
+    ValueType oldActiveFilter = activeFilter;
     activeFilter = newActiveFilter;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.METAGEN_PROPERTY__ACTIVE_FILTER, oldActiveFilter, activeFilter));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.METAGEN_PROPERTY__ACTIVE_FILTER, oldActiveFilter, newActiveFilter);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setActiveFilter(ValueType newActiveFilter)
+  {
+    if (newActiveFilter != activeFilter)
+    {
+      NotificationChain msgs = null;
+      if (activeFilter != null)
+        msgs = ((InternalEObject)activeFilter).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorMetaPackage.METAGEN_PROPERTY__ACTIVE_FILTER, null, msgs);
+      if (newActiveFilter != null)
+        msgs = ((InternalEObject)newActiveFilter).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorMetaPackage.METAGEN_PROPERTY__ACTIVE_FILTER, null, msgs);
+      msgs = basicSetActiveFilter(newActiveFilter, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.METAGEN_PROPERTY__ACTIVE_FILTER, newActiveFilter, newActiveFilter));
   }
 
   /**
@@ -653,6 +669,8 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
         return ((InternalEList<?>)getMetaTypes()).basicRemove(otherEnd, msgs);
       case ProcessorMetaPackage.METAGEN_PROPERTY__DEBUG:
         return basicSetDebug(null, msgs);
+      case ProcessorMetaPackage.METAGEN_PROPERTY__ACTIVE_FILTER:
+        return basicSetActiveFilter(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -760,7 +778,7 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
         getOptionalFeatures().addAll((Collection<? extends String>)newValue);
         return;
       case ProcessorMetaPackage.METAGEN_PROPERTY__ACTIVE_FILTER:
-        setActiveFilter((String)newValue);
+        setActiveFilter((ValueType)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -819,7 +837,7 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
         getOptionalFeatures().clear();
         return;
       case ProcessorMetaPackage.METAGEN_PROPERTY__ACTIVE_FILTER:
-        setActiveFilter(ACTIVE_FILTER_EDEFAULT);
+        setActiveFilter((ValueType)null);
         return;
     }
     super.eUnset(featureID);
@@ -864,7 +882,7 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
       case ProcessorMetaPackage.METAGEN_PROPERTY__OPTIONAL_FEATURES:
         return optionalFeatures != null && !optionalFeatures.isEmpty();
       case ProcessorMetaPackage.METAGEN_PROPERTY__ACTIVE_FILTER:
-        return ACTIVE_FILTER_EDEFAULT == null ? activeFilter != null : !ACTIVE_FILTER_EDEFAULT.equals(activeFilter);
+        return activeFilter != null;
     }
     return super.eIsSet(featureID);
   }
@@ -904,8 +922,6 @@ public class MetagenPropertyImpl extends MinimalEObjectImpl.Container implements
     result.append(dbProcedure);
     result.append(", optionalFeatures: ");
     result.append(optionalFeatures);
-    result.append(", activeFilter: ");
-    result.append(activeFilter);
     result.append(')');
     return result.toString();
   }

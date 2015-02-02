@@ -32,6 +32,15 @@ public interface ProcessorMetaFactory extends EFactory
   Artifacts createArtifacts();
 
   /**
+   * Returns a new object of class '<em>Value Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Value Type</em>'.
+   * @generated
+   */
+  ValueType createValueType();
+
+  /**
    * Returns a new object of class '<em>Database Catalog Assignement</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

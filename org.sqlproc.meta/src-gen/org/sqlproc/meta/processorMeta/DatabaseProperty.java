@@ -68,82 +68,82 @@ public interface DatabaseProperty extends EObject
   void setName(String value);
 
   /**
-   * Returns the value of the '<em><b>Db Url</b></em>' attribute.
+   * Returns the value of the '<em><b>Db Url</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Db Url</em>' attribute isn't clear,
+   * If the meaning of the '<em>Db Url</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Db Url</em>' attribute.
-   * @see #setDbUrl(String)
+   * @return the value of the '<em>Db Url</em>' containment reference.
+   * @see #setDbUrl(ValueType)
    * @see org.sqlproc.meta.processorMeta.ProcessorMetaPackage#getDatabaseProperty_DbUrl()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  String getDbUrl();
+  ValueType getDbUrl();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.meta.processorMeta.DatabaseProperty#getDbUrl <em>Db Url</em>}' attribute.
+   * Sets the value of the '{@link org.sqlproc.meta.processorMeta.DatabaseProperty#getDbUrl <em>Db Url</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Db Url</em>' attribute.
+   * @param value the new value of the '<em>Db Url</em>' containment reference.
    * @see #getDbUrl()
    * @generated
    */
-  void setDbUrl(String value);
+  void setDbUrl(ValueType value);
 
   /**
-   * Returns the value of the '<em><b>Db Username</b></em>' attribute.
+   * Returns the value of the '<em><b>Db Username</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Db Username</em>' attribute isn't clear,
+   * If the meaning of the '<em>Db Username</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Db Username</em>' attribute.
-   * @see #setDbUsername(String)
+   * @return the value of the '<em>Db Username</em>' containment reference.
+   * @see #setDbUsername(ValueType)
    * @see org.sqlproc.meta.processorMeta.ProcessorMetaPackage#getDatabaseProperty_DbUsername()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  String getDbUsername();
+  ValueType getDbUsername();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.meta.processorMeta.DatabaseProperty#getDbUsername <em>Db Username</em>}' attribute.
+   * Sets the value of the '{@link org.sqlproc.meta.processorMeta.DatabaseProperty#getDbUsername <em>Db Username</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Db Username</em>' attribute.
+   * @param value the new value of the '<em>Db Username</em>' containment reference.
    * @see #getDbUsername()
    * @generated
    */
-  void setDbUsername(String value);
+  void setDbUsername(ValueType value);
 
   /**
-   * Returns the value of the '<em><b>Db Password</b></em>' attribute.
+   * Returns the value of the '<em><b>Db Password</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Db Password</em>' attribute isn't clear,
+   * If the meaning of the '<em>Db Password</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Db Password</em>' attribute.
-   * @see #setDbPassword(String)
+   * @return the value of the '<em>Db Password</em>' containment reference.
+   * @see #setDbPassword(ValueType)
    * @see org.sqlproc.meta.processorMeta.ProcessorMetaPackage#getDatabaseProperty_DbPassword()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  String getDbPassword();
+  ValueType getDbPassword();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.meta.processorMeta.DatabaseProperty#getDbPassword <em>Db Password</em>}' attribute.
+   * Sets the value of the '{@link org.sqlproc.meta.processorMeta.DatabaseProperty#getDbPassword <em>Db Password</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Db Password</em>' attribute.
+   * @param value the new value of the '<em>Db Password</em>' containment reference.
    * @see #getDbPassword()
    * @generated
    */
-  void setDbPassword(String value);
+  void setDbPassword(ValueType value);
 
   /**
    * Returns the value of the '<em><b>Db Catalog</b></em>' containment reference.
@@ -224,108 +224,108 @@ public interface DatabaseProperty extends EObject
   void setDbDriverx(JvmType value);
 
   /**
-   * Returns the value of the '<em><b>Db Driver</b></em>' attribute.
+   * Returns the value of the '<em><b>Db Driver</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Db Driver</em>' attribute isn't clear,
+   * If the meaning of the '<em>Db Driver</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Db Driver</em>' attribute.
-   * @see #setDbDriver(String)
+   * @return the value of the '<em>Db Driver</em>' containment reference.
+   * @see #setDbDriver(ValueType)
    * @see org.sqlproc.meta.processorMeta.ProcessorMetaPackage#getDatabaseProperty_DbDriver()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  String getDbDriver();
+  ValueType getDbDriver();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.meta.processorMeta.DatabaseProperty#getDbDriver <em>Db Driver</em>}' attribute.
+   * Sets the value of the '{@link org.sqlproc.meta.processorMeta.DatabaseProperty#getDbDriver <em>Db Driver</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Db Driver</em>' attribute.
+   * @param value the new value of the '<em>Db Driver</em>' containment reference.
    * @see #getDbDriver()
    * @generated
    */
-  void setDbDriver(String value);
+  void setDbDriver(ValueType value);
 
   /**
-   * Returns the value of the '<em><b>Db Execute Before</b></em>' attribute.
+   * Returns the value of the '<em><b>Db Execute Before</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Db Execute Before</em>' attribute isn't clear,
+   * If the meaning of the '<em>Db Execute Before</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Db Execute Before</em>' attribute.
-   * @see #setDbExecuteBefore(String)
+   * @return the value of the '<em>Db Execute Before</em>' containment reference.
+   * @see #setDbExecuteBefore(ValueType)
    * @see org.sqlproc.meta.processorMeta.ProcessorMetaPackage#getDatabaseProperty_DbExecuteBefore()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  String getDbExecuteBefore();
+  ValueType getDbExecuteBefore();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.meta.processorMeta.DatabaseProperty#getDbExecuteBefore <em>Db Execute Before</em>}' attribute.
+   * Sets the value of the '{@link org.sqlproc.meta.processorMeta.DatabaseProperty#getDbExecuteBefore <em>Db Execute Before</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Db Execute Before</em>' attribute.
+   * @param value the new value of the '<em>Db Execute Before</em>' containment reference.
    * @see #getDbExecuteBefore()
    * @generated
    */
-  void setDbExecuteBefore(String value);
+  void setDbExecuteBefore(ValueType value);
 
   /**
-   * Returns the value of the '<em><b>Db Execute After</b></em>' attribute.
+   * Returns the value of the '<em><b>Db Execute After</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Db Execute After</em>' attribute isn't clear,
+   * If the meaning of the '<em>Db Execute After</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Db Execute After</em>' attribute.
-   * @see #setDbExecuteAfter(String)
+   * @return the value of the '<em>Db Execute After</em>' containment reference.
+   * @see #setDbExecuteAfter(ValueType)
    * @see org.sqlproc.meta.processorMeta.ProcessorMetaPackage#getDatabaseProperty_DbExecuteAfter()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  String getDbExecuteAfter();
+  ValueType getDbExecuteAfter();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.meta.processorMeta.DatabaseProperty#getDbExecuteAfter <em>Db Execute After</em>}' attribute.
+   * Sets the value of the '{@link org.sqlproc.meta.processorMeta.DatabaseProperty#getDbExecuteAfter <em>Db Execute After</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Db Execute After</em>' attribute.
+   * @param value the new value of the '<em>Db Execute After</em>' containment reference.
    * @see #getDbExecuteAfter()
    * @generated
    */
-  void setDbExecuteAfter(String value);
+  void setDbExecuteAfter(ValueType value);
 
   /**
-   * Returns the value of the '<em><b>Db Index Types</b></em>' attribute.
+   * Returns the value of the '<em><b>Db Index Types</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Db Index Types</em>' attribute isn't clear,
+   * If the meaning of the '<em>Db Index Types</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Db Index Types</em>' attribute.
-   * @see #setDbIndexTypes(String)
+   * @return the value of the '<em>Db Index Types</em>' containment reference.
+   * @see #setDbIndexTypes(ValueType)
    * @see org.sqlproc.meta.processorMeta.ProcessorMetaPackage#getDatabaseProperty_DbIndexTypes()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  String getDbIndexTypes();
+  ValueType getDbIndexTypes();
 
   /**
-   * Sets the value of the '{@link org.sqlproc.meta.processorMeta.DatabaseProperty#getDbIndexTypes <em>Db Index Types</em>}' attribute.
+   * Sets the value of the '{@link org.sqlproc.meta.processorMeta.DatabaseProperty#getDbIndexTypes <em>Db Index Types</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Db Index Types</em>' attribute.
+   * @param value the new value of the '<em>Db Index Types</em>' containment reference.
    * @see #getDbIndexTypes()
    * @generated
    */
-  void setDbIndexTypes(String value);
+  void setDbIndexTypes(ValueType value);
 
   /**
    * Returns the value of the '<em><b>Db Type</b></em>' containment reference.

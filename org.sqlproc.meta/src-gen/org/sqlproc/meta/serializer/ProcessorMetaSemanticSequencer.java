@@ -76,6 +76,7 @@ import org.sqlproc.meta.processorMeta.SqlFragment;
 import org.sqlproc.meta.processorMeta.SqlTypeAssignement;
 import org.sqlproc.meta.processorMeta.TableAssignement;
 import org.sqlproc.meta.processorMeta.TableDefinition;
+import org.sqlproc.meta.processorMeta.ValueType;
 import org.sqlproc.meta.services.ProcessorMetaGrammarAccess;
 
 @SuppressWarnings("all")
@@ -458,6 +459,12 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 					return; 
 				}
 				else break;
+			case ProcessorMetaPackage.VALUE_TYPE:
+				if(context == grammarAccess.getValueTypeRule()) {
+					sequence_ValueType(context, (ValueType) semanticObject); 
+					return; 
+				}
+				else break;
 			}
 		if (errorAcceptor != null) errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
 	}
@@ -559,8 +566,8 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *         name='make-it-final' | 
 	 *         (name='function-result' dbFunction=IDENT resultType=PojoType) | 
 	 *         (name='debug-level' debug=DebugLevelAssignement) | 
-	 *         (name='active-filter' activeFilter=PropertyValue) | 
-	 *         (name='package' pckg=PropertyValue)
+	 *         (name='active-filter' activeFilter=ValueType) | 
+	 *         (name='package' pckg=QualifiedName)
 	 *     )
 	 */
 	protected void sequence_DaogenProperty(EObject context, DaogenProperty semanticObject) {
@@ -570,7 +577,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     dbCatalog=PropertyValue
+	 *     dbCatalog=QualifiedName
 	 */
 	protected void sequence_DatabaseCatalogAssignement(EObject context, DatabaseCatalogAssignement semanticObject) {
 		if(errorAcceptor != null) {
@@ -579,7 +586,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getDatabaseCatalogAssignementAccess().getDbCatalogPropertyValueParserRuleCall_0(), semanticObject.getDbCatalog());
+		feeder.accept(grammarAccess.getDatabaseCatalogAssignementAccess().getDbCatalogQualifiedNameParserRuleCall_0(), semanticObject.getDbCatalog());
 		feeder.finish();
 	}
 	
@@ -595,7 +602,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     dbMetaInfo=PropertyValue
+	 *     dbMetaInfo=ValueType
 	 */
 	protected void sequence_DatabaseMetaInfoAssignement(EObject context, DatabaseMetaInfoAssignement semanticObject) {
 		if(errorAcceptor != null) {
@@ -604,7 +611,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getDatabaseMetaInfoAssignementAccess().getDbMetaInfoPropertyValueParserRuleCall_0(), semanticObject.getDbMetaInfo());
+		feeder.accept(grammarAccess.getDatabaseMetaInfoAssignementAccess().getDbMetaInfoValueTypeParserRuleCall_0(), semanticObject.getDbMetaInfo());
 		feeder.finish();
 	}
 	
@@ -614,15 +621,15 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *     (
 	 *         name='is-online' | 
 	 *         name='is-offline' | 
-	 *         (name='has-url' dbUrl=PropertyValue) | 
-	 *         (name='login-username' dbUsername=PropertyValue) | 
-	 *         (name='login-password' dbPassword=PropertyValue) | 
+	 *         (name='has-url' dbUrl=ValueType) | 
+	 *         (name='login-username' dbUsername=ValueType) | 
+	 *         (name='login-password' dbPassword=ValueType) | 
 	 *         (name='in-catalog' dbCatalog=DatabaseCatalogAssignement) | 
 	 *         (name='active-schema' dbSchema=DatabaseSchemaAssignement) | 
-	 *         (name='jdbc-driver' (dbDriverx=[JvmType|QualifiedName] | dbDriver=PropertyValue)) | 
-	 *         (name='ddl-create' dbExecuteBefore=PropertyValue) | 
-	 *         (name='ddl-drop' dbExecuteAfter=PropertyValue) | 
-	 *         (name='index-types' dbIndexTypes=PropertyValue) | 
+	 *         (name='jdbc-driver' (dbDriverx=[JvmType|QualifiedName] | dbDriver=ValueType)) | 
+	 *         (name='ddl-create' dbExecuteBefore=ValueType) | 
+	 *         (name='ddl-drop' dbExecuteAfter=ValueType) | 
+	 *         (name='index-types' dbIndexTypes=ValueType) | 
 	 *         name='skip-indexes' | 
 	 *         name='skip-functions-procedures' | 
 	 *         name='skip-check-constraints' | 
@@ -643,7 +650,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     dbSchema=PropertyValue
+	 *     dbSchema=QualifiedName
 	 */
 	protected void sequence_DatabaseSchemaAssignement(EObject context, DatabaseSchemaAssignement semanticObject) {
 		if(errorAcceptor != null) {
@@ -652,7 +659,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getDatabaseSchemaAssignementAccess().getDbSchemaPropertyValueParserRuleCall_0(), semanticObject.getDbSchema());
+		feeder.accept(grammarAccess.getDatabaseSchemaAssignementAccess().getDbSchemaQualifiedNameParserRuleCall_0(), semanticObject.getDbSchema());
 		feeder.finish();
 	}
 	
@@ -684,7 +691,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     (debug=IDENT scope=PropertyValue?)
+	 *     (debug=IDENT scope=IDENT?)
 	 */
 	protected void sequence_DebugLevelAssignement(EObject context, DebugLevelAssignement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -693,7 +700,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     dbDriverInfo=PropertyValue
+	 *     dbDriverInfo=ValueType
 	 */
 	protected void sequence_DriverMetaInfoAssignement(EObject context, DriverMetaInfoAssignement semanticObject) {
 		if(errorAcceptor != null) {
@@ -702,14 +709,14 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getDriverMetaInfoAssignementAccess().getDbDriverInfoPropertyValueParserRuleCall_0(), semanticObject.getDbDriverInfo());
+		feeder.accept(grammarAccess.getDriverMetaInfoAssignementAccess().getDbDriverInfoValueTypeParserRuleCall_0(), semanticObject.getDbDriverInfo());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     (driverMethod=IDENT callOutput=PropertyValue)
+	 *     (driverMethod=IDENT callOutput=ValueType)
 	 */
 	protected void sequence_DriverMethodOutputAssignement(EObject context, DriverMethodOutputAssignement semanticObject) {
 		if(errorAcceptor != null) {
@@ -721,7 +728,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getDriverMethodOutputAssignementAccess().getDriverMethodIDENTTerminalRuleCall_0_0(), semanticObject.getDriverMethod());
-		feeder.accept(grammarAccess.getDriverMethodOutputAssignementAccess().getCallOutputPropertyValueParserRuleCall_2_0(), semanticObject.getCallOutput());
+		feeder.accept(grammarAccess.getDriverMethodOutputAssignementAccess().getCallOutputValueTypeParserRuleCall_2_0(), semanticObject.getCallOutput());
 		feeder.finish();
 	}
 	
@@ -737,7 +744,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     (name=IDENT | name=NUMBER | name=IDENT_DOT)
+	 *     (name=IDENT | name=INT | name=IDENT_DOT)
 	 */
 	protected void sequence_ExtendedColumnName(EObject context, ExtendedColumnName semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -832,7 +839,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *     (
 	 *         (mode=EQUALS | mode=LESS_THAN | mode=MORE_THAN)? 
 	 *         (case=PLUS | case=MINUS)? 
-	 *         (name=IDENT | name=NUMBER | name=IDENT_DOT) 
+	 *         (name=IDENT | name=INT | name=IDENT_DOT) 
 	 *         (modifiers+=Modifier modifiers+=Modifier*)?
 	 *     )
 	 */
@@ -957,7 +964,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     (name=IDENT | name=IDENT_DOT | name=NUMBER)
+	 *     (name=IDENT | name=IDENT_DOT | name=INT)
 	 */
 	protected void sequence_MappingColumnName(EObject context, MappingColumnName semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -975,7 +982,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     ((name=IDENT | name=NUMBER) attr=MappingColumn?)
+	 *     ((name=IDENT | name=INT) attr=MappingColumn?)
 	 */
 	protected void sequence_MappingItem(EObject context, MappingItem semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1057,7 +1064,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *         name='generate-operators' | 
 	 *         (name='optimize-insert' dbTables+=IDENT*) | 
 	 *         (name='optional-features' dbStatement=IDENT optionalFeatures+=IDENT+) | 
-	 *         (name='active-filter' activeFilter=PropertyValue)
+	 *         (name='active-filter' activeFilter=ValueType)
 	 *     )
 	 */
 	protected void sequence_MetagenProperty(EObject context, MetagenProperty semanticObject) {
@@ -1152,8 +1159,8 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *         (name='debug-level' debug=DebugLevelAssignement) | 
 	 *         (name='pojos-for-procedures' procPojos+=ProcedurePojoAssignement+) | 
 	 *         (name='pojos-for-functions' funPojos+=FunctionPojoAssignement+) | 
-	 *         (name='active-filter' activeFilter=PropertyValue) | 
-	 *         (name='package' pckg=PropertyValue) | 
+	 *         (name='active-filter' activeFilter=ValueType) | 
+	 *         (name='package' pckg=QualifiedName) | 
 	 *         (name='enum-for-check-constraints' enumName=IDENT dbCheckConstraints+=IDENT+)
 	 *     )
 	 */
@@ -1209,8 +1216,8 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *         (name='pojogen-' pojogen=PojogenProperty) | 
 	 *         (name='metagen-' metagen=MetagenProperty) | 
 	 *         (name='daogen-' daogen=DaogenProperty) | 
-	 *         (name='replace-all-regex' replaceId=IDENT regex=PropertyValue) | 
-	 *         (name='replace-all-replacement' replaceId=IDENT replacement=PropertyValue) | 
+	 *         (name='replace-all-regex' replaceId=IDENT regex=ValueType) | 
+	 *         (name='replace-all-replacement' replaceId=IDENT replacement=ValueType) | 
 	 *         name='compress-meta-directives'
 	 *     )
 	 */
@@ -1221,7 +1228,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     (dbColumn=IDENT type=PropertyValue)
+	 *     (dbColumn=IDENT type=ValueType)
 	 */
 	protected void sequence_ShowColumnTypeAssignement(EObject context, ShowColumnTypeAssignement semanticObject) {
 		if(errorAcceptor != null) {
@@ -1233,7 +1240,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getShowColumnTypeAssignementAccess().getDbColumnIDENTTerminalRuleCall_0_0(), semanticObject.getDbColumn());
-		feeder.accept(grammarAccess.getShowColumnTypeAssignementAccess().getTypePropertyValueParserRuleCall_2_0(), semanticObject.getType());
+		feeder.accept(grammarAccess.getShowColumnTypeAssignementAccess().getTypeValueTypeParserRuleCall_2_0(), semanticObject.getType());
 		feeder.finish();
 	}
 	
@@ -1259,7 +1266,7 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     (typeName=IDENT size=NUMBER? type=PojoType)
+	 *     (typeName=IDENT size=INT? type=PojoType)
 	 */
 	protected void sequence_SqlTypeAssignement(EObject context, SqlTypeAssignement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1310,5 +1317,14 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 		feeder.accept(grammarAccess.getTableDefinitionAccess().getNameIDENTTerminalRuleCall_1_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getTableDefinitionAccess().getTableIDENTTerminalRuleCall_2_0(), semanticObject.getTable());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (value=STRING | number=INT | id=QualifiedName)
+	 */
+	protected void sequence_ValueType(EObject context, ValueType semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 }
