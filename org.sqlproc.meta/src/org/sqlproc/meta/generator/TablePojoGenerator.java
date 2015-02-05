@@ -1017,7 +1017,7 @@ public class TablePojoGenerator {
                 buffer.append(NLINDENT);
                 if (makeItFinal)
                     buffer.append("final ");
-                buffer.append("enum ");
+                buffer.append("#Enum ");
                 if (enumForCheckConstraints.containsKey(pojoName))
                     buffer.append(enumForCheckConstraints.get(pojoName));
                 else
@@ -1131,7 +1131,7 @@ public class TablePojoGenerator {
                         if (!notAbstractTables.contains(pojo))
                             bufferPartial.append("abstract ");
                     }
-                    bufferPartial.append("pojo ");
+                    bufferPartial.append("#Pojo ");
                     bufferPartial.append(realPojoName);
                     if (pojoExtends.containsKey(pojo))
                         bufferPartial.append(" extends ").append(tableToCamelCase(pojoExtends.get(pojo)));
@@ -1310,7 +1310,7 @@ public class TablePojoGenerator {
                     bufferPartial.append(NLINDENT);
                     if (makeItFinal)
                         bufferPartial.append("final ");
-                    bufferPartial.append("pojo ");
+                    bufferPartial.append("#Pojo ");
                     bufferPartial.append(tableToCamelCase(pojoName));
                     if (pojoExtends.containsKey(pojo))
                         bufferPartial.append(" extends ").append(tableToCamelCase(pojoExtends.get(pojo)));
@@ -1397,7 +1397,7 @@ public class TablePojoGenerator {
                     bufferPartial.append(NLINDENT);
                     if (makeItFinal)
                         bufferPartial.append("final ");
-                    bufferPartial.append("pojo ");
+                    bufferPartial.append("#Pojo ");
                     bufferPartial.append(tableToCamelCase(pojoName));
                     if (pojoExtends.containsKey(pojo))
                         bufferPartial.append(" extends ").append(tableToCamelCase(pojoExtends.get(pojo)));
