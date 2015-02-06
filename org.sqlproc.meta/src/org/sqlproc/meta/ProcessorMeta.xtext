@@ -36,7 +36,11 @@ ExtendsAssignement: COLON toExtends=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS 
 ImplementsAssignementGenerics: COLON toImplement=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
 ExtendsAssignementGenerics: COLON toExtends=[jvmTypes::JvmType|QualifiedName] (WS+ PLUS (WS+ dbTables+=IDENT)+)? (WS+ MINUS (WS+ dbNotTables+=IDENT)+)?;
 
-Property:
+PropertyCondition:
+	LBRACE WS* name=IDENT WS+ EQUALS WS+ value=ValueType WS* RBRACE
+;
+
+Property: (condition=PropertyCondition WS*)?
 	(name='resolve-pojo-on'
 	|name='resolve-pojo-off'
 	|name='database-' database=DatabaseProperty
@@ -47,10 +51,6 @@ Property:
 	|name='replace-all-replacement' WS+ replaceId=IDENT WS+ replacement=ValueType
 	|name='compress-meta-directives'
 	) SEMICOLON;
-
-//PropertyCondition:
-//	LBRACE WS* name=IDENT WS+ EQUALS WS+ value=(IDENT | NUMBER) WS* RBRACE
-//;
 
 DatabaseProperty:
 	(name='is-online'

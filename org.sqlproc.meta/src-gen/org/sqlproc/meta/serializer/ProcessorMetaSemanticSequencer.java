@@ -70,6 +70,7 @@ import org.sqlproc.meta.processorMeta.ProcedureDefinition;
 import org.sqlproc.meta.processorMeta.ProcedurePojoAssignement;
 import org.sqlproc.meta.processorMeta.ProcessorMetaPackage;
 import org.sqlproc.meta.processorMeta.Property;
+import org.sqlproc.meta.processorMeta.PropertyCondition;
 import org.sqlproc.meta.processorMeta.ShowColumnTypeAssignement;
 import org.sqlproc.meta.processorMeta.Sql;
 import org.sqlproc.meta.processorMeta.SqlFragment;
@@ -420,6 +421,12 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 			case ProcessorMetaPackage.PROPERTY:
 				if(context == grammarAccess.getPropertyRule()) {
 					sequence_Property(context, (Property) semanticObject); 
+					return; 
+				}
+				else break;
+			case ProcessorMetaPackage.PROPERTY_CONDITION:
+				if(context == grammarAccess.getPropertyConditionRule()) {
+					sequence_PropertyCondition(context, (PropertyCondition) semanticObject); 
 					return; 
 				}
 				else break;
@@ -1209,16 +1216,38 @@ public class ProcessorMetaSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
+	 *     (name=IDENT value=ValueType)
+	 */
+	protected void sequence_PropertyCondition(EObject context, PropertyCondition semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, ProcessorMetaPackage.Literals.PROPERTY_CONDITION__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorMetaPackage.Literals.PROPERTY_CONDITION__NAME));
+			if(transientValues.isValueTransient(semanticObject, ProcessorMetaPackage.Literals.PROPERTY_CONDITION__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProcessorMetaPackage.Literals.PROPERTY_CONDITION__VALUE));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getPropertyConditionAccess().getNameIDENTTerminalRuleCall_2_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getPropertyConditionAccess().getValueValueTypeParserRuleCall_6_0(), semanticObject.getValue());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (
-	 *         name='resolve-pojo-on' | 
-	 *         name='resolve-pojo-off' | 
-	 *         (name='database-' database=DatabaseProperty) | 
-	 *         (name='pojogen-' pojogen=PojogenProperty) | 
-	 *         (name='metagen-' metagen=MetagenProperty) | 
-	 *         (name='daogen-' daogen=DaogenProperty) | 
-	 *         (name='replace-all-regex' replaceId=IDENT regex=ValueType) | 
-	 *         (name='replace-all-replacement' replaceId=IDENT replacement=ValueType) | 
-	 *         name='compress-meta-directives'
+	 *         condition=PropertyCondition? 
+	 *         (
+	 *             name='resolve-pojo-on' | 
+	 *             name='resolve-pojo-off' | 
+	 *             (name='database-' database=DatabaseProperty) | 
+	 *             (name='pojogen-' pojogen=PojogenProperty) | 
+	 *             (name='metagen-' metagen=MetagenProperty) | 
+	 *             (name='daogen-' daogen=DaogenProperty) | 
+	 *             (name='replace-all-regex' replaceId=IDENT regex=ValueType) | 
+	 *             (name='replace-all-replacement' replaceId=IDENT replacement=ValueType) | 
+	 *             name='compress-meta-directives'
+	 *         )
 	 *     )
 	 */
 	protected void sequence_Property(EObject context, Property semanticObject) {
