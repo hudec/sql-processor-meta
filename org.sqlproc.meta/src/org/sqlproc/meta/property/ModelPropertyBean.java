@@ -269,67 +269,58 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         public static final String DAOGEN = "_DAOGEN_";
         public static final String[] ALL = { GLOBAL, DATABASE, POJOGEN, METAGEN, DAOGEN };
 
+        Map<String, ModelValues1> defaultValues;
         Map<String, Map<String, Map<String, ModelValues1>>> values;
         public Boolean doResolveDb;
 
         public ModelValues() {
             values = new HashMap<String, Map<String, Map<String, ModelValues1>>>();
+            defaultValues = new HashMap<String, ModelValues1>();
             for (String name : ALL)
-                values.put(name, new HashMap<String, Map<String, ModelValues1>>());
+                initModel(name);
         }
 
         public String dir;
 
-        public ModelValues1 getModel(String name, String key, String value) {
+        public ModelValues1 initModel(String name) {
+            values.put(name, new HashMap<String, Map<String, ModelValues1>>());
+            ModelValues1 defaultModel = new ModelValues1();
+            defaultValues.put(name, defaultModel);
+            System.out.println("Initialized model for " + name);
+            return defaultModel;
+        }
+
+        public ModelValues1 initModel(String name, String key, String value) {
             Map<String, Map<String, ModelValues1>> modelValues = values.get(name);
             Map<String, ModelValues1> modelValuesKey = modelValues.get(key);
             if (modelValuesKey == null) {
                 modelValues.put(key, modelValuesKey = new HashMap<String, ModelValues1>());
+                System.out.println("Initialized key model for " + name + " and " + key);
             }
             ModelValues1 model = modelValuesKey.get(value);
-            if (model == null)
+            if (model == null) {
                 modelValuesKey.put(key, model = new ModelValues1());
+                System.out.println("Initialized value model for " + name + " and " + key + " = " + value);
+            }
             return model;
         }
 
-        public ModelValues1 getModel(String name, PropertyCondition condition) {
-            return getModel(name, getKey(condition), getValue(condition));
+        public ModelValues1 initModel(String name, PropertyCondition condition) {
+            if (condition == null || condition.getName() == null || condition.getValue() == null)
+                return defaultValues.get(name);
+            return initModel(name, condition.getName(), ModelPropertyBean.getPropertyValue(condition.getValue()));
         }
 
         public ModelValues1 getModel(String name) {
             Map<String, Map<String, ModelValues1>> modelValues = values.get(name);
-            ModelValues1 defaultModel = null;
             for (Entry<String, Map<String, ModelValues1>> e : modelValues.entrySet()) {
-                if (e.getKey().equals(DEFAULT))
-                    defaultModel = e.getValue().get(DEFAULT);
-                else {
-                    String value = System.getenv(e.getKey());
-                    if (e.getValue().containsKey(value))
-                        return e.getValue().get(value);
+                String value = System.getenv(e.getKey());
+                if (e.getValue().containsKey(value)) {
+                    System.out.println("Returned special model for " + name + " and " + e.getKey() + " = " + value);
+                    return e.getValue().get(value);
                 }
             }
-            return defaultModel;
-        }
-
-        public ModelValues1 getDefaultModel(String name) {
-            return getModel(name, DEFAULT, DEFAULT);
-        }
-
-        private String getKey(PropertyCondition condition) {
-            if (condition == null || condition.getName() == null || condition.getValue() == null)
-                return DEFAULT;
-            return condition.getName();
-        }
-
-        private String getValue(PropertyCondition condition) {
-            if (condition == null || condition.getName() == null || condition.getValue() == null)
-                return DEFAULT;
-            if (condition.getValue().getId() != null)
-                return condition.getValue().getId();
-            else if (condition.getValue().getNumber() != null)
-                return "" + condition.getValue().getNumber();
-            else
-                return condition.getValue().getValue();
+            return defaultValues.get(name);
         }
     }
 
@@ -421,63 +412,44 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             modelValues = new ModelValues();
 
         initModel(modelValues);
-        boolean reloadDatabase = false;
-        for (Property property : artifacts.getProperties()) {
-            if (property.getName().startsWith(DATABASE)) {
-                reloadDatabase = true;
-                break;
-            }
-        }
-        if (reloadDatabase) {
-            initDatabaseModel(modelValues);
-        }
-        boolean reloadPojogen = false;
-        for (Property property : artifacts.getProperties()) {
-            if (property.getName().startsWith(POJOGEN)) {
-                reloadPojogen = true;
-                break;
-            }
-        }
-        if (reloadPojogen) {
-            initPojogenModel(modelValues);
-        }
-        boolean reloadMetagen = false;
-        for (Property property : artifacts.getProperties()) {
-            if (property.getName().startsWith(METAGEN)) {
-                reloadMetagen = true;
-                break;
-            }
-        }
-        if (reloadMetagen) {
-            initMetagenModel(modelValues);
-        }
-        boolean reloadDaogen = false;
-        for (Property property : artifacts.getProperties()) {
-            if (property.getName().startsWith(DAOGEN)) {
-                reloadDaogen = true;
-                break;
-            }
-        }
-        if (reloadDaogen) {
-            initDaogenModel(modelValues);
-        }
+
+        boolean firstDatabase = true;
+        boolean firstPojogen = true;
+        boolean firstMetagen = true;
+        boolean firstDaogen = true;
         try {
             for (Property property : artifacts.getProperties()) {
                 PropertyCondition condition = property.getCondition();
                 if (property.getName().startsWith(DATABASE)) {
-                    ModelValues1 modelValues1 = modelValues.getModel(ModelValues.DATABASE, condition);
+                    if (firstDatabase) {
+                        firstDatabase = false;
+                        initDatabaseModel(modelValues);
+                    }
+                    ModelValues1 modelValues1 = modelValues.initModel(ModelValues.DATABASE, condition);
                     setValue(modelValues1, property.getDatabase());
                 } else if (property.getName().startsWith(POJOGEN)) {
-                    ModelValues1 modelValues1 = modelValues.getModel(ModelValues.POJOGEN, condition);
+                    if (firstPojogen) {
+                        firstPojogen = false;
+                        initPojogenModel(modelValues);
+                    }
+                    ModelValues1 modelValues1 = modelValues.initModel(ModelValues.POJOGEN, condition);
                     setValue(modelValues1, property.getPojogen());
                 } else if (property.getName().startsWith(METAGEN)) {
-                    ModelValues1 modelValues1 = modelValues.getModel(ModelValues.METAGEN, condition);
+                    if (firstMetagen) {
+                        firstMetagen = false;
+                        initMetagenModel(modelValues);
+                    }
+                    ModelValues1 modelValues1 = modelValues.initModel(ModelValues.METAGEN, condition);
                     setValue(modelValues1, property.getMetagen());
                 } else if (property.getName().startsWith(DAOGEN)) {
-                    ModelValues1 modelValues1 = modelValues.getModel(ModelValues.DAOGEN, condition);
+                    if (firstDaogen) {
+                        firstDaogen = false;
+                        initDaogenModel(modelValues);
+                    }
+                    ModelValues1 modelValues1 = modelValues.initModel(ModelValues.DAOGEN, condition);
                     setValue(modelValues1, property.getDaogen());
                 } else {
-                    ModelValues1 modelValues1 = modelValues.getModel(ModelValues.GLOBAL, condition);
+                    ModelValues1 modelValues1 = modelValues.initModel(ModelValues.GLOBAL, condition);
                     setValue(modelValues1, property);
                 }
             }
@@ -489,14 +461,14 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     }
 
     private static void initModel(ModelValues modelValues) {
-        ModelValues1 modelValues1 = modelValues.getDefaultModel(ModelValues.GLOBAL);
+        ModelValues1 modelValues1 = modelValues.initModel(ModelValues.GLOBAL);
         modelValues1.replaceAllRegex = new HashMap<String, String>();
         modelValues1.replaceAllReplacement = new HashMap<String, String>();
         modelValues1.doCompressMetaDirectives = false;
     }
 
     private static void initDatabaseModel(ModelValues modelValues) {
-        ModelValues1 modelValues1 = modelValues.getDefaultModel(ModelValues.DATABASE);
+        ModelValues1 modelValues1 = modelValues.initModel(ModelValues.DATABASE);
         modelValues1.doResolveDb = false;
         modelValues1.dbDriver = null;
         modelValues1.dbUrl = null;
@@ -519,7 +491,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     }
 
     private static void initPojogenModel(ModelValues modelValues) {
-        ModelValues1 modelValues1 = modelValues.getDefaultModel(ModelValues.POJOGEN);
+        ModelValues1 modelValues1 = modelValues.initModel(ModelValues.POJOGEN);
         modelValues1.pojoSqlTypes = new HashMap<String, PojoAttrType>();
         modelValues1.pojoTableTypes = new HashMap<String, Map<String, PojoAttrType>>();
         modelValues1.pojoColumnTypes = new HashMap<String, Map<String, PojoAttrType>>();
@@ -564,7 +536,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     }
 
     private static void initMetagenModel(ModelValues modelValues) {
-        ModelValues1 modelValues1 = modelValues.getDefaultModel(ModelValues.METAGEN);
+        ModelValues1 modelValues1 = modelValues.initModel(ModelValues.METAGEN);
         modelValues1.metaGlobalSequence = null;
         modelValues1.metaTablesSequence = new HashMap<String, PairValues>();
         modelValues1.metaGlobalIdentity = null;
@@ -594,7 +566,7 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     }
 
     private static void initDaogenModel(ModelValues modelValues) {
-        ModelValues1 modelValues1 = modelValues.getDefaultModel(ModelValues.DAOGEN);
+        ModelValues1 modelValues1 = modelValues.initModel(ModelValues.DAOGEN);
         modelValues1.daoIgnoreTables = new HashSet<String>();
         modelValues1.daoOnlyTables = new HashSet<String>();
         modelValues1.daoToImplements = new HashMap<String, ImplementsExtends>();
