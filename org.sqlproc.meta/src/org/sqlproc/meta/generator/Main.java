@@ -147,7 +147,7 @@ public class Main {
         ModelValues modelValues = ModelPropertyBean.loadModel(null, definitions);
         modelValues.doResolveDb = true;
         ModelPropertyBean modelProperty = new ModelPropertyBean(modelValues);
-        String sDbDriver = modelProperty.getModelValues(null).dbDriver;
+        String sDbDriver = modelProperty.getDbDriver(null);
         Class<?> driverClass = this.getClass().getClassLoader().loadClass(sDbDriver);
         String dbSqlsBefore = null;
         if (ddl != null) {

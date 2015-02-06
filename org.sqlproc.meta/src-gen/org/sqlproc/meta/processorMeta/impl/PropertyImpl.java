@@ -17,6 +17,7 @@ import org.sqlproc.meta.processorMeta.MetagenProperty;
 import org.sqlproc.meta.processorMeta.PojogenProperty;
 import org.sqlproc.meta.processorMeta.ProcessorMetaPackage;
 import org.sqlproc.meta.processorMeta.Property;
+import org.sqlproc.meta.processorMeta.PropertyCondition;
 import org.sqlproc.meta.processorMeta.ValueType;
 
 /**
@@ -26,6 +27,7 @@ import org.sqlproc.meta.processorMeta.ValueType;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.sqlproc.meta.processorMeta.impl.PropertyImpl#getCondition <em>Condition</em>}</li>
  *   <li>{@link org.sqlproc.meta.processorMeta.impl.PropertyImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.sqlproc.meta.processorMeta.impl.PropertyImpl#getDatabase <em>Database</em>}</li>
  *   <li>{@link org.sqlproc.meta.processorMeta.impl.PropertyImpl#getPojogen <em>Pojogen</em>}</li>
@@ -41,6 +43,16 @@ import org.sqlproc.meta.processorMeta.ValueType;
  */
 public class PropertyImpl extends MinimalEObjectImpl.Container implements Property
 {
+  /**
+   * The cached value of the '{@link #getCondition() <em>Condition</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getCondition()
+   * @generated
+   * @ordered
+   */
+  protected PropertyCondition condition;
+
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -160,6 +172,54 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
   protected EClass eStaticClass()
   {
     return ProcessorMetaPackage.Literals.PROPERTY;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PropertyCondition getCondition()
+  {
+    return condition;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetCondition(PropertyCondition newCondition, NotificationChain msgs)
+  {
+    PropertyCondition oldCondition = condition;
+    condition = newCondition;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.PROPERTY__CONDITION, oldCondition, newCondition);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setCondition(PropertyCondition newCondition)
+  {
+    if (newCondition != condition)
+    {
+      NotificationChain msgs = null;
+      if (condition != null)
+        msgs = ((InternalEObject)condition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcessorMetaPackage.PROPERTY__CONDITION, null, msgs);
+      if (newCondition != null)
+        msgs = ((InternalEObject)newCondition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcessorMetaPackage.PROPERTY__CONDITION, null, msgs);
+      msgs = basicSetCondition(newCondition, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProcessorMetaPackage.PROPERTY__CONDITION, newCondition, newCondition));
   }
 
   /**
@@ -506,6 +566,8 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
   {
     switch (featureID)
     {
+      case ProcessorMetaPackage.PROPERTY__CONDITION:
+        return basicSetCondition(null, msgs);
       case ProcessorMetaPackage.PROPERTY__DATABASE:
         return basicSetDatabase(null, msgs);
       case ProcessorMetaPackage.PROPERTY__POJOGEN:
@@ -532,6 +594,8 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
   {
     switch (featureID)
     {
+      case ProcessorMetaPackage.PROPERTY__CONDITION:
+        return getCondition();
       case ProcessorMetaPackage.PROPERTY__NAME:
         return getName();
       case ProcessorMetaPackage.PROPERTY__DATABASE:
@@ -562,6 +626,9 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
   {
     switch (featureID)
     {
+      case ProcessorMetaPackage.PROPERTY__CONDITION:
+        setCondition((PropertyCondition)newValue);
+        return;
       case ProcessorMetaPackage.PROPERTY__NAME:
         setName((String)newValue);
         return;
@@ -600,6 +667,9 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
   {
     switch (featureID)
     {
+      case ProcessorMetaPackage.PROPERTY__CONDITION:
+        setCondition((PropertyCondition)null);
+        return;
       case ProcessorMetaPackage.PROPERTY__NAME:
         setName(NAME_EDEFAULT);
         return;
@@ -638,6 +708,8 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
   {
     switch (featureID)
     {
+      case ProcessorMetaPackage.PROPERTY__CONDITION:
+        return condition != null;
       case ProcessorMetaPackage.PROPERTY__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case ProcessorMetaPackage.PROPERTY__DATABASE:

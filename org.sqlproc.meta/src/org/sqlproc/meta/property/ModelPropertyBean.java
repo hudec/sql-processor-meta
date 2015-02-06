@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
@@ -29,6 +30,7 @@ import org.sqlproc.meta.processorMeta.MetagenProperty;
 import org.sqlproc.meta.processorMeta.PojoType;
 import org.sqlproc.meta.processorMeta.PojogenProperty;
 import org.sqlproc.meta.processorMeta.Property;
+import org.sqlproc.meta.processorMeta.PropertyCondition;
 import org.sqlproc.meta.processorMeta.ValueType;
 import org.sqlproc.meta.util.Utils;
 
@@ -151,123 +153,197 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         }
     }
 
-    public static class ModelValues {
-        public boolean doResolvePojo;
-        public boolean doResolveDb;
-        public Map<String, String> replaceAllRegex;
-        public Map<String, String> replaceAllReplacement;
-        public boolean doCompressMetaDirectives;
-        public String dbDriver;
-        public String dbUrl;
-        public String dbUsername;
-        public String dbPassword;
-        public String dbCatalog;
-        public String dbSchema;
-        public String dbSqlsBefore;
-        public String dbSqlsAfter;
-        public String dbIndexTypes;
-        public boolean dbSkipIndexes;
-        public boolean dbSkipProcedures;
-        public boolean dbSkipCheckConstraints;
-        public String dbType;
-        public String dbDebugLevel;
-        public String dbDebugScope;
-        public boolean dbTakeComments;
-        public boolean dbLowercaseNames;
-        public boolean dbUppercaseNames;
-        public String dir;
-        public Map<String, PojoAttrType> sqlTypes;
-        public Map<String, Map<String, PojoAttrType>> tableTypes;
-        public Map<String, Map<String, PojoAttrType>> columnTypes;
-        public Map<String, Map<String, PojoAttrType>> procedureTypes;
-        public Map<String, Map<String, PojoAttrType>> functionTypes;
-        public Map<String, String> tableNames;
-        public Map<String, Map<String, String>> columnNames;
-        public Set<String> ignoreTables;
-        public Set<String> onlyTables;
-        public Set<String> notAbstractTables;
-        public Map<String, Set<String>> ignoreColumns;
-        public Map<String, Set<String>> requiredColumns;
-        public Map<String, Set<String>> notRequiredColumns;
-        public Map<String, Map<String, PojoAttrType>> createColumns;
-        public Map<String, Map<String, Map<String, String>>> ignoreExports;
-        public Map<String, Map<String, Map<String, String>>> ignoreImports;
-        public Map<String, Map<String, Map<String, String>>> createExports;
-        public Map<String, Map<String, Map<String, String>>> createImports;
-        public Map<String, Map<String, Map<String, String>>> inheritImports;
-        public Map<String, Map<String, Map<String, String>>> manyToManyImports;
-        public Map<String, Map<String, Map<String, List<String>>>> inheritance = new HashMap<String, Map<String, Map<String, List<String>>>>();
-        public Map<String, String> inheritanceColumns;
-        public Set<String> generateMethods;
-        public String generateOperators;
-        public Map<String, ImplementsExtends> toImplements;
-        public ImplementsExtends toExtends;
-        public Map<String, List<String>> joinTables;
-        public boolean doGenerateWrappers;
-        public boolean doGenerateValidationAnnotations;
-        public boolean makeItFinal;
-        public String versionColumn;
-        public Map<String, Set<String>> versionColumns;
-        public Map<String, Set<String>> notVersionColumns;
-        public String debugLevel;
-        public String debugScope;
-        public Set<String> preserveForeignKeys;
-        public Map<String, PojoType> pojosForProcedures;
-        public Map<String, PojoType> pojosForFunctions;
-        public String activeFilter;
-        public String pckg;
-        public Map<String, String> enumForCheckConstraints;
+    public static class ModelValues1 {
+        private boolean doResolvePojo;
+        private boolean doResolveDb;
+        private Map<String, String> replaceAllRegex;
+        private Map<String, String> replaceAllReplacement;
+        private boolean doCompressMetaDirectives;
 
-        public PairValues metaGlobalSequence;
-        public Map<String, PairValues> metaTablesSequence;
-        public PairValues metaGlobalIdentity;
-        public Map<String, PairValues> metaTablesIdentity;
-        public Map<String, Map<String, PairValues>> metaColumnsMetaTypes;
-        public Map<String, Map<String, PairValues>> metaStatementsMetaTypes;
-        public boolean metaMakeItFinal;
-        public Map<String, Set<String>> metaLikeColumns;
-        public Map<String, Set<String>> metaNotLikeColumns;
-        public boolean metaGenerateSequences;
-        public Set<String> metaGlobalSequenceForTables;
-        public Set<String> metaGlobalSequenceNotForTables;
-        public boolean metaGenerateIdentities;
-        public Set<String> metaGlobalIdentityForTables;
-        public Set<String> metaGlobalIdentityNotForTables;
-        public boolean metaGenerateIdGenerators;
-        public boolean metaGenerateIndirectIdGenerators;
-        public Map<String, String> metaFunctionsResult;
-        public Map<String, String> metaFunctionsResultSet;
-        public Map<String, String> metaProceduresResultSet;
-        public String metaDebugLevel;
-        public String metaDebugScope;
-        public boolean metaGenerateOperators;
-        public Set<String> metaOptimizeInsert;
-        public Map<String, Set<String>> metaOptionalFeatures;
-        public String metaActiveFilter;
+        private String dbDriver;
+        private String dbUrl;
+        private String dbUsername;
+        private String dbPassword;
+        private String dbCatalog;
+        private String dbSchema;
+        private String dbSqlsBefore;
+        private String dbSqlsAfter;
+        private String dbIndexTypes;
+        private boolean dbSkipIndexes;
+        private boolean dbSkipProcedures;
+        private boolean dbSkipCheckConstraints;
+        private String dbType;
+        private String dbDebugLevel;
+        private String dbDebugScope;
+        private boolean dbTakeComments;
+        private boolean dbLowercaseNames;
+        private boolean dbUppercaseNames;
 
-        public Set<String> daoIgnoreTables;
-        public Set<String> daoOnlyTables;
-        public Map<String, ImplementsExtends> daoToImplements;
-        public ImplementsExtends daoToExtends;
-        public boolean daoMakeItFinal;
-        public Map<String, PojoType> daoFunctionsResult;
-        public String daoDebugLevel;
-        public String daoDebugScope;
-        public String daoActiveFilter;
-        public String daoPckg;
+        private Map<String, PojoAttrType> pojoSqlTypes;
+        private Map<String, Map<String, PojoAttrType>> pojoTableTypes;
+        private Map<String, Map<String, PojoAttrType>> pojoColumnTypes;
+        private Map<String, Map<String, PojoAttrType>> pojoProcedureTypes;
+        private Map<String, Map<String, PojoAttrType>> pojoFunctionTypes;
+        private Map<String, String> pojoTableNames;
+        private Map<String, Map<String, String>> pojoColumnNames;
+        private Set<String> pojoIgnoreTables;
+        private Set<String> pojoOnlyTables;
+        private Set<String> pojoNotAbstractTables;
+        private Map<String, Set<String>> pojoIgnoreColumns;
+        private Map<String, Set<String>> pojoRequiredColumns;
+        private Map<String, Set<String>> pojoNotRequiredColumns;
+        private Map<String, Map<String, PojoAttrType>> pojoCreateColumns;
+        private Map<String, Map<String, Map<String, String>>> pojoIgnoreExports;
+        private Map<String, Map<String, Map<String, String>>> pojoIgnoreImports;
+        private Map<String, Map<String, Map<String, String>>> pojoCreateExports;
+        private Map<String, Map<String, Map<String, String>>> pojoCreateImports;
+        private Map<String, Map<String, Map<String, String>>> pojoInheritImports;
+        private Map<String, Map<String, Map<String, String>>> pojoManyToManyImports;
+        private Map<String, Map<String, Map<String, List<String>>>> pojoInheritance = new HashMap<String, Map<String, Map<String, List<String>>>>();
+        private Map<String, String> pojoInheritanceColumns;
+        private Set<String> pojoGenerateMethods;
+        private String pojoGenerateOperators;
+        private Map<String, ImplementsExtends> pojoToImplements;
+        private ImplementsExtends pojoToExtends;
+        private Map<String, List<String>> pojoJoinTables;
+        private boolean pojoDoGenerateWrappers;
+        private boolean pojoDoGenerateValidationAnnotations;
+        private boolean pojoMakeItFinal;
+        private String pojoVersionColumn;
+        private Map<String, Set<String>> pojoVersionColumns;
+        private Map<String, Set<String>> pojoNotVersionColumns;
+        private String pojoDebugLevel;
+        private String pojoDebugScope;
+        private Set<String> pojoPreserveForeignKeys;
+        private Map<String, PojoType> pojoPojosForProcedures;
+        private Map<String, PojoType> pojoPojosForFunctions;
+        private String pojoActiveFilter;
+        private String pojoPackage;
+        private Map<String, String> pojoEnumForCheckConstraints;
+
+        private PairValues metaGlobalSequence;
+        private Map<String, PairValues> metaTablesSequence;
+        private PairValues metaGlobalIdentity;
+        private Map<String, PairValues> metaTablesIdentity;
+        private Map<String, Map<String, PairValues>> metaColumnsMetaTypes;
+        private Map<String, Map<String, PairValues>> metaStatementsMetaTypes;
+        private boolean metaMakeItFinal;
+        private Map<String, Set<String>> metaLikeColumns;
+        private Map<String, Set<String>> metaNotLikeColumns;
+        private boolean metaGenerateSequences;
+        private Set<String> metaGlobalSequenceForTables;
+        private Set<String> metaGlobalSequenceNotForTables;
+        private boolean metaGenerateIdentities;
+        private Set<String> metaGlobalIdentityForTables;
+        private Set<String> metaGlobalIdentityNotForTables;
+        private boolean metaGenerateIdGenerators;
+        private boolean metaGenerateIndirectIdGenerators;
+        private Map<String, String> metaFunctionsResult;
+        private Map<String, String> metaFunctionsResultSet;
+        private Map<String, String> metaProceduresResultSet;
+        private String metaDebugLevel;
+        private String metaDebugScope;
+        private boolean metaGenerateOperators;
+        private Set<String> metaOptimizeInsert;
+        private Map<String, Set<String>> metaOptionalFeatures;
+        private String metaActiveFilter;
+
+        private Set<String> daoIgnoreTables;
+        private Set<String> daoOnlyTables;
+        private Map<String, ImplementsExtends> daoToImplements;
+        private ImplementsExtends daoToExtends;
+        private boolean daoMakeItFinal;
+        private Map<String, PojoType> daoFunctionsResult;
+        private String daoDebugLevel;
+        private String daoDebugScope;
+        private String daoActiveFilter;
+        private String daoPackage;
     }
 
-    private ModelValues modelValues = null;
+    public static class ModelValues {
+        public static final String DEFAULT = "_DEFAULT_";
+        public static final String GLOBAL = "_GLOBAL_";
+        public static final String DATABASE = "_DATABASE_";
+        public static final String POJOGEN = "_POJOGEN_";
+        public static final String METAGEN = "_METAGEN_";
+        public static final String DAOGEN = "_DAOGEN_";
+        public static final String[] ALL = { GLOBAL, DATABASE, POJOGEN, METAGEN, DAOGEN };
+
+        Map<String, Map<String, Map<String, ModelValues1>>> values;
+        public Boolean doResolveDb;
+
+        public ModelValues() {
+            values = new HashMap<String, Map<String, Map<String, ModelValues1>>>();
+            for (String name : ALL)
+                values.put(name, new HashMap<String, Map<String, ModelValues1>>());
+        }
+
+        public String dir;
+
+        public ModelValues1 getModel(String name, String key, String value) {
+            Map<String, Map<String, ModelValues1>> modelValues = values.get(name);
+            Map<String, ModelValues1> modelValuesKey = modelValues.get(key);
+            if (modelValuesKey == null) {
+                modelValues.put(key, modelValuesKey = new HashMap<String, ModelValues1>());
+            }
+            ModelValues1 model = modelValuesKey.get(value);
+            if (model == null)
+                modelValuesKey.put(key, model = new ModelValues1());
+            return model;
+        }
+
+        public ModelValues1 getModel(String name, PropertyCondition condition) {
+            return getModel(name, getKey(condition), getValue(condition));
+        }
+
+        public ModelValues1 getModel(String name) {
+            Map<String, Map<String, ModelValues1>> modelValues = values.get(name);
+            ModelValues1 defaultModel = null;
+            for (Entry<String, Map<String, ModelValues1>> e : modelValues.entrySet()) {
+                if (e.getKey().equals(DEFAULT))
+                    defaultModel = e.getValue().get(DEFAULT);
+                else {
+                    String value = System.getenv(e.getKey());
+                    if (e.getValue().containsKey(value))
+                        return e.getValue().get(value);
+                }
+            }
+            return defaultModel;
+        }
+
+        public ModelValues1 getDefaultModel(String name) {
+            return getModel(name, DEFAULT, DEFAULT);
+        }
+
+        private String getKey(PropertyCondition condition) {
+            if (condition == null || condition.getName() == null || condition.getValue() == null)
+                return DEFAULT;
+            return condition.getName();
+        }
+
+        private String getValue(PropertyCondition condition) {
+            if (condition == null || condition.getName() == null || condition.getValue() == null)
+                return DEFAULT;
+            if (condition.getValue().getId() != null)
+                return condition.getValue().getId();
+            else if (condition.getValue().getNumber() != null)
+                return "" + condition.getValue().getNumber();
+            else
+                return condition.getValue().getValue();
+        }
+    }
+
+    private static final String FAKE_DIR = "_XXX";
     private Map<String, ModelValues> dirs2models = new HashMap<String, ModelValues>();
 
     public ModelPropertyBean() {
     }
 
     public ModelPropertyBean(ModelValues modelValues) {
-        this.modelValues = modelValues;
-        modelValues.dir = "XXX";
+        dirs2models.put(FAKE_DIR, modelValues);
     }
 
+    @Override
     public void notifyChanged(Notification msg) {
         if (msg.getNotifier() == null || msg.getFeatureID(Resource.class) == Notification.NO_FEATURE_ID)
             return;
@@ -387,16 +463,22 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
         }
         try {
             for (Property property : artifacts.getProperties()) {
+                PropertyCondition condition = property.getCondition();
                 if (property.getName().startsWith(DATABASE)) {
-                    setValue(modelValues, property.getDatabase());
+                    ModelValues1 modelValues1 = modelValues.getModel(ModelValues.DATABASE, condition);
+                    setValue(modelValues1, property.getDatabase());
                 } else if (property.getName().startsWith(POJOGEN)) {
-                    setValue(modelValues, property.getPojogen());
+                    ModelValues1 modelValues1 = modelValues.getModel(ModelValues.POJOGEN, condition);
+                    setValue(modelValues1, property.getPojogen());
                 } else if (property.getName().startsWith(METAGEN)) {
-                    setValue(modelValues, property.getMetagen());
+                    ModelValues1 modelValues1 = modelValues.getModel(ModelValues.METAGEN, condition);
+                    setValue(modelValues1, property.getMetagen());
                 } else if (property.getName().startsWith(DAOGEN)) {
-                    setValue(modelValues, property.getDaogen());
+                    ModelValues1 modelValues1 = modelValues.getModel(ModelValues.DAOGEN, condition);
+                    setValue(modelValues1, property.getDaogen());
                 } else {
-                    setValue(modelValues, property);
+                    ModelValues1 modelValues1 = modelValues.getModel(ModelValues.GLOBAL, condition);
+                    setValue(modelValues1, property);
                 }
             }
         } catch (RuntimeException e) {
@@ -407,320 +489,325 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
     }
 
     private static void initModel(ModelValues modelValues) {
-        modelValues.replaceAllRegex = new HashMap<String, String>();
-        modelValues.replaceAllReplacement = new HashMap<String, String>();
-        modelValues.doCompressMetaDirectives = false;
+        ModelValues1 modelValues1 = modelValues.getDefaultModel(ModelValues.GLOBAL);
+        modelValues1.replaceAllRegex = new HashMap<String, String>();
+        modelValues1.replaceAllReplacement = new HashMap<String, String>();
+        modelValues1.doCompressMetaDirectives = false;
     }
 
     private static void initDatabaseModel(ModelValues modelValues) {
-        modelValues.doResolveDb = false;
-        modelValues.dbDriver = null;
-        modelValues.dbUrl = null;
-        modelValues.dbUsername = null;
-        modelValues.dbPassword = null;
-        modelValues.dbCatalog = null;
-        modelValues.dbSchema = null;
-        modelValues.dbSqlsBefore = null;
-        modelValues.dbSqlsAfter = null;
-        modelValues.dbIndexTypes = null;
-        modelValues.dbSkipIndexes = false;
-        modelValues.dbSkipProcedures = false;
-        modelValues.dbSkipCheckConstraints = false;
-        modelValues.dbType = null;
-        modelValues.dbDebugLevel = null;
-        modelValues.dbDebugScope = null;
-        modelValues.dbTakeComments = false;
-        modelValues.dbLowercaseNames = false;
-        modelValues.dbUppercaseNames = false;
+        ModelValues1 modelValues1 = modelValues.getDefaultModel(ModelValues.DATABASE);
+        modelValues1.doResolveDb = false;
+        modelValues1.dbDriver = null;
+        modelValues1.dbUrl = null;
+        modelValues1.dbUsername = null;
+        modelValues1.dbPassword = null;
+        modelValues1.dbCatalog = null;
+        modelValues1.dbSchema = null;
+        modelValues1.dbSqlsBefore = null;
+        modelValues1.dbSqlsAfter = null;
+        modelValues1.dbIndexTypes = null;
+        modelValues1.dbSkipIndexes = false;
+        modelValues1.dbSkipProcedures = false;
+        modelValues1.dbSkipCheckConstraints = false;
+        modelValues1.dbType = null;
+        modelValues1.dbDebugLevel = null;
+        modelValues1.dbDebugScope = null;
+        modelValues1.dbTakeComments = false;
+        modelValues1.dbLowercaseNames = false;
+        modelValues1.dbUppercaseNames = false;
     }
 
     private static void initPojogenModel(ModelValues modelValues) {
-        modelValues.sqlTypes = new HashMap<String, PojoAttrType>();
-        modelValues.tableTypes = new HashMap<String, Map<String, PojoAttrType>>();
-        modelValues.columnTypes = new HashMap<String, Map<String, PojoAttrType>>();
-        modelValues.procedureTypes = new HashMap<String, Map<String, PojoAttrType>>();
-        modelValues.functionTypes = new HashMap<String, Map<String, PojoAttrType>>();
-        modelValues.tableNames = new HashMap<String, String>();
-        modelValues.columnNames = new HashMap<String, Map<String, String>>();
-        modelValues.ignoreTables = new HashSet<String>();
-        modelValues.onlyTables = new HashSet<String>();
-        modelValues.notAbstractTables = new HashSet<String>();
-        modelValues.ignoreColumns = new HashMap<String, Set<String>>();
-        modelValues.requiredColumns = new HashMap<String, Set<String>>();
-        modelValues.notRequiredColumns = new HashMap<String, Set<String>>();
-        modelValues.createColumns = new HashMap<String, Map<String, PojoAttrType>>();
-        modelValues.ignoreExports = new HashMap<String, Map<String, Map<String, String>>>();
-        modelValues.ignoreImports = new HashMap<String, Map<String, Map<String, String>>>();
-        modelValues.createExports = new HashMap<String, Map<String, Map<String, String>>>();
-        modelValues.createImports = new HashMap<String, Map<String, Map<String, String>>>();
-        modelValues.inheritImports = new HashMap<String, Map<String, Map<String, String>>>();
-        modelValues.manyToManyImports = new HashMap<String, Map<String, Map<String, String>>>();
-        modelValues.inheritance = new HashMap<String, Map<String, Map<String, List<String>>>>();
-        modelValues.inheritanceColumns = new HashMap<String, String>();
-        modelValues.generateMethods = new HashSet<String>();
-        modelValues.generateOperators = null;
-        modelValues.toImplements = new HashMap<String, ImplementsExtends>();
-        modelValues.toExtends = null;
-        modelValues.joinTables = new HashMap<String, List<String>>();
-        modelValues.doGenerateWrappers = false;
-        modelValues.doGenerateValidationAnnotations = false;
-        modelValues.makeItFinal = false;
-        modelValues.versionColumn = null;
-        modelValues.versionColumns = new HashMap<String, Set<String>>();
-        modelValues.notVersionColumns = new HashMap<String, Set<String>>();
-        modelValues.debugLevel = null;
-        modelValues.debugScope = null;
-        modelValues.preserveForeignKeys = new HashSet<String>();
-        modelValues.pojosForProcedures = new HashMap<String, PojoType>();
-        modelValues.pojosForFunctions = new HashMap<String, PojoType>();
-        modelValues.activeFilter = null;
-        modelValues.pckg = null;
-        modelValues.enumForCheckConstraints = new HashMap<String, String>();
+        ModelValues1 modelValues1 = modelValues.getDefaultModel(ModelValues.POJOGEN);
+        modelValues1.pojoSqlTypes = new HashMap<String, PojoAttrType>();
+        modelValues1.pojoTableTypes = new HashMap<String, Map<String, PojoAttrType>>();
+        modelValues1.pojoColumnTypes = new HashMap<String, Map<String, PojoAttrType>>();
+        modelValues1.pojoProcedureTypes = new HashMap<String, Map<String, PojoAttrType>>();
+        modelValues1.pojoFunctionTypes = new HashMap<String, Map<String, PojoAttrType>>();
+        modelValues1.pojoTableNames = new HashMap<String, String>();
+        modelValues1.pojoColumnNames = new HashMap<String, Map<String, String>>();
+        modelValues1.pojoIgnoreTables = new HashSet<String>();
+        modelValues1.pojoOnlyTables = new HashSet<String>();
+        modelValues1.pojoNotAbstractTables = new HashSet<String>();
+        modelValues1.pojoIgnoreColumns = new HashMap<String, Set<String>>();
+        modelValues1.pojoRequiredColumns = new HashMap<String, Set<String>>();
+        modelValues1.pojoNotRequiredColumns = new HashMap<String, Set<String>>();
+        modelValues1.pojoCreateColumns = new HashMap<String, Map<String, PojoAttrType>>();
+        modelValues1.pojoIgnoreExports = new HashMap<String, Map<String, Map<String, String>>>();
+        modelValues1.pojoIgnoreImports = new HashMap<String, Map<String, Map<String, String>>>();
+        modelValues1.pojoCreateExports = new HashMap<String, Map<String, Map<String, String>>>();
+        modelValues1.pojoCreateImports = new HashMap<String, Map<String, Map<String, String>>>();
+        modelValues1.pojoInheritImports = new HashMap<String, Map<String, Map<String, String>>>();
+        modelValues1.pojoManyToManyImports = new HashMap<String, Map<String, Map<String, String>>>();
+        modelValues1.pojoInheritance = new HashMap<String, Map<String, Map<String, List<String>>>>();
+        modelValues1.pojoInheritanceColumns = new HashMap<String, String>();
+        modelValues1.pojoGenerateMethods = new HashSet<String>();
+        modelValues1.pojoGenerateOperators = null;
+        modelValues1.pojoToImplements = new HashMap<String, ImplementsExtends>();
+        modelValues1.pojoToExtends = null;
+        modelValues1.pojoJoinTables = new HashMap<String, List<String>>();
+        modelValues1.pojoDoGenerateWrappers = false;
+        modelValues1.pojoDoGenerateValidationAnnotations = false;
+        modelValues1.pojoMakeItFinal = false;
+        modelValues1.pojoVersionColumn = null;
+        modelValues1.pojoVersionColumns = new HashMap<String, Set<String>>();
+        modelValues1.pojoNotVersionColumns = new HashMap<String, Set<String>>();
+        modelValues1.pojoDebugLevel = null;
+        modelValues1.pojoDebugScope = null;
+        modelValues1.pojoPreserveForeignKeys = new HashSet<String>();
+        modelValues1.pojoPojosForProcedures = new HashMap<String, PojoType>();
+        modelValues1.pojoPojosForFunctions = new HashMap<String, PojoType>();
+        modelValues1.pojoActiveFilter = null;
+        modelValues1.pojoPackage = null;
+        modelValues1.pojoEnumForCheckConstraints = new HashMap<String, String>();
     }
 
     private static void initMetagenModel(ModelValues modelValues) {
-        modelValues.metaGlobalSequence = null;
-        modelValues.metaTablesSequence = new HashMap<String, PairValues>();
-        modelValues.metaGlobalIdentity = null;
-        modelValues.metaTablesIdentity = new HashMap<String, PairValues>();
-        modelValues.metaColumnsMetaTypes = new HashMap<String, Map<String, PairValues>>();
-        modelValues.metaStatementsMetaTypes = new HashMap<String, Map<String, PairValues>>();
-        modelValues.metaMakeItFinal = false;
-        modelValues.metaLikeColumns = new HashMap<String, Set<String>>();
-        modelValues.metaNotLikeColumns = new HashMap<String, Set<String>>();
-        modelValues.metaGenerateSequences = false;
-        modelValues.metaGlobalSequenceForTables = new HashSet<String>();
-        modelValues.metaGlobalSequenceNotForTables = new HashSet<String>();
-        modelValues.metaGenerateIdentities = false;
-        modelValues.metaGlobalIdentityForTables = new HashSet<String>();
-        modelValues.metaGlobalIdentityNotForTables = new HashSet<String>();
-        modelValues.metaGenerateIdGenerators = false;
-        modelValues.metaGenerateIndirectIdGenerators = false;
-        modelValues.metaFunctionsResult = new HashMap<String, String>();
-        modelValues.metaFunctionsResultSet = new HashMap<String, String>();
-        modelValues.metaProceduresResultSet = new HashMap<String, String>();
-        modelValues.metaDebugLevel = null;
-        modelValues.metaDebugScope = null;
-        modelValues.metaGenerateOperators = false;
-        modelValues.metaOptimizeInsert = new HashSet<String>();
-        modelValues.metaOptionalFeatures = new HashMap<String, Set<String>>();
-        modelValues.metaActiveFilter = null;
+        ModelValues1 modelValues1 = modelValues.getDefaultModel(ModelValues.METAGEN);
+        modelValues1.metaGlobalSequence = null;
+        modelValues1.metaTablesSequence = new HashMap<String, PairValues>();
+        modelValues1.metaGlobalIdentity = null;
+        modelValues1.metaTablesIdentity = new HashMap<String, PairValues>();
+        modelValues1.metaColumnsMetaTypes = new HashMap<String, Map<String, PairValues>>();
+        modelValues1.metaStatementsMetaTypes = new HashMap<String, Map<String, PairValues>>();
+        modelValues1.metaMakeItFinal = false;
+        modelValues1.metaLikeColumns = new HashMap<String, Set<String>>();
+        modelValues1.metaNotLikeColumns = new HashMap<String, Set<String>>();
+        modelValues1.metaGenerateSequences = false;
+        modelValues1.metaGlobalSequenceForTables = new HashSet<String>();
+        modelValues1.metaGlobalSequenceNotForTables = new HashSet<String>();
+        modelValues1.metaGenerateIdentities = false;
+        modelValues1.metaGlobalIdentityForTables = new HashSet<String>();
+        modelValues1.metaGlobalIdentityNotForTables = new HashSet<String>();
+        modelValues1.metaGenerateIdGenerators = false;
+        modelValues1.metaGenerateIndirectIdGenerators = false;
+        modelValues1.metaFunctionsResult = new HashMap<String, String>();
+        modelValues1.metaFunctionsResultSet = new HashMap<String, String>();
+        modelValues1.metaProceduresResultSet = new HashMap<String, String>();
+        modelValues1.metaDebugLevel = null;
+        modelValues1.metaDebugScope = null;
+        modelValues1.metaGenerateOperators = false;
+        modelValues1.metaOptimizeInsert = new HashSet<String>();
+        modelValues1.metaOptionalFeatures = new HashMap<String, Set<String>>();
+        modelValues1.metaActiveFilter = null;
     }
 
     private static void initDaogenModel(ModelValues modelValues) {
-        modelValues.daoIgnoreTables = new HashSet<String>();
-        modelValues.daoOnlyTables = new HashSet<String>();
-        modelValues.daoToImplements = new HashMap<String, ImplementsExtends>();
-        modelValues.daoToExtends = null;
-        modelValues.daoMakeItFinal = false;
-        modelValues.daoFunctionsResult = new HashMap<String, PojoType>();
-        modelValues.daoDebugLevel = null;
-        modelValues.daoDebugScope = null;
-        modelValues.daoActiveFilter = null;
-        modelValues.daoPckg = null;
+        ModelValues1 modelValues1 = modelValues.getDefaultModel(ModelValues.DAOGEN);
+        modelValues1.daoIgnoreTables = new HashSet<String>();
+        modelValues1.daoOnlyTables = new HashSet<String>();
+        modelValues1.daoToImplements = new HashMap<String, ImplementsExtends>();
+        modelValues1.daoToExtends = null;
+        modelValues1.daoMakeItFinal = false;
+        modelValues1.daoFunctionsResult = new HashMap<String, PojoType>();
+        modelValues1.daoDebugLevel = null;
+        modelValues1.daoDebugScope = null;
+        modelValues1.daoActiveFilter = null;
+        modelValues1.daoPackage = null;
     }
 
-    public static void setValue(ModelValues modelValues, Property property) {
+    public static void setValue(ModelValues1 modelValues1, Property property) {
         if (property == null)
             return;
         if (RESOLVE_POJO_ON.equals(property.getName())) {
-            modelValues.doResolvePojo = true;
+            modelValues1.doResolvePojo = true;
         } else if (RESOLVE_POJO_OFF.equals(property.getName())) {
-            modelValues.doResolvePojo = false;
+            modelValues1.doResolvePojo = false;
         } else if (REPLACE_ALL_REGEX.equals(property.getName())) {
             if (property.getRegex() != null && property.getReplaceId() != null)
-                modelValues.replaceAllRegex.put(property.getReplaceId(), getPropertyValue(property.getRegex()));
+                modelValues1.replaceAllRegex.put(property.getReplaceId(), getPropertyValue(property.getRegex()));
         } else if (REPLACE_ALL_REPLACEMENT.equals(property.getName())) {
             if (property.getReplacement() != null && property.getReplaceId() != null)
-                modelValues.replaceAllReplacement.put(property.getReplaceId(),
+                modelValues1.replaceAllReplacement.put(property.getReplaceId(),
                         getPropertyValue(property.getReplacement()));
         } else if (COMPRESS_META_DIRECTIVES.equals(property.getName())) {
-            modelValues.doCompressMetaDirectives = true;
+            modelValues1.doCompressMetaDirectives = true;
         }
     }
 
-    public static void setValue(ModelValues modelValues, DatabaseProperty property) {
+    public static void setValue(ModelValues1 modelValues1, DatabaseProperty property) {
         if (property == null)
             return;
         if (DATABASE_IS_ONLINE.equals(property.getName())) {
-            modelValues.doResolveDb = true;
+            modelValues1.doResolveDb = true;
         } else if (DATABASE_IS_OFFLINE.equals(property.getName())) {
-            modelValues.doResolveDb = false;
+            modelValues1.doResolveDb = false;
         } else if (DATABASE_HAS_URL.equals(property.getName())) {
-            modelValues.dbUrl = getPropertyValue(property.getDbUrl());
+            modelValues1.dbUrl = getPropertyValue(property.getDbUrl());
         } else if (DATABASE_LOGIN_USERNAME.equals(property.getName())) {
-            modelValues.dbUsername = getPropertyValue(property.getDbUsername());
+            modelValues1.dbUsername = getPropertyValue(property.getDbUsername());
         } else if (DATABASE_LOGIN_NPASSWORD.equals(property.getName())) {
-            modelValues.dbPassword = getPropertyValue(property.getDbPassword());
+            modelValues1.dbPassword = getPropertyValue(property.getDbPassword());
         } else if (DATABASE_IN_CATALOG.equals(property.getName())) {
             if (property.getDbCatalog() != null)
-                modelValues.dbCatalog = getPropertyValue(property.getDbCatalog().getDbCatalog());
+                modelValues1.dbCatalog = getPropertyValue(property.getDbCatalog().getDbCatalog());
             else
-                modelValues.dbCatalog = null;
+                modelValues1.dbCatalog = null;
         } else if (DATABASE_ACTIVE_SCHEMA.equals(property.getName())) {
             if (property.getDbSchema() != null)
-                modelValues.dbSchema = getPropertyValue(property.getDbSchema().getDbSchema());
+                modelValues1.dbSchema = getPropertyValue(property.getDbSchema().getDbSchema());
             else
-                modelValues.dbSchema = null;
+                modelValues1.dbSchema = null;
         } else if (DATABASE_JDBC_DRIVER.equals(property.getName())) {
             if (property.getDbDriverx() != null)
-                modelValues.dbDriver = getPropertyValue(property.getDbDriverx().getQualifiedName());
+                modelValues1.dbDriver = getPropertyValue(property.getDbDriverx().getQualifiedName());
             else
-                modelValues.dbDriver = getPropertyValue(property.getDbDriver());
+                modelValues1.dbDriver = getPropertyValue(property.getDbDriver());
         } else if (DATABASE_EXECUTE_BEFORE.equals(property.getName())) {
-            modelValues.dbSqlsBefore = getPropertyValue(property.getDbExecuteBefore());
+            modelValues1.dbSqlsBefore = getPropertyValue(property.getDbExecuteBefore());
         } else if (DATABASE_EXECUTE_AFTER.equals(property.getName())) {
-            modelValues.dbSqlsAfter = getPropertyValue(property.getDbExecuteAfter());
+            modelValues1.dbSqlsAfter = getPropertyValue(property.getDbExecuteAfter());
         } else if (DATABASE_INDEX_TYPES.equals(property.getName())) {
-            modelValues.dbIndexTypes = getPropertyValue(property.getDbIndexTypes());
+            modelValues1.dbIndexTypes = getPropertyValue(property.getDbIndexTypes());
         } else if (DATABASE_SKIP_INDEXES.equals(property.getName())) {
-            modelValues.dbSkipIndexes = true;
+            modelValues1.dbSkipIndexes = true;
         } else if (DATABASE_SKIP_PROCEDURES.equals(property.getName())) {
-            modelValues.dbSkipProcedures = true;
+            modelValues1.dbSkipProcedures = true;
         } else if (DATABASE_SKIP_CHECK_CONSTRAINTS.equals(property.getName())) {
-            modelValues.dbSkipCheckConstraints = true;
+            modelValues1.dbSkipCheckConstraints = true;
         } else if (DATABASE_OF_TYPE.equals(property.getName())) {
             if (property.getDbType() != null)
-                modelValues.dbType = getPropertyValue(property.getDbType().getDbType());
+                modelValues1.dbType = getPropertyValue(property.getDbType().getDbType());
             else
-                modelValues.dbType = null;
+                modelValues1.dbType = null;
         } else if (DATABASE_DEBUG_LEVEL.equals(property.getName()) && property.getDebug() != null) {
-            modelValues.dbDebugLevel = property.getDebug().getDebug();
-            modelValues.dbDebugScope = getPropertyValue(property.getDebug().getScope());
+            modelValues1.dbDebugLevel = property.getDebug().getDebug();
+            modelValues1.dbDebugScope = getPropertyValue(property.getDebug().getScope());
         } else if (DATABASE_TAKE_COMMENTS.equals(property.getName())) {
-            modelValues.dbTakeComments = true;
+            modelValues1.dbTakeComments = true;
         } else if (DATABASE_LOWERCASE_NAMES.equals(property.getName())) {
-            modelValues.dbLowercaseNames = true;
+            modelValues1.dbLowercaseNames = true;
         } else if (DATABASE_UPPERCASE_NAMES.equals(property.getName())) {
-            modelValues.dbUppercaseNames = true;
+            modelValues1.dbUppercaseNames = true;
         }
     }
 
-    private static void setValue(ModelValues modelValues, PojogenProperty property) {
+    private static void setValue(ModelValues1 modelValues1, PojogenProperty property) {
         if (property == null)
             return;
         if (POJOGEN_TYPE_SQLTYPES.equals(property.getName())) {
-            // if (modelValues.sqlTypes == null)
-            // modelValues.sqlTypes = new HashMap<String, PojoAttrType>();
+            // if (modelValues1.sqlTypes == null)
+            // modelValues1.sqlTypes = new HashMap<String, PojoAttrType>();
             for (int i = 0, m = property.getSqlTypes().size(); i < m; i++) {
                 PojoAttrType type = new PojoAttrType(property.getSqlTypes().get(i).getTypeName(), property
                         .getSqlTypes().get(i).getSize(), property.getSqlTypes().get(i).getType());
-                modelValues.sqlTypes.put(type.getName() + type.getSize(), type);
+                modelValues1.pojoSqlTypes.put(type.getName() + type.getSize(), type);
             }
         } else if (POJOGEN_TYPE_IN_TABLE.equals(property.getName())) {
-            // if (modelValues.tableTypes == null)
-            // modelValues.tableTypes = new HashMap<String, Map<String, PojoAttrType>>();
-            if (!modelValues.tableTypes.containsKey(property.getDbTable()))
-                modelValues.tableTypes.put(property.getDbTable(), new HashMap<String, PojoAttrType>());
+            // if (modelValues1.tableTypes == null)
+            // modelValues1.tableTypes = new HashMap<String, Map<String, PojoAttrType>>();
+            if (!modelValues1.pojoTableTypes.containsKey(property.getDbTable()))
+                modelValues1.pojoTableTypes.put(property.getDbTable(), new HashMap<String, PojoAttrType>());
             for (int i = 0, m = property.getSqlTypes().size(); i < m; i++) {
                 PojoAttrType type = new PojoAttrType(property.getSqlTypes().get(i).getTypeName(), property
                         .getSqlTypes().get(i).getSize(), property.getSqlTypes().get(i).getType());
-                modelValues.tableTypes.get(property.getDbTable()).put(type.getName() + type.getSize(), type);
+                modelValues1.pojoTableTypes.get(property.getDbTable()).put(type.getName() + type.getSize(), type);
             }
         } else if (POJOGEN_TYPE_FOR_COLUMNS.equals(property.getName())) {
-            // if (modelValues.columnTypes == null)
-            // modelValues.columnTypes = new HashMap<String, Map<String, PojoAttrType>>();
-            if (!modelValues.columnTypes.containsKey(property.getDbTable()))
-                modelValues.columnTypes.put(property.getDbTable(), new HashMap<String, PojoAttrType>());
+            // if (modelValues1.columnTypes == null)
+            // modelValues1.columnTypes = new HashMap<String, Map<String, PojoAttrType>>();
+            if (!modelValues1.pojoColumnTypes.containsKey(property.getDbTable()))
+                modelValues1.pojoColumnTypes.put(property.getDbTable(), new HashMap<String, PojoAttrType>());
             for (int i = 0, m = property.getColumnTypes().size(); i < m; i++) {
                 PojoAttrType type = new PojoAttrType(property.getColumnTypes().get(i).getDbColumn(), null, property
                         .getColumnTypes().get(i).getType());
-                modelValues.columnTypes.get(property.getDbTable()).put(type.getName(), type);
+                modelValues1.pojoColumnTypes.get(property.getDbTable()).put(type.getName(), type);
             }
         } else if (POJOGEN_TYPE_FOR_PROCEDURE.equals(property.getName())) {
-            // if (modelValues.columnTypes == null)
-            // modelValues.columnTypes = new HashMap<String, Map<String, PojoAttrType>>();
-            if (!modelValues.procedureTypes.containsKey(property.getDbProcedure()))
-                modelValues.procedureTypes.put(property.getDbProcedure(), new HashMap<String, PojoAttrType>());
+            // if (modelValues1.columnTypes == null)
+            // modelValues1.columnTypes = new HashMap<String, Map<String, PojoAttrType>>();
+            if (!modelValues1.pojoProcedureTypes.containsKey(property.getDbProcedure()))
+                modelValues1.pojoProcedureTypes.put(property.getDbProcedure(), new HashMap<String, PojoAttrType>());
             for (int i = 0, m = property.getColumnTypes().size(); i < m; i++) {
                 PojoAttrType type = new PojoAttrType(property.getColumnTypes().get(i).getDbColumn(), null, property
                         .getColumnTypes().get(i).getType());
-                modelValues.procedureTypes.get(property.getDbProcedure()).put(type.getName(), type);
+                modelValues1.pojoProcedureTypes.get(property.getDbProcedure()).put(type.getName(), type);
             }
         } else if (POJOGEN_TYPE_FOR_FUNCTION.equals(property.getName())) {
-            // if (modelValues.columnTypes == null)
-            // modelValues.columnTypes = new HashMap<String, Map<String, PojoAttrType>>();
-            if (!modelValues.functionTypes.containsKey(property.getDbFunction()))
-                modelValues.functionTypes.put(property.getDbFunction(), new HashMap<String, PojoAttrType>());
+            // if (modelValues1.columnTypes == null)
+            // modelValues1.columnTypes = new HashMap<String, Map<String, PojoAttrType>>();
+            if (!modelValues1.pojoFunctionTypes.containsKey(property.getDbFunction()))
+                modelValues1.pojoFunctionTypes.put(property.getDbFunction(), new HashMap<String, PojoAttrType>());
             for (int i = 0, m = property.getColumnTypes().size(); i < m; i++) {
                 PojoAttrType type = new PojoAttrType(property.getColumnTypes().get(i).getDbColumn(), null, property
                         .getColumnTypes().get(i).getType());
-                modelValues.functionTypes.get(property.getDbFunction()).put(type.getName(), type);
+                modelValues1.pojoFunctionTypes.get(property.getDbFunction()).put(type.getName(), type);
             }
         } else if (POJOGEN_RENAME_TABLES.equals(property.getName())) {
-            // if (modelValues.tableNames == null)
-            // modelValues.tableNames = new HashMap<String, String>();
+            // if (modelValues1.tableNames == null)
+            // modelValues1.tableNames = new HashMap<String, String>();
             for (int i = 0, m = property.getTables().size(); i < m; i++) {
-                modelValues.tableNames.put(property.getTables().get(i).getDbTable(), property.getTables().get(i)
+                modelValues1.pojoTableNames.put(property.getTables().get(i).getDbTable(), property.getTables().get(i)
                         .getNewName());
             }
         } else if (POJOGEN_RENAME_COLUMNS.equals(property.getName())) {
-            // if (modelValues.columnNames == null)
-            // modelValues.columnNames = new HashMap<String, Map<String, String>>();
-            if (!modelValues.columnNames.containsKey(property.getDbTable()))
-                modelValues.columnNames.put(property.getDbTable(), new HashMap<String, String>());
+            // if (modelValues1.columnNames == null)
+            // modelValues1.columnNames = new HashMap<String, Map<String, String>>();
+            if (!modelValues1.pojoColumnNames.containsKey(property.getDbTable()))
+                modelValues1.pojoColumnNames.put(property.getDbTable(), new HashMap<String, String>());
             for (int i = 0, m = property.getColumns().size(); i < m; i++) {
-                modelValues.columnNames.get(property.getDbTable()).put(property.getColumns().get(i).getDbColumn(),
+                modelValues1.pojoColumnNames.get(property.getDbTable()).put(property.getColumns().get(i).getDbColumn(),
                         property.getColumns().get(i).getNewName());
             }
         } else if (POJOGEN_IGNORE_TABLES.equals(property.getName())) {
-            // if (modelValues.ignoreTables == null)
-            // modelValues.ignoreTables = new HashSet<String>();
+            // if (modelValues1.ignoreTables == null)
+            // modelValues1.ignoreTables = new HashSet<String>();
             for (int i = 0, m = property.getDbTables().size(); i < m; i++) {
-                modelValues.ignoreTables.add(property.getDbTables().get(i));
+                modelValues1.pojoIgnoreTables.add(property.getDbTables().get(i));
             }
         } else if (POJOGEN_ONLY_TABLES.equals(property.getName())) {
-            // if (modelValues.onlyTables == null)
-            // modelValues.onlyTables = new HashSet<String>();
+            // if (modelValues1.onlyTables == null)
+            // modelValues1.onlyTables = new HashSet<String>();
             for (int i = 0, m = property.getDbTables().size(); i < m; i++) {
-                modelValues.onlyTables.add(property.getDbTables().get(i));
+                modelValues1.pojoOnlyTables.add(property.getDbTables().get(i));
             }
         } else if (POJOGEN_NOT_ABSTRACT_TABLES_TABLES.equals(property.getName())) {
-            // if (modelValues.notAbstractTables == null)
-            // modelValues.notAbstractTables = new HashSet<String>();
+            // if (modelValues1.notAbstractTables == null)
+            // modelValues1.notAbstractTables = new HashSet<String>();
             for (int i = 0, m = property.getDbTables().size(); i < m; i++) {
-                modelValues.notAbstractTables.add(property.getDbTables().get(i));
+                modelValues1.pojoNotAbstractTables.add(property.getDbTables().get(i));
             }
         } else if (POJOGEN_IGNORE_COLUMNS.equals(property.getName())) {
-            // if (modelValues.ignoreColumns == null)
-            // modelValues.ignoreColumns = new HashMap<String, Set<String>>();
-            if (!modelValues.ignoreColumns.containsKey(property.getDbTable()))
-                modelValues.ignoreColumns.put(property.getDbTable(), new HashSet<String>());
+            // if (modelValues1.ignoreColumns == null)
+            // modelValues1.ignoreColumns = new HashMap<String, Set<String>>();
+            if (!modelValues1.pojoIgnoreColumns.containsKey(property.getDbTable()))
+                modelValues1.pojoIgnoreColumns.put(property.getDbTable(), new HashSet<String>());
             for (int i = 0, m = property.getDbColumns().size(); i < m; i++) {
-                modelValues.ignoreColumns.get(property.getDbTable()).add(property.getDbColumns().get(i));
+                modelValues1.pojoIgnoreColumns.get(property.getDbTable()).add(property.getDbColumns().get(i));
             }
         } else if (POJOGEN_REQUIRED_COLUMNS.equals(property.getName())) {
-            // if (modelValues.requiredColumns == null)
-            // modelValues.requiredColumns = new HashMap<String, Set<String>>();
-            if (!modelValues.requiredColumns.containsKey(property.getDbTable()))
-                modelValues.requiredColumns.put(property.getDbTable(), new HashSet<String>());
+            // if (modelValues1.requiredColumns == null)
+            // modelValues1.requiredColumns = new HashMap<String, Set<String>>();
+            if (!modelValues1.pojoRequiredColumns.containsKey(property.getDbTable()))
+                modelValues1.pojoRequiredColumns.put(property.getDbTable(), new HashSet<String>());
             for (int i = 0, m = property.getDbColumns().size(); i < m; i++) {
-                modelValues.requiredColumns.get(property.getDbTable()).add(property.getDbColumns().get(i));
+                modelValues1.pojoRequiredColumns.get(property.getDbTable()).add(property.getDbColumns().get(i));
             }
         } else if (POJOGEN_NOT_REQUIRED_COLUMNS.equals(property.getName())) {
-            // if (modelValues.notRequiredColumns == null)
-            // modelValues.notRequiredColumns = new HashMap<String, Set<String>>();
-            if (!modelValues.notRequiredColumns.containsKey(property.getDbTable()))
-                modelValues.notRequiredColumns.put(property.getDbTable(), new HashSet<String>());
+            // if (modelValues1.notRequiredColumns == null)
+            // modelValues1.notRequiredColumns = new HashMap<String, Set<String>>();
+            if (!modelValues1.pojoNotRequiredColumns.containsKey(property.getDbTable()))
+                modelValues1.pojoNotRequiredColumns.put(property.getDbTable(), new HashSet<String>());
             for (int i = 0, m = property.getDbColumns().size(); i < m; i++) {
-                modelValues.notRequiredColumns.get(property.getDbTable()).add(property.getDbColumns().get(i));
+                modelValues1.pojoNotRequiredColumns.get(property.getDbTable()).add(property.getDbColumns().get(i));
             }
         } else if (POJOGEN_CREATE_COLUMNS.equals(property.getName())) {
-            // if (modelValues.createColumns == null)
-            // modelValues.createColumns = new HashMap<String, Map<String, PojoAttrType>>();
-            if (!modelValues.createColumns.containsKey(property.getDbTable()))
-                modelValues.createColumns.put(property.getDbTable(), new HashMap<String, PojoAttrType>());
+            // if (modelValues1.createColumns == null)
+            // modelValues1.createColumns = new HashMap<String, Map<String, PojoAttrType>>();
+            if (!modelValues1.pojoCreateColumns.containsKey(property.getDbTable()))
+                modelValues1.pojoCreateColumns.put(property.getDbTable(), new HashMap<String, PojoAttrType>());
             for (int i = 0, m = property.getColumnTypes().size(); i < m; i++) {
                 PojoAttrType type = new PojoAttrType(property.getColumnTypes().get(i).getDbColumn(), null, property
                         .getColumnTypes().get(i).getType());
-                modelValues.createColumns.get(property.getDbTable()).put(type.getName(), type);
+                modelValues1.pojoCreateColumns.get(property.getDbTable()).put(type.getName(), type);
             }
         } else if (POJOGEN_IGNORE_EXPORTS.equals(property.getName())) {
-            // if (modelValues.ignoreExports == null)
-            // modelValues.ignoreExports = new HashMap<String, Map<String, Map<String, String>>>();
-            if (!modelValues.ignoreExports.containsKey(property.getDbTable()))
-                modelValues.ignoreExports.put(property.getDbTable(), new HashMap<String, Map<String, String>>());
-            Map<String, Map<String, String>> exports = modelValues.ignoreExports.get(property.getDbTable());
+            // if (modelValues1.ignoreExports == null)
+            // modelValues1.ignoreExports = new HashMap<String, Map<String, Map<String, String>>>();
+            if (!modelValues1.pojoIgnoreExports.containsKey(property.getDbTable()))
+                modelValues1.pojoIgnoreExports.put(property.getDbTable(), new HashMap<String, Map<String, String>>());
+            Map<String, Map<String, String>> exports = modelValues1.pojoIgnoreExports.get(property.getDbTable());
             for (int i = 0, m = property.getExports().size(); i < m; i++) {
                 ExportAssignement export = property.getExports().get(i);
                 if (!exports.containsKey(export.getDbColumn()))
@@ -728,11 +815,11 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
                 exports.get(export.getDbColumn()).put(export.getFkTable(), export.getFkColumn());
             }
         } else if (POJOGEN_IGNORE_IMPORTS.equals(property.getName())) {
-            // if (modelValues.ignoreImports == null)
-            // modelValues.ignoreImports = new HashMap<String, Map<String, Map<String, String>>>();
-            if (!modelValues.ignoreImports.containsKey(property.getDbTable()))
-                modelValues.ignoreImports.put(property.getDbTable(), new HashMap<String, Map<String, String>>());
-            Map<String, Map<String, String>> imports = modelValues.ignoreImports.get(property.getDbTable());
+            // if (modelValues1.ignoreImports == null)
+            // modelValues1.ignoreImports = new HashMap<String, Map<String, Map<String, String>>>();
+            if (!modelValues1.pojoIgnoreImports.containsKey(property.getDbTable()))
+                modelValues1.pojoIgnoreImports.put(property.getDbTable(), new HashMap<String, Map<String, String>>());
+            Map<String, Map<String, String>> imports = modelValues1.pojoIgnoreImports.get(property.getDbTable());
             for (int i = 0, m = property.getImports().size(); i < m; i++) {
                 ImportAssignement _import = property.getImports().get(i);
                 if (!imports.containsKey(_import.getDbColumn()))
@@ -740,11 +827,11 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
                 imports.get(_import.getDbColumn()).put(_import.getPkTable(), _import.getPkColumn());
             }
         } else if (POJOGEN_CREATE_EXPORTS.equals(property.getName())) {
-            // if (modelValues.createExports == null)
-            // modelValues.createExports = new HashMap<String, Map<String, Map<String, String>>>();
-            if (!modelValues.createExports.containsKey(property.getDbTable()))
-                modelValues.createExports.put(property.getDbTable(), new HashMap<String, Map<String, String>>());
-            Map<String, Map<String, String>> exports = modelValues.createExports.get(property.getDbTable());
+            // if (modelValues1.createExports == null)
+            // modelValues1.createExports = new HashMap<String, Map<String, Map<String, String>>>();
+            if (!modelValues1.pojoCreateExports.containsKey(property.getDbTable()))
+                modelValues1.pojoCreateExports.put(property.getDbTable(), new HashMap<String, Map<String, String>>());
+            Map<String, Map<String, String>> exports = modelValues1.pojoCreateExports.get(property.getDbTable());
             for (int i = 0, m = property.getExports().size(); i < m; i++) {
                 ExportAssignement export = property.getExports().get(i);
                 if (!exports.containsKey(export.getDbColumn()))
@@ -752,11 +839,11 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
                 exports.get(export.getDbColumn()).put(export.getFkTable(), export.getFkColumn());
             }
         } else if (POJOGEN_CREATE_IMPORTS.equals(property.getName())) {
-            // if (modelValues.createImports == null)
-            // modelValues.createImports = new HashMap<String, Map<String, Map<String, String>>>();
-            if (!modelValues.createImports.containsKey(property.getDbTable()))
-                modelValues.createImports.put(property.getDbTable(), new HashMap<String, Map<String, String>>());
-            Map<String, Map<String, String>> imports = modelValues.createImports.get(property.getDbTable());
+            // if (modelValues1.createImports == null)
+            // modelValues1.createImports = new HashMap<String, Map<String, Map<String, String>>>();
+            if (!modelValues1.pojoCreateImports.containsKey(property.getDbTable()))
+                modelValues1.pojoCreateImports.put(property.getDbTable(), new HashMap<String, Map<String, String>>());
+            Map<String, Map<String, String>> imports = modelValues1.pojoCreateImports.get(property.getDbTable());
             for (int i = 0, m = property.getImports().size(); i < m; i++) {
                 ImportAssignement _import = property.getImports().get(i);
                 if (!imports.containsKey(_import.getDbColumn()))
@@ -764,11 +851,11 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
                 imports.get(_import.getDbColumn()).put(_import.getPkTable(), _import.getPkColumn());
             }
         } else if (POJOGEN_INHERIT_IMPORTS.equals(property.getName())) {
-            // if (modelValues.inheritImports == null)
-            // modelValues.inheritImports = new HashMap<String, Map<String, Map<String, String>>>();
-            if (!modelValues.inheritImports.containsKey(property.getDbTable()))
-                modelValues.inheritImports.put(property.getDbTable(), new HashMap<String, Map<String, String>>());
-            Map<String, Map<String, String>> imports = modelValues.inheritImports.get(property.getDbTable());
+            // if (modelValues1.inheritImports == null)
+            // modelValues1.inheritImports = new HashMap<String, Map<String, Map<String, String>>>();
+            if (!modelValues1.pojoInheritImports.containsKey(property.getDbTable()))
+                modelValues1.pojoInheritImports.put(property.getDbTable(), new HashMap<String, Map<String, String>>());
+            Map<String, Map<String, String>> imports = modelValues1.pojoInheritImports.get(property.getDbTable());
             for (int i = 0, m = property.getImports().size(); i < m; i++) {
                 ImportAssignement _import = property.getImports().get(i);
                 if (!imports.containsKey(_import.getDbColumn()))
@@ -776,11 +863,12 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
                 imports.get(_import.getDbColumn()).put(_import.getPkTable(), _import.getPkColumn());
             }
         } else if (POJOGEN_MANY_TO_MANY_IMPORTS.equals(property.getName())) {
-            // if (modelValues.manyToManyImports == null)
-            // modelValues.manyToManyImports = new HashMap<String, Map<String, Map<String, String>>>();
-            if (!modelValues.manyToManyImports.containsKey(property.getDbTable()))
-                modelValues.manyToManyImports.put(property.getDbTable(), new HashMap<String, Map<String, String>>());
-            Map<String, Map<String, String>> many2s = modelValues.manyToManyImports.get(property.getDbTable());
+            // if (modelValues1.manyToManyImports == null)
+            // modelValues1.manyToManyImports = new HashMap<String, Map<String, Map<String, String>>>();
+            if (!modelValues1.pojoManyToManyImports.containsKey(property.getDbTable()))
+                modelValues1.pojoManyToManyImports.put(property.getDbTable(),
+                        new HashMap<String, Map<String, String>>());
+            Map<String, Map<String, String>> many2s = modelValues1.pojoManyToManyImports.get(property.getDbTable());
             for (int i = 0, m = property.getMany2s().size(); i < m; i++) {
                 ManyToManyAssignement many2 = property.getMany2s().get(i);
                 if (!many2s.containsKey(many2.getPkColumn()))
@@ -788,14 +876,15 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
                 many2s.get(many2.getPkColumn()).put(many2.getPkTable(), many2.getFkColumn());
             }
         } else if (POJOGEN_INHERITANCE.equals(property.getName())) {
-            // if (modelValues.inheritance == null)
-            // modelValues.inheritance = new HashMap<String, Map<String, Map<String, List<String>>>>();
-            if (!modelValues.inheritance.containsKey(property.getDbTable()))
-                modelValues.inheritance.put(property.getDbTable(), new HashMap<String, Map<String, List<String>>>());
-            // if (modelValues.inheritanceColumns == null)
-            // modelValues.inheritanceColumns = new HashMap<String, String>();
-            modelValues.inheritanceColumns.put(property.getDbTable(), property.getDbColumn());
-            Map<String, Map<String, List<String>>> inherits = modelValues.inheritance.get(property.getDbTable());
+            // if (modelValues1.inheritance == null)
+            // modelValues1.inheritance = new HashMap<String, Map<String, Map<String, List<String>>>>();
+            if (!modelValues1.pojoInheritance.containsKey(property.getDbTable()))
+                modelValues1.pojoInheritance.put(property.getDbTable(),
+                        new HashMap<String, Map<String, List<String>>>());
+            // if (modelValues1.inheritanceColumns == null)
+            // modelValues1.inheritanceColumns = new HashMap<String, String>();
+            modelValues1.pojoInheritanceColumns.put(property.getDbTable(), property.getDbColumn());
+            Map<String, Map<String, List<String>>> inherits = modelValues1.pojoInheritance.get(property.getDbTable());
             for (int i = 0, m = property.getInheritance().size(); i < m; i++) {
                 InheritanceAssignement _inherit = property.getInheritance().get(i);
                 if (!inherits.containsKey(_inherit.getDiscriminator()))
@@ -803,272 +892,276 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
                 inherits.get(_inherit.getDiscriminator()).put(_inherit.getDbTable(), _inherit.getDbColumns());
             }
         } else if (POJOGEN_GENERATE_METHODS.equals(property.getName())) {
-            // if (modelValues.generateMethods == null)
-            // modelValues.generateMethods = new HashSet<String>();
+            // if (modelValues1.generateMethods == null)
+            // modelValues1.generateMethods = new HashSet<String>();
             for (int i = 0, m = property.getMethods().size(); i < m; i++) {
-                modelValues.generateMethods.add(property.getMethods().get(i));
+                modelValues1.pojoGenerateMethods.add(property.getMethods().get(i));
             }
         } else if (POJOGEN_GENERATE_OPERATORS.equals(property.getName())) {
-            modelValues.generateOperators = getPropertyValue(property.getOperatorsSuffix());
-            if (modelValues.generateOperators == null)
-                modelValues.generateOperators = "operators";
+            modelValues1.pojoGenerateOperators = getPropertyValue(property.getOperatorsSuffix());
+            if (modelValues1.pojoGenerateOperators == null)
+                modelValues1.pojoGenerateOperators = "operators";
         } else if (POJOGEN_IMPLEMENTS_INTERFACES.equals(property.getName())) {
-            // if (modelValues.toImplements == null)
-            // modelValues.toImplements = new HashMap<String, JvmType>();
+            // if (modelValues1.toImplements == null)
+            // modelValues1.toImplements = new HashMap<String, JvmType>();
             ImplementsExtends ie = new ImplementsExtends(property.getToImplements().getToImplement(), false, property
                     .getToImplements().getDbTables(), property.getToImplements().getDbNotTables());
-            modelValues.toImplements.put(property.getToImplements().getToImplement().getIdentifier(), ie);
+            modelValues1.pojoToImplements.put(property.getToImplements().getToImplement().getIdentifier(), ie);
         } else if (POJOGEN_EXTENDS_CLASS.equals(property.getName())) {
             ImplementsExtends ie = new ImplementsExtends(property.getToExtends().getToExtends(), false, property
                     .getToExtends().getDbTables(), property.getToExtends().getDbNotTables());
-            modelValues.toExtends = ie;
+            modelValues1.pojoToExtends = ie;
         } else if (POJOGEN_IMPLEMENTS_INTERFACES_GENERICS.equals(property.getName())) {
-            // if (modelValues.toImplements == null)
-            // modelValues.toImplements = new HashMap<String, JvmType>();
+            // if (modelValues1.toImplements == null)
+            // modelValues1.toImplements = new HashMap<String, JvmType>();
             ImplementsExtends ie = new ImplementsExtends(property.getToImplementsGenerics().getToImplement(), true,
                     property.getToImplementsGenerics().getDbTables(), property.getToImplementsGenerics()
                             .getDbNotTables());
-            modelValues.toImplements.put(property.getToImplementsGenerics().getToImplement().getIdentifier(), ie);
+            modelValues1.pojoToImplements.put(property.getToImplementsGenerics().getToImplement().getIdentifier(), ie);
         } else if (POJOGEN_EXTENDS_CLASS_GENERICS.equals(property.getName())) {
             ImplementsExtends ie = new ImplementsExtends(property.getToExtendsGenerics().getToExtends(), true, property
                     .getToExtendsGenerics().getDbTables(), property.getToExtendsGenerics().getDbNotTables());
-            modelValues.toExtends = ie;
+            modelValues1.pojoToExtends = ie;
         } else if (POJOGEN_JOIN_TABLES.equals(property.getName())) {
-            // if (modelValues.joinTables == null)
-            // modelValues.joinTables = new HashMap<String, List<String>>();
+            // if (modelValues1.joinTables == null)
+            // modelValues1.joinTables = new HashMap<String, List<String>>();
             for (int i = 0, m = property.getJoinTables().size(); i < m; i++) {
                 JoinTableAssignement joinTableAssignement = property.getJoinTables().get(i);
-                if (!modelValues.joinTables.containsKey(joinTableAssignement.getDbTable()))
-                    modelValues.joinTables.put(joinTableAssignement.getDbTable(), new ArrayList<String>());
+                if (!modelValues1.pojoJoinTables.containsKey(joinTableAssignement.getDbTable()))
+                    modelValues1.pojoJoinTables.put(joinTableAssignement.getDbTable(), new ArrayList<String>());
                 for (String dbTable : joinTableAssignement.getDbTables()) {
-                    modelValues.joinTables.get(joinTableAssignement.getDbTable()).add(dbTable);
+                    modelValues1.pojoJoinTables.get(joinTableAssignement.getDbTable()).add(dbTable);
                 }
             }
         } else if (POJOGEN_GENERATE_WRAPPERS.equals(property.getName())) {
-            modelValues.doGenerateWrappers = true;
+            modelValues1.pojoDoGenerateWrappers = true;
         } else if (POJOGEN_GENERATE_VALIDATION_ANNOTATIONS.equals(property.getName())) {
-            modelValues.doGenerateValidationAnnotations = true;
+            modelValues1.pojoDoGenerateValidationAnnotations = true;
         } else if (POJOGEN_MAKE_IT_FINAL.equals(property.getName())) {
-            modelValues.makeItFinal = true;
+            modelValues1.pojoMakeItFinal = true;
         } else if (POJOGEN_VERSION_COLUMN.equals(property.getName())) {
             String versionColumn = property.getVersion();
             if ((property.getDbTables() == null || property.getDbTables().isEmpty())
                     && (property.getDbNotTables() == null || property.getDbNotTables().isEmpty())) {
-                modelValues.versionColumn = versionColumn;
+                modelValues1.pojoVersionColumn = versionColumn;
             } else if (property.getDbTables() != null && !property.getDbTables().isEmpty()) {
-                if (!modelValues.versionColumns.containsKey(versionColumn))
-                    modelValues.versionColumns.put(versionColumn, new HashSet<String>());
+                if (!modelValues1.pojoVersionColumns.containsKey(versionColumn))
+                    modelValues1.pojoVersionColumns.put(versionColumn, new HashSet<String>());
                 for (int i = 0, m = property.getDbTables().size(); i < m; i++) {
-                    modelValues.versionColumns.get(versionColumn).add(property.getDbTables().get(i));
+                    modelValues1.pojoVersionColumns.get(versionColumn).add(property.getDbTables().get(i));
                 }
             } else {
-                if (!modelValues.notVersionColumns.containsKey(versionColumn))
-                    modelValues.notVersionColumns.put(versionColumn, new HashSet<String>());
+                if (!modelValues1.pojoNotVersionColumns.containsKey(versionColumn))
+                    modelValues1.pojoNotVersionColumns.put(versionColumn, new HashSet<String>());
                 for (int i = 0, m = property.getDbNotTables().size(); i < m; i++) {
-                    modelValues.notVersionColumns.get(versionColumn).add(property.getDbNotTables().get(i));
+                    modelValues1.pojoNotVersionColumns.get(versionColumn).add(property.getDbNotTables().get(i));
                 }
             }
         } else if (POJOGEN_DEBUG_LEVEL.equals(property.getName()) && property.getDebug().getDebug() != null) {
-            modelValues.debugLevel = property.getDebug().getDebug();
-            modelValues.debugScope = getPropertyValue(property.getDebug().getScope());
+            modelValues1.pojoDebugLevel = property.getDebug().getDebug();
+            modelValues1.pojoDebugScope = getPropertyValue(property.getDebug().getScope());
         } else if (POJOGEN_PRESERVE_FOREIGN_KEYS.equals(property.getName())) {
             if (property.getDbTables().isEmpty()) {
-                modelValues.preserveForeignKeys.add("_ALL_");
+                modelValues1.pojoPreserveForeignKeys.add("_ALL_");
             } else {
                 for (int i = 0, m = property.getDbTables().size(); i < m; i++) {
-                    modelValues.preserveForeignKeys.add(property.getDbTables().get(i));
+                    modelValues1.pojoPreserveForeignKeys.add(property.getDbTables().get(i));
                 }
             }
         } else if (POJOGEN_POJOS_FOR_PROCEDURES.equals(property.getName())) {
             for (int i = 0, m = property.getProcPojos().size(); i < m; i++) {
-                modelValues.pojosForProcedures.put(property.getProcPojos().get(i).getDbProcedure(), property
+                modelValues1.pojoPojosForProcedures.put(property.getProcPojos().get(i).getDbProcedure(), property
                         .getProcPojos().get(i).getPojo());
             }
         } else if (POJOGEN_POJOS_FOR_FUNCTIONS.equals(property.getName())) {
             for (int i = 0, m = property.getFunPojos().size(); i < m; i++) {
-                modelValues.pojosForFunctions.put(property.getFunPojos().get(i).getDbFunction(), property.getFunPojos()
-                        .get(i).getPojo());
+                modelValues1.pojoPojosForFunctions.put(property.getFunPojos().get(i).getDbFunction(), property
+                        .getFunPojos().get(i).getPojo());
             }
         } else if (POJOGEN_ACTIVE_FILTER.equals(property.getName())) {
-            modelValues.activeFilter = getPropertyValue(property.getActiveFilter());
+            modelValues1.pojoActiveFilter = getPropertyValue(property.getActiveFilter());
         } else if (POJOGEN_PACKAGE.equals(property.getName())) {
-            modelValues.pckg = getPropertyValue(property.getPckg());
+            modelValues1.pojoPackage = getPropertyValue(property.getPckg());
         } else if (POJOGEN_ENUM_FOR_CHECK_CONSTRAINTS.equals(property.getName())) {
             for (int i = 0, m = property.getDbCheckConstraints().size(); i < m; i++) {
                 if (i == 0)
-                    modelValues.enumForCheckConstraints.put(property.getEnumName(), property.getDbCheckConstraints()
-                            .get(i));
-                modelValues.enumForCheckConstraints
-                        .put(property.getDbCheckConstraints().get(i), property.getEnumName());
+                    modelValues1.pojoEnumForCheckConstraints.put(property.getEnumName(), property
+                            .getDbCheckConstraints().get(i));
+                modelValues1.pojoEnumForCheckConstraints.put(property.getDbCheckConstraints().get(i),
+                        property.getEnumName());
             }
         }
     }
 
-    private static void setValue(ModelValues modelValues, MetagenProperty property) {
+    private static void setValue(ModelValues1 modelValues1, MetagenProperty property) {
         if (property == null)
             return;
         if (METAGEN_GLOBAL_IDENTITY.equals(property.getName())) {
-            modelValues.metaGlobalIdentity = new PairValues(property.getIdentity(), property.getType());
+            modelValues1.metaGlobalIdentity = new PairValues(property.getIdentity(), property.getType());
             if (property.getDbTables() != null) {
-                modelValues.metaGlobalIdentityForTables.addAll(property.getDbTables());
+                modelValues1.metaGlobalIdentityForTables.addAll(property.getDbTables());
             }
             if (property.getDbNotTables() != null) {
-                modelValues.metaGlobalIdentityNotForTables.addAll(property.getDbNotTables());
+                modelValues1.metaGlobalIdentityNotForTables.addAll(property.getDbNotTables());
             }
         } else if (METAGEN_TABLE_IDENTITY.equals(property.getName())) {
-            modelValues.metaTablesIdentity.put(property.getDbTable(),
+            modelValues1.metaTablesIdentity.put(property.getDbTable(),
                     new PairValues(property.getIdentity(), property.getType()));
         } else if (METAGEN_GLOBAL_SEQUENCE.equals(property.getName())) {
-            modelValues.metaGlobalSequence = new PairValues(property.getSequence(), property.getType());
+            modelValues1.metaGlobalSequence = new PairValues(property.getSequence(), property.getType());
             if (property.getDbTables() != null) {
-                modelValues.metaGlobalSequenceForTables.addAll(property.getDbTables());
+                modelValues1.metaGlobalSequenceForTables.addAll(property.getDbTables());
             }
             if (property.getDbNotTables() != null) {
-                modelValues.metaGlobalSequenceNotForTables.addAll(property.getDbNotTables());
+                modelValues1.metaGlobalSequenceNotForTables.addAll(property.getDbNotTables());
             }
         } else if (METAGEN_TABLE_SEQUENCE.equals(property.getName())) {
-            modelValues.metaTablesSequence.put(property.getDbTable(),
+            modelValues1.metaTablesSequence.put(property.getDbTable(),
                     new PairValues(property.getSequence(), property.getType()));
         } else if (METAGEN_COLUMN_META_TYPE.equals(property.getName())) {
-            if (!modelValues.metaColumnsMetaTypes.containsKey(property.getDbTable()))
-                modelValues.metaColumnsMetaTypes.put(property.getDbTable(), new HashMap<String, PairValues>());
+            if (!modelValues1.metaColumnsMetaTypes.containsKey(property.getDbTable()))
+                modelValues1.metaColumnsMetaTypes.put(property.getDbTable(), new HashMap<String, PairValues>());
             for (int i = 0, m = property.getMetaTypes().size(); i < m; i++) {
                 MetaTypeAssignement metaType = property.getMetaTypes().get(i);
-                modelValues.metaColumnsMetaTypes.get(property.getDbTable()).put(metaType.getDbColumn(),
+                modelValues1.metaColumnsMetaTypes.get(property.getDbTable()).put(metaType.getDbColumn(),
                         new PairValues(metaType.getType(), metaType.getExtension()));
             }
         } else if (METAGEN_STATEMENT_META_TYPE.equals(property.getName())) {
-            if (!modelValues.metaStatementsMetaTypes.containsKey(property.getDbStatement()))
-                modelValues.metaStatementsMetaTypes.put(property.getDbStatement(), new HashMap<String, PairValues>());
+            if (!modelValues1.metaStatementsMetaTypes.containsKey(property.getDbStatement()))
+                modelValues1.metaStatementsMetaTypes.put(property.getDbStatement(), new HashMap<String, PairValues>());
             for (int i = 0, m = property.getMetaTypes().size(); i < m; i++) {
                 MetaTypeAssignement metaType = property.getMetaTypes().get(i);
-                modelValues.metaStatementsMetaTypes.get(property.getDbStatement()).put(metaType.getDbColumn(),
+                modelValues1.metaStatementsMetaTypes.get(property.getDbStatement()).put(metaType.getDbColumn(),
                         new PairValues(metaType.getType(), metaType.getExtension()));
             }
         } else if (METAGEN_MAKE_IT_FINAL.equals(property.getName())) {
-            modelValues.metaMakeItFinal = true;
+            modelValues1.metaMakeItFinal = true;
         } else if (METAGEN_LIKE_COLUMNS.equals(property.getName())) {
             if (property.getDbTable() == null) {
-                modelValues.metaLikeColumns.put(GLOBAL, new HashSet<String>());
+                modelValues1.metaLikeColumns.put(GLOBAL, new HashSet<String>());
             } else {
-                if (!modelValues.metaLikeColumns.containsKey(property.getDbTable()))
-                    modelValues.metaLikeColumns.put(property.getDbTable(), new HashSet<String>());
+                if (!modelValues1.metaLikeColumns.containsKey(property.getDbTable()))
+                    modelValues1.metaLikeColumns.put(property.getDbTable(), new HashSet<String>());
                 for (int i = 0, m = property.getDbColumns().size(); i < m; i++) {
-                    modelValues.metaLikeColumns.get(property.getDbTable()).add(property.getDbColumns().get(i));
+                    modelValues1.metaLikeColumns.get(property.getDbTable()).add(property.getDbColumns().get(i));
                 }
             }
         } else if (METAGEN_NOT_LIKE_COLUMNS.equals(property.getName())) {
             if (property.getDbTable() == null) {
-                modelValues.metaNotLikeColumns.put(GLOBAL, new HashSet<String>());
+                modelValues1.metaNotLikeColumns.put(GLOBAL, new HashSet<String>());
             } else {
-                if (!modelValues.metaNotLikeColumns.containsKey(property.getDbTable()))
-                    modelValues.metaNotLikeColumns.put(property.getDbTable(), new HashSet<String>());
+                if (!modelValues1.metaNotLikeColumns.containsKey(property.getDbTable()))
+                    modelValues1.metaNotLikeColumns.put(property.getDbTable(), new HashSet<String>());
                 for (int i = 0, m = property.getDbColumns().size(); i < m; i++) {
-                    modelValues.metaNotLikeColumns.get(property.getDbTable()).add(property.getDbColumns().get(i));
+                    modelValues1.metaNotLikeColumns.get(property.getDbTable()).add(property.getDbColumns().get(i));
                 }
             }
         } else if (METAGEN_GENERATE_SEQUENCES.equals(property.getName())) {
-            modelValues.metaGenerateSequences = true;
+            modelValues1.metaGenerateSequences = true;
         } else if (METAGEN_GENERATE_IDENTITIES.equals(property.getName())) {
-            modelValues.metaGenerateIdentities = true;
+            modelValues1.metaGenerateIdentities = true;
         } else if (METAGEN_GENERATE_IDGENERATORS.equals(property.getName())) {
-            modelValues.metaGenerateIdGenerators = true;
+            modelValues1.metaGenerateIdGenerators = true;
         } else if (METAGEN_GENERATE_INDIRECT_IDGENERATORS.equals(property.getName())) {
-            modelValues.metaGenerateIndirectIdGenerators = true;
+            modelValues1.metaGenerateIndirectIdGenerators = true;
         } else if (METAGEN_FUNCTION_RESULT.equals(property.getName())) {
-            modelValues.metaFunctionsResult.put(property.getDbFunction(), property.getType());
+            modelValues1.metaFunctionsResult.put(property.getDbFunction(), property.getType());
         } else if (METAGEN_FUNCTION_RESULT_SET.equals(property.getName())) {
-            modelValues.metaFunctionsResultSet.put(property.getDbFunction(), property.getDbTable());
+            modelValues1.metaFunctionsResultSet.put(property.getDbFunction(), property.getDbTable());
         } else if (METAGEN_PROCEDURE_RESULT_SET.equals(property.getName())) {
-            modelValues.metaProceduresResultSet.put(property.getDbProcedure(), property.getDbTable());
+            modelValues1.metaProceduresResultSet.put(property.getDbProcedure(), property.getDbTable());
         } else if (METAGEN_DEBUG_LEVEL.equals(property.getName()) && property.getDebug() != null) {
-            modelValues.metaDebugLevel = property.getDebug().getDebug();
-            modelValues.metaDebugScope = getPropertyValue(property.getDebug().getScope());
+            modelValues1.metaDebugLevel = property.getDebug().getDebug();
+            modelValues1.metaDebugScope = getPropertyValue(property.getDebug().getScope());
         } else if (METAGEN_GENERATE_OPERATORS.equals(property.getName())) {
-            modelValues.metaGenerateOperators = true;
+            modelValues1.metaGenerateOperators = true;
         } else if (METAGEN_OPTIMIZE_INSERT.equals(property.getName())) {
             if (property.getDbTables().isEmpty()) {
-                modelValues.metaOptimizeInsert.add("_ALL_");
+                modelValues1.metaOptimizeInsert.add("_ALL_");
             } else {
                 for (int i = 0, m = property.getDbTables().size(); i < m; i++) {
-                    modelValues.metaOptimizeInsert.add(property.getDbTables().get(i));
+                    modelValues1.metaOptimizeInsert.add(property.getDbTables().get(i));
                 }
             }
         } else if (METAGEN_OPTIONAL_FEATURES.equals(property.getName())) {
-            if (!modelValues.metaOptionalFeatures.containsKey(property.getDbStatement()))
-                modelValues.metaOptionalFeatures.put(property.getDbStatement(), new HashSet<String>());
+            if (!modelValues1.metaOptionalFeatures.containsKey(property.getDbStatement()))
+                modelValues1.metaOptionalFeatures.put(property.getDbStatement(), new HashSet<String>());
             for (int i = 0, m = property.getOptionalFeatures().size(); i < m; i++) {
                 String optionalFeature = property.getOptionalFeatures().get(i);
-                modelValues.metaOptionalFeatures.get(property.getDbStatement()).add(optionalFeature);
+                modelValues1.metaOptionalFeatures.get(property.getDbStatement()).add(optionalFeature);
             }
         } else if (METAGEN_ACTIVE_FILTER.equals(property.getName())) {
-            modelValues.metaActiveFilter = getPropertyValue(property.getActiveFilter());
+            modelValues1.metaActiveFilter = getPropertyValue(property.getActiveFilter());
         }
     }
 
-    private static void setValue(ModelValues modelValues, DaogenProperty property) {
+    private static void setValue(ModelValues1 modelValues1, DaogenProperty property) {
         if (property == null)
             return;
         if (DAOGEN_IGNORE_TABLES.equals(property.getName())) {
             for (int i = 0, m = property.getDbTables().size(); i < m; i++) {
-                modelValues.daoIgnoreTables.add(property.getDbTables().get(i));
+                modelValues1.daoIgnoreTables.add(property.getDbTables().get(i));
             }
         } else if (DAOGEN_ONLY_TABLES.equals(property.getName())) {
             for (int i = 0, m = property.getDbTables().size(); i < m; i++) {
-                modelValues.daoOnlyTables.add(property.getDbTables().get(i));
+                modelValues1.daoOnlyTables.add(property.getDbTables().get(i));
             }
         } else if (DAOGEN_IMPLEMENTS_INTERFACES.equals(property.getName())) {
             ImplementsExtends ie = new ImplementsExtends(property.getToImplements().getToImplement(), false, property
                     .getToImplements().getDbTables(), property.getToImplements().getDbNotTables());
-            modelValues.daoToImplements.put(property.getToImplements().getToImplement().getIdentifier(), ie);
+            modelValues1.daoToImplements.put(property.getToImplements().getToImplement().getIdentifier(), ie);
         } else if (DAOGEN_EXTENDS_CLASS.equals(property.getName())) {
             ImplementsExtends ie = new ImplementsExtends(property.getToExtends().getToExtends(), false, property
                     .getToExtends().getDbTables(), property.getToExtends().getDbNotTables());
-            modelValues.daoToExtends = ie;
+            modelValues1.daoToExtends = ie;
         } else if (DAOGEN_IMPLEMENTS_INTERFACES_GENERICS.equals(property.getName())) {
             ImplementsExtends ie = new ImplementsExtends(property.getToImplementsGenerics().getToImplement(), true,
                     property.getToImplementsGenerics().getDbTables(), property.getToImplementsGenerics()
                             .getDbNotTables());
-            modelValues.daoToImplements.put(property.getToImplementsGenerics().getToImplement().getIdentifier(), ie);
+            modelValues1.daoToImplements.put(property.getToImplementsGenerics().getToImplement().getIdentifier(), ie);
         } else if (DAOGEN_EXTENDS_CLASS_GENERICS.equals(property.getName())) {
             ImplementsExtends ie = new ImplementsExtends(property.getToExtendsGenerics().getToExtends(), true, property
                     .getToExtendsGenerics().getDbTables(), property.getToExtendsGenerics().getDbNotTables());
-            modelValues.daoToExtends = ie;
+            modelValues1.daoToExtends = ie;
         } else if (DAOGEN_MAKE_IT_FINAL.equals(property.getName())) {
-            modelValues.daoMakeItFinal = true;
+            modelValues1.daoMakeItFinal = true;
         } else if (DAOGEN_FUNCTION_RESULT.equals(property.getName())) {
-            modelValues.daoFunctionsResult.put(property.getDbFunction(), property.getResultType());
+            modelValues1.daoFunctionsResult.put(property.getDbFunction(), property.getResultType());
         } else if (DAOGEN_DEBUG_LEVEL.equals(property.getName()) && property.getDebug().getDebug() != null) {
-            modelValues.daoDebugLevel = property.getDebug().getDebug();
-            modelValues.daoDebugScope = getPropertyValue(property.getDebug().getScope());
+            modelValues1.daoDebugLevel = property.getDebug().getDebug();
+            modelValues1.daoDebugScope = getPropertyValue(property.getDebug().getScope());
         } else if (DAOGEN_ACTIVE_FILTER.equals(property.getName())) {
-            modelValues.daoActiveFilter = getPropertyValue(property.getActiveFilter());
+            modelValues1.daoActiveFilter = getPropertyValue(property.getActiveFilter());
         } else if (DAOGEN_PACKAGE.equals(property.getName())) {
-            modelValues.daoPckg = getPropertyValue(property.getPckg());
+            modelValues1.daoPackage = getPropertyValue(property.getPckg());
         }
     }
 
     @Override
     public boolean isDoResolvePojo(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.doResolvePojo : false;
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.GLOBAL);
+        return (modelValues1 != null) ? modelValues1.doResolvePojo : false;
     }
 
     @Override
     public boolean isDoResolveDb(EObject model) {
         ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.doResolveDb : false;
+        if (modelValues != null && modelValues.doResolveDb != null)
+            return modelValues.doResolveDb;
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.DATABASE);
+        return (modelValues1 != null) ? modelValues1.doResolveDb : false;
     }
 
     @Override
     public Map<String, String> getReplaceAll(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        if (modelValues == null || modelValues.replaceAllRegex == null || modelValues.replaceAllReplacement == null)
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.GLOBAL);
+        if (modelValues1 == null || modelValues1.replaceAllRegex == null || modelValues1.replaceAllReplacement == null)
             return Collections.<String, String> emptyMap();
         Map<String, String> result = new HashMap<String, String>();
-        for (String replaceId : modelValues.replaceAllRegex.keySet()) {
-            if (modelValues.replaceAllReplacement.containsKey(replaceId)) {
-                result.put(modelValues.replaceAllRegex.get(replaceId), modelValues.replaceAllReplacement.get(replaceId));
+        for (String replaceId : modelValues1.replaceAllRegex.keySet()) {
+            if (modelValues1.replaceAllReplacement.containsKey(replaceId)) {
+                result.put(modelValues1.replaceAllRegex.get(replaceId),
+                        modelValues1.replaceAllReplacement.get(replaceId));
             }
         }
         return result;
@@ -1076,491 +1169,606 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
 
     @Override
     public boolean isCompressMetaDirectives(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.doCompressMetaDirectives : false;
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.GLOBAL);
+        return (modelValues1 != null) ? modelValues1.doCompressMetaDirectives : false;
     }
 
     @Override
     public Map<String, PojoAttrType> getSqlTypes(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.sqlTypes : Collections.<String, PojoAttrType> emptyMap();
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoSqlTypes : Collections.<String, PojoAttrType> emptyMap();
     }
 
     @Override
     public Map<String, Map<String, PojoAttrType>> getTableTypes(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.tableTypes : Collections
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoTableTypes : Collections
                 .<String, Map<String, PojoAttrType>> emptyMap();
     }
 
     @Override
     public Map<String, Map<String, PojoAttrType>> getColumnTypes(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.columnTypes : Collections
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoColumnTypes : Collections
                 .<String, Map<String, PojoAttrType>> emptyMap();
     }
 
     @Override
     public Map<String, Map<String, PojoAttrType>> getProcedureTypes(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.procedureTypes : Collections
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoProcedureTypes : Collections
                 .<String, Map<String, PojoAttrType>> emptyMap();
     }
 
     @Override
     public Map<String, Map<String, PojoAttrType>> getFunctionTypes(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.functionTypes : Collections
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoFunctionTypes : Collections
                 .<String, Map<String, PojoAttrType>> emptyMap();
     }
 
     @Override
     public Map<String, String> getTableNames(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.tableNames : Collections.<String, String> emptyMap();
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoTableNames : Collections.<String, String> emptyMap();
     }
 
     @Override
     public Map<String, Map<String, String>> getColumnNames(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.columnNames : Collections.<String, Map<String, String>> emptyMap();
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoColumnNames : Collections
+                .<String, Map<String, String>> emptyMap();
     }
 
     @Override
     public Set<String> getIgnoreTables(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.ignoreTables : Collections.<String> emptySet();
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoIgnoreTables : Collections.<String> emptySet();
     }
 
     @Override
     public Set<String> getOnlyTables(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.onlyTables : Collections.<String> emptySet();
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoOnlyTables : Collections.<String> emptySet();
     }
 
     @Override
     public Set<String> getNotAbstractTables(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.notAbstractTables : Collections.<String> emptySet();
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoNotAbstractTables : Collections.<String> emptySet();
     }
 
     @Override
     public Map<String, Set<String>> getIgnoreColumns(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.ignoreColumns : Collections.<String, Set<String>> emptyMap();
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoIgnoreColumns : Collections.<String, Set<String>> emptyMap();
     }
 
     @Override
     public Map<String, Set<String>> getRequiredColumns(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.requiredColumns : Collections.<String, Set<String>> emptyMap();
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoRequiredColumns : Collections.<String, Set<String>> emptyMap();
     }
 
     @Override
     public Map<String, Set<String>> getNotRequiredColumns(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.notRequiredColumns : Collections.<String, Set<String>> emptyMap();
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoNotRequiredColumns : Collections
+                .<String, Set<String>> emptyMap();
     }
 
     @Override
     public Map<String, Map<String, PojoAttrType>> getCreateColumns(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.createColumns : Collections
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoCreateColumns : Collections
                 .<String, Map<String, PojoAttrType>> emptyMap();
     }
 
     @Override
     public Map<String, Map<String, Map<String, String>>> getIgnoreExports(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.ignoreExports : Collections
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoIgnoreExports : Collections
                 .<String, Map<String, Map<String, String>>> emptyMap();
     }
 
     @Override
     public Map<String, Map<String, Map<String, String>>> getIgnoreImports(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.ignoreImports : Collections
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoIgnoreImports : Collections
                 .<String, Map<String, Map<String, String>>> emptyMap();
     }
 
     @Override
     public Map<String, Map<String, Map<String, String>>> getCreateExports(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.createExports : Collections
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoCreateExports : Collections
                 .<String, Map<String, Map<String, String>>> emptyMap();
     }
 
     @Override
     public Map<String, Map<String, Map<String, String>>> getCreateImports(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.createImports : Collections
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoCreateImports : Collections
                 .<String, Map<String, Map<String, String>>> emptyMap();
     }
 
     @Override
     public Map<String, Map<String, Map<String, String>>> getInheritImports(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.inheritImports : Collections
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoInheritImports : Collections
                 .<String, Map<String, Map<String, String>>> emptyMap();
     }
 
     @Override
     public Map<String, Map<String, Map<String, String>>> getManyToManyImports(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.manyToManyImports : Collections
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoManyToManyImports : Collections
                 .<String, Map<String, Map<String, String>>> emptyMap();
     }
 
     @Override
     public Map<String, Map<String, Map<String, List<String>>>> getInheritance(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.inheritance : Collections
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoInheritance : Collections
                 .<String, Map<String, Map<String, List<String>>>> emptyMap();
     }
 
     @Override
     public Map<String, String> getInheritanceColumns(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.inheritanceColumns : Collections.<String, String> emptyMap();
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoInheritanceColumns : Collections.<String, String> emptyMap();
     }
 
     @Override
     public Set<String> getGenerateMethods(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.generateMethods : Collections.<String> emptySet();
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoGenerateMethods : Collections.<String> emptySet();
     }
 
     @Override
     public String getGenerateOperators(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.generateOperators : null;
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoGenerateOperators : null;
     }
 
     @Override
     public Map<String, ImplementsExtends> getToImplements(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.toImplements : Collections.<String, ImplementsExtends> emptyMap();
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoToImplements : Collections
+                .<String, ImplementsExtends> emptyMap();
     }
 
     @Override
     public ImplementsExtends getToExtends(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.toExtends : null;
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoToExtends : null;
     }
 
     @Override
     public Map<String, List<String>> getJoinTables(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.joinTables : Collections.<String, List<String>> emptyMap();
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoJoinTables : Collections.<String, List<String>> emptyMap();
     }
 
     @Override
     public boolean isDoGenerateWrappers(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.doGenerateWrappers : false;
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoDoGenerateWrappers : false;
     }
 
     @Override
     public boolean isDoGenerateValidationAnnotations(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.doGenerateValidationAnnotations : false;
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoDoGenerateValidationAnnotations : false;
     }
 
     @Override
     public boolean isMakeItFinal(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.makeItFinal : false;
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoMakeItFinal : false;
     }
 
     @Override
     public String getVersionColumn(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.versionColumn : null;
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoVersionColumn : null;
     }
 
     @Override
     public Map<String, Set<String>> getVersionColumns(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.versionColumns : Collections.<String, Set<String>> emptyMap();
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoVersionColumns : Collections.<String, Set<String>> emptyMap();
     }
 
     @Override
     public Map<String, Set<String>> getNotVersionColumns(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.notVersionColumns : Collections.<String, Set<String>> emptyMap();
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoNotVersionColumns : Collections
+                .<String, Set<String>> emptyMap();
     }
 
     @Override
     public String getDebugLevel(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.debugLevel : null;
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoDebugLevel : null;
     }
 
     @Override
     public String getDebugScope(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.debugScope : null;
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoDebugScope : null;
     }
 
     @Override
     public Set<String> getPreserveForeignKeys(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.preserveForeignKeys : Collections.<String> emptySet();
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoPreserveForeignKeys : Collections.<String> emptySet();
     }
 
     @Override
     public PairValues getMetaGlobalIdentity(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaGlobalIdentity : null;
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.METAGEN);
+        return (modelValues1 != null) ? modelValues1.metaGlobalIdentity : null;
     }
 
     @Override
     public Map<String, PojoType> getPojosForProcedures(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.pojosForProcedures : Collections.<String, PojoType> emptyMap();
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoPojosForProcedures : Collections.<String, PojoType> emptyMap();
     }
 
     @Override
     public Map<String, PojoType> getPojosForFunctions(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.pojosForFunctions : Collections.<String, PojoType> emptyMap();
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoPojosForFunctions : Collections.<String, PojoType> emptyMap();
     }
 
     @Override
     public String getActiveFilter(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.activeFilter : null;
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoActiveFilter : null;
     }
 
     @Override
     public String getPackage(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.pckg : null;
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoPackage : null;
     }
 
     @Override
     public Map<String, String> getEnumForCheckConstraints(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.enumForCheckConstraints : Collections.<String, String> emptyMap();
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.POJOGEN);
+        return (modelValues1 != null) ? modelValues1.pojoEnumForCheckConstraints : Collections
+                .<String, String> emptyMap();
     }
 
     @Override
     public Map<String, PairValues> getMetaTablesIdentity(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaTablesIdentity : Collections.<String, PairValues> emptyMap();
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.METAGEN);
+        return (modelValues1 != null) ? modelValues1.metaTablesIdentity : Collections.<String, PairValues> emptyMap();
     }
 
     @Override
     public PairValues getMetaGlobalSequence(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaGlobalSequence : null;
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.METAGEN);
+        return (modelValues1 != null) ? modelValues1.metaGlobalSequence : null;
     }
 
     @Override
     public Map<String, PairValues> getMetaTablesSequence(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaTablesSequence : Collections.<String, PairValues> emptyMap();
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.METAGEN);
+        return (modelValues1 != null) ? modelValues1.metaTablesSequence : Collections.<String, PairValues> emptyMap();
     }
 
     @Override
     public Map<String, Map<String, PairValues>> getMetaColumnsMetaTypes(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaColumnsMetaTypes : Collections
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.METAGEN);
+        return (modelValues1 != null) ? modelValues1.metaColumnsMetaTypes : Collections
                 .<String, Map<String, PairValues>> emptyMap();
     }
 
     @Override
     public Map<String, Map<String, PairValues>> getMetaStatementsMetaTypes(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaStatementsMetaTypes : Collections
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.METAGEN);
+        return (modelValues1 != null) ? modelValues1.metaStatementsMetaTypes : Collections
                 .<String, Map<String, PairValues>> emptyMap();
     }
 
     @Override
     public boolean isMetaMakeItFinal(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaMakeItFinal : false;
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.METAGEN);
+        return (modelValues1 != null) ? modelValues1.metaMakeItFinal : false;
     }
 
     @Override
     public Map<String, Set<String>> getMetaLikeColumns(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaLikeColumns : Collections.<String, Set<String>> emptyMap();
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.METAGEN);
+        return (modelValues1 != null) ? modelValues1.metaLikeColumns : Collections.<String, Set<String>> emptyMap();
     }
 
     @Override
     public Map<String, Set<String>> getMetaNotLikeColumns(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaNotLikeColumns : Collections.<String, Set<String>> emptyMap();
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.METAGEN);
+        return (modelValues1 != null) ? modelValues1.metaNotLikeColumns : Collections.<String, Set<String>> emptyMap();
     }
 
     @Override
     public boolean isMetaGenerateSequences(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaGenerateSequences : false;
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.METAGEN);
+        return (modelValues1 != null) ? modelValues1.metaGenerateSequences : false;
     }
 
     @Override
     public Set<String> getMetaGlobalSequenceForTables(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaGlobalSequenceForTables : Collections.<String> emptySet();
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.METAGEN);
+        return (modelValues1 != null) ? modelValues1.metaGlobalSequenceForTables : Collections.<String> emptySet();
     }
 
     @Override
     public Set<String> getMetaGlobalSequenceNotForTables(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaGlobalSequenceNotForTables : Collections.<String> emptySet();
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.METAGEN);
+        return (modelValues1 != null) ? modelValues1.metaGlobalSequenceNotForTables : Collections.<String> emptySet();
     }
 
     @Override
     public boolean isMetaGenerateIdentities(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaGenerateIdentities : false;
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.METAGEN);
+        return (modelValues1 != null) ? modelValues1.metaGenerateIdentities : false;
     }
 
     @Override
     public Set<String> getMetaGlobalIdentityForTables(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaGlobalIdentityForTables : Collections.<String> emptySet();
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.METAGEN);
+        return (modelValues1 != null) ? modelValues1.metaGlobalIdentityForTables : Collections.<String> emptySet();
     }
 
     @Override
     public Set<String> getMetaGlobalIdentityNotForTables(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaGlobalIdentityNotForTables : Collections.<String> emptySet();
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.METAGEN);
+        return (modelValues1 != null) ? modelValues1.metaGlobalIdentityNotForTables : Collections.<String> emptySet();
     }
 
     @Override
     public boolean isMetaGenerateIdGenerators(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaGenerateIdGenerators : false;
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.METAGEN);
+        return (modelValues1 != null) ? modelValues1.metaGenerateIdGenerators : false;
     }
 
     @Override
     public boolean isMetaGenerateIndirectIdGenerators(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaGenerateIndirectIdGenerators : false;
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.METAGEN);
+        return (modelValues1 != null) ? modelValues1.metaGenerateIndirectIdGenerators : false;
     }
 
     @Override
     public Map<String, String> getMetaFunctionsResult(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaFunctionsResult : Collections.<String, String> emptyMap();
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.METAGEN);
+        return (modelValues1 != null) ? modelValues1.metaFunctionsResult : Collections.<String, String> emptyMap();
     }
 
     @Override
     public Map<String, String> getMetaFunctionsResultSet(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaFunctionsResultSet : Collections.<String, String> emptyMap();
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.METAGEN);
+        return (modelValues1 != null) ? modelValues1.metaFunctionsResultSet : Collections.<String, String> emptyMap();
     }
 
     @Override
     public Map<String, String> getMetaProceduresResultSet(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaProceduresResultSet : Collections.<String, String> emptyMap();
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.METAGEN);
+        return (modelValues1 != null) ? modelValues1.metaProceduresResultSet : Collections.<String, String> emptyMap();
     }
 
     @Override
     public String getMetaDebugLevel(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaDebugLevel : null;
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.METAGEN);
+        return (modelValues1 != null) ? modelValues1.metaDebugLevel : null;
     }
 
     @Override
     public String getMetaDebugScope(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaDebugScope : null;
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.METAGEN);
+        return (modelValues1 != null) ? modelValues1.metaDebugScope : null;
     }
 
     @Override
     public boolean isMetaGenerateOperators(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaGenerateOperators : false;
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.METAGEN);
+        return (modelValues1 != null) ? modelValues1.metaGenerateOperators : false;
     }
 
     @Override
     public Set<String> getMetaOptimizeInsert(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaOptimizeInsert : Collections.<String> emptySet();
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.METAGEN);
+        return (modelValues1 != null) ? modelValues1.metaOptimizeInsert : Collections.<String> emptySet();
     }
 
     @Override
     public Map<String, Set<String>> getMetaOptionalFeatures(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaOptionalFeatures : Collections.<String, Set<String>> emptyMap();
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.METAGEN);
+        return (modelValues1 != null) ? modelValues1.metaOptionalFeatures : Collections
+                .<String, Set<String>> emptyMap();
     }
 
     @Override
     public String getMetaActiveFilter(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.metaActiveFilter : null;
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.METAGEN);
+        return (modelValues1 != null) ? modelValues1.metaActiveFilter : null;
     }
 
     @Override
     public Set<String> getDaoIgnoreTables(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.daoIgnoreTables : Collections.<String> emptySet();
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.DAOGEN);
+        return (modelValues1 != null) ? modelValues1.daoIgnoreTables : Collections.<String> emptySet();
     }
 
     @Override
     public Set<String> getDaoOnlyTables(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.daoOnlyTables : Collections.<String> emptySet();
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.DAOGEN);
+        return (modelValues1 != null) ? modelValues1.daoOnlyTables : Collections.<String> emptySet();
     }
 
     @Override
     public Map<String, ImplementsExtends> getDaoToImplements(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.daoToImplements : Collections.<String, ImplementsExtends> emptyMap();
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.DAOGEN);
+        return (modelValues1 != null) ? modelValues1.daoToImplements : Collections
+                .<String, ImplementsExtends> emptyMap();
     }
 
     @Override
     public ImplementsExtends getDaoToExtends(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.daoToExtends : null;
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.DAOGEN);
+        return (modelValues1 != null) ? modelValues1.daoToExtends : null;
     }
 
     @Override
     public boolean isDaoMakeItFinal(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.daoMakeItFinal : false;
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.DAOGEN);
+        return (modelValues1 != null) ? modelValues1.daoMakeItFinal : false;
     }
 
     @Override
     public Map<String, PojoType> getDaoFunctionsResult(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.daoFunctionsResult : Collections.<String, PojoType> emptyMap();
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.DAOGEN);
+        return (modelValues1 != null) ? modelValues1.daoFunctionsResult : Collections.<String, PojoType> emptyMap();
     }
 
     @Override
     public String getDaoDebugLevel(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.daoDebugLevel : null;
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.DAOGEN);
+        return (modelValues1 != null) ? modelValues1.daoDebugLevel : null;
     }
 
     @Override
     public String getDaoDebugScope(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.daoDebugScope : null;
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.DAOGEN);
+        return (modelValues1 != null) ? modelValues1.daoDebugScope : null;
     }
 
     @Override
     public String getDaoActiveFilter(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.daoActiveFilter : null;
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.DAOGEN);
+        return (modelValues1 != null) ? modelValues1.daoActiveFilter : null;
     }
 
     @Override
     public String getDaoPackage(EObject model) {
-        ModelValues modelValues = getModelValues(model);
-        return (modelValues != null) ? modelValues.daoPckg : null;
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.DAOGEN);
+        return (modelValues1 != null) ? modelValues1.daoPackage : null;
+    }
+
+    @Override
+    public String getDbDriver(EObject model) {
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.DATABASE);
+        return (modelValues1 != null) ? modelValues1.dbDriver : null;
+    }
+
+    @Override
+    public String getDbUrl(EObject model) {
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.DATABASE);
+        return (modelValues1 != null) ? modelValues1.dbUrl : null;
+    }
+
+    @Override
+    public String getDbUsername(EObject model) {
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.DATABASE);
+        return (modelValues1 != null) ? modelValues1.dbUsername : null;
+    }
+
+    @Override
+    public String getDbPassword(EObject model) {
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.DATABASE);
+        return (modelValues1 != null) ? modelValues1.dbPassword : null;
+    }
+
+    @Override
+    public String getDbCatalog(EObject model) {
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.DATABASE);
+        return (modelValues1 != null) ? modelValues1.dbCatalog : null;
+    }
+
+    @Override
+    public String getDbSchema(EObject model) {
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.DATABASE);
+        return (modelValues1 != null) ? modelValues1.dbSchema : null;
+    }
+
+    @Override
+    public String getDbSqlsBefore(EObject model) {
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.DATABASE);
+        return (modelValues1 != null) ? modelValues1.dbSqlsBefore : null;
+    }
+
+    @Override
+    public String getDbSqlsAfter(EObject model) {
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.DATABASE);
+        return (modelValues1 != null) ? modelValues1.dbSqlsAfter : null;
+    }
+
+    @Override
+    public String getDbIndexTypes(EObject model) {
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.DATABASE);
+        return (modelValues1 != null) ? modelValues1.dbIndexTypes : null;
+    }
+
+    @Override
+    public Boolean getDbSkipIndexes(EObject model) {
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.DATABASE);
+        return (modelValues1 != null) ? modelValues1.dbSkipIndexes : null;
+    }
+
+    @Override
+    public Boolean getDbSkipProcedures(EObject model) {
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.DATABASE);
+        return (modelValues1 != null) ? modelValues1.dbSkipProcedures : null;
+    }
+
+    @Override
+    public Boolean getDbSkipCheckConstraints(EObject model) {
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.DATABASE);
+        return (modelValues1 != null) ? modelValues1.dbSkipCheckConstraints : null;
+    }
+
+    @Override
+    public String getDbType(EObject model) {
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.DATABASE);
+        return (modelValues1 != null) ? modelValues1.dbType : null;
+    }
+
+    @Override
+    public String getDbDebugLevel(EObject model) {
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.DATABASE);
+        return (modelValues1 != null) ? modelValues1.dbDebugLevel : null;
+    }
+
+    @Override
+    public String getDbDebugScope(EObject model) {
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.DATABASE);
+        return (modelValues1 != null) ? modelValues1.dbDebugScope : null;
+    }
+
+    @Override
+    public Boolean getDbTakeComments(EObject model) {
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.DATABASE);
+        return (modelValues1 != null) ? modelValues1.dbTakeComments : null;
+    }
+
+    @Override
+    public Boolean getDbLowercaseNames(EObject model) {
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.DATABASE);
+        return (modelValues1 != null) ? modelValues1.dbLowercaseNames : null;
+    }
+
+    @Override
+    public Boolean getDbUppercaseNames(EObject model) {
+        ModelValues1 modelValues1 = getModelValues(model, ModelValues.DATABASE);
+        return (modelValues1 != null) ? modelValues1.dbUppercaseNames : null;
     }
 
     @Override
     public ModelValues getModelValues(EObject model) {
-        if (this.modelValues != null)
-            return this.modelValues;
-
+        ModelValues modelValues = dirs2models.get(FAKE_DIR);
+        if (modelValues != null)
+            return modelValues;
         EObject emodel = (EObject) model;
         Artifacts artifacts = EcoreUtil2.getContainerOfType(emodel, Artifacts.class);
         if (artifacts == null) {
@@ -1577,6 +1785,12 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             return null;
         }
         return dirs2models.get(dir);
+    }
+
+    @Override
+    public ModelValues1 getModelValues(EObject model, String name) {
+        ModelValues modelValues = getModelValues(model);
+        return modelValues != null ? modelValues.getModel(name) : null;
     }
 
     @Override

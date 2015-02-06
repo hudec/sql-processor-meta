@@ -8,6 +8,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.ecore.EObject;
 import org.sqlproc.meta.processorMeta.PojoType;
 import org.sqlproc.meta.property.ModelPropertyBean.ModelValues;
+import org.sqlproc.meta.property.ModelPropertyBean.ModelValues1;
 import org.sqlproc.meta.property.ModelPropertyBean.PairValues;
 
 public interface ModelProperty extends Adapter {
@@ -23,8 +24,6 @@ public interface ModelProperty extends Adapter {
     Map<String, Map<String, PojoAttrType>> getColumnTypes(EObject model);
 
     Map<String, Map<String, String>> getColumnNames(EObject model);
-
-    ModelValues getModelValues(EObject model);
 
     Map<String, String> getTableNames(EObject model);
 
@@ -175,4 +174,44 @@ public interface ModelProperty extends Adapter {
     Map<String, String> getEnumForCheckConstraints(EObject model);
 
     boolean isCompressMetaDirectives(EObject model);
+
+    ModelValues getModelValues(EObject model);
+
+    ModelValues1 getModelValues(EObject model, String name);
+
+    String getDbPassword(EObject model);
+
+    String getDbCatalog(EObject model);
+
+    String getDbSchema(EObject model);
+
+    String getDbSqlsBefore(EObject model);
+
+    String getDbSqlsAfter(EObject model);
+
+    String getDbIndexTypes(EObject model);
+
+    Boolean getDbSkipIndexes(EObject model);
+
+    Boolean getDbSkipProcedures(EObject model);
+
+    Boolean getDbSkipCheckConstraints(EObject model);
+
+    String getDbType(EObject model);
+
+    String getDbDebugLevel(EObject model);
+
+    String getDbDebugScope(EObject model);
+
+    Boolean getDbTakeComments(EObject model);
+
+    Boolean getDbLowercaseNames(EObject model);
+
+    Boolean getDbUppercaseNames(EObject model);
+
+    String getDbDriver(EObject model);
+
+    String getDbUrl(EObject model);
+
+    String getDbUsername(EObject model);
 }

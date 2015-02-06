@@ -2159,10 +2159,10 @@ public class InternalProcessorMetaLexer extends Lexer {
         try {
             int _type = RULE_ON_OFF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37408:13: ( ( 'ON' | 'OFF' ) )
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37408:15: ( 'ON' | 'OFF' )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37804:13: ( ( 'ON' | 'OFF' ) )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37804:15: ( 'ON' | 'OFF' )
             {
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37408:15: ( 'ON' | 'OFF' )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37804:15: ( 'ON' | 'OFF' )
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -2190,7 +2190,7 @@ public class InternalProcessorMetaLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37408:16: 'ON'
+                    // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37804:16: 'ON'
                     {
                     match("ON"); 
 
@@ -2198,7 +2198,7 @@ public class InternalProcessorMetaLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37408:21: 'OFF'
+                    // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37804:21: 'OFF'
                     {
                     match("OFF"); 
 
@@ -2224,10 +2224,10 @@ public class InternalProcessorMetaLexer extends Lexer {
         try {
             int _type = RULE_STATEMENT_TYPE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37410:21: ( ( 'QRY' | 'CRUD' | 'CALL' ) )
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37410:23: ( 'QRY' | 'CRUD' | 'CALL' )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37806:21: ( ( 'QRY' | 'CRUD' | 'CALL' ) )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37806:23: ( 'QRY' | 'CRUD' | 'CALL' )
             {
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37410:23: ( 'QRY' | 'CRUD' | 'CALL' )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37806:23: ( 'QRY' | 'CRUD' | 'CALL' )
             int alt2=3;
             int LA2_0 = input.LA(1);
 
@@ -2258,7 +2258,7 @@ public class InternalProcessorMetaLexer extends Lexer {
             }
             switch (alt2) {
                 case 1 :
-                    // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37410:24: 'QRY'
+                    // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37806:24: 'QRY'
                     {
                     match("QRY"); 
 
@@ -2266,7 +2266,7 @@ public class InternalProcessorMetaLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37410:30: 'CRUD'
+                    // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37806:30: 'CRUD'
                     {
                     match("CRUD"); 
 
@@ -2274,7 +2274,7 @@ public class InternalProcessorMetaLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37410:37: 'CALL'
+                    // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37806:37: 'CALL'
                     {
                     match("CALL"); 
 
@@ -2300,8 +2300,8 @@ public class InternalProcessorMetaLexer extends Lexer {
         try {
             int _type = RULE_MAPPING_TYPE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37412:19: ( 'OUT' )
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37412:21: 'OUT'
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37808:19: ( 'OUT' )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37808:21: 'OUT'
             {
             match("OUT"); 
 
@@ -2321,10 +2321,10 @@ public class InternalProcessorMetaLexer extends Lexer {
         try {
             int _type = RULE_OPTION_TYPE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37414:18: ( ( 'OPT' | 'LOPT' | 'IOPT' | 'SOPT' | 'BOPT' | 'MOPT' ) )
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37414:20: ( 'OPT' | 'LOPT' | 'IOPT' | 'SOPT' | 'BOPT' | 'MOPT' )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37810:18: ( ( 'OPT' | 'LOPT' | 'IOPT' | 'SOPT' | 'BOPT' | 'MOPT' ) )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37810:20: ( 'OPT' | 'LOPT' | 'IOPT' | 'SOPT' | 'BOPT' | 'MOPT' )
             {
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37414:20: ( 'OPT' | 'LOPT' | 'IOPT' | 'SOPT' | 'BOPT' | 'MOPT' )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37810:20: ( 'OPT' | 'LOPT' | 'IOPT' | 'SOPT' | 'BOPT' | 'MOPT' )
             int alt3=6;
             switch ( input.LA(1) ) {
             case 'O':
@@ -2366,7 +2366,7 @@ public class InternalProcessorMetaLexer extends Lexer {
 
             switch (alt3) {
                 case 1 :
-                    // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37414:21: 'OPT'
+                    // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37810:21: 'OPT'
                     {
                     match("OPT"); 
 
@@ -2374,7 +2374,7 @@ public class InternalProcessorMetaLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37414:27: 'LOPT'
+                    // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37810:27: 'LOPT'
                     {
                     match("LOPT"); 
 
@@ -2382,7 +2382,7 @@ public class InternalProcessorMetaLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37414:34: 'IOPT'
+                    // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37810:34: 'IOPT'
                     {
                     match("IOPT"); 
 
@@ -2390,7 +2390,7 @@ public class InternalProcessorMetaLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37414:41: 'SOPT'
+                    // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37810:41: 'SOPT'
                     {
                     match("SOPT"); 
 
@@ -2398,7 +2398,7 @@ public class InternalProcessorMetaLexer extends Lexer {
                     }
                     break;
                 case 5 :
-                    // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37414:48: 'BOPT'
+                    // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37810:48: 'BOPT'
                     {
                     match("BOPT"); 
 
@@ -2406,7 +2406,7 @@ public class InternalProcessorMetaLexer extends Lexer {
                     }
                     break;
                 case 6 :
-                    // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37414:55: 'MOPT'
+                    // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37810:55: 'MOPT'
                     {
                     match("MOPT"); 
 
@@ -2432,11 +2432,11 @@ public class InternalProcessorMetaLexer extends Lexer {
         try {
             int _type = RULE_IDENT_DOT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37416:16: ( RULE_IDENT ( RULE_DOT RULE_IDENT )+ )
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37416:18: RULE_IDENT ( RULE_DOT RULE_IDENT )+
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37812:16: ( RULE_IDENT ( RULE_DOT RULE_IDENT )+ )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37812:18: RULE_IDENT ( RULE_DOT RULE_IDENT )+
             {
             mRULE_IDENT(); 
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37416:29: ( RULE_DOT RULE_IDENT )+
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37812:29: ( RULE_DOT RULE_IDENT )+
             int cnt4=0;
             loop4:
             do {
@@ -2450,7 +2450,7 @@ public class InternalProcessorMetaLexer extends Lexer {
 
                 switch (alt4) {
             	case 1 :
-            	    // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37416:30: RULE_DOT RULE_IDENT
+            	    // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37812:30: RULE_DOT RULE_IDENT
             	    {
             	    mRULE_DOT(); 
             	    mRULE_IDENT(); 
@@ -2483,8 +2483,8 @@ public class InternalProcessorMetaLexer extends Lexer {
         try {
             int _type = RULE_IDENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37418:12: ( ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '=' )* )
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37418:14: ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '=' )*
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37814:12: ( ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '=' )* )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37814:14: ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '=' )*
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -2495,7 +2495,7 @@ public class InternalProcessorMetaLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37418:34: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '=' )*
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37814:34: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '=' )*
             loop5:
             do {
                 int alt5=2;
@@ -2544,10 +2544,10 @@ public class InternalProcessorMetaLexer extends Lexer {
         try {
             int _type = RULE_NUMBER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37420:13: ( ( '0' .. '9' )+ )
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37420:15: ( '0' .. '9' )+
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37816:13: ( ( '0' .. '9' )+ )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37816:15: ( '0' .. '9' )+
             {
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37420:15: ( '0' .. '9' )+
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37816:15: ( '0' .. '9' )+
             int cnt6=0;
             loop6:
             do {
@@ -2561,7 +2561,7 @@ public class InternalProcessorMetaLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37420:16: '0' .. '9'
+            	    // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37816:16: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -2593,8 +2593,8 @@ public class InternalProcessorMetaLexer extends Lexer {
         try {
             int _type = RULE_ESC_CHAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37422:15: ( '\\\\' ( RULE_COLON | RULE_SEMICOLON | RULE_STRING | RULE_LBRACE | RULE_RBRACE | RULE_BOR | RULE_HASH | RULE_AT | RULE_PERCENT | RULE_DOT | '/' ) )
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37422:17: '\\\\' ( RULE_COLON | RULE_SEMICOLON | RULE_STRING | RULE_LBRACE | RULE_RBRACE | RULE_BOR | RULE_HASH | RULE_AT | RULE_PERCENT | RULE_DOT | '/' )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37818:15: ( '\\\\' ( RULE_COLON | RULE_SEMICOLON | RULE_STRING | RULE_LBRACE | RULE_RBRACE | RULE_BOR | RULE_HASH | RULE_AT | RULE_PERCENT | RULE_DOT | '/' ) )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37818:17: '\\\\' ( RULE_COLON | RULE_SEMICOLON | RULE_STRING | RULE_LBRACE | RULE_RBRACE | RULE_BOR | RULE_HASH | RULE_AT | RULE_PERCENT | RULE_DOT | '/' )
             {
             match('\\'); 
             if ( (input.LA(1)>='#' && input.LA(1)<='%')||(input.LA(1)>='.' && input.LA(1)<='/')||(input.LA(1)>=':' && input.LA(1)<=';')||input.LA(1)=='@'||(input.LA(1)>='{' && input.LA(1)<='}') ) {
@@ -2622,12 +2622,12 @@ public class InternalProcessorMetaLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37424:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37424:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37820:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37820:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37424:24: ( options {greedy=false; } : . )*
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37820:24: ( options {greedy=false; } : . )*
             loop7:
             do {
                 int alt7=2;
@@ -2652,7 +2652,7 @@ public class InternalProcessorMetaLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37424:52: .
+            	    // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37820:52: .
             	    {
             	    matchAny(); 
 
@@ -2682,12 +2682,12 @@ public class InternalProcessorMetaLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37426:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37426:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37822:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37822:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37426:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37822:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop8:
             do {
                 int alt8=2;
@@ -2700,7 +2700,7 @@ public class InternalProcessorMetaLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37426:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37822:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2720,7 +2720,7 @@ public class InternalProcessorMetaLexer extends Lexer {
                 }
             } while (true);
 
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37426:40: ( ( '\\r' )? '\\n' )?
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37822:40: ( ( '\\r' )? '\\n' )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -2729,9 +2729,9 @@ public class InternalProcessorMetaLexer extends Lexer {
             }
             switch (alt10) {
                 case 1 :
-                    // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37426:41: ( '\\r' )? '\\n'
+                    // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37822:41: ( '\\r' )? '\\n'
                     {
-                    // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37426:41: ( '\\r' )?
+                    // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37822:41: ( '\\r' )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -2740,7 +2740,7 @@ public class InternalProcessorMetaLexer extends Lexer {
                     }
                     switch (alt9) {
                         case 1 :
-                            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37426:41: '\\r'
+                            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37822:41: '\\r'
                             {
                             match('\r'); 
 
@@ -2772,10 +2772,10 @@ public class InternalProcessorMetaLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37428:9: ( ( ' ' | '\\t' | '\\n' | '\\r' )+ )
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37428:11: ( ' ' | '\\t' | '\\n' | '\\r' )+
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37824:9: ( ( ' ' | '\\t' | '\\n' | '\\r' )+ )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37824:11: ( ' ' | '\\t' | '\\n' | '\\r' )+
             {
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37428:11: ( ' ' | '\\t' | '\\n' | '\\r' )+
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37824:11: ( ' ' | '\\t' | '\\n' | '\\r' )+
             int cnt11=0;
             loop11:
             do {
@@ -2829,8 +2829,8 @@ public class InternalProcessorMetaLexer extends Lexer {
         try {
             int _type = RULE_AND;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37430:10: ( '&' '&' )
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37430:12: '&' '&'
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37826:10: ( '&' '&' )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37826:12: '&' '&'
             {
             match('&'); 
             match('&'); 
@@ -2850,8 +2850,8 @@ public class InternalProcessorMetaLexer extends Lexer {
         try {
             int _type = RULE_OR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37432:9: ( '|' '|' )
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37432:11: '|' '|'
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37828:9: ( '|' '|' )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37828:11: '|' '|'
             {
             match('|'); 
             match('|'); 
@@ -2871,8 +2871,8 @@ public class InternalProcessorMetaLexer extends Lexer {
         try {
             int _type = RULE_COLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37434:12: ( ':' )
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37434:14: ':'
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37830:12: ( ':' )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37830:14: ':'
             {
             match(':'); 
 
@@ -2891,8 +2891,8 @@ public class InternalProcessorMetaLexer extends Lexer {
         try {
             int _type = RULE_SEMICOLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37436:16: ( ';' )
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37436:18: ';'
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37832:16: ( ';' )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37832:18: ';'
             {
             match(';'); 
 
@@ -2911,8 +2911,8 @@ public class InternalProcessorMetaLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37438:13: ( '$' )
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37438:15: '$'
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37834:13: ( '$' )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37834:15: '$'
             {
             match('$'); 
 
@@ -2931,8 +2931,8 @@ public class InternalProcessorMetaLexer extends Lexer {
         try {
             int _type = RULE_COMMA;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37440:12: ( ',' )
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37440:14: ','
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37836:12: ( ',' )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37836:14: ','
             {
             match(','); 
 
@@ -2951,8 +2951,8 @@ public class InternalProcessorMetaLexer extends Lexer {
         try {
             int _type = RULE_MINUS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37442:12: ( '-' )
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37442:14: '-'
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37838:12: ( '-' )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37838:14: '-'
             {
             match('-'); 
 
@@ -2971,8 +2971,8 @@ public class InternalProcessorMetaLexer extends Lexer {
         try {
             int _type = RULE_PLUS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37444:11: ( '+' )
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37444:13: '+'
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37840:11: ( '+' )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37840:13: '+'
             {
             match('+'); 
 
@@ -2991,8 +2991,8 @@ public class InternalProcessorMetaLexer extends Lexer {
         try {
             int _type = RULE_LPAREN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37446:13: ( '(' )
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37446:15: '('
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37842:13: ( '(' )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37842:15: '('
             {
             match('('); 
 
@@ -3011,8 +3011,8 @@ public class InternalProcessorMetaLexer extends Lexer {
         try {
             int _type = RULE_RPAREN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37448:13: ( ')' )
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37448:15: ')'
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37844:13: ( ')' )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37844:15: ')'
             {
             match(')'); 
 
@@ -3031,8 +3031,8 @@ public class InternalProcessorMetaLexer extends Lexer {
         try {
             int _type = RULE_LBRACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37450:13: ( '{' )
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37450:15: '{'
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37846:13: ( '{' )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37846:15: '{'
             {
             match('{'); 
 
@@ -3051,8 +3051,8 @@ public class InternalProcessorMetaLexer extends Lexer {
         try {
             int _type = RULE_RBRACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37452:13: ( '}' )
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37452:15: '}'
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37848:13: ( '}' )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37848:15: '}'
             {
             match('}'); 
 
@@ -3071,8 +3071,8 @@ public class InternalProcessorMetaLexer extends Lexer {
         try {
             int _type = RULE_QUESTI;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37454:13: ( '?' )
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37454:15: '?'
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37850:13: ( '?' )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37850:15: '?'
             {
             match('?'); 
 
@@ -3091,8 +3091,8 @@ public class InternalProcessorMetaLexer extends Lexer {
         try {
             int _type = RULE_NOT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37456:10: ( '!' )
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37456:12: '!'
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37852:10: ( '!' )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37852:12: '!'
             {
             match('!'); 
 
@@ -3111,8 +3111,8 @@ public class InternalProcessorMetaLexer extends Lexer {
         try {
             int _type = RULE_BAND;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37458:11: ( '&' )
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37458:13: '&'
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37854:11: ( '&' )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37854:13: '&'
             {
             match('&'); 
 
@@ -3131,8 +3131,8 @@ public class InternalProcessorMetaLexer extends Lexer {
         try {
             int _type = RULE_BOR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37460:10: ( '|' )
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37460:12: '|'
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37856:10: ( '|' )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37856:12: '|'
             {
             match('|'); 
 
@@ -3151,8 +3151,8 @@ public class InternalProcessorMetaLexer extends Lexer {
         try {
             int _type = RULE_HASH;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37462:11: ( '#' )
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37462:13: '#'
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37858:11: ( '#' )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37858:13: '#'
             {
             match('#'); 
 
@@ -3171,8 +3171,8 @@ public class InternalProcessorMetaLexer extends Lexer {
         try {
             int _type = RULE_AT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37464:9: ( '@' )
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37464:11: '@'
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37860:9: ( '@' )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37860:11: '@'
             {
             match('@'); 
 
@@ -3191,8 +3191,8 @@ public class InternalProcessorMetaLexer extends Lexer {
         try {
             int _type = RULE_CARET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37466:12: ( '^' )
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37466:14: '^'
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37862:12: ( '^' )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37862:14: '^'
             {
             match('^'); 
 
@@ -3211,8 +3211,8 @@ public class InternalProcessorMetaLexer extends Lexer {
         try {
             int _type = RULE_EQUALS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37468:13: ( '=' )
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37468:15: '='
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37864:13: ( '=' )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37864:15: '='
             {
             match('='); 
 
@@ -3231,8 +3231,8 @@ public class InternalProcessorMetaLexer extends Lexer {
         try {
             int _type = RULE_LESS_THAN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37470:16: ( '<' )
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37470:18: '<'
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37866:16: ( '<' )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37866:18: '<'
             {
             match('<'); 
 
@@ -3251,8 +3251,8 @@ public class InternalProcessorMetaLexer extends Lexer {
         try {
             int _type = RULE_MORE_THAN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37472:16: ( '>' )
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37472:18: '>'
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37868:16: ( '>' )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37868:18: '>'
             {
             match('>'); 
 
@@ -3271,8 +3271,8 @@ public class InternalProcessorMetaLexer extends Lexer {
         try {
             int _type = RULE_PERCENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37474:14: ( '%' )
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37474:16: '%'
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37870:14: ( '%' )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37870:16: '%'
             {
             match('%'); 
 
@@ -3291,8 +3291,8 @@ public class InternalProcessorMetaLexer extends Lexer {
         try {
             int _type = RULE_DOT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37476:10: ( '.' )
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37476:12: '.'
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37872:10: ( '.' )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37872:12: '.'
             {
             match('.'); 
 
@@ -3311,8 +3311,8 @@ public class InternalProcessorMetaLexer extends Lexer {
         try {
             int _type = RULE_REST;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37478:11: (~ ( RULE_SEMICOLON ) )
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37478:13: ~ ( RULE_SEMICOLON )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37874:11: (~ ( RULE_SEMICOLON ) )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37874:13: ~ ( RULE_SEMICOLON )
             {
             if ( (input.LA(1)>='\u0000' && input.LA(1)<=':')||(input.LA(1)>='<' && input.LA(1)<='\uFFFF') ) {
                 input.consume();
@@ -3339,11 +3339,11 @@ public class InternalProcessorMetaLexer extends Lexer {
         try {
             int _type = RULE_STRING_VALUE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37480:19: ( '\"' ( options {greedy=false; } : . )* '\"' )
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37480:21: '\"' ( options {greedy=false; } : . )* '\"'
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37876:19: ( '\"' ( options {greedy=false; } : . )* '\"' )
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37876:21: '\"' ( options {greedy=false; } : . )* '\"'
             {
             match('\"'); 
-            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37480:25: ( options {greedy=false; } : . )*
+            // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37876:25: ( options {greedy=false; } : . )*
             loop12:
             do {
                 int alt12=2;
@@ -3359,7 +3359,7 @@ public class InternalProcessorMetaLexer extends Lexer {
 
                 switch (alt12) {
             	case 1 :
-            	    // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37480:53: .
+            	    // ../org.sqlproc.meta.ui/src-gen/org/sqlproc/meta/ui/contentassist/antlr/internal/InternalProcessorMeta.g:37876:53: .
             	    {
             	    matchAny(); 
 

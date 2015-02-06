@@ -89,6 +89,7 @@ public class ProcessorMetaFactoryImpl extends EFactoryImpl implements ProcessorM
       case ProcessorMetaPackage.EXTENDS_ASSIGNEMENT: return createExtendsAssignement();
       case ProcessorMetaPackage.IMPLEMENTS_ASSIGNEMENT_GENERICS: return createImplementsAssignementGenerics();
       case ProcessorMetaPackage.EXTENDS_ASSIGNEMENT_GENERICS: return createExtendsAssignementGenerics();
+      case ProcessorMetaPackage.PROPERTY_CONDITION: return createPropertyCondition();
       case ProcessorMetaPackage.PROPERTY: return createProperty();
       case ProcessorMetaPackage.DATABASE_PROPERTY: return createDatabaseProperty();
       case ProcessorMetaPackage.POJOGEN_PROPERTY: return createPojogenProperty();
@@ -405,6 +406,17 @@ public class ProcessorMetaFactoryImpl extends EFactoryImpl implements ProcessorM
   {
     ExtendsAssignementGenericsImpl extendsAssignementGenerics = new ExtendsAssignementGenericsImpl();
     return extendsAssignementGenerics;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PropertyCondition createPropertyCondition()
+  {
+    PropertyConditionImpl propertyCondition = new PropertyConditionImpl();
+    return propertyCondition;
   }
 
   /**

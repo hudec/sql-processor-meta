@@ -118,7 +118,12 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//ExtendsAssignementGenerics/dbTables"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//ExtendsAssignementGenerics/dbNotTables"/>
     </genClasses>
+    <genClasses ecoreClass="ProcessorMeta.ecore#//PropertyCondition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//PropertyCondition/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//PropertyCondition/value"/>
+    </genClasses>
     <genClasses ecoreClass="ProcessorMeta.ecore#//Property">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//Property/condition"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProcessorMeta.ecore#//Property/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//Property/database"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProcessorMeta.ecore#//Property/pojogen"/>
