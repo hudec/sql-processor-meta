@@ -786,7 +786,7 @@ class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposalProvide
     }
 
     val methods = newArrayList("toString", "hashCode", "equals", "isDef", "toInit", "enumDef",
-            "enumInit", "index=")
+            "enumInit", "index")
 
     override completePojogenProperty_Methods(EObject model, Assignment assignment, ContentAssistContext context,
             ICompletionProposalAcceptor acceptor) {
@@ -992,51 +992,55 @@ class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposalProvide
         acceptColumns(dbResolver.getColumns(model, prop.dbTable), context, acceptor, null, null)
     }
 
-    override completeDatabaseMetaInfoAssignement_DbMetaInfo(EObject model, Assignment assignment,
-            ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-        if (!isResolveDb(model)) {
-            super.completeDatabaseMetaInfoAssignement_DbMetaInfo(model, assignment, context, acceptor)
-            return
-        }
-        val dbMetaInfo = dbResolver.getDbMetaInfo(model)
-        val proposal = getValueConverter().toString(dbMetaInfo, "PropertyValue")
-        acceptor.accept(createCompletionProposal(proposal, context))
-    }
+	override completeDatabaseMetaInfoAssignement_DbMetaInfo(EObject model, Assignment assignment,
+		ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		if (!isResolveDb(model)) {
+			super.completeDatabaseMetaInfoAssignement_DbMetaInfo(model, assignment, context, acceptor)
+			return
+		}
+		var String dbMetaInfo = dbResolver.getDbMetaInfo(model)
+		if (dbMetaInfo != null)
+			dbMetaInfo = '"'+dbMetaInfo+'"'
+		val proposal = getValueConverter().toString(dbMetaInfo, "PropertyValue")
+		acceptor.accept(createCompletionProposal(proposal, context))
+	}
 
-    override completeDriverMetaInfoAssignement_DbDriverInfo(EObject model, Assignment assignment,
-            ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-        if (!isResolveDb(model)) {
-            super.completeDriverMetaInfoAssignement_DbDriverInfo(model, assignment, context, acceptor)
-            return
-        }
-        val dbDriverInfo = dbResolver.getDbDriverInfo(model)
-        val proposal = getValueConverter().toString(dbDriverInfo, "PropertyValue")
-        acceptor.accept(createCompletionProposal(proposal, context))
-    }
+	override completeDriverMetaInfoAssignement_DbDriverInfo(EObject model, Assignment assignment,
+		ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		if (!isResolveDb(model)) {
+			super.completeDriverMetaInfoAssignement_DbDriverInfo(model, assignment, context, acceptor)
+			return
+		}
+		var String dbDriverInfo = dbResolver.getDbDriverInfo(model)
+		if (dbDriverInfo != null)
+			dbDriverInfo = '"'+dbDriverInfo+'"'
+		val proposal = getValueConverter().toString(dbDriverInfo, "PropertyValue")
+		acceptor.accept(createCompletionProposal(proposal, context))
+	}
 
-    override completeDriverMethodOutputAssignement_DriverMethod(EObject model, Assignment assignment,
-            ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-        if (!isResolveDb(model) || !(model instanceof DatabaseProperty)) {
-            super.completeDriverMethodOutputAssignement_DriverMethod(model, assignment, context, acceptor)
-            return
-        }
-        dbResolver.getDriverMethods(model).forEach[driverMetod |
-            val proposal = getValueConverter().toString(driverMetod, "PropertyValue")
-            acceptor.accept(createCompletionProposal(proposal + "->", context))
-        ]
-    }
+	override completeDriverMethodOutputAssignement_DriverMethod(EObject model, Assignment assignment,
+		ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		if (!isResolveDb(model) || !(model instanceof DatabaseProperty)) {
+			super.completeDriverMethodOutputAssignement_DriverMethod(model, assignment, context, acceptor)
+			return
+		}
+		dbResolver.getDriverMethods(model).forEach [ driverMetod |
+			val proposal = getValueConverter().toString(driverMetod, "PropertyValue")
+			acceptor.accept(createCompletionProposal(proposal + "->", context))
+		]
+	}
 
-    override completeDriverMethodOutputAssignement_CallOutput(EObject model, Assignment assignment,
-            ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-        if (!isResolveDb(model) || !(model instanceof DriverMethodOutputAssignement)) {
-            super.completeDriverMethodOutputAssignement_CallOutput(model, assignment, context, acceptor)
-            return
-        }
-        val prop = model as DriverMethodOutputAssignement
-        val methodCallOutput = dbResolver.getDriverMethodOutput(model, prop.getDriverMethod()) ?: "null"
-        val proposal = getValueConverter().toString("" + methodCallOutput, "PropertyValue")
-        acceptor.accept(createCompletionProposal(proposal, context))
-    }
+	override completeDriverMethodOutputAssignement_CallOutput(EObject model, Assignment assignment,
+		ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		if (!isResolveDb(model) || !(model instanceof DriverMethodOutputAssignement)) {
+			super.completeDriverMethodOutputAssignement_CallOutput(model, assignment, context, acceptor)
+			return
+		}
+		val prop = model as DriverMethodOutputAssignement
+		var methodCallOutput = dbResolver.getDriverMethodOutput(model, prop.getDriverMethod()) ?: "null"
+		val proposal = getValueConverter().toString('"' + methodCallOutput + '"', "PropertyValue")
+		acceptor.accept(createCompletionProposal(proposal, context))
+	}
 
     override completeDatabaseTypeAssignement_DbType(EObject model, Assignment assignment,
             ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
