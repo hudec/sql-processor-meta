@@ -80,7 +80,7 @@ public class ProcessorTemplateProposalProvider extends DefaultTemplateProposalPr
             acceptor.accept(tp);
         }
 
-        if (templateContext.getContextType().getId().equals(helper.getId(ga.getOptionalFeatureRule()))) {
+        if (templateContext.getContextType().getId().equals(helper.getId(ga.getPropertyRule()))) {
 
             Template template = new Template("pojos", "Pojos definitions", "pojosTemplateID", "${pojoDefinitions}",
                     false);// auto-insertable?
