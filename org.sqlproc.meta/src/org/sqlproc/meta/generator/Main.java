@@ -13,6 +13,7 @@ import java.util.Map;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.generator.JavaIoFileSystemAccess;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.scoping.IScopeProvider;
@@ -41,8 +42,6 @@ public class Main {
     private Provider<ResourceSet> resourceSetProvider;
     @Inject
     private IResourceValidator validator;
-    @Inject
-    private IGenerator2 generator;
     @Inject
     private JavaIoFileSystemAccess fileAccess;
     @Inject
@@ -106,9 +105,9 @@ public class Main {
             System.out.println("Incorrect usage.");
         System.out.println("META SQL models generation using control directives:");
         System.out
-                .println("  java -jar sqlep.jar -control controlDirectivesFile -sql metaSqlsFile [-ddl ddlsFile] [-source sourceDir] [-target targetDir] [-nomerge]");
+                .println("  java -jar sqlmeta.jar -control controlDirectivesFile -sql metaSqlsFile [-ddl ddlsFile] [-source sourceDir] [-target targetDir] [-nomerge]");
         System.out.println("For example:");
-        System.out.println("  java -jar sqlep.jar -control definitions.meta -sql statements.meta");
+        System.out.println("  java -jar sqlmeta.jar -control definitions.meta -sql statements.meta");
         System.out.println();
         System.out.println("Arguments:");
         System.out.println("  -target dirname - a target directory (eg. src-gen)");
@@ -128,15 +127,25 @@ public class Main {
         Resource controlResource = set.getResource(URI.createURI(getFile(source, control)), true);
         set.getResources().add(controlResource);
         Resource sqlResource = null;
-        File sqlFile = new File(URI.createURI(getFile(source, sql)).toFileString());
-        if (sqlFile.canRead()) {
+        try {
             sqlResource = set.getResource(URI.createURI(getFile(source, sql)), true);
             set.getResources().add(sqlResource);
+        } catch (Exception ex) {
+            System.out.println("Can't read " + getFile(source, sql));
         }
 
-        if (!isValid(controlResource) || (merge && sqlResource != null && !isValid(sqlResource)))
+        System.out.println("Going to validate " + controlResource);
+        boolean controlResourceIsOk = isValid(controlResource);
+        if (!controlResourceIsOk)
             return;
-        System.out.println("Resource(s) validation finished.");
+        System.out.println("Validated " + controlResource);
+        if (merge && sqlResource != null) {
+            System.out.println("Going to validate " + sqlResource);
+            boolean sqlResourceIsOk = isValid(sqlResource);
+            if (!sqlResourceIsOk)
+                return;
+            System.out.println("Validated " + sqlResource);
+        }
 
         Artifacts definitions = (Artifacts) controlResource.getContents().get(0);
         if (definitions.getProperties().isEmpty()) {
@@ -180,15 +189,17 @@ public class Main {
     }
 
     protected boolean isValid(Resource resource) throws IOException {
+        boolean isError = false;
         resource.load(null);
         List<Issue> list = validator.validate(resource, CheckMode.ALL, CancelIndicator.NullImpl);
         if (!list.isEmpty()) {
             for (Issue issue : list) {
                 System.err.println(issue);
+                if (issue.getSeverity() == Severity.ERROR)
+                    isError = true;
             }
-            return false;
         }
-        return true;
+        return !isError;
     }
 
     protected String getMetaDefinitions(ModelPropertyBean modelProperty, DbResolver dbResolver, Artifacts artifacts,
