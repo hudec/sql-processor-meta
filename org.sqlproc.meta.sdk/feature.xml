@@ -6,7 +6,7 @@
       provider-name="SQL Processor Team">
 
    <url>
-      <update label="SQL Processor Eclipse Plugin Release Update Site" url="http://sql-processor.org/plugins/releases"/>
+      <update label="SQL Processor Eclipse Plugin Release Update Site" url="http://sql-processor.org/plugins/meta-releases"/>
    </url>
 
    <plugin
