@@ -1575,18 +1575,7 @@ public class TablePojoGenerator {
         if (sqlType.getRef() != null) {
             attribute.setPrimitive(false);
             attribute.setDependencyClassName(sqlType.getRef().getName());
-            if (attribute.getDependencyClassName() == null) {
-                attribute.setDependencyClassName(sqlType.getText());
-            }
         } else if (sqlType.isNativeType()) {
-            // System.out.println("getIdentifier " + sqlType.getType().getIdentifier());
-            // System.out.println("getQualifiedName " + sqlType.getType().getQualifiedName());
-            // System.out.println("getSimpleName " + sqlType.getType().getSimpleName());
-            // System.out.println("JvmPrimitiveType " + (sqlType.getType() instanceof JvmPrimitiveType));
-            // if (sqlType.getType() instanceof JvmPrimitiveType) {
-            // System.out.println("getArrayType " + ((JvmPrimitiveType) sqlType.getType()).getArrayType());
-            // }
-            // JvmPrimitiveTypeImplCustom
             attribute.setPrimitive(true);
             attribute.setClassName(sqlType.getType().getIdentifier() + (sqlType.isArray() ? " []" : ""));
         } else {
@@ -1613,10 +1602,9 @@ public class TablePojoGenerator {
         PojoAttrType sqlType = redefinedTypes.containsKey(table) ? redefinedTypes.get(table).get(dbColumn.getName())
                 : null;
         if (sqlType == null)
-            sqlType = tableTypes.containsKey(table) ? tableTypes.get(table)
-                    .get(dbColumn.getType() + dbColumn.getSize()) : null;
+            sqlType = tableTypes.containsKey(table) ? tableTypes.get(table).get(dbColumn.getCompleteType()) : null;
         if (sqlType == null)
-            sqlType = sqlTypes.get(dbColumn.getType() + dbColumn.getSize());
+            sqlType = sqlTypes.get(dbColumn.getCompleteType());
         if (sqlType == null)
             return null;
         PojoAttribute attribute = new PojoAttribute(dbColumn.getName());

@@ -626,65 +626,39 @@ ruleSqlTypeAssignement returns [EObject current=null]
     @after { leaveRule(); }:
 ((
 (
-		lv_typeName_0_0=RULE_IDENT
-		{
-			newLeafNode(lv_typeName_0_0, grammarAccess.getSqlTypeAssignementAccess().getTypeNameIDENTTerminalRuleCall_0_0()); 
-		}
-		{
+		{ 
+	        newCompositeNode(grammarAccess.getSqlTypeAssignementAccess().getSqlTypeValueTypeParserRuleCall_0_0()); 
+	    }
+		lv_sqlType_0_0=ruleValueType		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getSqlTypeAssignementRule());
+	            $current = createModelElementForParent(grammarAccess.getSqlTypeAssignementRule());
 	        }
-       		setWithLastConsumed(
+       		set(
        			$current, 
-       			"typeName",
-        		lv_typeName_0_0, 
-        		"IDENT");
+       			"sqlType",
+        		lv_sqlType_0_0, 
+        		"ValueType");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)(this_LPAREN_1=RULE_LPAREN
-    { 
-    newLeafNode(this_LPAREN_1, grammarAccess.getSqlTypeAssignementAccess().getLPARENTerminalRuleCall_1_0()); 
-    }
-(
-(
-		lv_size_2_0=RULE_NUMBER
-		{
-			newLeafNode(lv_size_2_0, grammarAccess.getSqlTypeAssignementAccess().getSizeNUMBERTerminalRuleCall_1_1_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getSqlTypeAssignementRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"size",
-        		lv_size_2_0, 
-        		"NUMBER");
-	    }
-
-)
-)this_RPAREN_3=RULE_RPAREN
-    { 
-    newLeafNode(this_RPAREN_3, grammarAccess.getSqlTypeAssignementAccess().getRPARENTerminalRuleCall_1_2()); 
-    }
-)?	otherlv_4='->' 
+)	otherlv_1='->' 
     {
-    	newLeafNode(otherlv_4, grammarAccess.getSqlTypeAssignementAccess().getHyphenMinusGreaterThanSignKeyword_2());
+    	newLeafNode(otherlv_1, grammarAccess.getSqlTypeAssignementAccess().getHyphenMinusGreaterThanSignKeyword_1());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getSqlTypeAssignementAccess().getTypePojoTypeParserRuleCall_3_0()); 
+	        newCompositeNode(grammarAccess.getSqlTypeAssignementAccess().getTypePojoTypeParserRuleCall_2_0()); 
 	    }
-		lv_type_5_0=rulePojoType		{
+		lv_type_2_0=rulePojoType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getSqlTypeAssignementRule());
 	        }
        		set(
        			$current, 
        			"type",
-        		lv_type_5_0, 
+        		lv_type_2_0, 
         		"PojoType");
 	        afterParserOrEnumRuleCall();
 	    }

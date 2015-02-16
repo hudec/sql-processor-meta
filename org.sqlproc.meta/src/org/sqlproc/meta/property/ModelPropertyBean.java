@@ -670,9 +670,9 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             // if (modelValues.sqlTypes == null)
             // modelValues.sqlTypes = new HashMap<String, PojoAttrType>();
             for (int i = 0, m = property.getSqlTypes().size(); i < m; i++) {
-                PojoAttrType type = new PojoAttrType(property.getSqlTypes().get(i).getTypeName(), property
-                        .getSqlTypes().get(i).getSize(), property.getSqlTypes().get(i).getType());
-                modelValues.sqlTypes.put(type.getName() + type.getSize(), type);
+                String sqlType = getPropertyValue(property.getSqlTypes().get(i).getSqlType());
+                PojoAttrType type = new PojoAttrType(null, sqlType, property.getSqlTypes().get(i).getType());
+                modelValues.sqlTypes.put(sqlType, type);
             }
         } else if (POJOGEN_TYPE_IN_TABLE.equals(property.getName())) {
             // if (modelValues.tableTypes == null)
@@ -680,9 +680,9 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             if (!modelValues.tableTypes.containsKey(property.getDbTable()))
                 modelValues.tableTypes.put(property.getDbTable(), new HashMap<String, PojoAttrType>());
             for (int i = 0, m = property.getSqlTypes().size(); i < m; i++) {
-                PojoAttrType type = new PojoAttrType(property.getSqlTypes().get(i).getTypeName(), property
-                        .getSqlTypes().get(i).getSize(), property.getSqlTypes().get(i).getType());
-                modelValues.tableTypes.get(property.getDbTable()).put(type.getName() + type.getSize(), type);
+                String sqlType = getPropertyValue(property.getSqlTypes().get(i).getSqlType());
+                PojoAttrType type = new PojoAttrType(null, sqlType, property.getSqlTypes().get(i).getType());
+                modelValues.tableTypes.get(property.getDbTable()).put(sqlType, type);
             }
         } else if (POJOGEN_TYPE_FOR_COLUMNS.equals(property.getName())) {
             // if (modelValues.columnTypes == null)
@@ -692,7 +692,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             for (int i = 0, m = property.getColumnTypes().size(); i < m; i++) {
                 PojoAttrType type = new PojoAttrType(property.getColumnTypes().get(i).getDbColumn(), null, property
                         .getColumnTypes().get(i).getType());
-                modelValues.columnTypes.get(property.getDbTable()).put(type.getName(), type);
+                modelValues.columnTypes.get(property.getDbTable()).put(property.getColumnTypes().get(i).getDbColumn(),
+                        type);
             }
         } else if (POJOGEN_TYPE_FOR_PROCEDURE.equals(property.getName())) {
             // if (modelValues.columnTypes == null)
@@ -702,7 +703,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             for (int i = 0, m = property.getColumnTypes().size(); i < m; i++) {
                 PojoAttrType type = new PojoAttrType(property.getColumnTypes().get(i).getDbColumn(), null, property
                         .getColumnTypes().get(i).getType());
-                modelValues.procedureTypes.get(property.getDbProcedure()).put(type.getName(), type);
+                modelValues.procedureTypes.get(property.getDbProcedure()).put(
+                        property.getColumnTypes().get(i).getDbColumn(), type);
             }
         } else if (POJOGEN_TYPE_FOR_FUNCTION.equals(property.getName())) {
             // if (modelValues.columnTypes == null)
@@ -712,7 +714,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             for (int i = 0, m = property.getColumnTypes().size(); i < m; i++) {
                 PojoAttrType type = new PojoAttrType(property.getColumnTypes().get(i).getDbColumn(), null, property
                         .getColumnTypes().get(i).getType());
-                modelValues.functionTypes.get(property.getDbFunction()).put(type.getName(), type);
+                modelValues.functionTypes.get(property.getDbFunction()).put(
+                        property.getColumnTypes().get(i).getDbColumn(), type);
             }
         } else if (POJOGEN_RENAME_TABLES.equals(property.getName())) {
             // if (modelValues.tableNames == null)
@@ -780,7 +783,8 @@ public class ModelPropertyBean extends AdapterImpl implements ModelProperty {
             for (int i = 0, m = property.getColumnTypes().size(); i < m; i++) {
                 PojoAttrType type = new PojoAttrType(property.getColumnTypes().get(i).getDbColumn(), null, property
                         .getColumnTypes().get(i).getType());
-                modelValues.createColumns.get(property.getDbTable()).put(type.getName(), type);
+                modelValues.createColumns.get(property.getDbTable()).put(
+                        property.getColumnTypes().get(i).getDbColumn(), type);
             }
         } else if (POJOGEN_IGNORE_EXPORTS.equals(property.getName())) {
             // if (modelValues.ignoreExports == null)

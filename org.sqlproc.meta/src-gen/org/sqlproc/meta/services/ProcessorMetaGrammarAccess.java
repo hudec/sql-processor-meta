@@ -326,53 +326,33 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	public class SqlTypeAssignementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SqlTypeAssignement");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cTypeNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cTypeNameIDENTTerminalRuleCall_0_0 = (RuleCall)cTypeNameAssignment_0.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final RuleCall cLPARENTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
-		private final Assignment cSizeAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cSizeNUMBERTerminalRuleCall_1_1_0 = (RuleCall)cSizeAssignment_1_1.eContents().get(0);
-		private final RuleCall cRPARENTerminalRuleCall_1_2 = (RuleCall)cGroup_1.eContents().get(2);
-		private final Keyword cHyphenMinusGreaterThanSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cTypeAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cTypePojoTypeParserRuleCall_3_0 = (RuleCall)cTypeAssignment_3.eContents().get(0);
+		private final Assignment cSqlTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cSqlTypeValueTypeParserRuleCall_0_0 = (RuleCall)cSqlTypeAssignment_0.eContents().get(0);
+		private final Keyword cHyphenMinusGreaterThanSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cTypePojoTypeParserRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
 		
 		//SqlTypeAssignement:
-		//	typeName=IDENT (LPAREN size=NUMBER RPAREN)? "->" type=PojoType;
+		//	sqlType=ValueType "->" type=PojoType;
 		public ParserRule getRule() { return rule; }
 
-		//typeName=IDENT (LPAREN size=NUMBER RPAREN)? "->" type=PojoType
+		//sqlType=ValueType "->" type=PojoType
 		public Group getGroup() { return cGroup; }
 
-		//typeName=IDENT
-		public Assignment getTypeNameAssignment_0() { return cTypeNameAssignment_0; }
+		//sqlType=ValueType
+		public Assignment getSqlTypeAssignment_0() { return cSqlTypeAssignment_0; }
 
-		//IDENT
-		public RuleCall getTypeNameIDENTTerminalRuleCall_0_0() { return cTypeNameIDENTTerminalRuleCall_0_0; }
-
-		//(LPAREN size=NUMBER RPAREN)?
-		public Group getGroup_1() { return cGroup_1; }
-
-		//LPAREN
-		public RuleCall getLPARENTerminalRuleCall_1_0() { return cLPARENTerminalRuleCall_1_0; }
-
-		//size=NUMBER
-		public Assignment getSizeAssignment_1_1() { return cSizeAssignment_1_1; }
-
-		//NUMBER
-		public RuleCall getSizeNUMBERTerminalRuleCall_1_1_0() { return cSizeNUMBERTerminalRuleCall_1_1_0; }
-
-		//RPAREN
-		public RuleCall getRPARENTerminalRuleCall_1_2() { return cRPARENTerminalRuleCall_1_2; }
+		//ValueType
+		public RuleCall getSqlTypeValueTypeParserRuleCall_0_0() { return cSqlTypeValueTypeParserRuleCall_0_0; }
 
 		//"->"
-		public Keyword getHyphenMinusGreaterThanSignKeyword_2() { return cHyphenMinusGreaterThanSignKeyword_2; }
+		public Keyword getHyphenMinusGreaterThanSignKeyword_1() { return cHyphenMinusGreaterThanSignKeyword_1; }
 
 		//type=PojoType
-		public Assignment getTypeAssignment_3() { return cTypeAssignment_3; }
+		public Assignment getTypeAssignment_2() { return cTypeAssignment_2; }
 
 		//PojoType
-		public RuleCall getTypePojoTypeParserRuleCall_3_0() { return cTypePojoTypeParserRuleCall_3_0; }
+		public RuleCall getTypePojoTypeParserRuleCall_2_0() { return cTypePojoTypeParserRuleCall_2_0; }
 	}
 
 	public class ColumnTypeAssignementElements extends AbstractParserRuleElementFinder {
@@ -7944,7 +7924,7 @@ public class ProcessorMetaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SqlTypeAssignement:
-	//	typeName=IDENT (LPAREN size=NUMBER RPAREN)? "->" type=PojoType;
+	//	sqlType=ValueType "->" type=PojoType;
 	public SqlTypeAssignementElements getSqlTypeAssignementAccess() {
 		return pSqlTypeAssignement;
 	}
