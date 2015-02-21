@@ -728,6 +728,7 @@ public class TablePojoGenerator {
         if (procedure == null || dbProcColumns == null)
             return;
         Map<String, PojoAttribute> attributes = new LinkedHashMap<String, PojoAttribute>();
+        Map<String, PojoAttribute> attributesResultSet = new LinkedHashMap<String, PojoAttribute>();
         int ix = 0;
         for (DbColumn dbColumn : dbProcColumns) {
             ix++;
@@ -743,14 +744,14 @@ public class TablePojoGenerator {
                     && !FAKE_FUN_PROC_COLUMN_NAME.equals(dbColumn.getName()))
                 continue;
             PojoAttribute attribute = convertDbColumnDefinition(procedure, dbColumn, procedureTypes);
-            if (attribute != null) {
-                attributes.put(dbColumn.getName(), attribute);
-            } else {
+            if (attribute == null)
                 attribute = convertDbColumnDefault(procedure, dbColumn);
-                if (attribute != null)
-                    attributes.put(dbColumn.getName(), attribute);
-            }
             if (attribute != null) {
+                if (!FAKE_FUN_PROC_COLUMN_NAME.equals(dbColumn.getName())
+                        && (dbColumn.getColumnType() == 3 || dbColumn.getColumnType() == 5))
+                    attributesResultSet.put(dbColumn.getName(), attribute);
+                else
+                    attributes.put(dbColumn.getName(), attribute);
                 attribute.setFunProcType(dbProcedure.getFtype());
                 attribute.setFunProcColumnType(dbColumn.getColumnType());
             }
@@ -766,6 +767,10 @@ public class TablePojoGenerator {
                 if (metaType != null)
                     metaProceduresResult.put(procedure, metaType);
             }
+        }
+        if (!attributesResultSet.isEmpty()) {
+            // TODO
+            System.out.println("TODO " + procedure + " returns " + attributesResultSet);
         }
         if (createColumns.containsKey(procedure)) {
             for (Map.Entry<String, PojoAttrType> createColumn : createColumns.get(procedure).entrySet()) {
@@ -1920,6 +1925,12 @@ public class TablePojoGenerator {
                     scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__PROCEDURES));
             List<FunctionDefinition> functions = Utils.findFunctions(null, artifacts,
                     scopeProvider.getScope(artifacts, ProcessorMetaPackage.Literals.ARTIFACTS__FUNCTIONS));
+            Set<String> funNames = new HashSet<String>();
+            if (functions != null) {
+                for (FunctionDefinition _function : functions) {
+                    funNames.add(_function.getTable());
+                }
+            }
             if (tables == null && procedures == null && functions == null)
                 return false;
             if (tables != null) {
@@ -1958,7 +1969,7 @@ public class TablePojoGenerator {
                     List<DbTable> ltables = dbResolver.getDbProcedures(artifacts, procedure);
                     String comment = (ltables != null && !ltables.isEmpty()) ? ltables.get(0).getComment() : null;
                     generator.addProcedureDefinition(procedure, dbProcedures.get(0), dbProcColumns,
-                            functions.contains(procedure), comment);
+                            funNames.contains(procedure), comment);
                 }
             }
             if (functions != null) {
