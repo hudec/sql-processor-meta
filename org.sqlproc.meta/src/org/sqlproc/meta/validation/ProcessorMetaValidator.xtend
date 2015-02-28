@@ -272,8 +272,7 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
                 warning("Problem property : " + columnName + "[" + columnUsageClass + "]",
                         ProcessorMetaPackage.Literals.COLUMN__COLUMNS)
             case ValidationResult.ERROR:
-                error("Cannot find property : " + columnName + "[" + columnUsageClass + "]",
-                        ProcessorMetaPackage.Literals.COLUMN__COLUMNS)
+            	checkColumnGType(statement, columnName, columnUsageClass)
             }
             return
         }
@@ -281,6 +280,49 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
         if (pojoResolverFactory.getPojoResolver() != null) {
             error("Cannot check result class attribute : " + columnName, ProcessorMetaPackage.Literals.COLUMN__COLUMNS)
         }
+    }
+    
+    def checkColumnGType(MetaStatement statement, String columnName, String columnUsageClass) {
+    	if (statement == null || statement.statement == null || statement.statement.sqls == null)
+    		return;
+    	for (stmt : statement.statement.sqls) {
+    		if (stmt.col != null && stmt.col.columns != null && stmt.col.columns != null) {
+				for (_col : stmt.col.columns) {
+					if (_col.modifiers != null) {
+						for (mod : _col.modifiers) {
+							if (mod.indexOf('gtype') >= 0) {
+				                warning("Problem property : " + columnName + "[" + columnUsageClass + "]",
+                			        ProcessorMetaPackage.Literals.COLUMN__COLUMNS)
+                			    return
+							}
+						}
+					}
+				}
+    		}
+    		if (stmt.meta != null && stmt.meta.ifs != null) {
+    			for (ifs : stmt.meta.ifs) {
+    				if (ifs.sqls != null) {
+				    	for (stmt2 : ifs.sqls) {
+				    		if (stmt2.col != null && stmt2.col.columns != null && stmt2.col.columns != null) {
+								for (_col : stmt2.col.columns) {
+									if (_col.modifiers != null) {
+										for (mod : _col.modifiers) {
+											if (mod.indexOf('gtype') >= 0) {
+								                warning("Problem property : " + columnName + "[" + columnUsageClass + "]",
+                			    				    ProcessorMetaPackage.Literals.COLUMN__COLUMNS)
+                			    				return
+											}
+										}
+									}
+								}
+				    		}
+			    		}
+    				}
+    			}
+    		}
+    	}
+		error("Cannot find property : " + columnName + "[" + columnUsageClass + "]",
+        	ProcessorMetaPackage.Literals.COLUMN__COLUMNS)
     }
 
     @Check
@@ -301,8 +343,8 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
                 warning("Problem property : " + identifierName + "[" + identifierUsageClass + "]",
                         ProcessorMetaPackage.Literals.IDENTIFIER__NAME)
             case ValidationResult.ERROR:
-                error("Cannot find property : " + identifierName + "[" + identifierUsageClass + "]",
-                        ProcessorMetaPackage.Literals.IDENTIFIER__NAME)
+		        error("Cannot find property : " + identifierName + "[" + identifierUsageClass + "]",
+					ProcessorMetaPackage.Literals.IDENTIFIER__NAME)
             }
             return
         }
@@ -312,7 +354,7 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
                     ProcessorMetaPackage.Literals.IDENTIFIER__NAME)
         }
     }
-
+    
     @Check
     def checkConstant(Constant constant) {
         if (!isResolvePojo(constant))
@@ -362,9 +404,8 @@ class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
                 warning("Problem property : " + columnName + "[" + mappingUsageClass + "]",
                         ProcessorMetaPackage.Literals.MAPPING_COLUMN__ITEMS)
             case ValidationResult.ERROR:
-                error("Cannot find property : " + columnName + "[" + mappingUsageClass + "]",
-                        ProcessorMetaPackage.Literals.MAPPING_COLUMN__ITEMS)
-
+				error("Cannot find property : " + columnName + "[" + mappingUsageClass + "]",
+        			ProcessorMetaPackage.Literals.MAPPING_COLUMN__ITEMS)
             }
             return
         }

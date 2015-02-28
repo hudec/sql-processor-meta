@@ -40,8 +40,11 @@ import org.sqlproc.meta.processorMeta.Column;
 import org.sqlproc.meta.processorMeta.Constant;
 import org.sqlproc.meta.processorMeta.DatabaseColumn;
 import org.sqlproc.meta.processorMeta.DatabaseTable;
+import org.sqlproc.meta.processorMeta.ExtendedColumn;
 import org.sqlproc.meta.processorMeta.FunctionDefinition;
 import org.sqlproc.meta.processorMeta.Identifier;
+import org.sqlproc.meta.processorMeta.IfSql;
+import org.sqlproc.meta.processorMeta.IfSqlFragment;
 import org.sqlproc.meta.processorMeta.MappingColumn;
 import org.sqlproc.meta.processorMeta.MappingRule;
 import org.sqlproc.meta.processorMeta.MetaSql;
@@ -51,6 +54,8 @@ import org.sqlproc.meta.processorMeta.PojoDefinition;
 import org.sqlproc.meta.processorMeta.ProcedureDefinition;
 import org.sqlproc.meta.processorMeta.ProcessorMetaPackage;
 import org.sqlproc.meta.processorMeta.Property;
+import org.sqlproc.meta.processorMeta.Sql;
+import org.sqlproc.meta.processorMeta.SqlFragment;
 import org.sqlproc.meta.processorMeta.TableDefinition;
 import org.sqlproc.meta.property.ModelProperty;
 import org.sqlproc.meta.resolver.DbResolver;
@@ -590,8 +595,7 @@ public class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
               ProcessorMetaPackage.Literals.COLUMN__COLUMNS);
             break;
           case ERROR:
-            this.error((((("Cannot find property : " + columnName) + "[") + columnUsageClass) + "]"), 
-              ProcessorMetaPackage.Literals.COLUMN__COLUMNS);
+            this.checkColumnGType(statement, columnName, columnUsageClass);
             break;
           default:
             break;
@@ -604,6 +608,142 @@ public class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
     if (_notEquals_3) {
       this.error(("Cannot check result class attribute : " + columnName), ProcessorMetaPackage.Literals.COLUMN__COLUMNS);
     }
+  }
+  
+  public void checkColumnGType(final MetaStatement statement, final String columnName, final String columnUsageClass) {
+    boolean _or = false;
+    boolean _or_1 = false;
+    boolean _equals = Objects.equal(statement, null);
+    if (_equals) {
+      _or_1 = true;
+    } else {
+      Sql _statement = statement.getStatement();
+      boolean _equals_1 = Objects.equal(_statement, null);
+      _or_1 = _equals_1;
+    }
+    if (_or_1) {
+      _or = true;
+    } else {
+      Sql _statement_1 = statement.getStatement();
+      EList<SqlFragment> _sqls = _statement_1.getSqls();
+      boolean _equals_2 = Objects.equal(_sqls, null);
+      _or = _equals_2;
+    }
+    if (_or) {
+      return;
+    }
+    Sql _statement_2 = statement.getStatement();
+    EList<SqlFragment> _sqls_1 = _statement_2.getSqls();
+    for (final SqlFragment stmt : _sqls_1) {
+      {
+        boolean _and = false;
+        boolean _and_1 = false;
+        Column _col = stmt.getCol();
+        boolean _notEquals = (!Objects.equal(_col, null));
+        if (!_notEquals) {
+          _and_1 = false;
+        } else {
+          Column _col_1 = stmt.getCol();
+          EList<ExtendedColumn> _columns = _col_1.getColumns();
+          boolean _notEquals_1 = (!Objects.equal(_columns, null));
+          _and_1 = _notEquals_1;
+        }
+        if (!_and_1) {
+          _and = false;
+        } else {
+          Column _col_2 = stmt.getCol();
+          EList<ExtendedColumn> _columns_1 = _col_2.getColumns();
+          boolean _notEquals_2 = (!Objects.equal(_columns_1, null));
+          _and = _notEquals_2;
+        }
+        if (_and) {
+          Column _col_3 = stmt.getCol();
+          EList<ExtendedColumn> _columns_2 = _col_3.getColumns();
+          for (final ExtendedColumn _col_4 : _columns_2) {
+            EList<String> _modifiers = _col_4.getModifiers();
+            boolean _notEquals_3 = (!Objects.equal(_modifiers, null));
+            if (_notEquals_3) {
+              EList<String> _modifiers_1 = _col_4.getModifiers();
+              for (final String mod : _modifiers_1) {
+                int _indexOf = mod.indexOf("gtype");
+                boolean _greaterEqualsThan = (_indexOf >= 0);
+                if (_greaterEqualsThan) {
+                  this.warning((((("Problem property : " + columnName) + "[") + columnUsageClass) + "]"), 
+                    ProcessorMetaPackage.Literals.COLUMN__COLUMNS);
+                  return;
+                }
+              }
+            }
+          }
+        }
+        boolean _and_2 = false;
+        MetaSql _meta = stmt.getMeta();
+        boolean _notEquals_4 = (!Objects.equal(_meta, null));
+        if (!_notEquals_4) {
+          _and_2 = false;
+        } else {
+          MetaSql _meta_1 = stmt.getMeta();
+          EList<IfSql> _ifs = _meta_1.getIfs();
+          boolean _notEquals_5 = (!Objects.equal(_ifs, null));
+          _and_2 = _notEquals_5;
+        }
+        if (_and_2) {
+          MetaSql _meta_2 = stmt.getMeta();
+          EList<IfSql> _ifs_1 = _meta_2.getIfs();
+          for (final IfSql ifs : _ifs_1) {
+            EList<IfSqlFragment> _sqls_2 = ifs.getSqls();
+            boolean _notEquals_6 = (!Objects.equal(_sqls_2, null));
+            if (_notEquals_6) {
+              EList<IfSqlFragment> _sqls_3 = ifs.getSqls();
+              for (final IfSqlFragment stmt2 : _sqls_3) {
+                boolean _and_3 = false;
+                boolean _and_4 = false;
+                Column _col_5 = stmt2.getCol();
+                boolean _notEquals_7 = (!Objects.equal(_col_5, null));
+                if (!_notEquals_7) {
+                  _and_4 = false;
+                } else {
+                  Column _col_6 = stmt2.getCol();
+                  EList<ExtendedColumn> _columns_3 = _col_6.getColumns();
+                  boolean _notEquals_8 = (!Objects.equal(_columns_3, null));
+                  _and_4 = _notEquals_8;
+                }
+                if (!_and_4) {
+                  _and_3 = false;
+                } else {
+                  Column _col_7 = stmt2.getCol();
+                  EList<ExtendedColumn> _columns_4 = _col_7.getColumns();
+                  boolean _notEquals_9 = (!Objects.equal(_columns_4, null));
+                  _and_3 = _notEquals_9;
+                }
+                if (_and_3) {
+                  Column _col_8 = stmt2.getCol();
+                  EList<ExtendedColumn> _columns_5 = _col_8.getColumns();
+                  for (final ExtendedColumn _col_9 : _columns_5) {
+                    EList<String> _modifiers_2 = _col_9.getModifiers();
+                    boolean _notEquals_10 = (!Objects.equal(_modifiers_2, null));
+                    if (_notEquals_10) {
+                      EList<String> _modifiers_3 = _col_9.getModifiers();
+                      for (final String mod_1 : _modifiers_3) {
+                        int _indexOf_1 = mod_1.indexOf("gtype");
+                        boolean _greaterEqualsThan_1 = (_indexOf_1 >= 0);
+                        if (_greaterEqualsThan_1) {
+                          this.warning((((("Problem property : " + columnName) + "[") + columnUsageClass) + "]"), 
+                            ProcessorMetaPackage.Literals.COLUMN__COLUMNS);
+                          return;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    this.error((((("Cannot find property : " + columnName) + "[") + columnUsageClass) + "]"), 
+      ProcessorMetaPackage.Literals.COLUMN__COLUMNS);
   }
   
   @Check
