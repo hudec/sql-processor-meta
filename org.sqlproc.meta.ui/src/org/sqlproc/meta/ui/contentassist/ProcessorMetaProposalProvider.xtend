@@ -43,6 +43,7 @@ import org.sqlproc.meta.util.Utils
 import com.google.inject.Inject
 
 import static extension org.eclipse.xtext.EcoreUtil2.*
+import org.eclipse.emf.common.util.URI
 
 /**
  * see http://www.eclipse.org/Xtext/documentation.html#contentAssist on how to customize content assistant
@@ -147,10 +148,11 @@ class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposalProvide
 		val prefix = if (pos > 0) _prefix.substring(0, pos + 1) else ""
 
         if (pojoDefinition != null) {
-            val clazz = getClassName(getClass(pojoDefinition), prefix)
+	        val URI uri = model.eResource?.URI
+            val clazz = getClassName(getClass(pojoDefinition), prefix, uri)
             if (clazz == null)
                 return false
-            val descriptors = pojoResolver.getPropertyDescriptors(clazz)
+            val descriptors = pojoResolver.getPropertyDescriptors(clazz, uri)
             if (descriptors == null)
                 return false
             descriptors.filter["class" != name].forEach[descriptor |
@@ -196,10 +198,11 @@ class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposalProvide
         val _cutPrefix = cutPrefix
 
         if (pojoDefinition != null) {
-            val clazz = getClassName(getClass(pojoDefinition), prefix)
+	        val URI uri = model.eResource?.URI
+            val clazz = getClassName(getClass(pojoDefinition), prefix, uri)
             if (clazz == null)
                 return
-            val descriptors = pojoResolver.getPropertyDescriptors(clazz)
+            val descriptors = pojoResolver.getPropertyDescriptors(clazz, uri)
             if (descriptors == null) {
                 super.completeMappingColumnName_Name(model, assignment, context, acceptor)
             } else {
@@ -254,7 +257,7 @@ class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposalProvide
         return false
     }
 
-    def String getClassName(String baseClass, String property) {
+    def String getClassName(String baseClass, String property, URI uri) {
         if (baseClass == null || property == null)
             return baseClass
         var pos1 = property.indexOf('.')
@@ -273,7 +276,7 @@ class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposalProvide
             innerProperty = checkProperty.substring(pos1 + 1)
             checkProperty = checkProperty.substring(0, pos1)
         }
-        var descriptors = pojoResolver.getPropertyDescriptors(baseClass)
+        var descriptors = pojoResolver.getPropertyDescriptors(baseClass, uri)
         if (descriptors == null)
             return null
         val _checkProperty = checkProperty
@@ -290,7 +293,7 @@ class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposalProvide
             innerClass = type.getActualTypeArguments().head as Class<?>
             if (isPrimitive(innerClass))
                 return null
-            return getClassName(innerClass.getName(), innerProperty)
+            return getClassName(innerClass.getName(), innerProperty, uri)
         } else if (typeof(Collection).isAssignableFrom(innerClass)) {
             var type = innerDesriptor.getReadMethod().getGenericReturnType() as ParameterizedType
             if (type.getActualTypeArguments() == null || type.getActualTypeArguments().length == 0)
@@ -298,11 +301,11 @@ class ProcessorMetaProposalProvider extends AbstractProcessorMetaProposalProvide
             innerClass = type.getActualTypeArguments().head as Class<?>
             if (isPrimitive(innerClass))
                 return null
-            return getClassName(innerClass.getName(), innerProperty)
+            return getClassName(innerClass.getName(), innerProperty, uri)
         } else {
             if (isPrimitive(innerClass))
                 return null
-            return getClassName(innerClass.getName(), innerProperty)
+            return getClassName(innerClass.getName(), innerProperty, uri)
         }
     }
 

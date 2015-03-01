@@ -11,6 +11,7 @@ import org.eclipse.xtext.ui.editor.syntaxcoloring.DefaultAntlrTokenToAttributeId
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
 import org.eclipse.xtext.ui.editor.templates.XtextTemplateContextType;
+import org.eclipse.xtext.ui.resource.IResourceSetProvider;
 import org.sqlproc.meta.resolver.PojoResolver;
 import org.sqlproc.meta.resolver.PojoResolverFactory;
 import org.sqlproc.meta.resolver.PojoResolverFactoryBean;
@@ -84,5 +85,10 @@ public class ProcessorMetaUiModule extends org.sqlproc.meta.ui.AbstractProcessor
     @Override
     public Class<? extends ITemplateProposalProvider> bindITemplateProposalProvider() {
         return ProcessorTemplateProposalProvider.class;
+    }
+
+    @Override
+    public Class<? extends IResourceSetProvider> bindIResourceSetProvider() {
+        return ProcessorMetaResourceSetProvider.class;
     }
 }

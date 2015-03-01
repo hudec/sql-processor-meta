@@ -17,6 +17,7 @@ import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
@@ -26,14 +27,20 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.core.ICompilationUnit;
+import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragment;
 import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.jdt.internal.core.PackageFragmentRoot;
 import org.eclipse.jdt.launching.JavaRuntime;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
+import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.internal.Workbench;
 import org.sqlproc.meta.property.ModelProperty;
 import org.sqlproc.meta.resolver.PojoResolver;
 
@@ -49,6 +56,26 @@ public class WorkspacePojoResolverImpl implements PojoResolver {
     ModelProperty modelProperty;
 
     private List<URLClassLoader> allLoaders;
+
+    public static IProject getCurrentProject() {
+        ISelectionService selectionService = Workbench.getInstance().getActiveWorkbenchWindow().getSelectionService();
+        ISelection selection = selectionService.getSelection();
+        IProject project = null;
+        if (selection instanceof IStructuredSelection) {
+            Object element = ((IStructuredSelection) selection).getFirstElement();
+
+            if (element instanceof IResource) {
+                project = ((IResource) element).getProject();
+            } else if (element instanceof PackageFragmentRoot) {
+                IJavaProject jProject = ((PackageFragmentRoot) element).getJavaProject();
+                project = jProject.getProject();
+            } else if (element instanceof IJavaElement) {
+                IJavaProject jProject = ((IJavaElement) element).getJavaProject();
+                project = jProject.getProject();
+            }
+        }
+        return project;
+    }
 
     protected void init() {
         LOGGER.info("POJO START");
@@ -98,7 +125,7 @@ public class WorkspacePojoResolverImpl implements PojoResolver {
     }
 
     @Override
-    public Class<?> loadClass(String name) {
+    public Class<?> loadClass(String name, URI uri) {
         if (allLoaders == null)
             init();
         for (URLClassLoader loader : allLoaders) {
@@ -120,10 +147,10 @@ public class WorkspacePojoResolverImpl implements PojoResolver {
     }
 
     @Override
-    public PropertyDescriptor[] getPropertyDescriptors(String name) {
+    public PropertyDescriptor[] getPropertyDescriptors(String name, URI uri) {
         if (allLoaders == null)
             init();
-        Class<?> beanClass = loadClass(name);
+        Class<?> beanClass = loadClass(name, uri);
         if (beanClass == null)
             return null;
 

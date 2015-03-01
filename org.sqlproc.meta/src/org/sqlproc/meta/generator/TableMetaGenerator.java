@@ -1802,7 +1802,6 @@ public class TableMetaGenerator extends TablePojoGenerator {
                     generateSequence = false;
                 if (!metaGlobalSequenceNotForTables.isEmpty() && metaGlobalSequenceNotForTables.contains(pojo))
                     generateSequence = false;
-                System.out.println("k");
                 return (generateSequence) ? metaGlobalSequence : null;
             } else if (sequences != null) {
                 PairValues result = null;

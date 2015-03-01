@@ -21,7 +21,9 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.common.types.JvmType;
@@ -228,13 +230,19 @@ public class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
   
   @Check
   public void checkUniquePojoDefinition(final PojoDefinition pojoDefinition) {
+    Resource _eResource = pojoDefinition.eResource();
+    URI _uRI = null;
+    if (_eResource!=null) {
+      _uRI=_eResource.getURI();
+    }
+    final URI uri = _uRI;
     boolean _and = false;
     boolean _isResolvePojo = this.isResolvePojo(pojoDefinition);
     if (!_isResolvePojo) {
       _and = false;
     } else {
       String _class = this.getClass(pojoDefinition);
-      boolean _checkClass = this.checkClass(_class);
+      boolean _checkClass = this.checkClass(_class, uri);
       boolean _not = (!_checkClass);
       _and = _not;
     }
@@ -507,7 +515,7 @@ public class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
     return filteredModifiers;
   }
   
-  public boolean checkClass(final String className) {
+  public boolean checkClass(final String className, final URI uri) {
     boolean _or = false;
     boolean _equals = Objects.equal(className, null);
     if (_equals) {
@@ -521,7 +529,7 @@ public class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
       return true;
     }
     PojoResolver _pojoResolver_1 = this.pojoResolverFactory.getPojoResolver();
-    final Class<?> clazz = _pojoResolver_1.loadClass(className);
+    final Class<?> clazz = _pojoResolver_1.loadClass(className, uri);
     return (!Objects.equal(clazz, null));
   }
   
@@ -569,6 +577,12 @@ public class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
     if (_isNumber) {
       return;
     }
+    Resource _eResource = column.eResource();
+    URI _uRI = null;
+    if (_eResource!=null) {
+      _uRI=_eResource.getURI();
+    }
+    final URI uri = _uRI;
     final MetaStatement statement = EcoreUtil2.<MetaStatement>getContainerOfType(column, MetaStatement.class);
     final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(statement, Artifacts.class);
     final String pojoName = Utils.getTokenFromModifier(statement, Constants.COLUMN_USAGE);
@@ -587,7 +601,7 @@ public class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
     final String columnUsageClass = _xifexpression_1;
     boolean _notEquals_2 = (!Objects.equal(columnUsageClass, null));
     if (_notEquals_2) {
-      ValidationResult _checkClassProperty = this.checkClassProperty(columnUsageClass, columnName);
+      ValidationResult _checkClassProperty = this.checkClassProperty(columnUsageClass, columnName, uri);
       if (_checkClassProperty != null) {
         switch (_checkClassProperty) {
           case WARNING:
@@ -753,6 +767,12 @@ public class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
     if (_not) {
       return;
     }
+    Resource _eResource = identifier.eResource();
+    URI _uRI = null;
+    if (_eResource!=null) {
+      _uRI=_eResource.getURI();
+    }
+    final URI uri = _uRI;
     final String identifierName = identifier.getName();
     final MetaStatement statement = EcoreUtil2.<MetaStatement>getContainerOfType(identifier, MetaStatement.class);
     final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(statement, Artifacts.class);
@@ -772,7 +792,7 @@ public class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
     final String identifierUsageClass = _xifexpression_1;
     boolean _notEquals_2 = (!Objects.equal(identifierUsageClass, null));
     if (_notEquals_2) {
-      ValidationResult _checkClassProperty = this.checkClassProperty(identifierUsageClass, identifierName);
+      ValidationResult _checkClassProperty = this.checkClassProperty(identifierUsageClass, identifierName, uri);
       if (_checkClassProperty != null) {
         switch (_checkClassProperty) {
           case WARNING:
@@ -804,6 +824,12 @@ public class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
     if (_not) {
       return;
     }
+    Resource _eResource = constant.eResource();
+    URI _uRI = null;
+    if (_eResource!=null) {
+      _uRI=_eResource.getURI();
+    }
+    final URI uri = _uRI;
     final MetaStatement statement = EcoreUtil2.<MetaStatement>getContainerOfType(constant, MetaStatement.class);
     final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(statement, Artifacts.class);
     final String pojoName = Utils.getTokenFromModifier(statement, Constants.CONSTANT_USAGE);
@@ -823,7 +849,7 @@ public class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
     boolean _notEquals_2 = (!Objects.equal(constantUsageClass, null));
     if (_notEquals_2) {
       String _name = constant.getName();
-      ValidationResult _checkClassProperty = this.checkClassProperty(constantUsageClass, _name);
+      ValidationResult _checkClassProperty = this.checkClassProperty(constantUsageClass, _name, uri);
       if (_checkClassProperty != null) {
         switch (_checkClassProperty) {
           case WARNING:
@@ -872,6 +898,12 @@ public class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
     if (_isNumber) {
       return;
     }
+    Resource _eResource = column.eResource();
+    URI _uRI = null;
+    if (_eResource!=null) {
+      _uRI=_eResource.getURI();
+    }
+    final URI uri = _uRI;
     final MetaStatement rule = EcoreUtil2.<MetaStatement>getContainerOfType(column, MetaStatement.class);
     final Artifacts artifacts = EcoreUtil2.<Artifacts>getContainerOfType(rule, Artifacts.class);
     final String pojoName = Utils.getTokenFromModifier(rule, Constants.MAPPING_USAGE);
@@ -890,7 +922,7 @@ public class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
     final String mappingUsageClass = _xifexpression_1;
     boolean _notEquals_2 = (!Objects.equal(mappingUsageClass, null));
     if (_notEquals_2) {
-      ValidationResult _checkClassProperty = this.checkClassProperty(mappingUsageClass, columnName);
+      ValidationResult _checkClassProperty = this.checkClassProperty(mappingUsageClass, columnName, uri);
       if (_checkClassProperty != null) {
         switch (_checkClassProperty) {
           case WARNING:
@@ -1098,7 +1130,7 @@ public class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
     return false;
   }
   
-  public ValidationResult checkClassProperty(final String className, final String property) {
+  public ValidationResult checkClassProperty(final String className, final String property, final URI uri) {
     boolean _or = false;
     boolean _or_1 = false;
     boolean _equals = Objects.equal(property, null);
@@ -1123,7 +1155,7 @@ public class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
       return ValidationResult.ERROR;
     }
     PojoResolver _pojoResolver_1 = this.pojoResolverFactory.getPojoResolver();
-    PropertyDescriptor[] descriptors = _pojoResolver_1.getPropertyDescriptors(className);
+    PropertyDescriptor[] descriptors = _pojoResolver_1.getPropertyDescriptors(className, uri);
     boolean _equals_3 = Objects.equal(descriptors, null);
     if (_equals_3) {
       return ValidationResult.WARNING;
@@ -1160,7 +1192,7 @@ public class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
     boolean _equals_4 = Objects.equal(innerDesriptor, null);
     if (_equals_4) {
       PojoResolver _pojoResolver_2 = this.pojoResolverFactory.getPojoResolver();
-      final Class<?> clazz = _pojoResolver_2.loadClass(className);
+      final Class<?> clazz = _pojoResolver_2.loadClass(className, uri);
       boolean _and = false;
       boolean _notEquals = (!Objects.equal(clazz, null));
       if (!_notEquals) {
@@ -1205,7 +1237,7 @@ public class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
           return ValidationResult.ERROR;
         }
         String _name = innerClass.getName();
-        return this.checkClassProperty(_name, innerProperty);
+        return this.checkClassProperty(_name, innerProperty, uri);
       } else {
         boolean _isAssignableFrom = Collection.class.isAssignableFrom(innerClass);
         if (_isAssignableFrom) {
@@ -1234,14 +1266,14 @@ public class ProcessorMetaValidator extends AbstractProcessorMetaValidator {
             return ValidationResult.ERROR;
           }
           String _name_1 = innerClass.getName();
-          return this.checkClassProperty(_name_1, innerProperty);
+          return this.checkClassProperty(_name_1, innerProperty, uri);
         } else {
           boolean _isPrimitive_2 = this.isPrimitive(innerClass);
           if (_isPrimitive_2) {
             return ValidationResult.ERROR;
           }
           String _name_2 = innerClass.getName();
-          return this.checkClassProperty(_name_2, innerProperty);
+          return this.checkClassProperty(_name_2, innerProperty, uri);
         }
       }
     }
