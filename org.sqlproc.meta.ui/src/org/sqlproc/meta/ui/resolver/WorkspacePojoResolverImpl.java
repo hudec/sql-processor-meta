@@ -57,6 +57,7 @@ public class WorkspacePojoResolverImpl implements PojoResolver {
 
     private List<URLClassLoader> allLoaders;
 
+    // tohle nefunguje
     public static IProject getCurrentProject() {
         ISelectionService selectionService = Workbench.getInstance().getActiveWorkbenchWindow().getSelectionService();
         ISelection selection = selectionService.getSelection();
@@ -82,6 +83,7 @@ public class WorkspacePojoResolverImpl implements PojoResolver {
         List<IJavaProject> javaProjects = new ArrayList<IJavaProject>();
         List<URLClassLoader> loaders = new ArrayList<URLClassLoader>();
         IProject[] projects = ResourcesPlugin.getWorkspace().getRoot().getProjects();
+        // [P/RemoteSystemsTempFiles, P/Servers, P/simple-jdbc-crud, P/simple-jdbc-dao]
         for (IProject project : projects) {
             try {
                 project.open(null /* IProgressMonitor */);
@@ -126,6 +128,7 @@ public class WorkspacePojoResolverImpl implements PojoResolver {
 
     @Override
     public Class<?> loadClass(String name, URI uri) {
+        // platform:/resource/simple-jdbc-dao/src/main/resources/statements.meta
         if (allLoaders == null)
             init();
         for (URLClassLoader loader : allLoaders) {
@@ -148,6 +151,7 @@ public class WorkspacePojoResolverImpl implements PojoResolver {
 
     @Override
     public PropertyDescriptor[] getPropertyDescriptors(String name, URI uri) {
+        // platform:/resource/simple-jdbc-dao/src/main/resources/statements.meta
         if (allLoaders == null)
             init();
         Class<?> beanClass = loadClass(name, uri);
