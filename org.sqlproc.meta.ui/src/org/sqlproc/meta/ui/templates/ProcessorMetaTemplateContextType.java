@@ -579,8 +579,8 @@ public class ProcessorMetaTemplateContextType extends XtextTemplateContextType {
         @Override
         protected String resolve(TemplateContext context) {
             Artifacts artifacts = getArtifacts((XtextTemplateContext) context);
-            URI uri = (artifacts.eResource() != null) ? artifacts.eResource().getURI() : null;
             if (artifacts != null && pojoResolver.isResolvePojo(artifacts)) {
+                URI uri = (artifacts.eResource() != null) ? artifacts.eResource().getURI() : null;
                 List<Class<?>> pojoClasses = pojoResolver.getPojoClasses(uri);
                 return getPojoDefinitions(pojoClasses);
             }
